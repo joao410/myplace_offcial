@@ -1,0 +1,1177 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head><meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="generator" content="Jekyll v4.0.1">
+	<title>MyPlace - Genios Shop  </title>
+	<link rel="stylesheet" type="text/css" id="applicationStylesheet" href="{% static 'css/Meu_Perfil.css' %}"/>
+
+	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+
+
+	
+
+	
+
+
+	<link rel="stylesheet" type="text/css" id="applicationStylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
+
+
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
+	
+	
+	
+
+    {% block style %}
+    <style>
+.Retngulo1_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 120px;
+	height: 37px;
+	left: 0px;
+	top: 797px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo2_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 120px;
+	height: 37px;
+	left: 150px;
+	top: 797px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo3_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 120px;
+	height: 37px;
+	left: 300px;
+	top: 797px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo4_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 120px;
+	height: 37px;
+	left: 460px;
+	top: 797px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo5_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 120px;
+	height: 37px;
+	left: 610px;
+	top: 797px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo6_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 120px;
+	height: 37px;
+	left: 0px;
+	top: 897px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo7_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 120px;
+	height: 37px;
+	left: 150px;
+	top: 897px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo8_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 120px;
+	height: 37px;
+	left: 300px;
+	top: 897px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo9_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 120px;
+	height: 37px;
+	left: 460px;
+	top: 897px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo10_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 120px;
+	height: 37px;
+	left: 611px;
+	top: 897px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo11_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 120px;
+	height: 37px;
+	left: 0px;
+	top: 997px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo12_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 120px;
+	height: 37px;
+	left: 150px;
+	top: 997px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo13_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 120px;
+	height: 37px;
+	left: 300px;
+	top: 997px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo14_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 120px;
+	height: 37px;
+	left: 460px;
+	top: 997px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_582 {
+		background-color: rgba(0,76,162,1);
+		position: absolute;
+		overflow: visible;
+		width: 172px;
+		height: 29px;
+		left: 853px;
+		top: 681px;
+		border-radius: 20px;
+	}
+
+#Retngulo_59 {
+		
+		stroke: rgba(112,112,112,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+.Retngulo_59 {
+		
+		position: absolute;
+		overflow: visible;
+		color: rgba(112,112,112,1);
+		width: 172px;
+		height: 29px;
+		left: 815px;
+		top: 554px;
+		border-radius: 20px;
+		border-style: solid;
+		border-color:rgba(112,112,112,1);
+	
+	}
+
+		div.container {
+		width: 100%;
+		position:absolute;
+
+    }
+
+
+.Retngulo_60 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 408px;
+	height: 37px;
+	left: 208px;
+	top: 105px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+
+.Retngulo_61 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 178px;
+	height: 37px;
+	left: 68px;
+	top: 150px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_61_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 178px;
+	height: 37px;
+	left: 8px;
+	top: 180px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_empresa {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 178px;
+	height: 37px;
+	left: 85px;
+	top: 150px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+
+.Retngulo_62 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 208px;
+	height: 37px;
+	left: 328px;
+	top: 150px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_62_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 208px;
+	height: 37px;
+	left: 240px;
+	top: 202px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_cargo {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 208px;
+	height: 37px;
+	left: 408px;
+	top: 152px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+
+.Retngulo_63 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 408px;
+	height: 37px;
+	left: 208px;
+	top: 240px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_cpf {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 168px;
+	height: 37px;
+	left: 65px;
+	top: 198px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_pis {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 205px;
+	height: 37px;
+	left: 325px;
+	top: 199px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+
+.Retngulo_64 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 408px;
+	height: 37px;
+	left: 208px;
+	top: 280px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_cor {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 158px;
+	height: 37px;
+	left: 8px;
+	top: 430px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_ecivil {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 158px;
+	height: 37px;
+	left: 190px;
+	top: 430px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_escol {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 158px;
+	height: 37px;
+	left: 406px;
+	top: 430px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_dn {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 158px;
+	height: 37px;
+	left: 8px;
+	top: 530px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_munasci {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 158px;
+	height: 37px;
+	left: 190px;
+	top: 530px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_ufn {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 158px;
+	height: 37px;
+	left: 404px;
+	top: 530px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_pais {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 158px;
+	height: 37px;
+	left: 8px;
+	top: 610px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_nasci {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 158px;
+	height: 37px;
+	left: 190px;
+	top: 610px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_serie {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 158px;
+	height: 37px;
+	left: 408px;
+	top: 280px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_carteira {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 208px;
+	height: 37px;
+	left: 188px;
+	top: 280px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_titulo {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 158px;
+	height: 37px;
+	left: 4px;
+	top: 280px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_ufc {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 158px;
+	height: 37px;
+	left: 4px;
+	top: 350px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_emissao {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 158px;
+	height: 37px;
+	left: 190px;
+	top: 350px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_mae {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 408px;
+	height: 37px;
+	left: 5px;
+	top: 707px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_pai {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 408px;
+	height: 37px;
+	left: 428px;
+	top: 707px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_65 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 408px;
+	height: 37px;
+	left: 208px;
+	top: 325px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+
+.Retngulo_66 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 408px;
+	height: 37px;
+	left: 208px;
+	top: 370px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+
+.Retngulo_67 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 408px;
+	height: 37px;
+	left: 208px;
+	top: 415px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+
+.Retngulo_68 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 408px;
+	height: 37px;
+	left: 208px;
+	top: 501px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_vtrans{
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 208px;
+	height: 37px;
+	left: 180px;
+	top: 210px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+
+
+.Retngulo_69 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 200px;
+	height: 32px;
+	left: 792px;
+	top: 508px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+
+.Retngulo_70 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 408px;
+	height: 37px;
+	left: 208px;
+	top: 460px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+
+.Retngulo_71 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 408px;
+	height: 37px;
+	left: 208px;
+	top: 545px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_admissao {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 158px;
+	height: 37px;
+	left: 198px;
+	top: 275px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_demissao {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 158px;
+	height: 37px;
+	left: 198px;
+	top: 340px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_tipoadmissao{
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 408px;
+	height: 37px;
+	left: 198px;
+	top: 390px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+
+.Retngulo_72 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 408px;
+	height: 37px;
+	left: 208px;
+	top: 597px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_73 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 408px;
+	height: 37px;
+	left: 208px;
+	top: 647px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_indica {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 408px;
+	height: 37px;
+	left: 208px;
+	top: 447px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_74 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 158px;
+	height: 37px;
+	left: 8px;
+	top: 547px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_75 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 158px;
+	height: 37px;
+	left: 208px;
+	top: 548px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_76 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 158px;
+	height: 37px;
+	left: 408px;
+	top: 548px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_77 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 408px;
+	height: 37px;
+	left: 208px;
+	top: 597px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_78 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 208px;
+	height: 37px;
+	left: 8px;
+	top: 707px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_79 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width:208px;
+	height: 37px;
+	left: 325px;
+	top: 707px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_80 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 205px;
+	height: 37px;
+	left: 8px;
+	top: 797px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_81 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 208px;
+	height: 37px;
+	left: 325px;
+	top: 797px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_82 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 208px;
+	height: 37px;
+	left: 608px;
+	top: 707px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_83 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 208px;
+	height: 37px;
+	left: 608px;
+	top: 797px;
+	
+	border-radius: 20px;
+	padding-left: 10px;
+}
+
+
+	</style>
+	<style>
+ 
+    .placeholders {
+        padding-bottom: 3rem;
+    }
+
+    .placeholder img {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    tr .sender {
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    tr .sender span {
+        color: #676767;
+    }
+
+    .response {
+		position:absolute;
+		top:900px;
+        display: block;
+    }
+	</style>
+	<style scoped>
+        
+        .text {
+            padding: 0.75rem 1rem;
+            white-space: pre-wrap;
+        }
+        .text a {
+            color: currentColor;
+        }
+        
+        .timestamp-float-never .message-text {
+            display: block;
+        }
+        
+        .timestamp {
+            font-size: 0.74em;
+            line-height: 2.2; /* aligns the timestamp with the message text */
+        }
+            
+        .timestamp-float {
+            float: right;
+            margin-left: 1.5rem;
+            margin-top: 0.3rem;
+            opacity: 75%;
+        }
+        
+        .timestamp-overlay {
+            position: absolute;
+            right: 1rem;
+            bottom: 0.5rem;
+            color: #eee;
+        }
+        
+        .thumbnail {
+            height: 200px;
+            display: block;
+        }
+        
+        .download-link {
+            word-break: break-all;
+            text-decoration: none;
+        }
+        
+        .download-link span {
+            text-decoration: underline;
+        }
+        
+        .filesize {
+            white-space: nowrap;
+            font-size: 0.74em;
+        }
+        
+        </style>
+    {% endblock style %}
+
+
+</head>
+
+
+    <body>
+		{% block content %}
+            
+		{% endblock content %}
+	   
+        <div class="" id="Meu_Perfil">
+
+		
+			{% include 'partials/_messages.html' %}
+
+			{% if usuarioC.trabalho.empresa == "Arena Vidros" %} 
+            <nav  style="height:250%; background-color: rgba(0,76,162,1); position: absolute; "   class="col-md-3 col-sm-1 col-lg-2 d-md-block  shadow sidebar ">
+			 {% elif usuarioC.trabalho.empresa == "Genios Shop" %}
+			 <nav  style="height:250%; background-color: rgb(162, 0, 0); position: absolute; "   class="col-md-3 col-sm-1 col-lg-2 d-md-block  shadow sidebar ">
+			{% else %}
+			<nav  style="height:250%; background-color: rgb(96, 165, 245); position: absolute; "   class="col-md-3 col-sm-1 col-lg-2 d-md-block  shadow sidebar ">	
+			{% endif%}
+				<div class="">
+                    <ul class="nav flex-column ">
+                        <li  class="nav-item mt-4 d-flex justify-content-center">
+                            <img  class="mt-2 " src="{% static 'img/Logo-branca-sem-fundo-com-somb_bd.png' %}" srcset="{% static 'img/Logo-branca-sem-fundo-com-somb_bd.png' %} 1x, {% static 'img/Logo-branca-sem-fundo-com-somb_bd@2x.png' %} 2x">
+                        </li>
+                        <li class="nav-item mt-4 d-flex justify-content-center">
+                            <img id="a"class="mt-2 " src="{{imageP.image.url}}" srcset="{{imageP.image.url}} 1x, {{imageP.image.url}} 2x">
+                        </li>
+                        <li class="nav-item fs-6 text-white fw-bold  d-flex justify-content-center mt-3 ">
+                            <div class=" ">
+                                <span>{{usuarioC.codigo.nome}}</span>
+                            </div>
+                        </li>
+                        <li class="nav-item fs-6 text-white fw-bold  d-flex justify-content-center mt-3 ">
+                            <div class=" ">
+                                <span>{{usuarioC.trabalho.cargo.cargo}}</span>
+                            </div>
+                        </li>
+                       
+                        <li class="nav-item fs-6 text-white fw-bold  d-flex justify-content-center mt-3 mb-2 ">
+                            <div id="">
+                                <span>{{usuarioC.trabalho.departamento}}</span>
+                            </div>
+                        </li>
+                        {% if grupos != "usuarios" %} 
+                        <li class="nav-item">
+                            <a href="{% url 'dash_index' %}">  
+                                <div class="d-flex justify-content-center border-top border-3 border-white p-3 mt-3 fs-6 N_10">                         
+                                     <div class="text-white fw-bold ">
+                                        <span>Atendimento</span>
+                                     </div>
+                                </div>
+                            </a>
+                            
+                        </li>
+                        
+                        {% endif %}
+
+                        <li class="nav-item">
+                            <a href="{% url 'rh_chamado' %}">  
+                                <div class="d-flex justify-content-center border-top border-3 border-white p-3 fs-6 N_10">                         
+                                     <div class="text-white fw-bold">
+                                        <span>Meus Chamados</span>
+                                     </div>
+                                </div>
+                            </a>
+                            
+                        </li>
+                        <li class="nav-item">
+                             <a href="http://192.168.15.13:5000/pesquisar_produtos" target="blank">
+                                <div class="d-flex justify-content-center border-top border-3 border-white  p-3 fs-6 N_10">                         
+                                     <div class="text-white fw-bold">
+                                        <span>Produtos</span>
+                                     </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a href="{% url 'problem' %}">  
+                                <div class="d-flex justify-content-center border-top border-3 border-white  p-3 fs-6 N_10">                         
+                                     <div class="text-white fw-bold">
+                                        <span>Ramais / Telefones</span>
+                                     </div>
+                                </div>
+                            </a>
+                            
+                        </li>
+                       
+                        <li class="nav-item">
+                            <a href="{% url 'tecnicos' %}">  
+                                <div class="d-flex justify-content-center border-top border-3 border-white  p-3 fs-6 N_10">                         
+                                     <div class="text-white fw-bold">
+                                        <span>Links úteis</span>
+                                     </div>
+                                </div>
+                            </a>
+                            
+                        </li>
+                        {% if grupos != "usuarios"  and grupos != "atendimento RH"%} 
+                        <li class="nav-item">
+                            <a href="{% url 'presidente' %}">  
+                                <div class="d-flex justify-content-center border-top border-3 border-white border-bottom p-3 fs-6 N_10">                         
+                                     <div class="text-white fw-bold">
+                                        <span>Controle de Usuarios</span>
+                                     </div>
+                                </div>
+                            </a>
+                            
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <div class="d-flex justify-content-center border-top border-3 border-white p-3 pb-5 pt-5 mb-5 fs-6 N_10">                         
+                                 <div class="text-white fw-bold">
+                                   
+                                 </div>
+                            </div>
+                        
+                         </li>
+                        {% endif %}
+                        <li class="nav-item">
+                                <div class="ml-4  p-3 fs-6 N_10"> 
+                                    <a href="{% url 'home' %}">                        
+                                     <div class="text-white fw-bold">
+                                         
+                                        <span>Meu Perfil</span>
+                                                                        </div>
+                                    </a>
+                                </div>
+                            
+                        </li>
+                        <li class="nav-item">
+                                <div class="ml-4  p-3 fs-6 N_10">         
+                                    <a href="{% url 'login' %}">                    
+                                     <div class="text-white fw-bold">
+                                        <span>Sair</span>
+                                     </div>
+                                    </a>
+                                </div>
+                            
+                        </li>
+                                                           
+                    </ul>
+                    
+                 </div>
+                  
+            
+			</nav>
+			
+		
+           
+       
+        </div>
+        <div style="background-color: rgba(0,0,0,1); " class="N_3 d-flex justify-content-center  " >
+			<img style="width: 280px;height: 42px;" class="mt-4" id="" src="{% static 'img/Logo-cinza_claro.png' %}" srcset="{% static 'img/Logo-cinza_claro.png' %} 1x,{% static 'img/Logo-cinza_claro@2x.png' %} 2x">
+	
+		</div>
+	</body>
+	
+	<script>window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+	<script src="/docs/4.5/dist/js/bootstrap.bundle.min.js"
+	  integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf"
+	  crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+	
+  
+</html>
+    
+
+

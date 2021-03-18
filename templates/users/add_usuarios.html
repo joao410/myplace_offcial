@@ -1,0 +1,488 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+
+{% block content %}
+
+<main role="main"  class="col-md-8 m-sm-auto col-lg-8 col-md-6 "  >
+    <div class="container">
+        <div id="Atendimento_ba">
+            <span>Usuários</span>
+          </div>
+        <svg class="Linha_1" viewBox="0 0 1500 1">
+            <path id="Linha_1" d="M 0 0 L 1500 0">
+            </path>
+        </svg>
+        <svg class="Linha_doc" viewBox="0 0 1500 1">
+            <path id="Linha_doc" d="M 0 0 L 1500 0">
+            </path>
+        </svg>
+        <svg class="Linha_end" viewBox="0 0 1500 1">
+            <path id="Linha_end" d="M 0 0 L 1500 0">
+            </path>
+        </svg>
+        <div class="Retngulo_561 text-white border border-dark d-flex justify-content-center fs-5 fw-bold pt-2 ">
+            <span>Usuários</span>
+        </div>
+	
+   
+       
+       
+     
+            <div  class="container N_14  w-100" >
+                <div class="conteudo"> 
+                <form method="POST" action="{% url 'add_usuarios' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                <svg class="Retngulo_55_">
+                    <rect id="Retngulo_55_" rx="0" ry="0" x="0" y="0" width="100%" height="100%">
+                    </rect>
+                </svg>
+                <a href="{% url 'presidente' %}">
+                <img  id="close-button1" src="{% static 'img/close-button.png' %}" srcset="{% static 'img/close-button.png' %} 1x, {% static 'img/close-button@2x.png' %} 2x">
+                </a>
+                
+        
+        
+                <input type="radio" name="tabs" id="tab1" checked>
+                <label for="tab1">Home</label>
+           
+                <input type="radio" name="tabs" id="tab2">
+                <label for="tab2">Sobre</label>
+           
+                <input type="radio" name="tabs" id="tab3">
+                <label for="tab3">Notícias</label>
+        
+                <div class="tabs">
+                <div class="content">
+        
+                <div id="Nome_Completo1">
+                    <span>Nome Completo</span>
+                </div>
+                <div id="Departamento1">
+                    <span>Apelido</span>
+                </div>
+                <div id="Cargo__Funo2">
+                    <span>Cpf</span>
+                </div>
+                <div id="Cargo__Funo3">
+                    <span>Pis</span>
+                </div>
+                <div id="titulo">
+                    <span>Titulo de Eleitor  </span>
+                </div>
+                <div id="carteira">
+                    <span>Carteira de Trabalho</span>
+                </div>
+                <div id="serie">
+                    <span>Serie</span>
+                </div>
+                <div id="ufc">
+                    <span>Uf </span>
+                </div>
+                <div id="de">
+                    <span>Data da Emissão</span>
+                </div>
+                <div id="Empresa1">
+                    <span>Genero</span>
+                </div>
+                <div id="cor">
+                    <span>Cor</span>
+                </div>
+                <div id="ecivil">
+                    <span>Estado Civil </span>
+                </div>
+               <div id="escol">
+                    <span>Escolaridade</span>
+                </div>
+               <div id="dn">
+                    <span>Data de Nascimento</span>
+                </div>
+               <div id="munasci">
+                    <span>Municipio</span>
+                </div>
+               <div id="uf">
+                    <span>UF</span>
+                </div>
+                <div id="pais">
+                    <span>País </span>
+                </div>
+                 <div id="nasci">
+                    <span>Nascionalidade</span>
+                </div>
+                 <div id="mae1">
+                    <span>Nome da Mãe</span>
+                </div>
+              <div id="pai1">
+                    <span>Nome do Pai</span>
+                </div>
+                <div id="document">
+                    <span>documento</span>
+                </div>
+                <div id="document1">
+                    <span>Número</span>
+                </div>
+                <div id="document2">
+                    <span>Orgão Emissor</span>
+                </div>
+                <div id="document3">
+                    <span>Expedição</span>
+                </div>
+                <div id="document4">
+                    <span>Validade</span>
+                </div>
+              
+                <div id="endereco">
+                    <span>Cep</span>
+                </div>
+                <div id="endereco1">
+                    <span>Tipo</span>
+                </div>
+                <div id="endereco2">
+                    <span>Logradouro</span>
+                </div>
+                <div id="endereco3">
+                    <span>nº</span>
+                </div>
+                <div id="endereco4">
+                    <span>Uf</span>
+                </div>
+                <div id="endereco5">
+                    <span>Municipio</span>
+                </div>
+                <div id="endereco6">
+                    <span>Bairro</span>
+                </div>
+                <div id="endereco7">
+                    <span>Complemento</span>
+                </div>
+                <div id="endereco8">
+                    <span>Pais</span>
+                </div>
+              
+              
+                <div id="Dados_Corporativos1">
+                    <span>Dados Pessoais</span>
+                </div>
+              
+                <input  class="Retngulo_60 form-control" type="text"  name="nome">
+                
+                <select name="genero"  class="form-select Retngulo_61">
+                    <option name="genero" value="">
+                        <option value="Masculno">Masculino</option>
+                        <option value="Feminino">Feminino</option>
+                        <option value="Prefiro não informar">Prefiro não informar</option>
+                    </option>
+                </select>
+                
+                <input  class="Retngulo_62 form-control" type="text" name="apelido">
+                <input  class="Retngulo_cpf form-control" type="text" name="cpf">
+                <input  class="Retngulo_pis form-control" type="text" name="pis">
+                <input  class="Retngulo_cor form-control" type="text" name="cor">
+                <input  class="Retngulo_serie form-control" type="text" name="serie">
+                <input  class="Retngulo_carteira form-control" type="text" name="carteira">
+                <input  class="Retngulo_titulo form-control" type="text" name="titulo">
+                <input  class="Retngulo_ufc form-control" type="text" name="ufc">
+                <input  class="Retngulo_emissao form-control" type="date" name="emissao">
+                <input  class="Retngulo_ecivil form-control" type="text" name="ecivil">
+                <input  class="Retngulo_escol form-control" type="text" name="escolaridade">
+                <input  class="Retngulo_dn form-control" type="date" name="datanasci">
+                <input  class="Retngulo_munasci form-control" type="text" name="municipionasc">
+                <input  class="Retngulo_ufn form-control" type="text" name="ufnasci">                
+                <input  class="Retngulo_pais form-control" type="text" name="paisnasci">
+                <input  class="Retngulo_nasci form-control" type="text" name="nasciona">
+                <input  class="Retngulo_mae form-control" type="text" name="mae">
+                <input  class="Retngulo_pai form-control" type="text" name="pai">
+
+
+
+                <select name="documento"  class="form-select Retngulo1_ ">
+                    <option name="documento" value="">
+                        <option value="PG">RG</option>
+                        <option value="CNH">CNH</option>
+                
+                    </option>
+                </select>
+                
+                <input  class="Retngulo2_ form-control" type="text" name="numero">
+                <input  class="Retngulo3_ form-control" type="text" name="oe">
+                <input  class="Retngulo4_ form-control" type="date" name="expedicao">
+                <input  class="Retngulo5_ form-control" type="date" name="validade">
+                
+                
+                <input  class="Retngulo6_ form-control" type="text" name="cep">
+                <input  class="Retngulo7_ form-control" type="text" name="tipo">
+                <input  class="Retngulo8_ form-control" type="text" name="logradouro">
+                <input  class="Retngulo9_ form-control" type="text" name="num">
+                <input  class="Retngulo10_ form-control" type="text" name="ufatual">
+                <input  class="Retngulo11_ form-control" type="text" name="muniatual">
+                <input  class="Retngulo12_ form-control" type="text" name="bairro">
+                <input  class="Retngulo13_ form-control" type="text" name="complemeno">
+                <input  class="Retngulo14_ form-control" type="text" name="pais">
+        
+        
+        
+        
+        
+        
+              
+               
+            </div>
+            <div class="content">
+            
+                
+        
+        
+        
+        
+        
+        
+                <div id="Nome_Completo1">
+                    <span>Departamento</span>
+                </div>
+                <div id="cargo">
+                    <span>Cargo / Função</span>
+                </div>
+                
+                <div id="Empresa1">
+                    <span>Empresa</span>
+                </div>               
+                <div id="vtrans">
+                    <span>Vale Transporte</span>
+                </div>
+                <div id="admissao">
+                    <span>Data de Admissão</span>
+                </div>
+                <div id="demissao">
+                    <span>Data de Demissão</span>
+                </div>
+                <div id=tipoadmissao>
+                    <span>Tipo de Admissão</span>
+                </div>
+                <div id="admissional1">
+                    <span>Indicativo Admissional</span>
+                </div>
+                <div id="priempr">
+                    <span>Primeiro Emprego</span>
+                </div>
+                <div id="rtra">
+                    <span>Regime de Trabalho</span>
+                </div>
+                <div id="rprev">
+                    <span>Regime Previdenciario</span>
+                </div>
+                <div id="rjorn">
+                    <span>Regime de Jornada</span>
+                </div>
+                <div id="naativ">
+                    <span>Natureza da Atividade</span>
+                </div>
+                <div id="cat">
+                    <span>Categoria</span>
+                </div>
+                <div id="codf">
+                    <span>Codigo da Função</span>
+                </div>
+                <div id="carh">
+                    <span>Carga Horária</span>
+                </div>
+                <div id="unisa">
+                    <span>Unidade Salarial </span>
+                </div>
+                <div id="salvar">
+                    <span>salario Variavel</span>
+                </div>
+              
+                <div id="Dados_Corporativos1">
+                    <span>Dados Empresariais</span>
+                </div>
+              
+                <input  class="Retngulo_60 form-control" type="text"  name="departamento">
+                
+                <select name="empresa"  class="form-select Retngulo_empresa">
+                    <option name="empresa" value="">
+                        {% for empresa in empresa %}
+                        <option value="{{empresa.nempresa}}">{{empresa.nempresa}}</option>
+                        {% endfor %}
+                    </option>
+                </select>
+                <input  class="Retngulo_cargo form-control" type="text" name="cargo">
+
+
+         
+                <select name="vtrans"  class="form-select Retngulo_vtrans">
+                    <option name="vtrans" value="">
+                        <option value="sim">1-Sim</option>
+                        <option value="nao">2-Não</option>                        
+                    </option>
+                </select>
+
+
+
+                <input  class="Retngulo_admissao form-control" type="date" name="admissao">
+                <input  class="Retngulo_demissao form-control" type="date" name="demissão">
+                <input  class="Retngulo_tipoadmissao form-control" type="text" name="tipoadmissao">
+                <input  class="Retngulo_indica form-control" type="text" name="indica">
+               
+                <select name="priempr"  class="form-select Retngulo_74">
+                    <option name="priempr" value="">
+                        <option value="sim">1-Sim </option>
+                        <option value="nao">2-Não </option>                        
+                    </option>
+                </select>
+
+                <input  class="Retngulo_75 form-control" type="text" name="rtrab">
+                <input  class="Retngulo_76 form-control" type="text" name="rprev">
+                <input  class="Retngulo_77 form-control" type="text" name="rjorn">
+                <input  class="Retngulo_78 form-control" type="text" name="naativ">
+                <input  class="Retngulo_79 form-control" type="text" name="cat">
+                <input  class="Retngulo_80 form-control" type="text" name="codf">
+                <input  class="Retngulo_81 form-control" type="text" name="carh">
+                <input  class="Retngulo_82 form-control" type="text" name="unisa">
+                <input  class="Retngulo_83 form-control" type="number"  step=".01" name="salvari">
+        
+        
+        
+        
+        
+        
+                
+               
+            
+               
+        </div>
+        <div class="content">
+           
+                
+        
+        
+        
+        
+        
+        
+            <div id="Nome_Completo1">
+                <span>E-mail corporativo 01</span>
+            </div>
+            <div id="Departamento1">
+                <span>Skype</span>
+            </div>
+            <div id="Cargo__Funo1">
+                <span>Celular Corporativo</span>
+            </div>
+            <div id="Empresa1">
+                <span>E-mail corporativo 02</span>
+            </div>
+            <div id="E-mail_corporativo_011">
+                <span>Telefone</span>
+            </div>
+            <div id="E-mail_corporativo_021">
+                <span>Ramal</span>
+            </div>
+            <div id="Skype1">
+                <span>Usuario</span>
+            </div>
+            <div id="Celular_Corporativo1">
+                <span>Senha</span>
+            </div>
+          
+            <div id="Dados_Corporativos1">
+                <span>Dados Corporativos</span>
+            </div>
+          
+          
+            <input  class="Retngulo_60 form-control" type="text" name="email1">
+            <input  class="Retngulo_61_ form-control" type="text" name="email2">
+            <input  class="Retngulo_62_ form-control" type="text" name="skype">
+            <input  class="Retngulo_63 form-control" type="text" name="cel">
+            <input  class="Retngulo_64 form-control" type="text" name="tel">
+            <input  class="Retngulo_65 form-control" type="text" name="ramal">
+            <input  class="Retngulo_66 form-control" type="text" name="usuario">
+            <input  class="Retngulo_67 form-control" type="password" name="senha">
+    
+    
+    
+    
+    
+    
+          
+           
+        
+            
+    </div>
+        </div>
+        <select name="grupo"  class="form-select Retngulo_69">
+            <option name="grupo" value="">
+                {% for gs in g %}
+                <option value="{{gs.name}}">{{gs.name}}</option>
+                {% endfor %}
+            </option>
+        </select>    
+
+                <div id="add-button4">
+                    {{form.imagem}}
+                </div>   
+                <img class="add-button3" id="output" src="{% static 'img/add-button.png' %}" >
+            
+                <div id="Foto_do_Perfil1">
+                    <span>Foto do Perfil</span>
+                </div>
+                <div id="_Perfil_de_Usurio">
+                    <span>*</span><span style="color:rgba(93,90,90,1);"> Perfil de Usuário</span>
+                </div>
+                <button type="submit" name="add_usu" class="Retngulo_581 d-flex justify-content-center text-white p-1">
+                        <span>Cadastrar Usuário</span>
+                </button>
+                
+                </form>
+            </div>  
+                </div>
+       
+         
+        
+         
+       
+         
+       
+     
+       
+
+
+        
+
+
+
+    </div> 
+</main>
+{% block js %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+ <script type="text/javascript">
+ 	$(document).ready(function(){
+		$(".aba").click(function(){
+			$(".aba").removeClass("selected");
+  			$(this).addClass("selected");
+ 			var indice = $(this).parent().index();
+     			indice++;
+     			$("#content div").hide();
+     			$("#content div:nth-child("+indice+")").show();
+    		});
+
+     		
+     	});
+ </script>
+<script>
+  localStorage.setItem('imagem',event);
+  let i = localStorage.getItem('imagem');
+  
+  var loadFile = function(event) {
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
+    }
+  };
+</script>
+
+{% endblock js %}
+ {% endblock content %}           

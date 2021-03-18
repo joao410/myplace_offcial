@@ -1,0 +1,308 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+ 
+
+<svg class="Linha_1" viewBox="0 0 1482 1">
+  <path id="Linha_1" d="M 0 0 L 1482 0">
+  </path>
+</svg>
+	
+<svg class="Linha_3" viewBox="0 0 1482 1">
+  <path id="Linha_3" d="M 0 0 L 1482 0">
+  </path>
+</svg>
+<main role="main"  class="col-md-8 m-sm-auto col-lg-8 col-md-6  "  >
+  <div id="Atendimento_ba">
+    <span>Meus Chamados</span>
+
+  </div>
+ 
+<div class="container">
+  {% if values.status == 'fechado' %}
+  <a href="{% url 'rh_chamado'%}">
+    <img id="close-buttons" src="{% static 'img/close-button.png' %}" srcset="{% static 'img/close-button.png' %} 1x, {% static 'img/close-button@2x.png' %} 2x">
+    </a>
+  {% endif %}
+  <form method="POST" action="{% url 'id_chamado' values.id %}" >
+  {% csrf_token %}
+  <div id="Status">
+		<span>Status</span>
+  </div>
+  <div id="Chamado_ID">
+		<span>Chamado ID</span>
+  </div>
+  <div id="Data">
+		<span>Data</span>
+  </div>
+  <div id="rea">
+		<span>Área</span>
+  </div>
+  <div id="Assunto">
+		<span>Assunto</span>
+  </div>
+  <div id="Mensagem">
+		<span>Mensagem</span>
+  </div>
+  <div id="Anexos">
+		<span>Anexos</span>
+	</div>
+  
+  
+    {% if values.status == "em atendimento" %}
+    <div class="Retngulo_10 d-flex justify-content-center text-white fw-bold pt-2"  >
+    <span> atendendo</span>
+    </div>
+    {% endif %}
+  {% if values.status == "fechado" %}
+  <div class="Retngulo_11 d-flex justify-content-center text-white fw-bold pt-2"  >
+		<span> {{values.status}}</span>
+  </div>
+  {% endif %}
+  {% if values.status == "aberto" %}
+  <div class="Retngulo_12 d-flex justify-content-center text-white fw-bold pt-2"  >
+		<span> {{values.status}}</span>
+	</div>
+  {% endif %}
+    
+  
+ 
+  
+  <div id="ID2365_">
+		<span>{{values.ticket}}</span>
+  </div>    
+  <div id="ID29122020">
+		<span>{{values.create}}</span>
+  </div>      
+  <div id="Recursos_Humanos">
+		<span>{{values.grupo}}</span>
+  </div>         
+  <div id="Atestado_Mdico">
+		<span>{{values.problem}}</span>
+  </div> 
+  <textarea class=" form-control " id="Retngulo_19"  name="obs" rows="4" disabled>	{{values.des_problem}}</textarea>
+  
+  <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal"><img id="add-button_" class="" src="{{image.image.url}}" srcset="{{image.image.url}} 1x,{{image.image.url}} 2x"></a>
+  </form>
+  <div id="Timeline1">
+    <span>Timeline</span>
+  </div>   
+  <div  style="position: absolute; top: 760px;">
+  
+    <div id="chatBody" class=" chatBody">
+      <div id="text">
+      {% for chat in chat %}
+      {% if chat.From == 'atendente'%}
+      <div class="row chatRow d-flex justify-content-start mb-2">
+        <div class="col-1"><img id="avatar_b" src="{{img.image.url}}"></div>
+         <div class="col ">{{chat.nome}}<br><div class="mensagem mt-2">{{chat.mensagem}}</div></div>
+         
+         </div>
+       {% else %}
+        <div class="row chatRow d-flex justify-content-end mb-2">
+         <div class="col d-flex justify-content-end">{{chat.nome}}<div class="mt-4 mensagem1">{{chat.mensagem}}</div></div>
+         <div class="col-1"><img id="avatar_c" src="{{img.image.url}}"></div>
+         
+         </div>
+        {% endif %}
+    
+         {% endfor %}
+      </div>
+    </div>
+
+  
+    <div class="chat">
+      <form method="POST" action="{% url 'id_chamado' values.id  %}">
+        {% csrf_token %}
+      <input type="hidden" value="cliente" name="cliente">
+      <input type="hidden" value="{{usuarioC.codigo.nome}}" name="nome">
+      <div class=" d-flex flex-nowrap"> <input type="text"   class="form-control" name="mensagem">
+      <button style="width: 60px;" type="submit" class="form-control but" name="send">Enviar</button></div>
+  
+  </form>
+    </div>
+
+  
+  </div>
+  
+	<!--<a href="#" data-bs-toggle="modal" data-bs-target="#imageModal"><img id="add-button_cc" src="{% static 'img/add-button.png' %}" srcset="{% static 'img/add-button.png' %} 1x, {% static 'img/add-button@2x.png' %} 2x"></a>-->
+  {% if values.status != 'fechado' %}
+  <form method="POST" action="{% url 'id_chamado' values.id  %}">
+    {% csrf_token %}
+	<button type="submit" name="encerrar" class="Retngulo_43 d-flex justify-content-center pt-3 text-white fw-bold fs-4">
+    <span>Encerrar Chamado</span>	
+	</button>
+	
+  </form>
+
+	<div id="Apenas_encerre_o_chamado_se_o_">
+		<span>Apenas encerre o chamado se o seu problema já foi solucionado!</span>
+  </div>
+
+  <a href="{% url 'rh_chamado'%}">
+  <img id="close-button_" src="{% static 'img/close-button.png' %}" srcset="{% static 'img/close-button.png' %} 1x, {% static 'img/close-button@2x.png' %} 2x">
+  </a>	
+  {% endif %}  
+ 	
+      
+                                         
+                                     
+         
+                             
+                       </div>
+                    </form>
+                </div> 
+            </div>
+        </div>
+    </main>
+
+
+ 
+    {% block js %}  
+    <script>
+   
+
+      function refresh(){
+        var div = "{% url 'chat' values.id %}"
+        $.ajax({
+          url: div,
+          success: function(data) {
+          $('#text').html(data)
+        }
+      });
+      }
+      
+      $(document).ready(function($) {
+        refresh();
+        setInterval("refresh()", 3000);
+      })
+          
+      </script>   
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>              
+<link  id="applicationStylesheet" href="{% static 'js/app.js' %}"/>
+<script src="https://js.pusher.com/4.0/pusher.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="./bower_components/axios/dist/axios.js"></script>
+
+<script>
+  $(document).ready(function() {
+          var divMensagem = document.getElementById('chatBody');
+          divMensagem.scrollTop = divMensagem.scrollHeight;
+  });
+</script>          
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+
+<!-- Importando o jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<!-- Importando o js do bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    {% endblock js %}
+    {% block modal %} 
+    <!--modal tecnicos-->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Confirmar fechamento</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+                <form action="{% url 'id_chamado' values.id %}" method="POST">
+                {% csrf_token %}
+                <label for="obs">Observação:</label>
+                <textarea class="form-control" id="obs" name="obs" rows="4"></textarea>
+             
+              </div>
+              <div class="modal-footer">
+                 
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <button type="submit" name="salvar" id="salvar" class="btn btn-primary" >Salvar</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+         <!--modal rh-->
+<div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Respondendo requisição </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+                  <form action="{% url 'id_chamado' values.id %}" method="POST">
+                  {% csrf_token %}
+                  <label for="obs">Atendimento ao Cliente </label>
+                  <textarea class="form-control" id="obs" name="obs" rows="4"></textarea>
+               
+                </div>
+                <div class="modal-footer">
+                   
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                  <button type="submit" name="salvar" id="salvar" class="btn btn-primary" >Salvar</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+   
+<!-- Modal Agendados-->
+<div class="modal fade" id="imageModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Imagem</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        {% if image.image %}
+        <div class="">
+        
+        <img src="{{image.image.url}}" data-toggle="modal" data-target="#finalizadosModal" class="d-block w-100" alt="..." />
+
+        </div>
+        {% else %}
+        <div class="container">
+          <div class="row justify-content-center">
+            <img src="{% static 'img/ICONE_ERRO.png' %}" >
+          </div>
+          <div class="row justify-content-center">
+            <h6>Por favor adicionar Imagem.</h6>
+          </div>
+          
+        </div>
+        
+        {% endif %}
+
+        {% if image.observacao %}
+        <div class="d-fles justify-content-center">
+          <label for="obs" style="display: block;">Observação:</label>
+          <textarea rows="4" cols="50" name="obs" style="display: block;">{{image.observacao}}</textarea>
+        </div>  
+        {% endif %}
+      </div>
+      <div class="modal-footer">
+                   
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+  
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    {% endblock modal %}  
+
+</body>
+</html>
+{% endblock content %}  

@@ -1,0 +1,284 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+
+{% block content %}
+
+<svg class="Linha_1" viewBox="0 0 1482 1">
+  <path id="Linha_1" d="M 0 0 L 1482 0">
+  </path>
+</svg>
+ <!--Main-->
+ <main role="main"  class="col-md-8 m-sm-auto col-lg-8 col-md-6 "  >
+  <div id="Atendimento_ba">
+    <span>Meus Chamados</span>
+  </div>
+  <div class="container">
+    <div class="container d-flex flex-nowrap  N_5 ">
+      <div id="Novo_Chamado">
+        <span>Novo Chamado</span>
+      </div>
+      <div id="rea_">
+        <span>Área</span>
+      </div>
+      <form method="POST" action="{% url 'add_chamado' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+      <button type="button"  name="table" id="rh" value="recursos humanos" class=" fw-bold" onclick="mostrarrh()">
+        <span>Recursos Humanos</span>
+      </button>
+     
+      <button type="button"  name="tablee" id="t" value="atendimento ti" class="  fw-bold " onclick="mostrarti()">
+        <span>T.I</span>
+      </button>
+
+     
+     
+
+   
+      <div class="Retngulo_37"  id="RH_"  >
+        <div id="Assunto_">
+          <span>Assunto</span>
+        </div>
+       
+        <input type="radio" name="assunto"  value="Requisição de Uniforme e EPI" class="Retngulo_28 "  required>
+        </input>
+              
+        <input type="radio" name="assunto" value="Convênio Médico e Odontológico" class="Retngulo_29" required>
+        </input>
+         
+        <input type="radio" name="assunto"value="Folha de Pagamento" class="Retngulo_30" required>
+        </input>
+         
+        <input type="radio" name="assunto" value="Vale Transporte " class="Retngulo_31" required>
+        </input>
+         
+        <input type="radio" name="assunto" value="Envio e Atestado Médico" class="Retngulo_32" required>
+        </input>
+         
+        <input type="radio" name="assunto" value="banco de horas" class="Retngulo_33" required>
+        </input>
+         
+        <input type="radio" name="assunto" value="Sugestões" class="Retngulo_35" required >
+        </input>
+        
+       
+     
+        
+        <div id="Anexos_">
+          <span>Anexos</span>
+        </div>
+        <div id="Problema_com_o_Mecauto">
+          <span>Requisição de Uniforme e EPI</span>
+        </div>
+        <div id="Problema_com_o_meu_ramal">
+          <span>Convênio Médico e Odontológico</span>
+        </div>
+        <div id="No_consigo_imprimir">
+          <span>Folha de Pagamento</span>
+        </div>
+        <div id="Estou_sem_internet">
+          <span>Vale Transporte </span>
+        </div>
+        <div id="Problema_com_equipamento">
+          <span>Envio e Atestado Médico</span>
+        </div>
+        <div id="Problema_com_equipamento_b">
+          <span>banco de horas</span>
+        </div>
+        <div id="Outro_problema">
+          <span>Sugestões</span>
+        </div>
+    
+        <div id="Mensagem_">
+          <span>Mensagem</span>
+        </div>
+        <textarea style="width: 400px;" class=" Retngulo_19_ form-control"  name="obs" rows="8" placeholder="Descreve com a maior quantidade de informações possíveis a sua solicitação"></textarea> 
+     
+       <div style="left:245px;top: 296px; position: absolute;"> {{form.imagem}}</div>
+       <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal"> <img id="output" class="add-buttona" src="{% static 'img/add-button.png' %}"></a>
+      
+   <!--  <img class="add-button_cf" id="output" src="{% static 'img/add-button.png' %}" srcset="{% static 'img/add-button.png' %} 1x, {% static 'img/add-button@2x.png' %} 2x">
+      
+      <img class="add-button_cg" src="{% static 'img/add-button.png' %}" srcset="{% static 'img/add-button.png' %} 1x, {% static 'img/add-button@2x.png' %} 2x">
+        
+      <img class="add-button_ch" src="{% static 'img/add-button.png' %}" srcset="{% static 'img/add-button.png' %} 1x, {% static 'img/add-button@2x.png' %} 2x">
+      
+      <img class="add-button_ci" src="{% static 'img/add-button.png' %}" srcset="{% static 'img/add-button.png' %} 1x, {% static 'img/add-button@2x.png' %} 2x">
+      --> 
+      <button type="submit"  name="add_rh" value="recursos humanos" class="Retngulo_36  text-white fw-bold">
+        <span>Abrir Chamado</span>
+      </button>
+      
+    
+   
+      <a href="{% url 'rh_chamado' %}">
+      <img id="close-buttona" src="{% static 'img/close-button.png' %}" srcset="% static 'img/close-button.png' %} 1x, % static 'img/close-button@2x.png' %} 2x">
+    </a>
+      </div>
+    </form>
+
+    <form method="POST" action="{% url 'add_chamado' %}" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="Retngulo_37"  id="ti" >
+        <div id="Assunto_">
+          <span>Assunto</span>
+        </div>
+       
+        <input type="radio" name="assunto"  value="Problema com o Mecauto" class="Retngulo_28 ">
+        </input>
+              
+        <input type="radio" name="assunto" value="Problema com o meu ramal" class="Retngulo_29">
+        </input>
+         
+        <input type="radio" name="assunto"value="Não consigo imprimir" class="Retngulo_30">
+        </input>
+         
+        <input type="radio" name="assunto" value="Estou sem internet" class="Retngulo_31">
+        </input>
+         
+        <input type="radio" name="assunto" value="Problema com equipamento" class="Retngulo_32">
+        </input>
+         
+        <input type="radio" name="assunto" value="Outro problema" class="Retngulo_33">
+        </input>
+         
+        <input type="radio" name="assunto" value="Sugestões" class="Retngulo_35">
+        </input>
+       
+     
+        
+        <div id="Anexos_">
+          <span>Anexos</span>
+        </div>
+        <div id="Problema_com_o_Mecauto">
+          <span>Problema com o Mecauto</span>
+        </div>
+        <div id="Problema_com_o_meu_ramal">
+          <span>Problema com o meu ramal</span>
+        </div>
+        <div id="No_consigo_imprimir">
+          <span>Não consigo imprimir</span>
+        </div>
+        <div id="Estou_sem_internet">
+          <span>Estou sem internet</span>
+        </div>
+        <div id="Problema_com_equipamento">
+          <span>Problema com equipamento</span>
+        </div>
+        <div id="Problema_com_equipamento_b">
+          <span>Outro problema</span>
+        </div>
+        <div id="Outro_problema">
+          <span>Sugestões</span>
+        </div>
+    
+        <div id="Mensagem_">
+          <span>Mensagem</span>
+        </div>
+        <textarea style="width: 400px;" class=" Retngulo_19_ form-control" id="obs" name="obs" rows="8" placeholder="Descreve com a maior quantidade de informações possíveis a sua solicitação"></textarea> 
+     
+       
+  
+      <div style="left:245px;top: 296px; position: absolute;"> {{forms.imagens}}</div>
+      <img id="input" class="add-buttona" src="{% static 'img/add-button.png' %}">
+      <!--
+      <img class="add-button_cf" src="{% static 'img/add-button.png' %}" srcset="{% static 'img/add-button.png' %} 1x, {% static 'img/add-button@2x.png' %} 2x">
+      
+      <img class="add-button_cg" src="{% static 'img/add-button.png' %}" srcset="{% static 'img/add-button.png' %} 1x, {% static 'img/add-button@2x.png' %} 2x">
+        
+      <img class="add-button_ch" src="{% static 'img/add-button.png' %}" srcset="{% static 'img/add-button.png' %} 1x, {% static 'img/add-button@2x.png' %} 2x">
+      
+      <img class="add-button_ci" src="{% static 'img/add-button.png' %}" srcset="{% static 'img/add-button.png' %} 1x, {% static 'img/add-button@2x.png' %} 2x">
+      --> 
+      <button type="submit"  name="add_ti" value="atendimento ti" class="Retngulo_36  text-white fw-bold">
+        <span>Abrir Chamado</span>
+      </button>
+      <a href="{% url 'rh_chamado' %}">
+      <img id="close-buttona" src="{% static 'img/close-button.png' %}" srcset="% static 'img/close-button.png' %} 1x, % static 'img/close-button@2x.png' %} 2x">
+    </a>
+    </form>
+      </div>
+      
+    </div>
+  </div>
+  
+  <div class="modal fade" id="imageModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Imagem</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        
+        
+        <img id="input" src="{{image.image.url}}" data-toggle="modal" data-target="#finalizadosModal" class="d-block w-100" alt="..." />
+
+        </div>
+    
+
+        {% if image.observacao %}
+        <div class="d-fles justify-content-center">
+          <label for="obs" style="display: block;">Observação:</label>
+          <textarea rows="4" cols="50" name="obs" style="display: block;">{{image.observacao}}</textarea>
+        </div>  
+        {% endif %}
+      </div>
+      <div class="modal-footer">
+                   
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+  
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</main>
+
+
+<script>
+ function mostrarrh(){
+  document.getElementById('RH_').style.display = 'block';
+  document.getElementById('ti').style.display = 'none';
+  document.getElementById('rh').style.background = 'rgba(0,76,162,1)';
+  document.getElementById('rh').style.color = 'rgba(255,255,255,1)';
+  document.getElementById('t').style.background = 'rgba(255,255,255,1)';
+  document.getElementById('t').style.color = 'rgba(0,0,0,1)';
+   
+}
+ function mostrarti(){
+  document.getElementById('ti').style.display = 'block';
+  document.getElementById('RH_').style.display = 'none';
+  document.getElementById('rh').style.background = 'rgba(255,255,255,1)';
+  document.getElementById('rh').style.color = 'rgba(0,0,0,1';
+  document.getElementById('t').style.background = 'rgba(0,76,162,1)';
+  document.getElementById('t').style.color = 'rgba(255,255,255,1)';   
+}
+ 
+
+</script>  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+
+  var loadFile = function(event) {
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
+    }
+  };
+  var loadFiles = function(event) {
+    var output = document.getElementById('input');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
+    }
+  };
+
+</script>
+
+
+  {% endblock content %}   

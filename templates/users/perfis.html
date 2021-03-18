@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+
+    {% block content %}
+
+
+      
+    <main style="left:100px;" role="main"  class="col-md-6 m-sm-auto col-lg-10  "  >
+     
+    <div class="container">
+    <div class="" id="Meu_Perfil_ba">
+        <span>Ramais/Tel/E-mails</span>
+    </div>
+    
+    <svg class="Linha_1" viewBox="0 0 1500 1">
+        <path id="Linha_1" d="M 0 0 L 1500 0">
+        </path>
+    </svg>
+
+    <a href="{% url 'problem' %}">
+    
+      <img  id="close-button" src="{% static 'img/close-button.png' %}" srcset="{% static 'img/close-button.png' %} 1x, {% static 'img/close-button@2x.png' %} 2x">
+
+    
+ </a>
+
+
+    <div id="Nome_Completo">
+        <span>Nome Completo</span>
+    </div>
+    <div id="Departamento">
+		<span>Departamento</span>
+    </div>
+    <div id="Cargo__Funo">
+		<span>Cargo / Função</span>
+    </div>
+    <div id="Empresa">
+		<span>Empresa</span>
+    </div>
+    <div id="E-mail_corporativo_01">
+		<span>E-mail corporativo 01</span>
+    </div>
+    <div id="E-mail_corporativo_02">
+		<span>E-mail corporativo 02</span>
+    </div>
+    <div id="Skype">
+		<span>Skype</span>
+    </div>
+    <div id="Celular_Corporativo">
+		<span>Celular Corporativo</span>
+    </div>
+    <div id="Tel">
+		<span>Tel.</span>
+    </div>
+    <div id="Ramal">
+		<span>Ramal</span>
+    </div>
+    <div id="Dados_Corporativos">
+		<span>Dados Corporativos</span>
+    </div>
+    <img id="add-button" src="{{img.image.url}}" srcset="{{img.image.url}} 1x, {{img.image.url}} 2x">
+    <div id="Foto_do_Perfil">
+		<span>Foto do Perfil</span>
+    </div>
+    <div id="Joo_Felipe">
+		<span>{{usuario.codigo.nome}}</span>
+    </div>
+    <div id="TI">
+		<span>{{usuario.trabalho.departamento}}</span>
+    </div>
+    <div id="Assistente_de_Helpdesk">
+		<span>{{usuario.trabalho.cargo}}</span>
+    </div>
+    <div id="Arena_Vidros_by">
+		<span>{{usuario.trabalho.empresa}}</span>
+    </div>
+    <div id="joaoarenavidroscombr">
+		<span>{{usuario.email}}</span>
+    </div>
+    <div id="joaofgenioshopcombr">
+		<span>{{usuario.emailCorporativo}}</span>
+    </div>
+    <div style="width: 230px;" id="joaogenioshop" class="overflow-hidden" >
+		<span>{{usuario.skype}}</span>
+    </div>
+    <div id="ID11_xxxxx-xxxx">
+		<span>{{usuario.telefone}}</span>
+    </div>
+    <div id="ID11_4000-0000">
+		<span>{{usuario.tel}}</span>
+    </div>
+    <div id="ID2365">
+		<span>{{usuario.ramal}}</span>
+    </div>
+    
+    </div>
+</main>
+  
+     
+
+
+ <!--<div class=" w-100 bg-ligth d-flex justify-content-between shadow-sm p-2"> 
+    <h1>Home</h1> 
+    <a href="{% url 'login' %}" class="btn btn-primary btn-lg active " role="button" aria-pressed="true">Logout</a>
+ </div>   
+
+<div class="container-fluid bg-ligth p-2 ">
+<div class="row bg-dark text-white d-flex justify-content-center p-2 m-3 rounded">
+    <h1 class="d-flex justify-content-center" > Em qual área gostaria de atendimento ?</h1>
+
+</div>
+<div class="d-flex justify-content-center align-middle  m-5">
+<div class="card p-3 m-5  shadow">
+    <a href="{% url 'add_chamado' %}" class="btn btn-primary btn-lg active  " role="button" aria-pressed="true">Suporte Técnico (TI)</a><br>
+    <a href="{% url 'rh_chamado' %}" class="btn btn-primary btn-lg active  " role="button" aria-pressed="true">Recursos Humanos (RH)</a><br>
+    <a href="{% url 'presidente' %}" class="btn btn-primary btn-lg active  " role="button" aria-pressed="true">Fale com o Presidente</a>
+
+</div>
+</div>
+
+</div>-->
+
+{% endblock content %}
+</body>
+</html>

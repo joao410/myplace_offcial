@@ -1,0 +1,207 @@
+
+
+{% load static %}
+{% block content %}
+
+<html lang="pt-br">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    
+    <meta name="generator" content="Jekyll v4.0.1">
+    <title>MyPlace - Genios Shop{% block title %}
+    {% endblock %}  </title>
+    <link rel="stylesheet" type="text/css" id="applicationStylesheet" href="{% static 'css/Web_1920___1.css' %}"/>
+    <script id="applicationScript" type="text/javascript" src="{% static 'js/Web_1920___1.js' %}"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" >
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" >
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+    {% block style %}
+    <style>
+.N_1 {
+	position: absolute;
+	overflow: visible;
+	width: 509px;
+	height: 411px;
+
+}
+#Logo-branca-sem-fundo-com-somb {
+	position: absolute;
+	width: 40%;
+    height: 15%;
+    top:16%;
+    left: 30%;
+    
+	
+	overflow: visible;
+}
+#N_3 {
+	fill: rgba(0,0,0,1);
+}
+.N_3 {
+	position: absolute;
+	overflow: visible;
+	width: 100%;
+	height: 94px;
+	left: 0px;
+	top: 91%;
+}
+#Web_1920__1 {
+	position: absolute;
+	width: 1080px;
+	height: 100%;
+	background-color: rgba(255,255,255,1);
+	overflow: hidden;
+	--web-view-name: Web 1920 – 1;
+	--web-view-id: Web_1920__1;
+	--web-scale-on-resize: true;
+	--web-center-horizontally: true;
+	--web-center-vertically: true;
+	--web-enable-deep-linking: true;
+}
+#Grupo_1 {
+	position: absolute;
+	width: 1080px;
+	height: 100%;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+}
+#bmw-2017 {
+	opacity: 0.38;
+	position: absolute;
+	width: 1080px;
+	height: 100%;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+}
+.Retngulo_96 {
+	filter: drop-shadow(6px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+    overflow: visible;
+    width: 509px;
+
+
+
+
+    
+}
+    </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    {% endblock style %}
+  </head>
+  <body>
+    
+        
+      <!--xd-->
+      <div class="container ">
+         <div id="Web_1920__1">
+        <div id="Grupo_1">    
+        <img id="bmw-2017" src="{% static 'img/bmw-2017.png' %}" srcset="{% static 'img/bmw-2017.png' %} 1x, {% static 'img/bmw-2017@2x.png' %} 2x">
+        
+
+  <div class="d-flex  justify-content-center">
+        {% include 'partials/_messages.html' %} 
+  </div>
+        <div style="border-radius: 80px;" class="bg-white Retngulo_96  position-absolute top-50 start-50 translate-middle  col-md-10 ml-sm-auto mr-sm-auto col-lg-6  ">
+            
+            <div style="background-color: rgba(0,76,162,1); border-radius: 80px;" class="N_1 position-absolute top-0 start-0  col-lg-12 ">
+            <img class=" " id="Logo-branca-sem-fundo-com-somb" src="{% static 'img/Logo-branca-sem-fundo-com-somb.png' %}" srcset="{% static 'img/Logo-branca-sem-fundo-com-somb.png' %} 1x, {% static 'img/Logo-branca-sem-fundo-com-somb@2x.png' %} 2x"> 
+            <form class="" action="{% url 'login' %}" method="post" >
+            {% csrf_token %}
+            <div class="form-group position-absolute bottom-50  ml-5  ">
+            <input style="width: 130%; " type="text" name="username" placeholder=" Username" id="usernameField" class="pl-2 rounded-pill" value="{{ fieldValues.username }}" required>
+            </div>
+
+            <div class="position-absolute bottom-50 text-white ml-5 mb-5 "  id="">
+                <span>Usuário</span>
+            </div>
+            <div class="form-group position-absolute top-50  ml-5 mt-5 ">
+            <input style="width: 90%; " type="password" name="password" placeholder=" Password" id="passwordField" class="pl-2 rounded-pill " required >
+            </div>
+            <div class="position-absolute top-50 text-white ml-5 mt-3"id="">
+                <span>Senha</span>
+            </div>
+
+         
+            <button style="height: 10%; border-radius: 50px;" type="submit" value=""  class=" btn btn-light submit-btn position-absolute top-50 start-50 text-bold mt-5  ml-5">
+            <div class="font-weight-bold" id="">
+                <span>Entrar</span>
+            </div>
+            </button>               
+            </form>
+
+           
+
+            </div>
+           
+    
+
+     
+         
+         
+      
+            <img class="position-absolute bottom-0 start-25  mb-2 ml-4"   style="width: 47%;height: 18%;overflow:visible;" src="{% static 'img/genios-png.png' %}" srcset="{% static 'img/genios-png.png' %} 1x,{% static 'img/genios-png@2x.png' %} 2x">
+            <img class="position-absolute bottom-0 end-0  mb-3 mr-5"   style="width: 30%;height: 16%;" src="{% static 'img/Arena_Logo.png' %}" srcset="{% static 'img/Arena_Logo.png' %} 1x, {% static 'img/Arena_Logo@2x.png' %} 2x">
+       
+      
+            
+
+
+        </div>
+      
+     
+    <div style="background-color: rgba(0,0,0,1);" class="N_3 d-flex justify-content-center " >
+        <img style="width: 280px;height: 42px;" class="mt-3" id="" src="{% static 'img/Logo-cinza_claro.png' %}" srcset="{% static 'img/Logo-cinza_claro.png' %} 1x,{% static 'img/Logo-cinza_claro@2x.png' %} 2x">
+
+    </div>
+   
+    
+  
+    
+
+
+
+
+        </div>
+    </div>
+</div>
+                       
+           
+       
+       
+      <!--end xd--> 
+   
+          
+       
+      
+       
+
+
+
+
+
+</main>
+<script src="{% static 'js/register.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
+{% endblock content%}

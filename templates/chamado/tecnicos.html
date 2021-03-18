@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+
+{% block content %}
+
+  
+<main role="main"  class="col-md-8 m-sm-auto col-lg-8 col-md-6 "  >
+     
+  <div class="container  ">
+  
+    <div id="Atendimento_ba">
+      <span>Links úteis</span>
+    </div>
+  <svg class="Linha_1" viewBox="0 0 1482 1">
+      <path id="Linha_1" d="M 0 0 L 1482 0">
+      </path>
+  </svg>
+  {% if grupos != "usuarios" %}
+  <a href="{% url 'linksup' %}">
+  <div class="Retngulo_58 d-flex justify-content-center pt-2 text-white fw-bold fs-5 ">
+    <span>Cadastrar Link</span>
+ </div>
+  </a>
+  {% endif %}
+
+
+
+  
+        <div class="container N_5  " >
+        <form method="POST" action="{% url 'tecnicos' %}">
+            {% csrf_token %}
+        <div style="overflow-x: scroll;" class="row d-flex flex-nowrap  ">
+         
+        {% if images|length >= 1 %} 
+        {% for images in images %}  
+        <div  class="col-4 mx-2  p-2 ">
+        <a href="{{images.link}}" >  
+        <img style="border-radius: 20px;"  class="w-100" src="{{images.img.url}}" srcset="{{images.img.url}} 1x, {{images.img.url}}@2x.png 2x">
+        </a>
+        {% if grupos != "usuarios" %}
+        <button style="border-radius: 10px;" class=" shadow px-4 mt-3 py-2  " type="submit" value="{{images.id}}" name="inativar" >Inativar </button>
+        {% endif %}
+      </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div style="border-radius: 20px;" class="row mt-4  shadow  d-flex justify-content-center p-2 " >
+   Não há Links cadastrados  
+    </div>    
+
+{% endif %} 
+</form>
+    </div>
+  </div>
+  </main>
+{% endblock content %}  
