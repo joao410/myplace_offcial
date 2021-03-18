@@ -8,11 +8,11 @@
   <path id="Linha_1" d="M 0 0 L 1482 0">
   </path>
 </svg>
-<main role="main"  class="col-md-8 m-sm-auto col-lg-8 col-md-6  "  >
-     
+<main role="main"  class="col-md-8 m-sm-auto col-lg-8 col-md-6" style="margin-left: 300px;" > 
+
   <div style="top:250px;"  class="container  ">
   
-    <div style="top: -170px;" id="Atendimento_ba_">
+    <div style="top: -170px;" id="Atendimento_ba_ " >
       <span>Usuários</span>
     </div>
 
@@ -26,7 +26,9 @@
 
   <div class="Retngulo_56_ text-white border border-dark d-flex justify-content-center fs-5 fw-bold pt-2 ">
 		<span>Usuários</span>
+  
   </div>
+  
  <!--
 	<div class="Retngulo_57_ border border-dark d-flex justify-content-center text-dark fs-5 fw-bold pt-2">
 		<span>Permissões</span>
@@ -39,9 +41,15 @@
 		
 
  <div class="container d-flex flex-nowrap  N_21_  ">
-    <form method="GET">
+   <form method="GET">
       {% csrf_token %}
-    <div class="row">
+    <div class="row .ta6 {
+	position: absolute;
+	overflow: visible;
+	width: 27px;
+	height: 27px;
+	left: 145px;
+	top: 387px;">
     <div style="left: 0%;" class="col-2" >	
       {{filtro.form.name}}
     </div>
@@ -54,7 +62,7 @@
       <span><button class="btn btn-primary" type="submit" style="border-radius: 20px; box-shadow:0 8px 6px -6px rgb(161, 161, 161)" >Filtrar</button></span>
     </div>  
       </div>  
-  </form>
+  </form> 
 </div>
 
 

@@ -1,3 +1,17 @@
+.garr {
+	position: absolute;
+	overflow: visible;
+	width: 27px;
+	height: 27px;
+	left: 145px;
+	top: 387px;
+}
+
+
+
+
+
+
 #endereco{
 	left: 5px;
 	top: 852px;
@@ -3895,4 +3909,12 @@ border-color: rgba(0,76,162,1);
     border-radius: 50%;
 	
 
+}
+
+.ramais{
+	margin-left: 80px;
+}
+
+.userleft{
+	margin-left: 200px;
 }
