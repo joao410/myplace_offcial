@@ -20,16 +20,17 @@
       <div id="Novo_Chamado">
         <span>Novo Chamado</span>
       </div>
-      <div id="rea_">
-        <span>Área</span>
+      <div id="rea_" style="margin-top:30px;">
+        <span>Área:</span>
       </div>
+      
       <form method="POST" action="{% url 'add_chamado' %}" enctype="multipart/form-data">
         {% csrf_token %}
-      <button type="button"  name="table" id="rh" value="recursos humanos" class=" fw-bold" onclick="mostrarrh()">
+      <button type="button"  name="table" id="rh" value="recursos humanos" style="margin-left:50px;" class=" fw-bold" onclick="mostrarrh()">
         <span>Recursos Humanos</span>
       </button>
      
-      <button type="button"  name="tablee" id="t" value="atendimento ti" class="  fw-bold " onclick="mostrarti()">
+      <button type="button"  name="tablee" id="t" value="atendimento ti" class="fw-bold" style="margin-left:50px;" onclick="mostrarti()">
         <span>T.I</span>
       </button>
 
@@ -85,7 +86,7 @@
           <span>Envio e Atestado Médico</span>
         </div>
         <div id="Problema_com_equipamento_b">
-          <span>banco de horas</span>
+          <span>Banco de horas</span>
         </div>
         <div id="Outro_problema">
           <span>Sugestões</span>
@@ -118,6 +119,7 @@
     </a>
       </div>
     </form>
+    
 
     <form method="POST" action="{% url 'add_chamado' %}" enctype="multipart/form-data">
       {% csrf_token %}
