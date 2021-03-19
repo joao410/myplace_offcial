@@ -1,13 +1,3 @@
-.depright{
-	margin-left: -100px;
-}
-
-
-.gener{
-	margin-top: 10px;
-}
-
-
 .garr {
 	position: absolute;
 	overflow: visible;
@@ -16,6 +6,9 @@
 	left: 145px;
 	top: 387px;
 }
+
+
+
 
 
 
@@ -2586,7 +2579,7 @@ border-color: rgba(0,76,162,1);
 	color: rgba(93,90,90,1);
 }
 #de {
-	left: 200px;
+	left: 3500px;
 	top: 324px;
 	position: absolute;
 	overflow: visible;
@@ -2614,7 +2607,7 @@ border-color: rgba(0,76,162,1);
 	color: rgba(93,90,90,1);
 }
 #ufc {
-	left: 5px;
+	left: 157px;
 	top: 324px;
 	position: absolute;
 	overflow: visible;
@@ -2624,7 +2617,7 @@ border-color: rgba(0,76,162,1);
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #Skype1 {
@@ -2642,8 +2635,8 @@ border-color: rgba(0,76,162,1);
 	color: rgba(93,90,90,1);
 }
 #serie {
-	left:415px;
-	top: 240px;
+	left:8px;
+	top: 325px;
 	position: absolute;
 	overflow: visible;
 	width: 55px;
@@ -2652,7 +2645,7 @@ border-color: rgba(0,76,162,1);
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #E-mail_corporativo_021 {
@@ -2670,8 +2663,8 @@ border-color: rgba(0,76,162,1);
 	color: rgba(93,90,90,1);
 }
 #carteira {
-	left: 195px;
-	top: 241px;
+	left: 287px;
+	top: 265px;
 	position: absolute;
 	overflow: visible;
 	width: 196px;
@@ -2680,7 +2673,7 @@ border-color: rgba(0,76,162,1);
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #E-mail_corporativo_011 {
@@ -2810,8 +2803,8 @@ border-color: rgba(0,76,162,1);
 	color: rgba(93,90,90,1);
 }
 #titulo {
-	left: 5px;
-	top: 241px;
+	left: 8px;
+	top: 265px;
 	position: absolute;
 	overflow: visible;
 	width: 193px;
@@ -2820,7 +2813,7 @@ border-color: rgba(0,76,162,1);
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #Empresa1 {
@@ -2892,6 +2885,20 @@ border-color: rgba(0,76,162,1);
 	font-style: normal;
 	font-weight: bold;
 	font-size: 18px;
+	color: rgba(93,90,90,1);
+}
+#pis {
+	left: 287px;
+	top: 200px;
+	position: absolute;
+	overflow: visible;
+	width: 140px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Segoe UI;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #Nome_Completo1 {
