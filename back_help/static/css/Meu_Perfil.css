@@ -13,8 +13,8 @@
 
 
 #endereco{
-	left: 5px;
-	top: 852px;
+	left: 8px;
+	top: 742px;
 	position: absolute;
 	overflow: visible;
 	width: 57px;
@@ -23,12 +23,12 @@
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #endereco1{
-	left: 155px;
-	top: 852px;
+	left: 150px;
+	top: 742px;
 	position: absolute;
 	overflow: visible;
 	width: 57px;
@@ -37,12 +37,12 @@
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #endereco2{
-	left: 305px;
-	top: 852px;
+	left: 287px;
+	top: 742px;
 	position: absolute;
 	overflow: visible;
 	width: 57px;
@@ -51,12 +51,12 @@
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #endereco3{
-	left: 465px;
-	top: 852px;
+	left: 8px;
+	top: 802px;
 	position: absolute;
 	overflow: visible;
 	width: 57px;
@@ -65,12 +65,12 @@
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #endereco4{
-	left: 620px;
-	top: 852px;
+	left: 150px;
+	top: 802px;
 	position: absolute;
 	overflow: visible;
 	width: 57px;
@@ -79,12 +79,12 @@
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #endereco5{
-	left: 5px;
-	top: 952px;
+	left: 287px;
+	top: 802px;
 	position: absolute;
 	overflow: visible;
 	width: 57px;
@@ -93,12 +93,12 @@
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #endereco6{
-	left: 155px;
-	top: 952px;
+	left: 8px;
+	top: 862px;
 	position: absolute;
 	overflow: visible;
 	width: 57px;
@@ -107,12 +107,12 @@
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #endereco7{
-	left: 305px;
-	top: 952px;
+	left: 150px;
+	top: 862px;
 	position: absolute;
 	overflow: visible;
 	width: 57px;
@@ -121,12 +121,12 @@
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #endereco8{
-	left: 465px;
-	top: 952px;
+	left: 287px;
+	top: 862px;
 	position: absolute;
 	overflow: visible;
 	width: 57px;
@@ -135,7 +135,7 @@
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 
@@ -154,8 +154,8 @@
 	color: rgba(93,90,90,1);
 }
 #document1{
-	left: 155px;
-	top: 752px;
+	left: 430px;
+	top: 622px;
 	position: absolute;
 	overflow: visible;
 	width: 57px;
@@ -164,12 +164,12 @@
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #document2{
-	left: 300px;
-	top: 752px;
+	left: 8px;
+	top: 682px;
 	position: absolute;
 	overflow: visible;
 	width: 57px;
@@ -178,12 +178,12 @@
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #document3{
-	left: 465px;
-	top: 752px;
+	left: 125px;
+	top: 682px;
 	position: absolute;
 	overflow: visible;
 	width: 57px;
@@ -192,12 +192,12 @@
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 20px;
+	font-size: s;
 	color: rgba(93,90,90,1);
 }
 #document4{
-	left: 620px;
-	top: 752px;
+	left: 287px;
+	top: 682px;
 	position: absolute;
 	overflow: visible;
 	width: 57px;
@@ -206,7 +206,7 @@
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #tab1 
