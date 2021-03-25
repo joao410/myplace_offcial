@@ -128,106 +128,7 @@ def add_usuarios(request):
         repassword = request.POST["senha"]    
         grupo = request.POST["grupo"] 
 
-        gs = Group.objects.get(name=grupo)  
-        if not nome:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)  
-        if not cpf:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)  
-        if not genero:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)  
-        if not cor:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)  
-        if not ecivil:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)  
-        if not escolaridade:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)  
-        if not datanasci:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)  
-        if not municipionasc:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)  
-        if not ufnasci:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)  
-        if not paisnasci:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)  
-        if not nasciona:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)  
-        if not mae:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)  
-        if not pai:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)  
-        if not cep:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context) 
-        if not tipo:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)       
-        if not logradouro:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)       
-        if not num:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)       
-        if not ufatual:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)       
-        if not muniatual:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)       
-        if not bairro:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)       
-        if not complemento:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)       
-        if not pais:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)       
-        if not pis:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)  
-        if not teleitor:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)  
-        if not emp:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)  
-        if not dep:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)  
-        if not cargo:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)  
-        if not ctrabalho:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)  
-        if not serie:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)  
-        if not uf:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)  
-        if not emissao:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)  
-        if not vtrans:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)  
-        if not admissao:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)  
+        gs = Group.objects.get(name=grupo)   
         if not demissao:
             demissao = None 
         if not codf:
@@ -236,12 +137,6 @@ def add_usuarios(request):
            vtrans =  "VALE TRANSPORTE"
         if vtrans == "NÃo":
            vtrans =  "AJUDA DE CUSTO"       
-        if not indica:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)  
-        if not grupo:
-            messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'users/add_usuarios.html', context)  
         if not User.objects.filter(username=usuario).exists():
             if not User.objects.filter(email=email1).exists():                
                 if len(senha) < 6:
@@ -359,7 +254,7 @@ def edit_usuarios(request,id):
         grupo = request.POST["grupo"] 
         gs = Group.objects.get(name=grupo)  
   
-        if  User.objects.filter(username=usuario).exists():
+        if  User.objects.filter(username=usuario).exists():  
             if  User.objects.filter(email=email1).exists():                
                 
                 user = User.objects.get(username=usuario)
@@ -447,7 +342,7 @@ def perfisuser(request):
     codigo = usuarioC.codigo.nome
     cod =usuario.codigo.nome
     image = ImagePerfil.objects.get(nome=cod)
-    imageP = ImagePerfil.objects.get(nome=codigo)
+    imageP = ImagePerfil.objects.get(nome=codigo) 
     filtro = ChamadoFilter()
     context = {
     'chamados': chamados,
@@ -480,9 +375,15 @@ def home(request):
     chamados = Chamado.objects.filter(grupo=grupo).order_by("-id")    
     chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("-id")
     grupos= usuarioC.grupo.name
-    imageP = ImagePerfil.objects.get(nome= codigo.nome)
-
+   
     filtro = ChamadoFilter()
+
+    if ImagePerfil.objects.get(nome= codigo.nome).exists():
+       imageP = ImagePerfil.objects.get(nome= codigo.nome)
+    else:
+       imageP = ImagePerfil.objects.get(nome="padrao")   
+
+
     context = {
     'chamados': chamados,
     'chamados_abertos': chamados_abertos,

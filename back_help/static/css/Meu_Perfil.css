@@ -2720,7 +2720,7 @@ border-color: rgba(0,76,162,1);
 }
 #ecivil {
 	left: 287px;
-	top: 401px;
+	top: 390px;
 	position: absolute;
 	overflow: visible;
 	width: 193px;
@@ -3949,6 +3949,7 @@ border-color: rgba(0,76,162,1);
 	display: flex;
 	height:auto;
 	width: 100%;
+	min-width:1200px;
 	background-color: rgba(255,255,255,1);
     overflow-y: scroll;
     overflow-x: hidden;

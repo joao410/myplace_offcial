@@ -65,10 +65,10 @@
                     <span>Apelido</span>
                 </div>
                 <div id="Cargo__Funo2">
-                    <span>Cpf</span>
+                    <span>CPF</span>
                 </div>
                 <div id="pis">
-                    <span>Pis</span>
+                    <span>PIS</span>
                 </div>
                 <div id="titulo">
                     <span>Titulo de Eleitor  </span>
@@ -77,16 +77,16 @@
                     <span>Carteira de Trabalho</span>
                 </div>
                 <div id="serie">
-                    <span>Serie</span>
+                    <span>Série</span>
                 </div>
                 <div id="ufc">
-                    <span>Uf </span>
+                    <span>UF </span>
                 </div>
                 <div id="de">
                     <span>Data da Emissão</span>
                 </div>
                 <div id="genero">
-                    <span>Genero</span>
+                    <span>Gênero</span>
                 </div>
                 <div id="cor">
                     <span>Cor</span>
@@ -104,7 +104,7 @@
                     <span>Data de Nascimento</span>
                 </div>
                <div id="munasci">
-                    <span>Municipio</span>
+                    <span>MunicÍpio</span>
                 </div>
                <div id="uf">
                     <span>UF</span>
@@ -113,7 +113,7 @@
                     <span>País </span>
                 </div>
                  <div id="nasci">
-                    <span>Nascionalidade</span>
+                    <span>Nacionalidade</span>
                 </div>
                  <div id="mae1">
                     <span>Nome da Mãe</span>
@@ -147,7 +147,7 @@
                     <span>Logradouro</span>
                 </div>
                 <div id="endereco3">
-                    <span>nº</span>
+                    <span>Nº</span>
                 </div>
                 <div id="endereco4">
                     <span>Uf</span>
@@ -162,7 +162,7 @@
                     <span>Complemento</span>
                 </div>
                 <div id="endereco8">
-                    <span>Pais</span>
+                    <span>País</span>
                 </div>
               
               
@@ -170,7 +170,7 @@
                     <span>Dados Pessoais</span>
                 </div>
               
-                <input  class="Retngulo_60 form-control" type="text"  name="nome">
+                <input  class="Retngulo_60 form-control" type="text"  required name="nome">
                 
                 <select name="genero"  class="form-select Retngulo_genero">
                     <option name="genero" value="">
@@ -179,29 +179,59 @@
                         <option value="Prefiro não informar">Prefiro não informar</option>
                     </option>
                 </select>
-                
-                <input  class="Retngulo_apelido form-control" type="text" name="apelido">
-                <input  class="Retngulo_cpf form-control" type="text" name="cpf">
-                <input  class="Retngulo_pis form-control" type="text" name="pis">
-                <input  class="Retngulo_cor form-control" type="text" name="cor">
-                <input  class="Retngulo_celp form-control" type="text" name="celp">
-                <input  class="Retngulo_serie form-control" type="text" name="serie">
-                <input  class="Retngulo_carteira form-control" type="text" name="carteira">
+                <input  class="Retngulo_apelido form-control" type="text"  name="apelido">
+                <input  class="Retngulo_cpf form-control" type="text" required name="cpf">
+                <input  class="Retngulo_pis form-control" type="text" name="pis">   
                 <input  class="Retngulo_titulo form-control" type="text" name="titulo">
+                <input  class="Retngulo_carteira form-control" type="text" name="carteira">
+                <input  class="Retngulo_serie form-control" type="text" name="serie">
                 <input  class="Retngulo_ufc form-control" type="text" name="ufc">
-                <input  class="Retngulo_emissao form-control" type="date" name="emissao">
-                <input  class="Retngulo_ecivil form-control" type="text" name="ecivil">
-                <input  class="Retngulo_escol form-control" type="text" name="escolaridade">
-                <input  class="Retngulo_dn form-control" type="date" name="datanasci">
+                <input  class="Retngulo_emissao form-control" type="date" name="emissao">           
+                <select name="cor"  class="form-select Retngulo_cor">
+                    <option name="cor" value="">
+                        <option value="INDIGENA">1 - INDIGENA </option>
+                        <option value="BRANCA">2 - BRANCO</option>
+                        <option value="NEGRA">3 - NEGRA</option>
+                        <option value="AMARELO">4 - AMARELO</option>
+                        <option value="PARDA">5 - PARDA</option>
+                        <option value="NÃO INFORMADO ">6 - NÃO INFORMADO</option>
+                    </option>
+                </select>
+                <input  class="Retngulo_celp form-control" type="text" name="celp">             
+                <select name="ecivil"  class="form-select Retngulo_ecivil">
+                    <option name="ecivil" value="">
+                        <option value="SOLTEIRO">1 - SOLTEIRO </option>
+                        <option value="CASADO">2 - CASADO</option>
+                        <option value="SEPARADO">3 - SEPARADO</option>
+                        <option value="DIVORCIADO">4 - DIVORCIADO</option>
+                        <option value="VIUVO">5 - VIUVO</option>
+                        <option value="UNIÃO ESTÁVEL">6 - UNIÃO ESTÁVEL</option>
+                    </option>
+                </select>
+                 <select name="escolaridade"  class="form-select Retngulo_escol">
+                    <option name="escolaridade" value="">
+                        <option value="ANALFABETO">1 - ANALFABETO </option>
+                        <option value="ATÉ O 5° ANO INCOMPLETO">2 - ATÉ O 5° ANO INCOMPLETO</option>
+                        <option value="5° COMPLETO">3 - 5° COMPLETO</option>
+                        <option value="DO 6° AO 9° ANO INCOMPLETO">4 - DO 6° AO 9° ANO INCOMPLETO</option>
+                        <option value="ENSINO FUNDAMENTAL COMPLETO">5 - ENSINO FUNDAMENTAL COMPLETO</option>
+                        <option value="ENSINO MÉDIO INCOMPLETO">6 - ENSINO MÉDIO INCOMPLETO </option>
+                        <option value="ENSINO MÉDIO COMPLETO">7 - ENSINO MÉDIO COMPLETO </option>
+                        <option value="ENSINO SUPERIOR INCOMPLETO">8 - ENSINO SUPERIOR INCOMPLETO </option>
+                        <option value="ENSINO SUPERIOR COMPLETO">9 - ENSINO SUPERIOR COMPLETO </option>
+                        <option value="MESTRADO COMPLETO">10 - MESTRADO COMPLETO </option>
+                        <option value="DOUTORADO COMPLETO">11 - DOUTORADO COMPLETO </option>
+                    </option>
+                </select>
+
+
+                <input  class="Retngulo_dn form-control" type="date" required name="datanasci">
                 <input  class="Retngulo_munasci form-control" type="text" name="municipionasc">
                 <input  class="Retngulo_ufn form-control" type="text" name="ufnasci">                
                 <input  class="Retngulo_pais form-control" type="text" name="paisnasci">
                 <input  class="Retngulo_nasci form-control" type="text" name="nasciona">
-                <input  class="Retngulo_mae form-control" type="text" name="mae">
                 <input  class="Retngulo_pai form-control" type="text" name="pai">
-
-
-
+                <input  class="Retngulo_mae form-control" type="text" name="mae">
                 <select name="documento"  class="form-select Retngulo1_ ">
                     <option name="documento" value="">
                         <option value="PG">RG</option>
@@ -209,13 +239,10 @@
                 
                     </option>
                 </select>
-                
                 <input  class="Retngulo2_ form-control" type="text" name="numero">
                 <input  class="Retngulo3_ form-control" type="text" name="oe">
                 <input  class="Retngulo4_ form-control" type="date" name="expedicao">
-                <input  class="Retngulo5_ form-control" type="date" name="validade">
-                
-                
+                <input  class="Retngulo5_ form-control" type="date" name="validade">                
                 <input  class="Retngulo6_ form-control" type="text" name="cep">
                 <input  class="Retngulo7_ form-control" type="text" name="tipo">
                 <input  class="Retngulo8_ form-control" type="text" name="logradouro">
@@ -296,7 +323,7 @@
                     <span>Unidade Salarial </span>
                 </div>
                 <div id="salvar">
-                    <span>salario Variavel</span>
+                    <span>Salário Variavel</span>
                 </div>
 
                 <div id="Dados_Corporativos1">
@@ -323,6 +350,12 @@
                         <option value="nao">2-NÃO</option>                        
                     </option>
                 </select>
+                <select name="priempr"  class="form-select Retngulo_priempr">
+                    <option name="priempr" value="">
+                        <option value="sim">1-SIM </option>
+                        <option value="nao">2-NÃO </option>                        
+                    </option>
+                </select>     
                 <input  class="Retngulo_admissao form-control" type="date" name="admissao">
                 <input  class="Retngulo_demissao form-control" type="date" name="demissão">
                 <select name="tipoadmissao"  class="form-select Retngulo_tipoadmissao">
@@ -340,12 +373,7 @@
                         <option value="Decorrente de decisão judicial ">3 -DECORRENTE DE AÇÃO JUDICIAL</option>               
                     </option>
                 </select>             
-                <select name="priempr"  class="form-select Retngulo_priempr">
-                    <option name="priempr" value="">
-                        <option value="sim">1-SIM </option>
-                        <option value="nao">2-NÃO </option>                        
-                    </option>
-                </select>               
+                    
                 <select name="rtrab"  class="form-select Retngulo_75">
                     <option name="rtrab" value="">
                         <option value="CLT">1 - CLT</option>
@@ -373,17 +401,33 @@
                         <option value="RURAL">2 -RURAL</option>
                     </option>
                 </select>    
-                <input  class="Retngulo_79 form-control" type="text" name="cat">
+               
+                <select name="cat"  class="form-select Retngulo_79">
+                    <option name="cat" value="">
+                        <option value="EMPREGADO-GERAL">1 - EMPREGADO-GERAL</option>
+                        <option value="EMPREGADO-TRABALHADOR RURAL POR PEQUENO PRAZO DA LEI 11.718/2008">2 - EMPREGADO-TRABALHADOR RURAL POR PEQUENO PRAZO DA LEI 11.718/2008</option>
+                        <option value="EMPREGADO-APRENDIZ">3 - EMPREGADO-APRENDIZ</option>
+                        <option value="EMPREGADO-DOMÉSTICO">4 - EMPREGADO-DOMÉSTICO</option>
+                        <option value="EMPREGADO-CONTRATO A TERMO FIRMADO NOS TERMOS DA LEI 9601/98">5 - EMPREGADO-CONTRATO A TERMO FIRMADO NOS TERMOS DA LEI 9601/98</option>
+                        <option value="EMPREGADO-CONTRATO POR PRAZO DETERMINADO NOS TERMOS DA LEI 6019/74">6 - EMPREGADO-CONTRATO POR PRAZO DETERMINADO NOS TERMOS DA LEI 6019/74</option>
+                        <option value="TRABALHADOR NÃO VINCULADO AO RGPS COM DIREITO AO FGTS">7 - TRABALHADOR NÃO VINCULADO AO RGPS COM DIREITO AO FGTS</option>
+                        <option value="TRABALHADOR AVULSO - PORTUÁRIO">8 - TRABALHADOR AVULSO - PORTUÁRIO </option>
+                        <option value="ESTAGIÁRIO">9 - ESTAGIÁRIO </option>
+                    </option>
+                </select>    
+
+
+
                 <input  class="Retngulo_80 form-control" type="text" name="codf">
                 <input  class="Retngulo_81 form-control" type="text" name="carh">
                 <select name="unisa"  class="form-select Retngulo_82">
                     <option name="unisa" value="">
                         <option value="POR HORA">1 - POR HORA</option>
-                        <option value="POR DIA">2 -POR DIA</option>
-                        <option value="POR SEMANA">2 -POR SEMANA</option>
-                        <option value="POR QUINZENA">2 -POR QUINZENA</option>
-                        <option value="POR MÊS">2 POR MÊS</option>
-                        <option value="POR TAREFA">2 -POR TAREFA</option>             
+                        <option value="POR DIA">2 - POR DIA</option>
+                        <option value="POR SEMANA">3 - POR SEMANA</option>
+                        <option value="POR QUINZENA">4 - POR QUINZENA</option>
+                        <option value="POR MÊS">5 - POR MÊS</option>
+                        <option value="POR TAREFA">6 - POR TAREFA</option>             
                     </option>
                 </select>    
                 <input  class="Retngulo_83 form-control" type="number"  step=".01" name="salvari">
@@ -443,8 +487,8 @@
             <input  class="Retngulo_63 form-control" type="text" name="cel">
             <input  class="Retngulo_64 form-control" type="text" name="tel">
             <input  class="Retngulo_65 form-control" type="text" name="ramal">
-            <input  class="Retngulo_66 form-control" type="text" name="usuario">
-            <input  class="Retngulo_67 form-control" type="password" name="senha">
+            <input  class="Retngulo_66 form-control" type="text" required name="usuario">
+            <input  class="Retngulo_67 form-control" type="password" required name="senha">
     
     
     
@@ -457,7 +501,7 @@
             
     </div>
         </div>
-        <select name="grupo"  class="form-select Retngulo_69">
+        <select name="grupo" required  class="form-select Retngulo_69">
             <option name="grupo" value="">
                 {% for gs in g %}
                 <option value="{{gs.name}}">{{gs.name}}</option>
