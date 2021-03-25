@@ -101,7 +101,7 @@ class UsuarioTrabalho(Base):
     regimejornada = models.CharField("RegimeJornada", max_length=100, default="...")
     naturezaatividade = models.CharField("NaturezaAtividade", max_length=50 ,default="..")
     categoria = models.CharField("Categoria",max_length=100, default="...")
-    codigofuncao = models.IntegerField("CodigoFuncao", default="0")
+    codigofuncao = models.IntegerField("CodigoFuncao", default="1")
     cargahorariam = models.CharField("CargaHorariaM",max_length=20,default="...")
     unidadesalarial = models.CharField("UnidadeSalarial",max_length=15, default="..")
     salariovariavel =  models.DecimalField(max_digits=6, decimal_places=2,default="0")

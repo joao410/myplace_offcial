@@ -298,13 +298,11 @@
                 <div id="salvar">
                     <span>salario Variavel</span>
                 </div>
-              
+
                 <div id="Dados_Corporativos1">
                     <span>Dados Empresariais</span>
                 </div>
-              
                 <input  class="Retngulo_60 form-control depright" type="text"  name="departamento">
-                
                 <select name="empresa"  class="form-select Retngulo_empresa">
                     <option name="empresa" value="">
                         {% for empresa in empresa %}
@@ -312,39 +310,82 @@
                         {% endfor %}
                     </option>
                 </select>
-                <input  class="Retngulo_cargo form-control" type="text" name="cargo">
-
-
-         
+                <select name="cargo"  class="form-select Retngulo_cargo">
+                    <option name="cargo" value="">
+                        {% for cargos in cargos %}
+                        <option value="{{cargos.cargo}}">{{cargos.cargo}}</option>
+                        {% endfor %}                       
+                    </option>
+                </select>
                 <select name="vtrans"  class="form-select Retngulo_vtrans">
                     <option name="vtrans" value="">
-                        <option value="sim">1-Sim</option>
-                        <option value="nao">2-Não</option>                        
+                        <option value="sim">1-SIM</option>
+                        <option value="nao">2-NÃO</option>                        
                     </option>
                 </select>
-
-
-
                 <input  class="Retngulo_admissao form-control" type="date" name="admissao">
                 <input  class="Retngulo_demissao form-control" type="date" name="demissão">
-                <input  class="Retngulo_tipoadmissao form-control" type="text" name="tipoadmissao">
-                <input  class="Retngulo_indica form-control" type="text" name="indica">
-               
-                <select name="priempr"  class="form-select Retngulo_74">
-                    <option name="priempr" value="">
-                        <option value="sim">1-Sim </option>
-                        <option value="nao">2-Não </option>                        
+                <select name="tipoadmissao"  class="form-select Retngulo_tipoadmissao">
+                    <option name="tipoadmissao" value="">
+                        <option value="Admissão">1 - ADMISSÃO</option>
+                        <option value="Transferencia de empresa do mesmo grupo empresarial">2 - TRANSFERENCIA DE EMPRESA DO MESMO GRUPO EMPRESARIAL</option>
+                        <option value="Admissão por sucessão, Incorporação, Cisão ou Fusão">3 - ADMISSÃO POR SUCESSÃO, INCORPORAÇÃO, CISÃO OU FUSÃO</option>
+                        <option value="Trabalhador cedido">4 - TRABALHADOR CEDIDO</option>   
                     </option>
                 </select>
-
-                <input  class="Retngulo_75 form-control" type="text" name="rtrab">
-                <input  class="Retngulo_76 form-control" type="text" name="rprev">
-                <input  class="Retngulo_77 form-control" type="text" name="rjorn">
-                <input  class="Retngulo_78 form-control" type="text" name="naativ">
+                <select name="indica"  class="form-select Retngulo_indica">
+                    <option name="indica" value="">
+                        <option value="Normal">1 - NORMAL</option>
+                        <option value="Decorrente de ação fiscal">2 - DECORRENTE DE AÇÃO FISCAL</option>
+                        <option value="Decorrente de decisão judicial ">3 -DECORRENTE DE AÇÃO JUDICIAL</option>               
+                    </option>
+                </select>             
+                <select name="priempr"  class="form-select Retngulo_priempr">
+                    <option name="priempr" value="">
+                        <option value="sim">1-SIM </option>
+                        <option value="nao">2-NÃO </option>                        
+                    </option>
+                </select>               
+                <select name="rtrab"  class="form-select Retngulo_75">
+                    <option name="rtrab" value="">
+                        <option value="CLT">1 - CLT</option>
+                        <option value="RJU">2 - RJU</option>
+                        <option value="RJP">3 - RJP </option>     
+                    </option>
+                </select>
+                <select name="rprev"  class="form-select Retngulo_76">
+                    <option name="rprev" value="">
+                        <option value="RGPS">1 - RGPS</option>
+                        <option value="RPPS">2 - RPPS</option>
+                        <option value="RPPE">3 - RPPE </option>                    
+                    </option>
+                </select>               
+                <select name="rjorn"  class="form-select Retngulo_77">
+                    <option name="rjorn" value="">
+                        <option value="SUBMETIDO A HORÁRIOS DE TRABALHO">1 - SUBMETIDO A HORÁRIOS DE TRABALHO</option>
+                        <option value="ATIVIDADE EXTERNA ESPECIFICADA">2 - ATIVIDADE EXTERNA ESPECIFICADA</option>
+                        <option value="FUNÇÕES ESPECIFICAS">3 - FUNÇÕES ESPECIFICAS </option>
+                    </option>
+                </select>    
+                <select name="naativ"  class="form-select Retngulo_78">
+                    <option name="naativ" value="">
+                        <option value="TRABALHO URBANO">1 - TRABALHO URBANO</option>
+                        <option value="RURAL">2 -RURAL</option>
+                    </option>
+                </select>    
                 <input  class="Retngulo_79 form-control" type="text" name="cat">
                 <input  class="Retngulo_80 form-control" type="text" name="codf">
                 <input  class="Retngulo_81 form-control" type="text" name="carh">
-                <input  class="Retngulo_82 form-control" type="text" name="unisa">
+                <select name="unisa"  class="form-select Retngulo_82">
+                    <option name="unisa" value="">
+                        <option value="POR HORA">1 - POR HORA</option>
+                        <option value="POR DIA">2 -POR DIA</option>
+                        <option value="POR SEMANA">2 -POR SEMANA</option>
+                        <option value="POR QUINZENA">2 -POR QUINZENA</option>
+                        <option value="POR MÊS">2 POR MÊS</option>
+                        <option value="POR TAREFA">2 -POR TAREFA</option>             
+                    </option>
+                </select>    
                 <input  class="Retngulo_83 form-control" type="number"  step=".01" name="salvari">
         
         

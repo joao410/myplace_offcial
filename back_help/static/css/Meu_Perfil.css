@@ -2242,8 +2242,8 @@ border-color: rgba(0,76,162,1);
 	color: rgba(93,90,90,1);
 }
 #Departamento1 {
-	left: 250px;
-	top: 153px;
+	left: 287px;
+	top: 135px;
 	position: absolute;
 	overflow: visible;
 	width: 133px;
@@ -2252,7 +2252,7 @@ border-color: rgba(0,76,162,1);
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #apelido {
@@ -2298,8 +2298,8 @@ border-color: rgba(0,76,162,1);
 	color: rgba(93,90,90,1);
 }
 #vtrans {
-	left: 5px;
-	top: 212px;
+	left: 8px;
+	top: 195px;
 	position: absolute;
 	overflow: visible;
 	width: 57px;
@@ -2308,7 +2308,7 @@ border-color: rgba(0,76,162,1);
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #Usuario1 {
@@ -2326,8 +2326,8 @@ border-color: rgba(0,76,162,1);
 	color: rgba(93,90,90,1);
 }
 #admissao {
-	left: 5px;
-	top: 275px;
+	left: 287px;
+	top: 195px;
 	position: absolute;
 	overflow: visible;
 	width: 57px;
@@ -2336,7 +2336,7 @@ border-color: rgba(0,76,162,1);
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #Senha1 {
@@ -2354,8 +2354,8 @@ border-color: rgba(0,76,162,1);
 	color: rgba(93,90,90,1);
 }
 #demissao {
-	left: 5px;
-	top: 342px;
+	left: 8px;
+	top: 250px;
 	position: absolute;
 	overflow: visible;
 	width: 57px;
@@ -2364,12 +2364,12 @@ border-color: rgba(0,76,162,1);
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #tipoadmissao {
-	left: 5px;
-	top: 392px;
+	left: 287px;
+	top: 250px;
 	position: absolute;
 	overflow: visible;
 	width: 57px;
@@ -2378,12 +2378,12 @@ border-color: rgba(0,76,162,1);
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #admissional1 {
-	left: 5px;
-	top: 452px;
+	left: 8px;
+	top: 300px;
 	position: absolute;
 	overflow: visible;
 	width: 57px;
@@ -2392,12 +2392,12 @@ border-color: rgba(0,76,162,1);
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #priempr {
-	left: 5px;
-	top: 502px;
+	left: 140px;
+	top: 195px;
 	position: absolute;
 	overflow: visible;
 	width: 57px;
@@ -2406,12 +2406,12 @@ border-color: rgba(0,76,162,1);
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #rtra {
-	left: 205px;
-	top: 502px;
+	left: 287px;
+	top: 300px;
 	position: absolute;
 	overflow: visible;
 	width: 57px;
@@ -2420,12 +2420,12 @@ border-color: rgba(0,76,162,1);
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #rprev {
-	left: 405px;
-	top: 502px;
+	left: 8px;
+	top: 350px;
 	position: absolute;
 	overflow: visible;
 	width: 57px;
@@ -2434,12 +2434,12 @@ border-color: rgba(0,76,162,1);
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #rjorn {
-	left: 5px;
-	top: 602px;
+	left: 287px;
+	top: 350px;
 	position: absolute;
 	overflow: visible;
 	width: 57px;
@@ -2448,12 +2448,12 @@ border-color: rgba(0,76,162,1);
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #naativ {
-	left: 5px;
-	top: 655px;
+	left: 8px;
+	top: 405px;
 	position: absolute;
 	overflow: visible;
 	width: 57px;
@@ -2462,12 +2462,12 @@ border-color: rgba(0,76,162,1);
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #cat {
-	left: 325px;
-	top: 655px;
+	left: 287px;
+	top: 405px;
 	position: absolute;
 	overflow: visible;
 	width: 57px;
@@ -2476,12 +2476,12 @@ border-color: rgba(0,76,162,1);
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #codf {
-	left: 5px;
-	top: 752px;
+	left: 8px;
+	top: 460px;
 	position: absolute;
 	overflow: visible;
 	width: 57px;
@@ -2490,12 +2490,12 @@ border-color: rgba(0,76,162,1);
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #carh {
-	left: 325px;
-	top: 752px;
+	left: 287px;
+	top: 460px;
 	position: absolute;
 	overflow: visible;
 	width: 57px;
@@ -2504,12 +2504,12 @@ border-color: rgba(0,76,162,1);
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #unisa {
-	left: 608px;
-	top: 655px;
+	left: 8px;
+	top: 510px;
 	position: absolute;
 	overflow: visible;
 	width: 57px;
@@ -2518,12 +2518,12 @@ border-color: rgba(0,76,162,1);
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #salvar {
-	left: 608px;
-	top: 752px;
+	left:287px;
+	top: 510px;
 	position: absolute;
 	overflow: visible;
 	width: 57px;
@@ -2532,7 +2532,7 @@ border-color: rgba(0,76,162,1);
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #mae1 {
@@ -2593,8 +2593,8 @@ border-color: rgba(0,76,162,1);
 	color: rgba(93,90,90,1);
 }
 #Celular_Corporativo1 {
-	left: 5px;
-	top: 414px;
+	left: 430px;
+	top: 236px;
 	position: absolute;
 	overflow: visible;
 	width: 177px;
@@ -2603,7 +2603,7 @@ border-color: rgba(0,76,162,1);
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #ufc {
@@ -2621,8 +2621,8 @@ border-color: rgba(0,76,162,1);
 	color: rgba(93,90,90,1);
 }
 #Skype1 {
-	left: 5px;
-	top: 370px;
+	left: 287px;
+	top: 236px;
 	position: absolute;
 	overflow: visible;
 	width: 55px;
@@ -2631,7 +2631,7 @@ border-color: rgba(0,76,162,1);
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #serie {
@@ -2649,8 +2649,8 @@ border-color: rgba(0,76,162,1);
 	color: rgba(93,90,90,1);
 }
 #E-mail_corporativo_021 {
-	left: 5px;
-	top: 326px;
+	left: 8px;
+	top: 236px;
 	position: absolute;
 	overflow: visible;
 	width: 196px;
@@ -2659,7 +2659,7 @@ border-color: rgba(0,76,162,1);
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #carteira {
@@ -2677,8 +2677,8 @@ border-color: rgba(0,76,162,1);
 	color: rgba(93,90,90,1);
 }
 #E-mail_corporativo_011 {
-	left: 5px;
-	top: 281px;
+	left: 287px;
+	top: 190px;
 	position: absolute;
 	overflow: visible;
 	width: 193px;
@@ -2687,7 +2687,7 @@ border-color: rgba(0,76,162,1);
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #cor {
@@ -2859,8 +2859,8 @@ border-color: rgba(0,76,162,1);
 	color: rgba(93,90,90,1);
 }
 #Cargo__Funo1 {
-	left: 5px;
-	top: 237px;
+	left: 8px;
+	top: 187px;
 	position: absolute;
 	overflow: visible;
 	width: 140px;
@@ -2869,7 +2869,7 @@ border-color: rgba(0,76,162,1);
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 16px;
 	color: rgba(93,90,90,1);
 }
 #Cargo__Funo2 {

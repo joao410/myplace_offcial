@@ -4,7 +4,7 @@ from django.forms import modelformset_factory
 from django.http import JsonResponse
 from .models import  User
 from helpdesk.models import  Chamado, Image , ImageLink, Chat
-from .models import   UsuarioCorporativo, UsuarioEndereco, UsuarioTrabalho,UsuarioDocumentos, Empresa, ImagePerfil, UsuarioPessoal
+from .models import   UsuarioCorporativo, UsuarioEndereco, UsuarioTrabalho,UsuarioDocumentos, Empresa, ImagePerfil, UsuarioPessoal,Cargo
 from helpdesk.forms import ImageForm, ImageForms
 from django.http import HttpResponseRedirect
 from django.contrib import messages
@@ -32,6 +32,7 @@ def add_usuarios(request):
     codigo = usuarioC.codigo.nome
     imageP = ImagePerfil.objects.get(nome=codigo)
     empresa = Empresa.objects.all()
+    cargos = Cargo.objects.all()
     filtro = ChamadoFilter()
     context = {
     'chamados': chamados,
@@ -44,7 +45,8 @@ def add_usuarios(request):
     'empresa':empresa,
     'admin':admin, 
     'filtro': filtro,
-    'imageP':imageP,   
+    'imageP':imageP, 
+    'cargos':cargos,  
     'form':ImageForm,
             }  
     if UsuarioPessoal.objects.all():
@@ -75,8 +77,9 @@ def add_usuarios(request):
         teleitor =  request.POST["titulo"]
         ctrabalho = request.POST["carteira"]       
         serie = request.POST["serie"]
-        uf = request.POST["uf"]
+        uf = request.POST["ufc"]
         emissao = request.POST["emissao"]
+        celp = request.POST["celp"]
         #trabalho# 
         
         emp = request.POST["empresa"]
@@ -128,130 +131,138 @@ def add_usuarios(request):
         gs = Group.objects.get(name=grupo)  
         if not nome:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)  
+            return render(request, 'users/add_usuarios.html', context)  
         if not cpf:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)  
+            return render(request, 'users/add_usuarios.html', context)  
         if not genero:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)  
+            return render(request, 'users/add_usuarios.html', context)  
         if not cor:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)  
+            return render(request, 'users/add_usuarios.html', context)  
         if not ecivil:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)  
+            return render(request, 'users/add_usuarios.html', context)  
         if not escolaridade:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)  
+            return render(request, 'users/add_usuarios.html', context)  
         if not datanasci:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)  
+            return render(request, 'users/add_usuarios.html', context)  
         if not municipionasc:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)  
+            return render(request, 'users/add_usuarios.html', context)  
         if not ufnasci:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)  
+            return render(request, 'users/add_usuarios.html', context)  
         if not paisnasci:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)  
+            return render(request, 'users/add_usuarios.html', context)  
         if not nasciona:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)  
+            return render(request, 'users/add_usuarios.html', context)  
         if not mae:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)  
+            return render(request, 'users/add_usuarios.html', context)  
         if not pai:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)  
+            return render(request, 'users/add_usuarios.html', context)  
         if not cep:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context) 
+            return render(request, 'users/add_usuarios.html', context) 
         if not tipo:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)       
+            return render(request, 'users/add_usuarios.html', context)       
         if not logradouro:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)       
+            return render(request, 'users/add_usuarios.html', context)       
         if not num:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)       
+            return render(request, 'users/add_usuarios.html', context)       
         if not ufatual:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)       
+            return render(request, 'users/add_usuarios.html', context)       
         if not muniatual:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)       
+            return render(request, 'users/add_usuarios.html', context)       
         if not bairro:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)       
+            return render(request, 'users/add_usuarios.html', context)       
         if not complemento:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)       
+            return render(request, 'users/add_usuarios.html', context)       
         if not pais:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)       
+            return render(request, 'users/add_usuarios.html', context)       
         if not pis:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)  
+            return render(request, 'users/add_usuarios.html', context)  
         if not teleitor:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)  
+            return render(request, 'users/add_usuarios.html', context)  
         if not emp:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)  
+            return render(request, 'users/add_usuarios.html', context)  
         if not dep:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)  
+            return render(request, 'users/add_usuarios.html', context)  
         if not cargo:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)  
+            return render(request, 'users/add_usuarios.html', context)  
         if not ctrabalho:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)  
+            return render(request, 'users/add_usuarios.html', context)  
         if not serie:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)  
+            return render(request, 'users/add_usuarios.html', context)  
         if not uf:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)  
+            return render(request, 'users/add_usuarios.html', context)  
         if not emissao:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)  
+            return render(request, 'users/add_usuarios.html', context)  
         if not vtrans:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)  
+            return render(request, 'users/add_usuarios.html', context)  
         if not admissao:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)  
+            return render(request, 'users/add_usuarios.html', context)  
         if not demissao:
             demissao = None 
+        if not codf:
+            codf = 00
+        if vtrans == "SIM":
+           vtrans =  "VALE TRANSPORTE"
+        if vtrans == "NÃo":
+           vtrans =  "AJUDA DE CUSTO"       
         if not indica:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)  
+            return render(request, 'users/add_usuarios.html', context)  
         if not grupo:
             messages.error(request, "Por favor preencha todos os campos")
-            return render(request, 'chamado/add_usuarios.html', context)  
+            return render(request, 'users/add_usuarios.html', context)  
         if not User.objects.filter(username=usuario).exists():
             if not User.objects.filter(email=email1).exists():                
                 if len(senha) < 6:
                     messages.error(request, "Senha muito curta(<6)")
-                    return render(request, 'chamado/add_usuarios.html', context)
+                    return render(request, 'users/add_usuarios.html', context)
                 
                 if senha != repassword:
                     messages.error(request, "As senhas nao batem")
-                    return render(request, 'chamado/add_usuarios.html', context)
+                    return render(request, 'users/add_usuarios.html', context)
                 user = User.objects.create(username=usuario,email=email1)
                 user.set_password(senha)
                 user.is_active = True
                 user.save()
                 users = User.objects.get(username=usuario)
-                usu = UsuarioPessoal.objects.create(codigo=codigo,nome=nome,genero=genero, apelido=apelido,cpf=cpf,cor=cor,ecivil=ecivil,escolaridade=escolaridade,datanacimento=datanasci,ufnacimento=ufnasci,municipionacimento=municipionasc,paisnacimento=paisnasci,paisnacionalidade=nasciona,nomemae=mae,nomepai=pai)
+                usu = UsuarioPessoal.objects.create(codigo=codigo,nome=nome,genero=genero, apelido=apelido,cpf=cpf,cor=cor,ecivil=ecivil,escolaridade=escolaridade,pis=pis,tituloeleitor=teleitor,carteiratrabalho=ctrabalho,serie=serie,ufcarteiratrabalho=uf,datacarteiratrabalho=emissao,datanacimento=datanasci,ufnacimento=ufnasci,municipionacimento=municipionasc,paisnacimento=paisnasci,paisnacionalidade=nasciona,nomemae=mae,nomepai=pai)
              
                 u = UsuarioPessoal.objects.get(nome=nome)
-                usua = UsuarioTrabalho.objects.create(codigo=u,departamento=dep,empresa=emp,cargo=cargo,pis=pis,tituloeleitor=teleitor,carteiratrabalho=ctrabalho,serie=serie,ufcarteiratrabalho=uf,datacarteiratrabalho=emissao,valetransporte=vtrans,dataadmissao=admissao,datademissao=demissao,indicativoadmissao=indica,primeiroemprego=priempr,regimetrabalho=rtrab,regimeprevidenciario=rprev,regimejornada=rjorn,naturezaatividade=naativ,categoria=cat,codigofuncao=codf,cargahorariam=carh,unidadesalarial=unisa,salariovariavel=salvari)
+                c= Cargo.objects.get(cargo=cargo)
+                usua = UsuarioTrabalho.objects.create(codigo=u,departamento=dep,empresa=emp,cargo=c,valetransporte=vtrans,dataadmissao=admissao,datademissao=demissao,indicativoadmissao=indica,primeiroemprego=priempr,regimetrabalho=rtrab,regimeprevidenciario=rprev,regimejornada=rjorn,naturezaatividade=naativ,categoria=cat,codigofuncao=codf,cargahorariam=carh,unidadesalarial=unisa,salariovariavel=salvari)
                 usua.save()
+                
                 t = UsuarioTrabalho.objects.get(codigo=u)
                 do = UsuarioDocumentos.objects.create(codigo=u,documento=documento,numerodocumento=ndocumento,orgao=oe,dataexpedissao=de,validade=validade)
                 do.save()
