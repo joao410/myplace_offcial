@@ -157,26 +157,27 @@
             <span>Dados Pessoais</span>
         </div>
       
-        <input  class="Retngulo_60 form-control" type="text"  required name="nome">
+        <input  class="Retngulo_60 form-control" type="text" value="{{usu.codigo.nome}}"   name="nome">
         
         <select name="genero"  class="form-select Retngulo_genero">
-            <option name="genero" value="{{usu.codigo.genero}}">
+            <option name="genero" value="">
                 <option selected value="{{usu.codigo.genero}}">{{usu.codigo.genero}}</option>
                 <option value="Masculno">Masculino</option>
                 <option value="Feminino">Feminino</option>
                 <option value="Prefiro não informar">Prefiro não informar</option>
             </option>
         </select>
-        <input  class="Retngulo_apelido form-control" type="text"  name="apelido">
-        <input  class="Retngulo_cpf form-control" type="text" required name="cpf">
-        <input  class="Retngulo_pis form-control" type="text" name="pis">   
-        <input  class="Retngulo_titulo form-control" type="text" name="titulo">
-        <input  class="Retngulo_carteira form-control" type="text" name="carteira">
-        <input  class="Retngulo_serie form-control" type="text" name="serie">
-        <input  class="Retngulo_ufc form-control" type="text" name="ufc">
-        <input  class="Retngulo_emissao form-control" type="date" name="emissao">           
+        <input  class="Retngulo_apelido form-control" type="text" value="{{usu.codigo.apelido}}"  name="apelido">
+        <input  class="Retngulo_cpf form-control" type="text" value="{{usu.codigo.cpf}}"  name="cpf">
+        <input  class="Retngulo_pis form-control" type="text" value="{{usu.codigo.pis}}" name="pis">   
+        <input  class="Retngulo_titulo form-control" type="text" value="{{usu.codigo.tituloeleitor}}" name="titulo">
+        <input  class="Retngulo_carteira form-control" type="text" value="{{usu.codigo.carteiratrabalho}}" name="carteira">
+        <input  class="Retngulo_serie form-control" type="text" value="{{usu.codigo.serie}}"name="serie">
+        <input  class="Retngulo_ufc form-control" type="text" value="{{usu.codigo.ufcarteiratrabalho}}" name="ufc">
+        <input  class="Retngulo_emissao form-control" type="date"  value="{{usu.codigo.datacarteiratrabalho}}"  name="emissao" placeholder="{{usu.codigo.datacarteiratrabalho}}">           
         <select name="cor"  class="form-select Retngulo_cor">
-            <option name="cor" value="">
+            <option name="cor" value="" >
+                <option value="{{usu.codigo.cor}}" selected> {{usu.codigo.cor}}</option>
                 <option value="INDIGENA">1 - INDIGENA </option>
                 <option value="BRANCA">2 - BRANCO</option>
                 <option value="NEGRA">3 - NEGRA</option>
@@ -185,9 +186,10 @@
                 <option value="NÃO INFORMADO ">6 - NÃO INFORMADO</option>
             </option>
         </select>
-        <input  class="Retngulo_celp form-control" type="text" name="celp">             
+        <input  class="Retngulo_celp form-control"  value="{{usu.codigo.celpessoal}}" type="text" name="celp">             
         <select name="ecivil"  class="form-select Retngulo_ecivil">
             <option name="ecivil" value="">
+                <option value="{{usu.codigo.ecivil}}" selected> {{usu.codigo.ecivil}}</option>
                 <option value="SOLTEIRO">1 - SOLTEIRO </option>
                 <option value="CASADO">2 - CASADO</option>
                 <option value="SEPARADO">3 - SEPARADO</option>
@@ -198,6 +200,7 @@
         </select>
          <select name="escolaridade"  class="form-select Retngulo_escol">
             <option name="escolaridade" value="">
+                <option value="{{usu.codigo.escolaridade}}" selected> {{usu.codigo.escolaridade}}</option>
                 <option value="ANALFABETO">1 - ANALFABETO </option>
                 <option value="ATÉ O 5° ANO INCOMPLETO">2 - ATÉ O 5° ANO INCOMPLETO</option>
                 <option value="5° COMPLETO">3 - 5° COMPLETO</option>
@@ -211,35 +214,34 @@
                 <option value="DOUTORADO COMPLETO">11 - DOUTORADO COMPLETO </option>
             </option>
         </select>
-
-
-        <input  class="Retngulo_dn form-control" type="date" required name="datanasci">
-        <input  class="Retngulo_munasci form-control" type="text" name="municipionasc">
-        <input  class="Retngulo_ufn form-control" type="text" name="ufnasci">                
-        <input  class="Retngulo_pais form-control" type="text" name="paisnasci">
-        <input  class="Retngulo_nasci form-control" type="text" name="nasciona">
-        <input  class="Retngulo_pai form-control" type="text" name="pai">
-        <input  class="Retngulo_mae form-control" type="text" name="mae">
+        <input  class="Retngulo_dn form-control" type="date" name="datanasci">
+        <input  class="Retngulo_munasci form-control" type="text"value="{{usu.codigo.municipionacimento}}" name="municipionasc">
+        <input  class="Retngulo_ufn form-control" type="text" value="{{usu.codigo.ufnacimento}}" name="ufnasci">                
+        <input  class="Retngulo_pais form-control" type="text"  value="{{usu.codigo.paisnacimento}}"name="paisnasci">
+        <input  class="Retngulo_nasci form-control" type="text" value="{{usu.codigo.paisnacionalidade}}"name="nasciona">
+        <input  class="Retngulo_pai form-control" type="text" value="{{usu.codigo.nomemae}}" name="pai">
+        <input  class="Retngulo_mae form-control" type="text" value="{{usu.codigo.nomepai}}" name="mae">
         <select name="documento"  class="form-select Retngulo1_ ">
             <option name="documento" value="">
+                <option value="{{usu.documento.documento}}" selected>{{usu.documento.documento}}</option>
                 <option value="PG">RG</option>
                 <option value="CNH">CNH</option>
         
             </option>
         </select>
-        <input  class="Retngulo2_ form-control" type="text" name="numero">
-        <input  class="Retngulo3_ form-control" type="text" name="oe">
-        <input  class="Retngulo4_ form-control" type="date" name="expedicao">
-        <input  class="Retngulo5_ form-control" type="date" name="validade">                
-        <input  class="Retngulo6_ form-control" type="text" name="cep">
-        <input  class="Retngulo7_ form-control" type="text" name="tipo">
-        <input  class="Retngulo8_ form-control" type="text" name="logradouro">
-        <input  class="Retngulo9_ form-control" type="text" name="num">
-        <input  class="Retngulo10_ form-control" type="text" name="ufatual">
-        <input  class="Retngulo11_ form-control" type="text" name="muniatual">
-        <input  class="Retngulo12_ form-control" type="text" name="bairro">
-        <input  class="Retngulo13_ form-control" type="text" name="complemeno">
-        <input  class="Retngulo14_ form-control" type="text" name="pais">
+        <input  class="Retngulo2_ form-control"  value="{{usu.documento.numerodocumento}}" type="text" name="numero">
+        <input  class="Retngulo3_ form-control"  value="{{usu.documento.orgao}}" type="text" name="oe">
+        <input  class="Retngulo4_ form-control"  value="{{usu.documento.dataexpedissao}}"type="date" name="expedicao">
+        <input  class="Retngulo5_ form-control"  value="{{usu.documento.validade}}"type="date" name="validade">                
+        <input  class="Retngulo6_ form-control"  value="{{usu.endereco.cep}}" type="text" name="cep">
+        <input  class="Retngulo7_ form-control"  value="{{usu.endereco.tipo}}" type="text" name="tipo">
+        <input  class="Retngulo8_ form-control"  value="{{usu.endereco.logradouro}}" type="text" name="logradouro">
+        <input  class="Retngulo9_ form-control"  value="{{usu.endereco.numero}}"type="text" name="num">
+        <input  class="Retngulo10_ form-control" value="{{usu.endereco.ufatual}}" type="text" name="ufatual">
+        <input  class="Retngulo11_ form-control" value="{{usu.endereco.municipioatul}}"type="text" name="muniatual">
+        <input  class="Retngulo12_ form-control" value="{{usu.endereco.bairroatual}}" type="text" name="bairro">
+        <input  class="Retngulo13_ form-control" value="{{usu.endereco.complemento}}"type="text" name="complemeno">
+        <input  class="Retngulo14_ form-control" value="{{usu.endereco.pais}}"type="text" name="pais">
 
 
 
@@ -317,9 +319,11 @@
         <div id="Dados_Corporativos1">
             <span>Dados Empresariais</span>
         </div>
-        <input  class="Retngulo_60 form-control depright" type="text"  name="departamento">
+  
+    <input  class="Retngulo_60 form-control depright" value="{{usu.trabalho.departamento}}" type="text"  name="departamento">
         <select name="empresa"  class="form-select Retngulo_empresa">
             <option name="empresa" value="">
+                <option value="{{usu.trabalho.empresa}}" selected>{{usu.trabalho.empresa}}</option>
                 {% for empresa in empresa %}
                 <option value="{{empresa.nempresa}}">{{empresa.nempresa}}</option>
                 {% endfor %}
@@ -327,6 +331,7 @@
         </select>
         <select name="cargo"  class="form-select Retngulo_cargo">
             <option name="cargo" value="">
+                <option value="{{usu.trabalho.cargo}}" selected>{{usu.trabalho.cargo}}</option>
                 {% for cargos in cargos %}
                 <option value="{{cargos.cargo}}">{{cargos.cargo}}</option>
                 {% endfor %}                       
@@ -334,12 +339,14 @@
         </select>
         <select name="vtrans"  class="form-select Retngulo_vtrans">
             <option name="vtrans" value="">
+                <option value="{{usu.trabalho.valetransporte}}" selected>{{usu.trabalho.valetransporte}}</option>
                 <option value="sim">1-SIM</option>
                 <option value="nao">2-NÃO</option>                        
             </option>
         </select>
         <select name="priempr"  class="form-select Retngulo_priempr">
             <option name="priempr" value="">
+                <option value="{{usu.trabalho.primeiroemprego}}" selected>{{usu.trabalho.primeiroemprego}}</option>
                 <option value="sim">1-SIM </option>
                 <option value="nao">2-NÃO </option>                        
             </option>
@@ -347,7 +354,8 @@
         <input  class="Retngulo_admissao form-control" type="date" name="admissao">
         <input  class="Retngulo_demissao form-control" type="date" name="demissão">
         <select name="tipoadmissao"  class="form-select Retngulo_tipoadmissao">
-            <option name="tipoadmissao" value="">
+            <option name="tipoadmissao" value="">^
+                <option value="{{usu.trabalho.tipoAdmissao}}" selected>{{usu.trabalho.tipoAdmissao}}</option>
                 <option value="Admissão">1 - ADMISSÃO</option>
                 <option value="Transferencia de empresa do mesmo grupo empresarial">2 - TRANSFERENCIA DE EMPRESA DO MESMO GRUPO EMPRESARIAL</option>
                 <option value="Admissão por sucessão, Incorporação, Cisão ou Fusão">3 - ADMISSÃO POR SUCESSÃO, INCORPORAÇÃO, CISÃO OU FUSÃO</option>
@@ -356,6 +364,7 @@
         </select>
         <select name="indica"  class="form-select Retngulo_indica">
             <option name="indica" value="">
+                <option value="{{usu.trabalho.indicativoadmissao}}" selected>{{usu.trabalho.indicativoadmissao}}</option>
                 <option value="Normal">1 - NORMAL</option>
                 <option value="Decorrente de ação fiscal">2 - DECORRENTE DE AÇÃO FISCAL</option>
                 <option value="Decorrente de decisão judicial ">3 -DECORRENTE DE AÇÃO JUDICIAL</option>               
@@ -364,6 +373,7 @@
             
         <select name="rtrab"  class="form-select Retngulo_75">
             <option name="rtrab" value="">
+                <option value="{{usu.trabalho.regimetrabalho}}" selected>{{usu.trabalho.regimetrabalho}}</option>
                 <option value="CLT">1 - CLT</option>
                 <option value="RJU">2 - RJU</option>
                 <option value="RJP">3 - RJP </option>     
@@ -371,6 +381,7 @@
         </select>
         <select name="rprev"  class="form-select Retngulo_76">
             <option name="rprev" value="">
+                <option value="{{usu.trabalho.regimeprevidenciario}}" selected>{{usu.trabalho.regimeprevidenciario}}</option>
                 <option value="RGPS">1 - RGPS</option>
                 <option value="RPPS">2 - RPPS</option>
                 <option value="RPPE">3 - RPPE </option>                    
@@ -378,6 +389,7 @@
         </select>               
         <select name="rjorn"  class="form-select Retngulo_77">
             <option name="rjorn" value="">
+                <option value="{{usu.trabalho.regimejornada}}" selected>{{usu.trabalho.regimejornada}}</option>
                 <option value="SUBMETIDO A HORÁRIOS DE TRABALHO">1 - SUBMETIDO A HORÁRIOS DE TRABALHO</option>
                 <option value="ATIVIDADE EXTERNA ESPECIFICADA">2 - ATIVIDADE EXTERNA ESPECIFICADA</option>
                 <option value="FUNÇÕES ESPECIFICAS">3 - FUNÇÕES ESPECIFICAS </option>
@@ -385,6 +397,7 @@
         </select>    
         <select name="naativ"  class="form-select Retngulo_78">
             <option name="naativ" value="">
+                <option value="{{usu.trabalho.naturezaatividade}}" selected>{{usu.trabalho.naturezaatividade}}</option>
                 <option value="TRABALHO URBANO">1 - TRABALHO URBANO</option>
                 <option value="RURAL">2 -RURAL</option>
             </option>
@@ -392,6 +405,7 @@
        
         <select name="cat"  class="form-select Retngulo_79">
             <option name="cat" value="">
+                <option value="{{usu.trabalho.categoria}}" selected>{{usu.trabalho.categoria}}</option>
                 <option value="EMPREGADO-GERAL">1 - EMPREGADO-GERAL</option>
                 <option value="EMPREGADO-TRABALHADOR RURAL POR PEQUENO PRAZO DA LEI 11.718/2008">2 - EMPREGADO-TRABALHADOR RURAL POR PEQUENO PRAZO DA LEI 11.718/2008</option>
                 <option value="EMPREGADO-APRENDIZ">3 - EMPREGADO-APRENDIZ</option>
@@ -406,10 +420,11 @@
 
 
 
-        <input  class="Retngulo_80 form-control" type="text" name="codf">
-        <input  class="Retngulo_81 form-control" type="text" name="carh">
+        <input  class="Retngulo_80 form-control" value="{{usu.trabalho.codigofuncao}}" type="text" name="codf">
+        <input  class="Retngulo_81 form-control" value="{{usu.trabalho.cargahorariam}}"type="text" name="carh">
         <select name="unisa"  class="form-select Retngulo_82">
             <option name="unisa" value="">
+                <option value="{{usu.trabalho.unidadesalarial}}" selected>{{usu.trabalho.unidadesalarial}}</option>
                 <option value="POR HORA">1 - POR HORA</option>
                 <option value="POR DIA">2 - POR DIA</option>
                 <option value="POR SEMANA">3 - POR SEMANA</option>
@@ -418,7 +433,7 @@
                 <option value="POR TAREFA">6 - POR TAREFA</option>             
             </option>
         </select>    
-        <input  class="Retngulo_83 form-control" type="number"  step=".01" name="salvari">
+        <input  class="Retngulo_83 form-control" type="text" value="{{usu.trabalho.salariovariavel}}"   name="salvari">
 
 
 
@@ -469,14 +484,14 @@
     </div>
   
   
-    <input  class="Retngulo_60 form-control" type="text" name="email1">
-    <input  class="Retngulo_61_ form-control" type="text" name="email2">
-    <input  class="Retngulo_62_ form-control" style="margin-top:-20px" type="text" name="skype">
-    <input  class="Retngulo_63 form-control" type="text" name="cel">
-    <input  class="Retngulo_64 form-control" type="text" name="tel">
-    <input  class="Retngulo_65 form-control" type="text" name="ramal">
-    <input  class="Retngulo_66 form-control" type="text" required name="usuario">
-    <input  class="Retngulo_67 form-control" type="password" required name="senha">
+    <input  class="Retngulo_60 form-control" type="text" value="{{usu.email}}"  name="email1">
+    <input  class="Retngulo_61_ form-control" type="text" value="{{usu.emailCorporativo}}"  name="email2">
+    <input  class="Retngulo_62_ form-control" style="margin-top:-20px"  value="{{usu.skype}}" type="text" name="skype">
+    <input  class="Retngulo_63 form-control" type="text"  value="{{usu.telefone}}" name="cel">
+    <input  class="Retngulo_64 form-control" type="text"  value="{{usu.tel}}"  name="tel">
+    <input  class="Retngulo_65 form-control" type="text"  value="{{usu.ramal}}"name="ramal">
+    <input  class="Retngulo_66 form-control" type="text"  value="{{usu.usuario}}"  name="usuario">
+    <input  class="Retngulo_67 form-control" type="password"  disabled value="{{usu.usuario.senha}}" name="senha">
 
 
 
