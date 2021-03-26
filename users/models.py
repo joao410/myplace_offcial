@@ -115,9 +115,9 @@ class UsuarioTrabalho(Base):
 
 class UsuarioDocumentos(Base):
     codigo = models.ForeignKey(UsuarioPessoal,on_delete=models.CASCADE, null=True, blank=True )
-    documento = models.CharField("Documento",max_length=5,default="")
-    numerodocumento = models.IntegerField("NumeroDocumento",default="")
-    orgao = models.CharField("orgao",max_length=5,default="")
+    documento = models.CharField("Documento",max_length=5,default="..")
+    numerodocumento = models.IntegerField("NumeroDocumento",default="..")
+    orgao = models.CharField("orgao",max_length=5,default="...")
     dataexpedissao = models.DateField(blank=True,null=True)
     validade = models.DateField(blank=True,null=True)
     class Meta:

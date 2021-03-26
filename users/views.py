@@ -15,6 +15,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.forms import modelformset_factory
 from django.http import JsonResponse
+from openpyxl.styles import PatternFill
+from openpyxl.utils.dataframe import dataframe_to_rows
+from openpyxl import load_workbook
+from shutil import copyfile
+import pandas as pd
 
 
 # Create your views here.
@@ -29,7 +34,7 @@ def add_usuarios(request):
     chamados = Chamado.objects.filter(grupo=grupo).order_by("-id")    
     chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("-id")
     grupos= usuarioC.grupo.name
-    codigo = usuarioC.codigo.nome
+    codigo = usuarioC.codigo.nome   
     imageP = ImagePerfil.objects.get(nome=codigo)
     empresa = Empresa.objects.all()
     cargos = Cargo.objects.all()
@@ -378,7 +383,7 @@ def home(request):
    
     filtro = ChamadoFilter()
 
-    if ImagePerfil.objects.get(nome= codigo.nome).exists():
+    if ImagePerfil.objects.filter(nome= codigo.nome).exists():
        imageP = ImagePerfil.objects.get(nome= codigo.nome)
     else:
        imageP = ImagePerfil.objects.get(nome="padrao")   
@@ -467,7 +472,54 @@ def presidente(request):
             'grupo':grupo,
             'filtro': filtro,  
             'imageP':imageP,                   
-                }            
+                }  
+    if 'export' in  request.POST:
+        
+        list_22 = []
+        df_22 = pd.DataFrame()   
+        df_22 = UsuariosCorporativo.objects.all().values_list('codigo.nome','trabalho.cargo','trabalho.departamento','trabalho.dataadmissao','codigo.datanacimento')
+       
+
+
+
+
+        #####################################################################
+
+        template_file = 'C:\\Users\\arena\\projeto_python\\myplace\\TEMPLATE_RH.xlsx'
+        name = 'Relat_Colaboradores__' +  today.strftime("%d_%m_%Y") + '.xlsx' 
+        output_file = 'C:\\Users\\arena\\projeto_python\\myplace\\' + name
+
+
+        copyfile(template_file, output_file)
+        wb = load_workbook(output_file)
+
+
+        #####################################################################
+
+        try:
+            ws = wb['22']
+            ws['D2'] =today.strftime("%d/%m/%Y")
+
+
+
+            col_preco = ['C','D','E','F','G']
+
+
+            for i, r in zip(range(len(df_22)),dataframe_to_rows(df_22, index=False, header=False)):
+                for col, item in zip(col_preco,r):
+                    ws[col+str(i+8)] =item
+
+
+            time.sleep(2)            
+            
+            wb.save(output_file)  
+
+
+            print("Deu Certo Caraiii")
+        except Exception as e:
+            log_error("colaboradores", e, "data pipeline")
+            return False    
+                      
 
 
     return render(request, 'users/presidente.html', context)     
@@ -531,3 +583,6 @@ def problem(request):
             'imageP':imageP,                   
                 }            
     return render(request, 'users/problem.html', context)
+
+
+
