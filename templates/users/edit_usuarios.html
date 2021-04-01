@@ -1,11 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
-
-
-
 {% block content %}
-
 <main role="main"  class="col-md-8 m-sm-auto col-lg-8 col-md-6 "  >
     <div class="container">
         <div id="Atendimento_ba">
@@ -174,7 +169,7 @@
         <input  class="Retngulo_carteira form-control" type="text" value="{{usu.codigo.carteiratrabalho}}" name="carteira">
         <input  class="Retngulo_serie form-control" type="text" value="{{usu.codigo.serie}}"name="serie">
         <input  class="Retngulo_ufc form-control" type="text" value="{{usu.codigo.ufcarteiratrabalho}}" name="ufc">
-        <input  class="Retngulo_emissao form-control" type="date"  value="{{usu.codigo.datacarteiratrabalho}}"  name="emissao" placeholder="{{usu.codigo.datacarteiratrabalho}}">           
+        <input  class="Retngulo_emissao form-control" type="text"  value="{{dtemissao}}"  name="emissao" placeholder="{{dtemissao}}">           
         <select name="cor"  class="form-select Retngulo_cor">
             <option name="cor" value="" >
                 <option value="{{usu.codigo.cor}}" selected> {{usu.codigo.cor}}</option>
@@ -214,7 +209,7 @@
                 <option value="DOUTORADO COMPLETO">11 - DOUTORADO COMPLETO </option>
             </option>
         </select>
-        <input  class="Retngulo_dn form-control" type="date" name="datanasci">
+        <input  class="Retngulo_dn form-control" value="{{dtnaci}}" type="text" name="datanasci">
         <input  class="Retngulo_munasci form-control" type="text"value="{{usu.codigo.municipionacimento}}" name="municipionasc">
         <input  class="Retngulo_ufn form-control" type="text" value="{{usu.codigo.ufnacimento}}" name="ufnasci">                
         <input  class="Retngulo_pais form-control" type="text"  value="{{usu.codigo.paisnacimento}}"name="paisnasci">
@@ -231,7 +226,7 @@
         </select>
         <input  class="Retngulo2_ form-control"  value="{{usu.documento.numerodocumento}}" type="text" name="numero">
         <input  class="Retngulo3_ form-control"  value="{{usu.documento.orgao}}" type="text" name="oe">
-        <input  class="Retngulo4_ form-control"  value="{{usu.documento.dataexpedissao}}"type="date" name="expedicao">
+        <input  class="Retngulo4_ form-control"  value="{{expedissao}}"type="text" name="expedicao">
         <input  class="Retngulo5_ form-control"  value="{{usu.documento.validade}}"type="date" name="validade">                
         <input  class="Retngulo6_ form-control"  value="{{usu.endereco.cep}}" type="text" name="cep">
         <input  class="Retngulo7_ form-control"  value="{{usu.endereco.tipo}}" type="text" name="tipo">

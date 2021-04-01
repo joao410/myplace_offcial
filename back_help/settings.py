@@ -78,19 +78,35 @@ WSGI_APPLICATION = 'back_help.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+#DATABASES = {
+ #   'default': {
+  #      'ENGINE': 'sql_server.pyodbc',
+   #     'NAME': 'SY_RH',
+    #    'USER': 'tigenios',
+     #   'PASSWORD': '0567senh@',
+      #  'HOST': 'tigenios',
+       # 'PORT': '1433',
+
+#        'OPTIONS': {
+ #           'driver': 'ODBC Driver 17 for SQL Server',
+  #      },
+  #  },
+#}
+#DATABASES = {
+   # 'default': {
+   #     'ENGINE': 'django.db.backends.sqlite3',
+  #      'NAME': BASE_DIR / 'db.sqlite3',
+ #   }
+#}
 DATABASES = {
     'default': {
-        'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'SY_RH',
-        'USER': 'tigenios',
-        'PASSWORD': '0567senh@',
-        'HOST': 'tigenios',
-        'PORT': '1433',
-
-        'OPTIONS': {
-            'driver': 'ODBC Driver 17 for SQL Server',
-        },
-    },
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'HELPDESK',
+        'USER': 'arena',
+        'PASSWORD': 'arena127',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
 }
 
 

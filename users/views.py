@@ -234,7 +234,7 @@ def edit_usuarios(request,id):
     usue = UsuarioEndereco.objects.get(codigo=usu.codigo)
     dtemissao = usup.datacarteiratrabalho.strftime("%d/%m/%Y")
     dtnaci = usup.datanacimento.strftime("%d/%m/%Y")
-    expedicao = usud.dataexpedissao.strftime("%d/%m/%Y")
+    expedissao = usud.dataexpedissao.strftime("%d/%m/%Y")
    
  
     
@@ -257,7 +257,7 @@ def edit_usuarios(request,id):
     'image':image,
     'dtemissao':dtemissao,
     'dtnaci':dtnaci,
-    'expedicao':expedicao,
+    'expedissao':expedissao,
     
             }  
     if request.method == 'POST' and 'edit_usu' in request.POST:  

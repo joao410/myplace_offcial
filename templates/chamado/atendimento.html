@@ -86,9 +86,9 @@
   </div> 
   <textarea class=" form-control " id="Retngulo_19"  name="obs" rows="4" disabled>	{{values.des_problem}}</textarea>
   
-  <img id="add-button_" class="" src="{{image.image.url}}" srcset="{{image.image.url}} 1x,{{image.image.url}} 2x">
+  <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal"><img id="add-button_" class="" src="{{image.image.url}}" srcset="{{image.image.url}} 1x,{{image.image.url}} 2x"></a>
 				
-    <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal"><img id="add-button_cc" src="{% static 'img/add-button.png' %}" srcset="{% static 'img/add-button.png' %} 1x, {% static 'img/add-button@2x.png' %} 2x"></a>
+  <!--<img id="add-button_cc" src="{% static 'img/add-button.png' %}" srcset="{% static 'img/add-button.png' %} 1x, {% static 'img/add-button@2x.png' %} 2x">-->
     
    
 	<div id="Ate">
@@ -141,7 +141,7 @@
      {% endfor %}
   </div>
 </div>
- {% if values.name.nome == usuarioC.codigo.nome %} 
+ {% if values.name.nome == usuarioC.codigo.nome and values.status == "atendendo" %} 
   <div class="chat">
     <form method="POST" action="{% url 'atendimento' values.id %}">
       {% csrf_token %}
