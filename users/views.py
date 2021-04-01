@@ -138,6 +138,10 @@ def add_usuarios(request):
             demissao = None 
         if not codf:
             codf = 00
+        if not carh:
+            carh= 1    
+        if not validade:
+            validade =  None
         if vtrans == "SIM":
            vtrans =  "VALE TRANSPORTE"
         if vtrans == "NÃo":
@@ -224,6 +228,17 @@ def edit_usuarios(request,id):
     
     filtro = ChamadoFilter()
     usu = UsuarioCorporativo.objects.get(pk=id)
+    usup = UsuarioPessoal.objects.get(codigo= usu.codigo.codigo)
+    usut = UsuarioTrabalho.objects.get(codigo=usu.codigo)
+    usud = UsuarioDocumentos.objects.get(codigo=usu.codigo)
+    usue = UsuarioEndereco.objects.get(codigo=usu.codigo)
+    dtemissao = usup.datacarteiratrabalho.strftime("%d/%m/%Y")
+    dtnaci = usup.datanacimento.strftime("%d/%m/%Y")
+    expedicao = usud.dataexpedissao.strftime("%d/%m/%Y")
+   
+ 
+    
+
     cod =usu.codigo.nome
     image = ImagePerfil.objects.get(nome=cod)
     context = {
@@ -240,13 +255,70 @@ def edit_usuarios(request,id):
     'form':ImageForm,
     'usu': usu,
     'image':image,
+    'dtemissao':dtemissao,
+    'dtnaci':dtnaci,
+    'expedicao':expedicao,
     
             }  
     if request.method == 'POST' and 'edit_usu' in request.POST:  
         nome = request.POST["nome"]
+        apelido = request.POST["apelido"]
+        cpf = request.POST["cpf"]
+        genero = request.POST["genero"]
+        cor = request.POST["cor"]
+        ecivil = request.POST["ecivil"]
+        escolaridade = request.POST["escolaridade"]
+        datanasci = request.POST["datanasci"]
+        municipionasc = request.POST["municipionasc"]
+        ufnasci = request.POST["ufnasci"]
+        paisnasci = request.POST["paisnasci"]
+        nasciona = request.POST["nasciona"]
+        mae = request.POST["mae"]
+        pai = request.POST["pai"]
+        pis = request.POST["pis"]
+        teleitor =  request.POST["titulo"]
+        ctrabalho = request.POST["carteira"]       
+        serie = request.POST["serie"]
+        uf = request.POST["ufc"]
+        emissao = request.POST["emissao"]
+        celp = request.POST["celp"]
+        #trabalho# 
+        
         emp = request.POST["empresa"]
         dep = request.POST["departamento"]       
-        cargo = request.POST["cargo"]       
+        cargo = request.POST["cargo"]
+        vtrans = request.POST["vtrans"]
+        admissao = request.POST["admissao"]
+        demissao = None
+        tipo = request.POST["tipoadmissao"]
+        indica =  request.POST["indica"]
+        priempr = request.POST["priempr"]
+        rtrab = request.POST["rtrab"]
+        rprev = request.POST["rprev"]
+        rjorn = request.POST["rjorn"]
+        naativ = request.POST["naativ"]
+        cat = request.POST["cat"]
+        codf = request.POST["codf"]
+        carh = request.POST["carh"]
+        unisa = request.POST["unisa"]
+        salvari = request.POST["salvari"]
+        #documento#
+        documento = request.POST["documento"]
+        ndocumento = request.POST["numero"]
+        oe = request.POST["oe"]
+        de = request.POST["expedicao"]
+        validade = request.POST["validade"]
+        #endereço#
+        cep = request.POST["cep"]
+        tipoe = request.POST["tipo"]
+        num = request.POST["num"]
+        ufatual = request.POST["ufatual"]
+        muniatual = request.POST["muniatual"]
+        bairro = request.POST["bairro"]
+        logradouro = request.POST["logradouro"]
+        complemento = request.POST["complemeno"]
+        pais = request.POST["pais"]
+        #corporativo#
         email1 = request.POST["email1"]       
         email2 = request.POST["email2"]       
         skype = request.POST["skype"]       
@@ -254,25 +326,77 @@ def edit_usuarios(request,id):
         tel = request.POST["tel"]       
         ramal = request.POST["ramal"]       
         usuario = request.POST["usuario"]       
-        senha = request.POST["senha"]   
-        repassword = request.POST["senha"]    
+        
         grupo = request.POST["grupo"] 
+
         gs = Group.objects.get(name=grupo)  
   
         if  User.objects.filter(username=usuario).exists():  
             if  User.objects.filter(email=email1).exists():                
                 
                 user = User.objects.get(username=usuario)
-                user.set_password(senha)
                 user.is_active = True
                 user.save()
                 users = User.objects.get(username=usuario)
-                usu.name = nome
-                usu.empresa = emp
-                usu.departamento = dep
-                usu.cargo = cargo
+                usup.nome = nome
+                usup.apelido= apelido
+                usup.cpf = cpf
+                usup.pis = pis
+                usup.tituloeleitor = teleitor
+                usup.carteiratrabalho = ctrabalho
+                usup.serie = serie
+                usup.ufcarteiratrabalho = uf
+                usup.datacarteiratrabalho = emissao
+                usup.genero = genero
+                usup.cor = cor
+                usup.ecivil= ecivil
+                usup.celpessoal= celp
+                usup.escolaridade  = escolaridade
+                usup.datanacimento = datanasci
+                usup.ufnacimento = ufnasci
+                usup.municipionacimento = municipionasc
+                usup.paisnacimento = paisnasci
+                usup.paisnacionalidade = nasciona
+                usup.nomemae = mae
+                usup.nomepai = pai
+                usup.save()
+                usut.empresa = emp
+                usut.departamento = dep
+                usut.cargo = cargo
+                usut.valetransporte = vtrans
+                usut.dataadmissao =admissao
+                usut.datademissao = demissao
+                usut.tipoAdmissao = tipo
+                usut.indicativoadmissao= indica
+                usut.primeiroemprego = priempr
+                usut.regimetrabalho = rtrab
+                usut.regimeprevidenciario = rprev
+                usut.regimejornada = rjorn
+                usut.naturezaatividade = naativ
+                usut.categoria = cat
+                usut.codigofuncao = codf
+                usut.cargahorariam = carh
+                usut.unidadesalarial = unisa
+                usut.salariovariavel = salvari
+                usut.save()
+                usud.documento= documento
+                usud.numerodocumento = ndocumento
+                usud.orgao = oe
+                usud.dataexpedissao = de
+                usud.validade = validade
+                usud.save()
+                usue.cep = cep
+                usue.tipo = tipoe
+                usue.logradouro = logradouro
+                usue.numero = num
+                usue.ufatual = ufatual
+                usue.MunicipioAtul = muniatual
+                usue.bairroatual = bairro
+                usue.complemento = complemento
+                usue.pais = pais
+                usue.save()
                 usu.email = email1
-                usu.email_corporativo = email2
+                usu.emailCorporativo = email2
                 usu.skype = skype
                 usu.telefone = cel
                 usu.tel = tel
