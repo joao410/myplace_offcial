@@ -28,10 +28,14 @@ def chat(request, id):
         u = chamado.username
         user = User.objects.get(username=u)
         n = UsuarioCorporativo.objects.get(usuario=user)
-        img = ImagePerfil.objects.get(nome=n.codigo.nome)  
+        img = ImagePerfil.objects.get(nome=n.codigo.nome) 
+        if not img.image:
+            img = ImagePerfil.objects.get(nome= "padrao")   
         z = chamado.name.nome
      
         images  = ImagePerfil.objects.get(nome = z)
+        if not images.image:
+            images = ImagePerfil.objects.get(nome= "padrao")  
         context = {
 
         'values': chamado,
@@ -54,6 +58,8 @@ def atendimento(request, id):
     image = Image.objects.get(ticket=ticket)
     codigo = usuarioC.codigo.nome
     imageP = ImagePerfil.objects.get(nome=codigo)
+    if not imageP.image:
+      imageP = ImagePerfil.objects.get(nome= "padrao")   
     chat= Chat.objects.filter(idChat= id).order_by("id")
     u = chamado
     e = usuarioC.codigo.nome
@@ -72,7 +78,9 @@ def atendimento(request, id):
         u = chamado.username
         user = User.objects.get(username=u)
         n = UsuarioCorporativo.objects.get(usuario=user)
-        img = ImagePerfil.objects.get(nome=n.codigo.nome)  
+        img = ImagePerfil.objects.get(nome=n.codigo.nome)
+        if not img.image:
+            img = ImagePerfil.objects.get(nome= "padrao")     
         z = chamado.name.nome
         
       
@@ -166,6 +174,8 @@ def linksup(request):
     grupos= usuarioC.grupo.name
     codigo = usuarioC.codigo.nome
     imageP = ImagePerfil.objects.get(nome=codigo)
+    if not imageP.image:
+      imageP = ImagePerfil.objects.get(nome= "padrao")   
     
     
     filtro = ChamadoFilter()
@@ -218,7 +228,9 @@ def dash_index(request):
             codigo = usuarioC.codigo
             chamados = Chamado.objects.all()    
             grupos= usuarioC.grupo.name
-            imageP = ImagePerfil.objects.get(nome=codigo.nome)
+            imageP = ImagePerfil.objects.get(nome= codigo.nome)
+            if not imageP.image:
+                imageP = ImagePerfil.objects.get(nome= "padrao")        
             filtro = ChamadoFilter()
             context = {
             'chamados': chamados,
@@ -280,7 +292,10 @@ def dash_index(request):
         chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("-id")
         grupos= usuarioC.grupo.name
         codigo = usuarioC.codigo.nome
-        imageP = ImagePerfil.objects.get(nome=codigo)
+        imageP = ImagePerfil.objects.get(nome= codigo.nome)
+        if not imageP.image:
+            imageP = ImagePerfil.objects.get(nome= "padrao")  
+    
 
         filtro = ChamadoFilter()
         context = {
@@ -358,6 +373,9 @@ def tecnico(request):
     grupos= usuarioC.grupo.name
     codigo = usuarioC.codigo.nome
     imageP = ImagePerfil.objects.get(nome=codigo)
+    if not imageP.image:
+        imageP = ImagePerfil.objects.get(nome= "padrao")  
+
     images = ImageLink.objects.filter(active=True)
 
     filtro = ChamadoFilter()
@@ -394,6 +412,8 @@ def id_chamado(request, id):
     image = Image.objects.get(ticket=ticket)
     codigo = usuarioC.codigo.nome
     imageP = ImagePerfil.objects.get(nome=codigo)
+    if not imageP.image:
+      imageP = ImagePerfil.objects.get(nome= "padrao")  
     chat= Chat.objects.filter(idChat= id).order_by('id')
     u = chamado
     e = usuarioC.codigo.nome
@@ -412,6 +432,8 @@ def id_chamado(request, id):
         user = User.objects.get(username=u)
         n = UsuarioCorporativo.objects.get(usuario=user)
         img = ImagePerfil.objects.get(nome=n.codigo.nome)  
+        if not img.image:
+            img = ImagePerfil.objects.get(nome= "padrao")  
         context = {
 
         'values': chamado,
@@ -470,6 +492,8 @@ def add_chamado(request):
     grupos= usuarioC.grupo.name
     codigo = usuarioC.codigo
     imageP = ImagePerfil.objects.get(nome=codigo.nome)
+    if not imageP.image:
+        imageP = ImagePerfil.objects.get(nome= "padrao")  
     filtro = ChamadoFilter()
     context = {
     'chamados': chamados,
@@ -587,6 +611,8 @@ def rh_chamado(request):
     chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("-id")
     grupos= usuarioC.grupo.name
     imageP = ImagePerfil.objects.get(nome= codigo.nome)
+    if not imageP.image:
+      imageP = ImagePerfil.objects.get(nome= "padrao")   
 
     filtro = ChamadoFilter()
     context = {

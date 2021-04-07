@@ -45,15 +45,15 @@ class Cargo(Base):
 
 
 class UsuarioPessoal(Base):
-    codigo = models.IntegerField("Codigo",default="0")
+    codigo = models.IntegerField("Codigo",null=True, default="0")
     nome = models.CharField("Name", max_length=250, default="#")
     apelido = models.CharField("Apelido", max_length=100, default="#")
     cpf = models.CharField("Cpf", max_length=20, default="0")
-    pis = models.IntegerField("Pis",default="0")
+    pis = models.IntegerField("Pis",default="1")
     tituloeleitor = models.IntegerField("TituloEleitor",default=".0")
     carteiratrabalho = models.IntegerField("CarteiraTrabalho",default="0")
     serie = models.IntegerField("Serie",default="0")
-    ufcarteiratrabalho = models.CharField("UfCarteiraTrabalho",max_length=2,default="..")
+    ufcarteiratrabalho = models.CharField("UfCarteiraTrabalho",max_length=2,default="#")
     datacarteiratrabalho = models.DateField(blank=True,null=True)
     GENERO_CHOICES = {
         ('Masculino', 'Masculino'),

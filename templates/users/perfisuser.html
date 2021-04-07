@@ -98,12 +98,13 @@
 
 
 
-
+    {% if grupos == "recursos humanos"%}
     <a href="{% url 'edit_usuarios' usuario.id %}">
     <button class="Retngulo_582 text-white fw-bold  " >
       Editar Usuário
     </button>
   </a>
+   {% endif %}
  
    
 

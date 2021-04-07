@@ -15,12 +15,13 @@
     <div style="top: -170px;" id="Atendimento_ba_ " >
       <span>Usuários</span>
     </div>
-
+    {% if grupos == "recursos humanos"%}
   <a href="{% url 'add_usuarios' %}">
   <div class="Retngulo_58_ text-white fs-5 fw-bold d-flex justify-content-center pt-2">
 		<span>Cadastrar Usuário</span>
   </div>
   </a>
+  {% endif %}
  
 		
 
@@ -58,8 +59,8 @@
       {{filtro.form.departamento}}
     </div>
 
-    <div style="left: 100%;" class="col-2 " >
-      <span><button class="btn btn-primary" type="submit" style="border-radius: 20px; box-shadow:0 8px 6px -6px rgb(161, 161, 161); margin-right:300px" >Filtrar</button></span>
+    <div style="left: 30%;" class="col-2 " >
+      <span><button class="btn btn-primary" type="submit" style="border-radius: 20px; box-shadow:0 8px 6px -6px rgb(161, 161, 161); " >Filtrar</button></span>
     </div>  
       </div>  
   </form> 

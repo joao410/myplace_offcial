@@ -227,7 +227,7 @@
         <input  class="Retngulo2_ form-control"  value="{{usu.documento.numerodocumento}}" type="text" name="numero">
         <input  class="Retngulo3_ form-control"  value="{{usu.documento.orgao}}" type="text" name="oe">
         <input  class="Retngulo4_ form-control"  value="{{expedissao}}"type="text" name="expedicao">
-        <input  class="Retngulo5_ form-control"  value="{{usu.documento.validade}}"type="date" name="validade">                
+        <input  class="Retngulo5_ form-control"  value="{{validade}}"type="text" name="validade">                
         <input  class="Retngulo6_ form-control"  value="{{usu.endereco.cep}}" type="text" name="cep">
         <input  class="Retngulo7_ form-control"  value="{{usu.endereco.tipo}}" type="text" name="tipo">
         <input  class="Retngulo8_ form-control"  value="{{usu.endereco.logradouro}}" type="text" name="logradouro">
@@ -326,7 +326,7 @@
         </select>
         <select name="cargo"  class="form-select Retngulo_cargo">
             <option name="cargo" value="">
-                <option value="{{usu.trabalho.cargo}}" selected>{{usu.trabalho.cargo}}</option>
+                <option value="{{usu.trabalho.cargo.cargo}}" selected>{{usu.trabalho.cargo.cargo}}</option>
                 {% for cargos in cargos %}
                 <option value="{{cargos.cargo}}">{{cargos.cargo}}</option>
                 {% endfor %}                       
@@ -346,8 +346,8 @@
                 <option value="nao">2-NÃO </option>                        
             </option>
         </select>     
-        <input  class="Retngulo_admissao form-control" type="date" name="admissao">
-        <input  class="Retngulo_demissao form-control" type="date" name="demissão">
+        <input  class="Retngulo_admissao form-control" value="{{admissao}}" type="text" name="admissao">
+        <input  class="Retngulo_demissao form-control" type="text" value="{{demissao}}" name="demicao">
         <select name="tipoadmissao"  class="form-select Retngulo_tipoadmissao">
             <option name="tipoadmissao" value="">^
                 <option value="{{usu.trabalho.tipoAdmissao}}" selected>{{usu.trabalho.tipoAdmissao}}</option>
@@ -523,7 +523,7 @@
        
     
         <div id="add-button4">
-            {{form.imagem}}
+            {{form.images}}
         </div>   
         <img class="add-button3" id="output" src="{{image.image.url}}" >
     

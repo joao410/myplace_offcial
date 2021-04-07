@@ -20,6 +20,7 @@ from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl import load_workbook
 from shutil import copyfile
 import pandas as pd
+from decimal import Decimal
 
 
 # Create your views here.
@@ -35,7 +36,9 @@ def add_usuarios(request):
     chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("-id")
     grupos= usuarioC.grupo.name
     codigo = usuarioC.codigo.nome   
-    imageP = ImagePerfil.objects.get(nome=codigo)
+    imageP = ImagePerfil.objects.get(nome= codigo)
+    if not imageP.image:
+      imageP = ImagePerfil.objects.get(nome= "padrao")
     empresa = Empresa.objects.all()
     cargos = Cargo.objects.all()
     filtro = ChamadoFilter()
@@ -92,7 +95,7 @@ def add_usuarios(request):
         cargo = request.POST["cargo"]
         vtrans = request.POST["vtrans"]
         admissao = request.POST["admissao"]
-        demissao = None
+        demissao = request.POST["demissao"]
         tipo = request.POST["tipoadmissao"]
         indica =  request.POST["indica"]
         priempr = request.POST["priempr"]
@@ -136,12 +139,114 @@ def add_usuarios(request):
         gs = Group.objects.get(name=grupo)   
         if not demissao:
             demissao = None 
+        if not admissao:
+            admissao = None 
+        if not apelido:
+            apelido = usuario
+        if not bairro:
+            bairro = None 
+        if not cargo:
+            cargo = None 
+        if not cat:
+            cat = None 
+        if not cel:
+            cel = None 
+        if not celp:
+            celp = None 
+        if not cep:
+            cep = None 
+        if not de:
+            de = None 
+        if not dep:
+            dep = None 
+        if not documento:
+            documento = None 
+        if not emissao:
+            emissao = None 
+        if not emp:
+            emp = None 
+        if not escolaridade:
+            escolaridade = None 
+        if not ecivil:
+            ecivil = None 
+        if not cor:
+            cor = None 
+        if not ctrabalho:
+            ctrabalho = 0 
+        if not complemento:
+            complemento = None 
+        if not indica:
+            indica = None 
+        if not logradouro:
+            logradouro = None 
+        if not mae:
+            mae = None 
+        if not muniatual:
+            muniatual = None 
+        if not serie:
+            serie = 0
+        if not pis:
+            pis = 0
+        if not naativ:
+            naativ = None 
+        if not nasciona:
+            nasciona = None 
+        if not ndocumento:
+            ndocumento = None 
+        if not teleitor:
+            teleitor = 0 
+        if not tel:
+            tel = None 
+        if not email1:
+            email1 = usuario + "@gmail.com"
+        if not email2:
+            email2 = None 
+        if not num:
+            num = None 
+        if not oe:
+            oe = None 
+        if not ufnasci:
+            ufnasci = None 
+        if not ufatual:
+            ufatual = None 
+        if not uf:
+            uf = None 
+        if not unisa:
+            unisa = None 
+        if not vtrans:
+            vtrans = None 
+        if not pai:
+            pai = None 
+        if not tipo:
+            tipo = None 
+        if not pais:
+            pais = None 
+        if not paisnasci:
+            paisnasci = None 
+        if not priempr:
+            priempr = None 
+        if not ramal:
+            ramal = None 
+        if not rjorn:
+            rjorn = None 
+        if not rprev:
+            rprev = None 
+        if not rtrab:
+            rtrab = None 
+        if not salvari:
+            salvari = None 
+        if not skype:
+            skype = None    
+        if not municipionasc:
+            municipionasc = None 
         if not codf:
             codf = 00
         if not carh:
             carh= 1    
         if not validade:
             validade =  None
+        if not demissao:
+            demissao =  None    
         if vtrans == "SIM":
            vtrans =  "VALE TRANSPORTE"
         if vtrans == "NÃo":
@@ -158,16 +263,16 @@ def add_usuarios(request):
                 user = User.objects.create(username=usuario,email=email1)
                 user.set_password(senha)
                 user.is_active = True
+                 
                 user.save()
                 users = User.objects.get(username=usuario)
                 usu = UsuarioPessoal.objects.create(codigo=codigo,nome=nome,genero=genero, apelido=apelido,cpf=cpf,cor=cor,ecivil=ecivil,escolaridade=escolaridade,pis=pis,tituloeleitor=teleitor,carteiratrabalho=ctrabalho,serie=serie,ufcarteiratrabalho=uf,datacarteiratrabalho=emissao,datanacimento=datanasci,ufnacimento=ufnasci,municipionacimento=municipionasc,paisnacimento=paisnasci,paisnacionalidade=nasciona,nomemae=mae,nomepai=pai)
-             
                 u = UsuarioPessoal.objects.get(nome=nome)
                 c= Cargo.objects.get(cargo=cargo)
                 usua = UsuarioTrabalho.objects.create(codigo=u,departamento=dep,empresa=emp,cargo=c,valetransporte=vtrans,dataadmissao=admissao,datademissao=demissao,indicativoadmissao=indica,primeiroemprego=priempr,regimetrabalho=rtrab,regimeprevidenciario=rprev,regimejornada=rjorn,naturezaatividade=naativ,categoria=cat,codigofuncao=codf,cargahorariam=carh,unidadesalarial=unisa,salariovariavel=salvari)
                 usua.save()
-                
                 t = UsuarioTrabalho.objects.get(codigo=u)
+             
                 do = UsuarioDocumentos.objects.create(codigo=u,documento=documento,numerodocumento=ndocumento,orgao=oe,dataexpedissao=de,validade=validade)
                 do.save()
                 d =  UsuarioDocumentos.objects.get(codigo=u)
@@ -184,6 +289,8 @@ def add_usuarios(request):
                     users = User.objects.get(username=usuario)
                     usuari = UsuarioCorporativo.objects.get(usuario=users)
                     us = usuari.codigo.nome
+
+                         
                     obj =ImagePerfil.objects.create(image=img,obs=obs,nome=us)
                     obj.save()
                     messages.success(request, 'Imagem adicionada')
@@ -224,7 +331,6 @@ def edit_usuarios(request,id):
     chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("-id")
     grupos= usuarioC.grupo.name
     codigo = usuarioC.codigo.nome
-    imageP = ImagePerfil.objects.get(nome=codigo)
     
     filtro = ChamadoFilter()
     usu = UsuarioCorporativo.objects.get(pk=id)
@@ -232,33 +338,176 @@ def edit_usuarios(request,id):
     usut = UsuarioTrabalho.objects.get(codigo=usu.codigo)
     usud = UsuarioDocumentos.objects.get(codigo=usu.codigo)
     usue = UsuarioEndereco.objects.get(codigo=usu.codigo)
-    dtemissao = usup.datacarteiratrabalho.strftime("%d/%m/%Y")
-    dtnaci = usup.datanacimento.strftime("%d/%m/%Y")
-    expedissao = usud.dataexpedissao.strftime("%d/%m/%Y")
-   
- 
-    
-
     cod =usu.codigo.nome
+    imageP = ImagePerfil.objects.get(nome= codigo)
+    if not imageP.image:
+      imageP = ImagePerfil.objects.get(nome= "padrao")
     image = ImagePerfil.objects.get(nome=cod)
-    context = {
-    'chamados': chamados,
-    'chamados_abertos': chamados_abertos,
-    'grupos': grupos,
-    'usuarioC':usuarioC,
-    'user' : user,
-    'g':g,  
-    'grupo':grupo,
-    'admin':admin, 
-    'filtro': filtro,
-    'imageP':imageP,   
-    'form':ImageForm,
-    'usu': usu,
-    'image':image,
-    'dtemissao':dtemissao,
-    'dtnaci':dtnaci,
-    'expedissao':expedissao,
+    if not image.image:
+      image = ImagePerfil.objects.get(nome= "padrao")
+    if usup.datacarteiratrabalho:
+        dtemissao = usup.datacarteiratrabalho.strftime("%d/%m/%Y")
+        context = {
+            'chamados': chamados,
+            'chamados_abertos': chamados_abertos,
+            'grupos': grupos,
+            'usuarioC':usuarioC,
+            'user' : user,
+            'g':g,  
+            'grupo':grupo,
+            'admin':admin, 
+            'filtro': filtro,
+            'imageP':imageP,   
+            'form':ImageForm,
+            'usu': usu,
+            'image':image,
+            'dtemissao':dtemissao,
+            'dtnaci':dtnaci,
+            'expedissao':expedissao,
+            'admissao':admissao, 
+   }  
+    if usup.datanacimento:
+        dtnaci = usup.datanacimento.strftime("%d/%m/%Y")
+        context = {
+            'chamados': chamados,
+            'chamados_abertos': chamados_abertos,
+            'grupos': grupos,
+            'usuarioC':usuarioC,
+            'user' : user,
+            'g':g,  
+            'grupo':grupo,
+            'admin':admin, 
+            'filtro': filtro,
+            'imageP':imageP,   
+            'form':ImageForm,
+            'usu': usu,
+            'image':image,
+            'dtnaci':dtnaci 
+            }  
+    if usud.dataexpedissao:
+        expedissao = usud.dataexpedissao.strftime("%d/%m/%Y")
+        context = {
+            'chamados': chamados,
+            'chamados_abertos': chamados_abertos,
+            'grupos': grupos,
+            'usuarioC':usuarioC,
+            'user' : user,
+            'g':g,  
+            'grupo':grupo,
+            'admin':admin, 
+            'filtro': filtro,
+            'imageP':imageP,   
+            'form':ImageForm,
+            'usu': usu,
+            'image':image,
+            'dtemissao':dtemissao,
+            'dtnaci':dtnaci,
+            'expedissao':expedissao,
+            'admissao':admissao, 
+            }  
     
+    if usut.dataadmissao:
+        admissao = usut.dataadmissao.strftime("%d/%m/%Y")
+        context = {
+            'chamados': chamados,
+            'chamados_abertos': chamados_abertos,
+            'grupos': grupos,
+            'usuarioC':usuarioC,
+            'user' : user,
+            'g':g,  
+            'grupo':grupo,
+            'admin':admin, 
+            'filtro': filtro,
+            'imageP':imageP,   
+            'form':ImageForm,
+            'usu': usu,
+            'image':image,
+            'admissao':admissao, 
+            }   
+    
+    if usud.validade:
+        validade = usud.validade.strftime("%d/%m/%Y")
+        context = {
+            'chamados': chamados,
+            'chamados_abertos': chamados_abertos,
+            'grupos': grupos,
+            'usuarioC':usuarioC,
+            'user' : user,
+            'g':g,  
+            'grupo':grupo,
+            'admin':admin, 
+            'filtro': filtro,
+            'imageP':imageP,   
+            'form':ImageForm,
+            'usu': usu,
+            'image':image,
+            'dtemissao':dtemissao,
+            'dtnaci':dtnaci,
+            'expedissao':expedissao,
+            'validade':validade
+    
+            }  
+    
+    if usut.datademissao:
+        demissao = usut.datademissao.strftime("%d/%m/%Y")
+        context = {
+            'chamados': chamados,
+            'chamados_abertos': chamados_abertos,
+            'grupos': grupos,
+            'usuarioC':usuarioC,
+            'user' : user,
+            'g':g,  
+            'grupo':grupo,
+            'admin':admin, 
+            'filtro': filtro,
+            'imageP':imageP,   
+            'form':ImageForm,
+            'usu': usu,
+            'image':image,
+            'dtemissao':dtemissao,
+            'dtnaci':dtnaci,
+            'expedissao':expedissao,
+            'admissao':admissao, 
+            'demissao':demissao, 
+    
+            } 
+    else:
+        demissao = None
+        context = {
+            'chamados': chamados,
+            'chamados_abertos': chamados_abertos,
+            'grupos': grupos,
+            'usuarioC':usuarioC,
+            'user' : user,
+            'g':g,  
+            'grupo':grupo,
+            'admin':admin, 
+            'filtro': filtro,
+            'imageP':imageP,   
+            'form':ImageForm,
+            'usu': usu,
+            'image':image,
+            
+            'dtnaci':dtnaci,
+            
+            'admissao':admissao, 
+            'demissao':demissao, 
+    
+            } 
+    context = {
+        'chamados': chamados,
+        'chamados_abertos': chamados_abertos,
+        'grupos': grupos,
+        'usuarioC':usuarioC,
+        'user' : user,
+        'g':g,  
+        'grupo':grupo,
+        'admin':admin, 
+        'filtro': filtro,
+        'imageP':imageP,   
+        'form':ImageForm,
+        'usu': usu,
+        'image':image,
             }  
     if request.method == 'POST' and 'edit_usu' in request.POST:  
         nome = request.POST["nome"]
@@ -289,7 +538,7 @@ def edit_usuarios(request,id):
         cargo = request.POST["cargo"]
         vtrans = request.POST["vtrans"]
         admissao = request.POST["admissao"]
-        demissao = None
+        demissao = request.POST["demicao"]
         tipo = request.POST["tipoadmissao"]
         indica =  request.POST["indica"]
         priempr = request.POST["priempr"]
@@ -330,7 +579,11 @@ def edit_usuarios(request,id):
         grupo = request.POST["grupo"] 
 
         gs = Group.objects.get(name=grupo)  
-  
+        if not demissao:
+            demissao = None
+        if not validade:
+            validade = None    
+
         if  User.objects.filter(username=usuario).exists():  
             if  User.objects.filter(email=email1).exists():                
                 
@@ -346,13 +599,13 @@ def edit_usuarios(request,id):
                 usup.carteiratrabalho = ctrabalho
                 usup.serie = serie
                 usup.ufcarteiratrabalho = uf
-                usup.datacarteiratrabalho = emissao
+                usup.datacarteiratrabalho = datetime.strptime(emissao, '%d/%m/%Y').date() 
                 usup.genero = genero
                 usup.cor = cor
                 usup.ecivil= ecivil
                 usup.celpessoal= celp
                 usup.escolaridade  = escolaridade
-                usup.datanacimento = datanasci
+                usup.datanacimento = datetime.strptime(datanasci, '%d/%m/%Y').date() 
                 usup.ufnacimento = ufnasci
                 usup.municipionacimento = municipionasc
                 usup.paisnacimento = paisnasci
@@ -362,9 +615,9 @@ def edit_usuarios(request,id):
                 usup.save()
                 usut.empresa = emp
                 usut.departamento = dep
-                usut.cargo = cargo
+                usut.cargo = Cargo.objects.get(cargo=cargo)
                 usut.valetransporte = vtrans
-                usut.dataadmissao =admissao
+                usut.dataadmissao = datetime.strptime(admissao, '%d/%m/%Y').date() 
                 usut.datademissao = demissao
                 usut.tipoAdmissao = tipo
                 usut.indicativoadmissao= indica
@@ -377,12 +630,12 @@ def edit_usuarios(request,id):
                 usut.codigofuncao = codf
                 usut.cargahorariam = carh
                 usut.unidadesalarial = unisa
-                usut.salariovariavel = salvari
+                usut.salariovariavel = Decimal(salvari.replace(',','.'))
                 usut.save()
                 usud.documento= documento
                 usud.numerodocumento = ndocumento
                 usud.orgao = oe
-                usud.dataexpedissao = de
+                usud.dataexpedissao =  datetime.strptime(de, '%d/%m/%Y').date()
                 usud.validade = validade
                 usud.save()
                 usue.cep = cep
@@ -404,19 +657,21 @@ def edit_usuarios(request,id):
                 usu.usuario = users
                 usu.grupo= gs
                 usu.save()
-                form = ImageForm(request.POST, request.FILES)
-                if form.is_valid():
-                    nome = request.POST['usuario']
-                    img = form.cleaned_data.get("imagem") 
-                    obs=''
-                    users = User.objects.get(username=usuario)
-                    usuari = Usuarios.objects.get(usuario=users)
-                    obj =ImagePerfil.objects.get(usuario=usuari)
-                    obj.image = img
-                    obj.save()
-                    messages.success(request, 'Imagem salva')
-                else:
-                    messages.error(request, 'Imagem não adicionada')
+                
+                #form = ImageForm(request.POST, request.FILES)
+                #if form.is_valid():
+                   # nome = request.POST['usuario']
+                    #img = form.cleaned_data.get("imagem") 
+                    #obs=''
+                   # users = User.objects.get(username=usuario)
+                   # usuari = UsuarioCorporativo.objects.get(usuario=users)
+                   # codigo = usuari.codigo.nome
+                   # obj =ImagePerfil.objects.get(nome=codigo)
+                   # obj.image = img
+                   # obj.save()
+                   # messages.success(request, 'Imagem salva')
+                #else:
+                 #   messages.error(request, 'Imagem não adicionada')
                 messages.success(request, "Usuario editado  com sucesso")
                 
 
@@ -439,8 +694,12 @@ def perfis(request):
     chamados = Chamado.objects.filter(grupo=grupo).order_by("-id")    
     chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("-id")
     grupos= usuarioC.grupo.name
-    imageP = ImagePerfil.objects.get(nome=codigo.nome)
+    imageP = ImagePerfil.objects.get(nome= codigo.nome)
+    if not imageP.image:
+      imageP = ImagePerfil.objects.get(nome= "padrao")
     img = ImagePerfil.objects.get(nome=usuario.codigo.nome)
+    if not img.image:
+      img = ImagePerfil.objects.get(nome= "padrao")
     filtro = ChamadoFilter()
     context = {
     'chamados': chamados,
@@ -471,7 +730,11 @@ def perfisuser(request):
     codigo = usuarioC.codigo.nome
     cod =usuario.codigo.nome
     image = ImagePerfil.objects.get(nome=cod)
+    if not image.image:
+      image = ImagePerfil.objects.get(nome= "padrao")  
     imageP = ImagePerfil.objects.get(nome=codigo) 
+    if not imageP.image:
+      imageP = ImagePerfil.objects.get(nome= "padrao")  
     filtro = ChamadoFilter()
     context = {
     'chamados': chamados,
@@ -506,13 +769,14 @@ def home(request):
     grupos= usuarioC.grupo.name
    
     filtro = ChamadoFilter()
+    imageP = ImagePerfil.objects.get(nome= codigo.nome)
+    if not imageP.image:
+      imageP = ImagePerfil.objects.get(nome= "padrao")  
+    
+       
+    
 
-    if ImagePerfil.objects.filter(nome= codigo.nome).exists():
-       imageP = ImagePerfil.objects.get(nome= codigo.nome)
-    else:
-       imageP = ImagePerfil.objects.get(nome="padrao")   
-
-
+ 
     context = {
     'chamados': chamados,
     'chamados_abertos': chamados_abertos,
@@ -562,7 +826,9 @@ def presidente(request):
     chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("-id")
     grupos= usuarioC.grupo.name
     codigo = usuarioC.codigo.nome
-    imageP = ImagePerfil.objects.get(nome=codigo)
+    imageP = ImagePerfil.objects.get(nome= codigo)
+    if not imageP.image:
+      imageP = ImagePerfil.objects.get(nome= "padrao")
 
     filtro = ChamadoFilter()
     context = {
@@ -666,6 +932,8 @@ def problem(request):
     chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("-id")
     grupos= usuarioC.grupo.name
     imageP = ImagePerfil.objects.get(nome= codigo.nome)
+    if not imageP.image:
+      imageP = ImagePerfil.objects.get(nome= "padrao")
 
     filtro = ChamadoFilter()
     context = {
