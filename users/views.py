@@ -805,14 +805,14 @@ def exportar_colaboradores(request):
     filename = 'colaboradores_exportados.xls'
     _filename = filename.split('.')
     filename_final = f'{_filename[0]}_{MDATA}.{_filename[1]}'
-    queryset = UsuarioCorporativo.objects.all().values_list(
+    queryset = UsuarioCorporativo.objects.all().order_by("codigo__nome").values_list(
         'codigo__nome',
         'trabalho__cargo__cargo',
         'trabalho__departamento',
         'trabalho__dataadmissao',
         'codigo__datanacimento',
     )
-    columns = ('Nome', 'Cargo','Departamento','Admissão','Data Nacimento')
+    columns = ('Nome', 'Cargo','Departamento','Admissão','Data Nascimento')
     response = export_xlsx(model, filename_final, queryset,columns)
     return response
 

@@ -1,9 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
-
-
 {% block content %}
 
 <main role="main"  class="col-md-8 m-sm-auto col-lg-8 col-md-6 "  >
@@ -510,45 +507,12 @@
                 </form>
             </div>  
                 </div>
-       
-         
-        
-         
-       
-         
-       
-     
-       
-
-
-        
-
-
-
-    </div> 
+       </div> 
 </main>
+
 {% block js %}
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
- <script type="text/javascript">
- 	$(document).ready(function(){
-		$(".aba").click(function(){
-			$(".aba").removeClass("selected");
-  			$(this).addClass("selected");
- 			var indice = $(this).parent().index();
-     			indice++;
-     			$("#content div").hide();
-     			$("#content div:nth-child("+indice+")").show();
-    		});
-
-     		
-     	});
- </script>
 <script>
-  localStorage.setItem('imagem',event);
-  let i = localStorage.getItem('imagem');
-  
+    
   var loadFile = function(event) {
     var output = document.getElementById('output');
     output.src = URL.createObjectURL(event.target.files[0]);
@@ -556,7 +520,7 @@
       URL.revokeObjectURL(output.src) // free memory
     }
   };
-</script>
+    </script>
 
-{% endblock js %}
+ {% endblock js %}   
  {% endblock content %}           

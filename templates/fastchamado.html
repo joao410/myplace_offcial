@@ -52,7 +52,7 @@
     <form method="POST" action="{% url 'fastchamado' %}" >
       {% csrf_token %}
       <div id="nomef">
-        <span>Nome:</span>
+        <span>Username:</span>
       </div>
       
       <input  class="nomef form-control" value="{{user.username}}"type="text" name="requisitante" required>

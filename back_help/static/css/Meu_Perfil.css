@@ -1,3 +1,1145 @@
+.ta6 {
+	position: absolute;
+	overflow: visible;
+	width: 27px;
+	height: 27px;
+	left: 145px;
+	top: 387px;
+}
+.placeholders {
+	padding-bottom: 3rem;
+}
+
+.placeholder img {
+	padding-top: 1.5rem;
+	padding-bottom: 1.5rem;
+}
+
+tr .sender {
+	font-size: 12px;
+	font-weight: 600;
+}
+
+tr .sender span {
+	color: #676767;
+}
+
+.response {
+	position:absolute;
+	top:900px;
+	display: block;
+}
+
+/* input forms cadastro*/
+
+.Retngulo1_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 140px;
+	height: 30px;
+	left: 287px;
+	top: 647px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo2_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 140px;
+	height: 30px;
+	left: 427px;
+	top: 647px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo3_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 100px;
+	height: 30px;
+	left: 8px;
+	top: 707px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo4_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 152px;
+	height: 30px;
+	left: 125px;
+	font-size: 12px;
+	top: 707px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo5_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 280px;
+	font-size: 12px;
+	height: 30px;
+	left: 287px;
+	top: 707px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo6_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 135px;
+	font-size: 12px;
+	height: 30px;
+	left: 8px;
+	top: 765px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo7_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 128px;
+	height: 30px;
+	font-size: 12px;
+	left: 150px;
+	top: 767px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo8_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 280px;
+	height: 30px;
+	font-size: 12px;
+	left: 287px;
+	top: 767px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo9_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 135px;
+	height: 30px;
+	left: 8px;
+	font-size: 12px;
+	top: 827px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo10_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 130px;
+	height: 30px;
+	left: 150px;
+	top: 827px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo11_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 280px;
+	height: 30px;
+	left: 287px;
+	font-size: 12px;
+	top: 827px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo12_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 135px;
+	height: 30px;
+	left: 8px;
+	top: 887px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo13_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 130px;
+	height: 30px;
+	left: 150px;
+	font-size: 12px;
+	top: 887px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo14_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 280px;
+	height: 30px;
+	left: 287px;
+	top: 887px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_582 {
+		background-color: rgba(0,76,162,1);
+		position: absolute;
+		overflow: visible;
+		width: 172px;
+		height: 29px;
+		left: 853px;
+		font-size: 12px;
+		top: 681px;
+		border-radius: 20px;
+		text-transform: uppercase;
+	}
+#Retngulo_59 {
+		
+		stroke: rgba(112,112,112,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+		text-transform: uppercase;
+	}
+.Retngulo_59 {
+		
+		position: absolute;
+		overflow: visible;
+		color: rgba(112,112,112,1);
+		width: 162px;
+		height: 29px;
+		left: 815px;
+		font-size: 12px;
+		top: 554px;
+		border-radius: 20px;
+		border-style: solid;
+		border-color:rgba(112,112,112,1);
+		text-transform: uppercase;
+	
+	}
+div.container {
+		width: 100%;
+		position:absolute;
+
+    }
+.Retngulo_60 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 558px;
+	height: 30px;
+	left: 8px;
+	top: 105px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_61 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 178px;
+	height: 37px;
+	left: 68px;
+	top: 150px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_genero {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 270px;
+	height: 30px;
+	left: 8px;
+	top: 170px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	font-size: 12px ;
+	text-transform: uppercase;
+}
+.Retngulo_61_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 270px;
+	height: 30px;
+	left: 8px;
+	top: 160px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_empresa {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 270px;
+	height: 30px;
+	left: 8px;
+	top: 160px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+
+.Retngulo_62 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 208px;
+	height: 37px;
+	left: 328px;
+	top: 150px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_apelido {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 280px;
+	height: 30px;
+	left: 287px;
+	font-size: 12px;
+	top: 170px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_62_ {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 280px;
+	height: 30px;
+	left: 287px;
+	font-size: 12px;
+	top: 180px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_cargo {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 280px;
+	height: 30px;
+	left: 287px;
+	top: 162px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+
+.Retngulo_63 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 270px;
+	height: 30px;
+	left: 8px;
+	font-size: 12px;
+	top: 210px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_cpf {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 270px;
+	height: 30px;
+	font-size: 12px;
+	left: 8px;
+	top: 228px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_pis {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 280px;
+	height: 30px;
+	left: 287px;
+	font-size: 12px;
+	top: 228px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+
+.Retngulo_64 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 280px;
+	height: 30px;
+	left: 287px;
+	top: 210px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_cor {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 132px;
+	height: 30px;
+	left: 435px;
+	top: 350px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_celp {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 270px;
+	height: 30px;
+	left: 8px;
+	top: 420px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_ecivil {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 280px;
+	height: 30px;
+	left: 287px;
+	top: 420px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_escol {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 270px;
+	height: 30px;
+	left: 8px;
+	top: 470px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_dn {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 280px;
+	height: 30px;
+	left: 287px;
+	top: 470px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_munasci {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 270px;
+	height: 30px;
+	left: 8px;
+	top: 530px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_ufn {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 80px;
+	height: 30px;
+	left: 287px;
+	top: 530px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_pais {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 198px;
+	height: 30px;
+	left: 370px;
+	top: 531px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_nasci {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 270px;
+	height: 30px;
+	left: 8px;
+	top: 590px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_serie {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 135px;
+	height: 30px;
+	left: 8px;
+	top: 350px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_carteira {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 280px;
+	height: 30px;
+	left: 287px;
+	font-size: 12px;
+	top: 290px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_titulo {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 270px;
+	height: 30px;
+	left: 8px;
+	top: 290px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_ufc {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 129px;
+	height: 30px;
+	left: 145px;
+	top: 350px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_emissao {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 143px;
+	height: 30px;
+	left: 287px;
+	top: 350px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_mae {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 270px;
+	height: 30px;
+	left: 8px;
+	top: 647px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_pai {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 280px;
+	height: 30px;
+	left: 287px;
+	top: 590px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_65 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 270px;
+	height: 30px;
+	left: 8px;
+	font-size: 12px;
+	top: 260px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_66 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 140px;
+	height: 30px;
+	left: 287px;
+	font-size: 12px;
+	top: 260px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_67 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 137px;
+	height: 30px;
+	font-size: 12px;
+	left: 430px;
+	top: 260px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+	
+}
+.Retngulo_68 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 408px;
+	height: 37px;
+	font-size: 12px;
+	left: 208px;
+	top: 501px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_vtrans{
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 135px;
+	font-size: 12px;
+	height: 30px;
+	left: 8px;
+	top: 220px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+.Retngulo_69 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 180px;
+	height: 32px;
+	left: 792px;
+	top: 508px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+
+.Retngulo_70 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 408px;
+	height: 37px;
+	left: 208px;
+	font-size: 12px;
+	top: 460px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+
+.Retngulo_71 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 408px;
+	height: 37px;
+	left: 208px;
+	font-size: 12px;
+	top: 545px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_admissao {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 280px;
+	height: 30px;
+	font-size: 12px;
+	left: 287px;
+	top: 220px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_demissao {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 270px;
+	height: 30px;
+	left: 8px;
+	top: 270px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_tipoadmissao{
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 270px;
+	height: 30px;
+	left: 287px;
+	font-size: 12px;
+	top: 270px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+
+.Retngulo_72 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 408px;
+	height: 37px;
+	left: 208px;
+	top: 597px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_73 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 408px;
+	height: 37px;
+	font-size: 12px;
+	left: 208px;
+	top: 647px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_indica {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 270px;
+	height: 30px;
+	left: 8px;
+	font-size: 12px;
+	top: 320px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;	
+	text-transform: uppercase;
+
+}
+.Retngulo_74 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 158px;
+	height: 37px;
+	left: 8px;
+	top: 547px;
+	font-size: 12px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_priempr {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 135px;
+	height: 30px;
+	font-size: 12px;
+	left: 145px;
+	top: 220px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_75 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 280px;
+	height: 30px;
+	left: 287px;
+	font-size: 12px;
+	top: 320px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_76 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 270px;
+	height: 30px;
+	left: 8px;
+	font-size: 12px;
+	top: 370px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_77 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 280px;
+	height: 30px;
+	left: 287px;
+	font-size: 12px;
+	top: 370px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_78 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 270px;
+	height: 30px;
+	left: 8px;
+	font-size: 12px;
+	top: 430px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_79 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width:280px;
+	height: 30px;
+	font-size: 12px;
+	left: 287px;
+	top: 430px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_80 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 270px;
+	height: 30px;
+	font-size: 12px;
+	left: 8px;
+	top: 480px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_81 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 280px;
+	height: 30px;
+	left: 287px;
+	font-size: 12px;
+	top: 480px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_82 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 270px;
+	height: 30px;
+	font-size: 12px;
+	left: 8px;
+	top: 530px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_83 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 280px;
+	height: 30px;
+	font-size: 12px;
+	left: 287px;
+	top: 530px;
+	
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*restante do site*/
+
 .garr {
 	position: absolute;
 	overflow: visible;
