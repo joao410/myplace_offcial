@@ -55,34 +55,39 @@
 		<span>Foto do Perfil</span>
     </div>
     <div id="Joo_Felipe">
-		<span>{{usuarioP.nome}}</span>
+		<span>
+       
+      {% if usuarioP.nome|length >= 24 %}
+      {{usuarioP.nome|upper|default:""}}
+      {% endif %}
+    </span>
     </div>
     <div id="TI">
-		<span>{{usuarioT.departamento}}</span>
+		<span>{{usuarioT.departamento|upper|default:""}}</span>
     </div>
     <div id="Assistente_de_Helpdesk">
-		<span>{{usuarioT.cargo}}</span>
+		<span>{{usuarioT.cargo|upper|default:""}}</span>
     </div>
     <div id="Arena_Vidros_by">
-		<span>{{usuarioT.empresa}}</span>
+		<span>{{usuarioT.empresa|upper|default:""}}</span>
     </div>
     <div id="joaoarenavidroscombr">
-		<span>{{usuarioC.email}}</span>
+		<span>{{usuarioC.email|upper|default:""}}</span>
     </div>
     <div id="joaofgenioshopcombr">
-		<span>{{usuarioC.emailCorporativo}}</span>
+		<span>{{usuarioC.emailCorporativo|upper|default:""}}</span>
     </div>
     <div id="joaogenioshop">
-		<span>{{usuarioC.skype}}</span>
+		<span>{{usuarioC.skype|upper|default:""}}</span>
     </div>
     <div id="ID11_xxxxx-xxxx">
-		<span>{{usuarioC.telefone}}</span>
+		<span>{{usuarioC.telefone|upper|default:""}}</span>
     </div>
     <div id="ID11_4000-0000">
-		<span>{{usuarioC.tel}}</span>
+		<span>{{usuarioC.tel|upper|default:""}}</span>
     </div>
     <div id="ID2365">
-		<span>{{usuarioC.ramal}}</span>
+		<span>{{usuarioC.ramal|upper|default:""}}</span>
     </div>
  <!-- <button type="submit" name="perfil" class="Retngulo_49">
 			<span>Editar Informações</span>

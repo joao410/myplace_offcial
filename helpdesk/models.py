@@ -22,16 +22,16 @@ class Base(models.Model):
 class Chamado(Base):
 
     #id_chamado = models.CharField("id", max_length=255)s
-    username    =   models.CharField("username", max_length=255, default='#')
-    ticket      =   models.CharField("ticket", max_length=5, default="#")
-    problem     =   models.TextField(null=True, blank=True, default='#')
-    des_problem = models.TextField(null=True, blank=True,default="#")
-    obs_tecnico =   models.TextField(null=True, blank=True, default='#')
+    username    =   models.CharField("username", max_length=255,default=None)
+    ticket      =   models.CharField("ticket", max_length=5,default=None)
+    problem     =   models.TextField(null=True, blank=True, default=None)
+    des_problem = models.TextField(null=True, blank=True,default=None)
+    obs_tecnico =   models.TextField(null=True, blank=True, default=None)
     name     =   models.ForeignKey(UsuarioPessoal, on_delete=models.DO_NOTHING, null=True, blank=True)
-    data = models.CharField("data", max_length=50, default='#')
-    finalizado = models.CharField("finalizado" , max_length=100, default="")
+    data = models.CharField("data", max_length=50,default=None)
+    finalizado = models.CharField("finalizado" , max_length=100, default=None)
     
-    grupo = models.CharField("grupo", max_length=20,default="#")
+    grupo = models.CharField("grupo", max_length=20,default=None)
 
     URGENCY_CHOICES = {
         ('Baixa', 'Baixa'),
@@ -39,7 +39,7 @@ class Chamado(Base):
         ('Alta', 'Alta'),
 
     }
-    urgency = models.CharField("urgencia", max_length=10, choices=URGENCY_CHOICES, default="#")
+    urgency = models.CharField("urgencia", max_length=10, choices=URGENCY_CHOICES,default=None)
     
     STATUS_CHOICES = {
         ('aberto', 'aberto'),
@@ -69,11 +69,10 @@ def get_files_path(_instance, filename):
 
 
 class Image(Base):
-    nome = models.CharField("nome", max_length=100,default="#")
+    nome = models.CharField("nome", max_length=100,default=None)
     image = models.ImageField(upload_to=get_files_path, null=True, blank=True)
-    chamado = models.ForeignKey(Chamado, on_delete=models.CASCADE, default=None)
-    ticket =  models.CharField('ticket', max_length=50, default="#")
-    obs = models.TextField(null=True, blank=True, default='#')
+    ticket =  models.CharField('ticket', max_length=50, default=None)
+    obs = models.TextField(null=True, blank=True, default=None)
    
    
     class Meta:
@@ -103,10 +102,10 @@ class ImageLink(Base):
 
 
 class Chat(Base):
-    From= models.CharField("from", max_length=100,default="")
+    From= models.CharField("from", max_length=100,default=None)
     idChat = models.ForeignKey(Chamado, on_delete=models.CASCADE,null=True,blank=True)
-    mensagem = models.CharField("mensagem", max_length=205, default="#")
-    nome = models.CharField("nome",max_length=100,default="")
+    mensagem = models.CharField("mensagem", max_length=205,default=None)
+    nome = models.CharField("nome",max_length=100,default=None)
     
 
     class Meta:

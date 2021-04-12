@@ -45,15 +45,15 @@ class Cargo(Base):
 
 
 class UsuarioPessoal(Base):
-    codigo = models.IntegerField("Codigo",null=True, default="0")
-    nome = models.CharField("Name", max_length=250, default="#")
-    apelido = models.CharField("Apelido", max_length=100, default="#")
-    cpf = models.CharField("Cpf", max_length=20, default="0")
+    codigo = models.IntegerField("Codigo",null=True, default=None)
+    nome = models.CharField("Name", max_length=250,default=None)
+    apelido = models.CharField("Apelido", max_length=100, default=None)
+    cpf = models.CharField("Cpf", max_length=20, default=None)
     pis = models.IntegerField("Pis",default="1")
-    tituloeleitor = models.IntegerField("TituloEleitor",default=".0")
-    carteiratrabalho = models.IntegerField("CarteiraTrabalho",default="0")
+    tituloeleitor = models.IntegerField("TituloEleitor",default=None)
+    carteiratrabalho = models.IntegerField("CarteiraTrabalho",default=None)
     serie = models.IntegerField("Serie",default="0")
-    ufcarteiratrabalho = models.CharField("UfCarteiraTrabalho",max_length=2,default="#")
+    ufcarteiratrabalho = models.CharField("UfCarteiraTrabalho",max_length=2,default=None)
     datacarteiratrabalho = models.DateField(blank=True,null=True)
     GENERO_CHOICES = {
         ('Masculino', 'Masculino'),
@@ -61,18 +61,18 @@ class UsuarioPessoal(Base):
         ('Outro', 'Outro'),
 
     }
-    genero = models.CharField("Genero",max_length=20,choices=GENERO_CHOICES, default="#")
-    cor= models.CharField("Cor", max_length=20, default="#")
-    ecivil = models.CharField("Ecivil", max_length=20,default="#")
-    celpessoal = models.CharField("celpessoal", max_length=13,default="...")
-    escolaridade = models.CharField("Escolaridade", max_length=100, default="#")
+    genero = models.CharField("Genero",max_length=20,choices=GENERO_CHOICES, default=None)
+    cor= models.CharField("Cor", max_length=20,default=None)
+    ecivil = models.CharField("Ecivil", max_length=20,default=None)
+    celpessoal = models.CharField("celpessoal", max_length=13,default=None)
+    escolaridade = models.CharField("Escolaridade", max_length=100, default=None)
     datanacimento = models.DateField(blank=True,null=True)
-    ufnacimento = models.CharField("UfNacimento", max_length=2,default="#")
-    municipionacimento = models.CharField("MunicipioNacimento", max_length=250,default="#")
-    paisnacimento = models.CharField("PaisNacimento", max_length=100,default="#")
-    paisnacionalidade = models.CharField("PaisNacionalidade",max_length=100,default="#")
-    nomemae = models.CharField("NomeMae", max_length=100,default="não consta")
-    nomepai= models.CharField("NomePai", max_length=100,default="não consta")
+    ufnacimento = models.CharField("UfNacimento", max_length=2,default=None)
+    municipionacimento = models.CharField("MunicipioNacimento", max_length=250,default=None)
+    paisnacimento = models.CharField("PaisNacimento", max_length=100,default=None)
+    paisnacionalidade = models.CharField("PaisNacionalidade",max_length=100,default=None)
+    nomemae = models.CharField("NomeMae", max_length=100,default=None)
+    nomepai= models.CharField("NomePai", max_length=100,default=None)
 
     
 
@@ -87,24 +87,24 @@ class UsuarioPessoal(Base):
 
 class UsuarioTrabalho(Base):
     codigo = models.ForeignKey(UsuarioPessoal,on_delete=models.CASCADE, null=True, blank=True )
-    empresa= models.CharField("Empresa", max_length=100,default="#")
+    empresa= models.CharField("Empresa", max_length=100,default=None)
     cargo = models.ForeignKey(Cargo,on_delete=models.CASCADE, null=True, blank=True )
-    departamento = models.CharField("Departamento",max_length=100,default="...")
-    valetransporte =  models.CharField("valetransporte",max_length=3,default="...")
+    departamento = models.CharField("Departamento",max_length=100,default=None)
+    valetransporte =  models.CharField("valetransporte",max_length=3,default=None)
     dataadmissao = models.DateField(blank=True,null=True)
     datademissao = models.DateField(blank=True,null=True)
-    tipoAdmissao  = models.CharField("tipoAdmissao",max_length=100,default="...")
-    indicativoadmissao = models.CharField("IndicativoAdmissao",max_length=50,default="...")
-    primeiroemprego = models.CharField("PrimeiroEmprego", max_length=3,default="...")
-    regimetrabalho = models.CharField("RegimeTrabalho", max_length=10, default="...")
-    regimeprevidenciario = models.CharField("RegimePrevidenciario",max_length=10, default="...")
-    regimejornada = models.CharField("RegimeJornada", max_length=100, default="...")
-    naturezaatividade = models.CharField("NaturezaAtividade", max_length=50 ,default="..")
-    categoria = models.CharField("Categoria",max_length=100, default="...")
-    codigofuncao = models.IntegerField("CodigoFuncao", default="1")
-    cargahorariam = models.CharField("CargaHorariaM",max_length=20,default="...")
-    unidadesalarial = models.CharField("UnidadeSalarial",max_length=15, default="..")
-    salariovariavel =  models.DecimalField(max_digits=6, decimal_places=2,default="0")
+    tipoAdmissao  = models.CharField("tipoAdmissao",max_length=100,default=None)
+    indicativoadmissao = models.CharField("IndicativoAdmissao",max_length=50,default=None)
+    primeiroemprego = models.CharField("PrimeiroEmprego", max_length=3,default=None)
+    regimetrabalho = models.CharField("RegimeTrabalho", max_length=10, default=None)
+    regimeprevidenciario = models.CharField("RegimePrevidenciario",max_length=10,default=None)
+    regimejornada = models.CharField("RegimeJornada", max_length=100, default=None)
+    naturezaatividade = models.CharField("NaturezaAtividade", max_length=50 ,default=None)
+    categoria = models.CharField("Categoria",max_length=100,default=None)
+    codigofuncao = models.IntegerField("CodigoFuncao", default=None)
+    cargahorariam = models.CharField("CargaHorariaM",max_length=20,default=None)
+    unidadesalarial = models.CharField("UnidadeSalarial",max_length=15,default=None)
+    salariovariavel =  models.DecimalField(max_digits=6, decimal_places=2,default=None)
 
     class Meta: 
        verbose_name = "UsuarioTrabalho"
@@ -115,9 +115,9 @@ class UsuarioTrabalho(Base):
 
 class UsuarioDocumentos(Base):
     codigo = models.ForeignKey(UsuarioPessoal,on_delete=models.CASCADE, null=True, blank=True )
-    documento = models.CharField("Documento",max_length=5,default="..")
-    numerodocumento = models.IntegerField("NumeroDocumento",default="..")
-    orgao = models.CharField("orgao",max_length=5,default="...")
+    documento = models.CharField("Documento",max_length=5,default=None)
+    numerodocumento = models.IntegerField("NumeroDocumento",default=None)
+    orgao = models.CharField("orgao",max_length=5,default=None)
     dataexpedissao = models.DateField(blank=True,null=True)
     validade = models.DateField(blank=True,null=True)
     class Meta:
@@ -130,15 +130,15 @@ class UsuarioDocumentos(Base):
 
 class UsuarioEndereco(Base):
     codigo = models.ForeignKey(UsuarioPessoal,on_delete=models.CASCADE, null=True, blank=True)
-    cep = models.CharField("Cep",max_length=9,default="...")
-    tipo = models.CharField("Tipo",max_length=2,default="...")
-    logradouro = models.CharField("Logradouro", max_length=250,default="...")
-    numero = models.IntegerField("Numero",default="0")
-    ufatual = models.CharField("UfAtual",max_length=2,default="...")
-    municipioatul = models.CharField("MunicipioAtul",max_length=50,default="...")
-    bairroatual = models.CharField("BairroAtual",max_length=50,default="...")
-    complemento = models.CharField("Complemento",max_length=20,default="...")
-    pais = models.CharField("Pais",max_length=50,default="....")
+    cep = models.CharField("Cep",max_length=9,default=None)
+    tipo = models.CharField("Tipo",max_length=2,default=None)
+    logradouro = models.CharField("Logradouro", max_length=250,default=None)
+    numero = models.IntegerField("Numero",default=None)
+    ufatual = models.CharField("UfAtual",max_length=2,default=None)
+    municipioatul = models.CharField("MunicipioAtul",max_length=50,default=None)
+    bairroatual = models.CharField("BairroAtual",max_length=50,default=None)
+    complemento = models.CharField("Complemento",max_length=20,default=None)
+    pais = models.CharField("Pais",max_length=50,default=None)
     class Meta:
        verbose_name = "UsuarioEndereco"
        verbose_name_plural = "UsuariosEndereco"
@@ -154,12 +154,12 @@ class UsuarioCorporativo(Base):
     trabalho = models.ForeignKey(UsuarioTrabalho,on_delete=models.CASCADE, null=True, blank=True)
     endereco = models.ForeignKey(UsuarioEndereco,on_delete=models.CASCADE, null=True, blank=True)
     documento = models.ForeignKey(UsuarioDocumentos,on_delete=models.CASCADE, null=True, blank=True)
-    email = models.CharField("email", max_length=100, default="#")
-    emailCorporativo = models.CharField("email_corporativo", max_length=100,default="#")
-    skype = models.CharField("skype",max_length=100,default="---") 
-    telefone = models.CharField("telefone", max_length=13, default="---")
-    tel = models.CharField("tel", max_length=13, default="---")
-    ramal = models.CharField("ramal", max_length=4, default="---")
+    email = models.CharField("email", max_length=100, default=None)
+    emailCorporativo = models.CharField("email_corporativo", max_length=100,default=None)
+    skype = models.CharField("skype",max_length=100,default=None) 
+    telefone = models.CharField("telefone", max_length=13, default=None)
+    tel = models.CharField("tel", max_length=13, default=None)
+    ramal = models.CharField("ramal", max_length=4, default=None)
     usuario = models.ForeignKey(User,on_delete=models.DO_NOTHING )
     grupo = models.ForeignKey(Group,on_delete=models.DO_NOTHING)    
 
@@ -175,9 +175,9 @@ def get_files_path(_instance, filename):
     filename = f'chamado/images/{uuid.uuid4()}.{ext}'
     return filename
 class ImagePerfil(Base):
-    nome = models.CharField("nome", max_length=100,default="#")
+    nome = models.CharField("nome", max_length=100,default=None)
     image = models.ImageField(upload_to=get_files_path, null=True, blank=True)
-    obs = models.TextField(null=True, blank=True, default='#')
+    obs = models.TextField(null=True, blank=True, default=None)
    
    
    

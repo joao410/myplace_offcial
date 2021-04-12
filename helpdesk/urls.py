@@ -13,6 +13,7 @@ urlpatterns = [
     path('chamado/dash_index/<int:id>',views.atendimento,  name="atendimento"),
     path('chamado/chat/<int:id>',views.chat,  name="chat"),
     path('chamado/linksup',views.linksup, name="linksup"),
+    path('fastchamado',views.fastchamado, name="fastchamado"),
 
  
 

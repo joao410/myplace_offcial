@@ -292,7 +292,7 @@ def dash_index(request):
         chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("-id")
         grupos= usuarioC.grupo.name
         codigo = usuarioC.codigo.nome
-        imageP = ImagePerfil.objects.get(nome= codigo.nome)
+        imageP = ImagePerfil.objects.get(nome= codigo)
         if not imageP.image:
             imageP = ImagePerfil.objects.get(nome= "padrao")  
     
@@ -408,12 +408,22 @@ def id_chamado(request, id):
     grupo= usuarioC.grupo
     grupos= usuarioC.grupo.name
     chamado = Chamado.objects.get(pk=id)
-    ticket = chamado.ticket
-    image = Image.objects.get(ticket=ticket)
+    image = Image.objects.get(ticket=chamado.ticket) 
+    try:
+      image.image     
+    except:
+       image = Image.objects.get(nome="padrao")   
+   
+
+
+        
     codigo = usuarioC.codigo.nome
-    imageP = ImagePerfil.objects.get(nome=codigo)
-    if not imageP.image:
-      imageP = ImagePerfil.objects.get(nome= "padrao")  
+    try:
+        imageP = ImagePerfil.objects.get(nome=codigo)
+    except imageP.image:
+        imageP = ImagePerfil.objects.get(nome= "padrao")
+    except imageP.nome:  
+        imageP = ImagePerfil.objects.get(nome= "padrao") 
     chat= Chat.objects.filter(idChat= id).order_by('id')
     u = chamado
     e = usuarioC.codigo.nome
@@ -479,7 +489,35 @@ def id_chamado(request, id):
    
     return render(request, 'chamado/id_chamado.html', context)
   
+def fastchamado(request):
+    if Chamado.objects.all():
+            chamado_id = Chamado.objects.all().order_by('-id')[0].id
+                
 
+            ticket = chamado_id + 10001
+    else:
+                    ticket = 10001
+    try:
+         user = request.user  
+         context = {
+            'user':user
+         }
+    except:
+        pass     
+
+    if request.method == 'POST':
+        nome = request.POST["requisitante"]
+        nome = nome.upper()
+        assunto = request.POST["assunto"]
+        des = request.POST["obs"]
+        status = "aberto"
+        grupo = "atendimento ti"
+        urgencia = ""
+        
+        Chamado.objects.create(username=nome, problem=assunto,status=status,ticket=ticket,urgency=urgencia, grupo=grupo, des_problem=des) 
+        messages.success(request, 'Chamado criado com sucesso')
+
+    return render(request, 'fastchamado.html')
 @login_required(login_url='/authentication/login')   
 def add_chamado(request):
     user = request.user
@@ -523,7 +561,7 @@ def add_chamado(request):
 
   
     if request.method == 'POST' and 'add_rh' in request.POST:
-            nome = user.name
+            nome = user
             grupo = request.POST["add_rh"]
             problema = request.POST["assunto"]
             urgencia = ""
@@ -552,6 +590,8 @@ def add_chamado(request):
                 ticket = ticket     
                 nome = user
                 img = form.cleaned_data.get("imagem") 
+                if not img:
+                    img = ""
                 obs = ''
                 Image.objects.create(chamado=chamados, ticket=ticket, nome=nome, image=img, obs=obs )
                

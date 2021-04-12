@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.forms import modelformset_factory
-from django.http import JsonResponse
+import csv
 from .models import  User
 from helpdesk.models import  Chamado, Image , ImageLink, Chat
 from .models import   UsuarioCorporativo, UsuarioEndereco, UsuarioTrabalho,UsuarioDocumentos, Empresa, ImagePerfil, UsuarioPessoal,Cargo
@@ -14,13 +14,15 @@ from django.contrib.auth.models import User, Group, GroupManager
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.forms import modelformset_factory
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from openpyxl.styles import PatternFill
 from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl import load_workbook
 from shutil import copyfile
 import pandas as pd
 from decimal import Decimal
+import xlwt
+
 
 
 # Create your views here.
@@ -66,191 +68,82 @@ def add_usuarios(request):
                     codigo = 10001
                                 
     if request.method == 'POST' and 'add_usu' in request.POST:  
-        #pessoal#
-        nome = request.POST["nome"]
-        apelido = request.POST["apelido"]
-        cpf = request.POST["cpf"]
-        genero = request.POST["genero"]
-        cor = request.POST["cor"]
-        ecivil = request.POST["ecivil"]
-        escolaridade = request.POST["escolaridade"]
-        datanasci = request.POST["datanasci"]
-        municipionasc = request.POST["municipionasc"]
-        ufnasci = request.POST["ufnasci"]
-        paisnasci = request.POST["paisnasci"]
-        nasciona = request.POST["nasciona"]
-        mae = request.POST["mae"]
-        pai = request.POST["pai"]
-        pis = request.POST["pis"]
-        teleitor =  request.POST["titulo"]
-        ctrabalho = request.POST["carteira"]       
-        serie = request.POST["serie"]
-        uf = request.POST["ufc"]
-        emissao = request.POST["emissao"]
-        celp = request.POST["celp"]
-        #trabalho# 
+        try: 
+            #pessoal#
+            nome = request.POST["nome"]
+            apelido = request.POST["apelido"]
+            cpf = request.POST["cpf"]
+            genero = request.POST["genero"]
+            cor = request.POST["cor"]
+            ecivil = request.POST["ecivil"]
+            escolaridade = request.POST["escolaridade"]
+            datanasci = request.POST["datanasci"]
+            municipionasc = request.POST["municipionasc"]
+            ufnasci = request.POST["ufnasci"]
+            paisnasci = request.POST["paisnasci"]
+            nasciona = request.POST["nasciona"]
+            mae = request.POST["mae"]
+            pai = request.POST["pai"]
+            pis = request.POST["pis"]
+            teleitor =  request.POST["titulo"]
+            ctrabalho = request.POST["carteira"]       
+            serie = request.POST["serie"]
+            uf = request.POST["ufc"]
+            emissao = request.POST["emissao"]
+            celp = request.POST["celp"]
+            #trabalho# 
         
-        emp = request.POST["empresa"]
-        dep = request.POST["departamento"]       
-        cargo = request.POST["cargo"]
-        vtrans = request.POST["vtrans"]
-        admissao = request.POST["admissao"]
-        demissao = request.POST["demissao"]
-        tipo = request.POST["tipoadmissao"]
-        indica =  request.POST["indica"]
-        priempr = request.POST["priempr"]
-        rtrab = request.POST["rtrab"]
-        rprev = request.POST["rprev"]
-        rjorn = request.POST["rjorn"]
-        naativ = request.POST["naativ"]
-        cat = request.POST["cat"]
-        codf = request.POST["codf"]
-        carh = request.POST["carh"]
-        unisa = request.POST["unisa"]
-        salvari = request.POST["salvari"]
-        #documento#
-        documento = request.POST["documento"]
-        ndocumento = request.POST["numero"]
-        oe = request.POST["oe"]
-        de = request.POST["expedicao"]
-        validade = request.POST["validade"]
-        #endereço#
-        cep = request.POST["cep"]
-        tipo = request.POST["tipo"]
-        num = request.POST["num"]
-        ufatual = request.POST["ufatual"]
-        muniatual = request.POST["muniatual"]
-        bairro = request.POST["bairro"]
-        logradouro = request.POST["logradouro"]
-        complemento = request.POST["complemeno"]
-        pais = request.POST["pais"]
-        #corporativo#
-        email1 = request.POST["email1"]       
-        email2 = request.POST["email2"]       
-        skype = request.POST["skype"]       
-        cel = request.POST["cel"]       
-        tel = request.POST["tel"]       
-        ramal = request.POST["ramal"]       
-        usuario = request.POST["usuario"]       
-        senha = request.POST["senha"]   
-        repassword = request.POST["senha"]    
-        grupo = request.POST["grupo"] 
-
-        gs = Group.objects.get(name=grupo)   
-        if not demissao:
-            demissao = None 
-        if not admissao:
-            admissao = None 
-        if not apelido:
-            apelido = usuario
-        if not bairro:
-            bairro = None 
-        if not cargo:
-            cargo = None 
-        if not cat:
-            cat = None 
-        if not cel:
-            cel = None 
-        if not celp:
-            celp = None 
-        if not cep:
-            cep = None 
-        if not de:
-            de = None 
-        if not dep:
-            dep = None 
-        if not documento:
-            documento = None 
-        if not emissao:
-            emissao = None 
-        if not emp:
-            emp = None 
-        if not escolaridade:
-            escolaridade = None 
-        if not ecivil:
-            ecivil = None 
-        if not cor:
-            cor = None 
-        if not ctrabalho:
-            ctrabalho = 0 
-        if not complemento:
-            complemento = None 
-        if not indica:
-            indica = None 
-        if not logradouro:
-            logradouro = None 
-        if not mae:
-            mae = None 
-        if not muniatual:
-            muniatual = None 
-        if not serie:
-            serie = 0
-        if not pis:
-            pis = 0
-        if not naativ:
-            naativ = None 
-        if not nasciona:
-            nasciona = None 
-        if not ndocumento:
-            ndocumento = None 
-        if not teleitor:
-            teleitor = 0 
-        if not tel:
-            tel = None 
-        if not email1:
-            email1 = usuario + "@gmail.com"
-        if not email2:
-            email2 = None 
-        if not num:
-            num = None 
-        if not oe:
-            oe = None 
-        if not ufnasci:
-            ufnasci = None 
-        if not ufatual:
-            ufatual = None 
-        if not uf:
-            uf = None 
-        if not unisa:
-            unisa = None 
-        if not vtrans:
-            vtrans = None 
-        if not pai:
-            pai = None 
-        if not tipo:
-            tipo = None 
-        if not pais:
-            pais = None 
-        if not paisnasci:
-            paisnasci = None 
-        if not priempr:
-            priempr = None 
-        if not ramal:
-            ramal = None 
-        if not rjorn:
-            rjorn = None 
-        if not rprev:
-            rprev = None 
-        if not rtrab:
-            rtrab = None 
-        if not salvari:
-            salvari = None 
-        if not skype:
-            skype = None    
-        if not municipionasc:
-            municipionasc = None 
-        if not codf:
-            codf = 00
-        if not carh:
-            carh= 1    
-        if not validade:
-            validade =  None
-        if not demissao:
-            demissao =  None    
-        if vtrans == "SIM":
-           vtrans =  "VALE TRANSPORTE"
-        if vtrans == "NÃo":
-           vtrans =  "AJUDA DE CUSTO"       
+            emp = request.POST["empresa"]
+            dep = request.POST["departamento"]       
+            cargo = request.POST["cargo"]
+            vtrans = request.POST["vtrans"]
+            admissao = request.POST["admissao"]
+            demissao = request.POST["demissao"]
+            tipo = request.POST["tipoadmissao"]
+            indica =  request.POST["indica"]
+            priempr = request.POST["priempr"]
+            rtrab = request.POST["rtrab"]
+            rprev = request.POST["rprev"]
+            rjorn = request.POST["rjorn"]
+            naativ = request.POST["naativ"]
+            cat = request.POST["cat"]
+            codf = request.POST["codf"]
+            carh = request.POST["carh"]
+            unisa = request.POST["unisa"]
+            salvari = request.POST["salvari"]
+            #documento#
+            documento = request.POST["documento"]
+            ndocumento = request.POST["numero"]
+            oe = request.POST["oe"]
+            de = request.POST["expedicao"]
+            validade = request.POST["validade"]
+            #endereço#
+            cep = request.POST["cep"]
+            tipo = request.POST["tipo"]
+            num = request.POST["num"]
+            ufatual = request.POST["ufatual"]
+            muniatual = request.POST["muniatual"]
+            bairro = request.POST["bairro"]
+            logradouro = request.POST["logradouro"]
+            complemento = request.POST["complemeno"]
+            pais = request.POST["pais"]
+            #corporativo#
+            email1 = request.POST["email1"]       
+            email2 = request.POST["email2"]       
+            skype = request.POST["skype"]       
+            cel = request.POST["cel"]       
+            tel = request.POST["tel"]       
+            ramal = request.POST["ramal"]       
+            usuario = request.POST["usuario"]       
+            senha = request.POST["senha"]   
+            repassword = request.POST["senha"]    
+            grupo = request.POST["grupo"] 
+            gs = Group.objects.get(name=grupo)   
+        except:
+            if vtrans == "SIM":
+                vtrans =  "VALE TRANSPORTE"
+            if vtrans == "NÃo":
+                vtrans =  "AJUDA DE CUSTO"       
         if not User.objects.filter(username=usuario).exists():
             if not User.objects.filter(email=email1).exists():                
                 if len(senha) < 6:
@@ -260,7 +153,7 @@ def add_usuarios(request):
                 if senha != repassword:
                     messages.error(request, "As senhas nao batem")
                     return render(request, 'users/add_usuarios.html', context)
-                user = User.objects.create(username=usuario,email=email1)
+                user = User.objects.create(username=usuario,email=email1,name=nome)
                 user.set_password(senha)
                 user.is_active = True
                  
@@ -756,22 +649,26 @@ def perfisuser(request):
 @login_required(login_url='/authentication/login')    
 def home(request):
     user = request.user
-    admin = Chamado.objects.all()        
+    admin = Chamado.objects.all()
+          
     usuarioC = UsuarioCorporativo.objects.get(usuario=user)
-    codigo = usuarioC.codigo
-    usuarioT= UsuarioTrabalho.objects.get(codigo=codigo)
-    usuarioP = UsuarioPessoal.objects.get(nome=codigo.nome)
-    usuarioE = UsuarioEndereco.objects.get(codigo=codigo)
-    usuarioD = UsuarioDocumentos.objects.get(codigo=codigo)
-    grupo= usuarioC.grupo
-    chamados = Chamado.objects.filter(grupo=grupo).order_by("-id")    
-    chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("-id")
-    grupos= usuarioC.grupo.name
+    try:  
+        codigo = usuarioC.codigo
+        usuarioT= UsuarioTrabalho.objects.get(codigo=codigo)
+        usuarioP = UsuarioPessoal.objects.get(nome=codigo.nome)
+        usuarioE = UsuarioEndereco.objects.get(codigo=codigo)
+        usuarioD = UsuarioDocumentos.objects.get(codigo=codigo)
+        grupo= usuarioC.grupo
+        chamados = Chamado.objects.filter(grupo=grupo).order_by("-id")    
+        chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("-id")
+        grupos= usuarioC.grupo.name
    
-    filtro = ChamadoFilter()
-    imageP = ImagePerfil.objects.get(nome= codigo.nome)
-    if not imageP.image:
-      imageP = ImagePerfil.objects.get(nome= "padrao")  
+        filtro = ChamadoFilter()
+        imageP = ImagePerfil.objects.get(nome= codigo.nome)
+        if not imageP.image:
+            imageP = ImagePerfil.objects.get(nome= "padrao")  
+    except:   
+        pass     
     
        
     
@@ -863,56 +760,76 @@ def presidente(request):
             'filtro': filtro,  
             'imageP':imageP,                   
                 }  
-    if 'export' in  request.POST:
-        
-        list_22 = []
-        df_22 = pd.DataFrame()   
-        df_22 = UsuariosCorporativo.objects.all().values_list('codigo.nome','trabalho.cargo','trabalho.departamento','trabalho.dataadmissao','codigo.datanacimento')
-       
-
-
-
-
-        #####################################################################
-
-        template_file = 'C:\\Users\\arena\\projeto_python\\myplace\\TEMPLATE_RH.xlsx'
-        name = 'Relat_Colaboradores__' +  today.strftime("%d_%m_%Y") + '.xlsx' 
-        output_file = 'C:\\Users\\arena\\projeto_python\\myplace\\' + name
-
-
-        copyfile(template_file, output_file)
-        wb = load_workbook(output_file)
-
-
-        #####################################################################
-
-        try:
-            ws = wb['22']
-            ws['D2'] =today.strftime("%d/%m/%Y")
-
-
-
-            col_preco = ['C','D','E','F','G']
-
-
-            for i, r in zip(range(len(df_22)),dataframe_to_rows(df_22, index=False, header=False)):
-                for col, item in zip(col_preco,r):
-                    ws[col+str(i+8)] =item
-
-
-            time.sleep(2)            
-            
-            wb.save(output_file)  
-
-
-            print("Deu Certo Caraiii")
-        except Exception as e:
-            log_error("colaboradores", e, "data pipeline")
-            return False    
-                      
-
-
     return render(request, 'users/presidente.html', context)     
+
+
+
+
+
+
+MDATA = datetime.now().strftime('%d-%m-%Y')
+def export_xlsx(model, filename, queryset, columns):
+    response = HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="%s"' % filename
+
+    wb = xlwt.Workbook(encoding='utf-8')
+    ws = wb.add_sheet(model)
+    ws.col(0).width = 256 * 30
+    ws.col(1).width = 256 * 30
+    ws.col(2).width = 200 * 30
+    ws.col(3).width = 200 * 30
+    ws.col(4).width = 200 * 30
+    
+   
+    row_num = 0
+
+    font_style = xlwt.XFStyle()
+    font_style.font.bold = True
+
+    for col_num in range(len(columns)):
+        ws.write(row_num, col_num, columns[col_num], font_style)
+
+    default_style = xlwt.easyxf(num_format_str='dd/mm/yyyy')
+
+    rows = queryset
+    for row, rowdata in enumerate(rows):
+        row_num += 1
+        for col, val in enumerate(rowdata):
+            ws.write(row_num, col, val, default_style)
+
+    wb.save(response)
+    return response
+def exportar_colaboradores(request):
+    MDATA = datetime.now().strftime('%Y-%m-%d')
+    model = 'Users'
+    filename = 'colaboradores_exportados.xls'
+    _filename = filename.split('.')
+    filename_final = f'{_filename[0]}_{MDATA}.{_filename[1]}'
+    queryset = UsuarioCorporativo.objects.all().values_list(
+        'codigo__nome',
+        'trabalho__cargo__cargo',
+        'trabalho__departamento',
+        'trabalho__dataadmissao',
+        'codigo__datanacimento',
+    )
+    columns = ('Nome', 'Cargo','Departamento','Admissão','Data Nacimento')
+    response = export_xlsx(model, filename_final, queryset,columns)
+    return response
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

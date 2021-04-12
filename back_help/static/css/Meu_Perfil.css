@@ -11,7 +11,6 @@
 
 
 
-
 #endereco{
 	left: 8px;
 	top: 742px;
@@ -3838,6 +3837,7 @@ border-color: rgba(0,76,162,1);
 	font-style: normal;
 	font-weight: bold;
 	font-size: 19px;
+	text-transform: uppercase;
 	color: rgba(93,90,90,1);
 }
 #ID2365 {
@@ -3851,7 +3851,8 @@ border-color: rgba(0,76,162,1);
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: bold;
-	font-size: 19spx;
+	text-transform: uppercase;
+	font-size: 19px;
 	color: rgba(93,90,90,1);
 }
 

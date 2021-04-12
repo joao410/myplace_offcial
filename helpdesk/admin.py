@@ -13,8 +13,8 @@ class ChamadoAdmin(admin.ModelAdmin):
 
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
-    list_display = ('create','active','nome','chamado','ticket', 'image',)
-    search_fields =('create','active','nome','chamado','ticket', 'image',)
+    list_display = ('create','active','nome','ticket', 'image',)
+    search_fields =('create','active','nome','ticket', 'image',)
 
 
 
