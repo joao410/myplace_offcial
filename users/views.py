@@ -68,82 +68,193 @@ def add_usuarios(request):
                     codigo = 10001
                                 
     if request.method == 'POST' and 'add_usu' in request.POST:  
-        try: 
-            #pessoal#
-            nome = request.POST["nome"]
-            apelido = request.POST["apelido"]
-            cpf = request.POST["cpf"]
-            genero = request.POST["genero"]
-            cor = request.POST["cor"]
-            ecivil = request.POST["ecivil"]
-            escolaridade = request.POST["escolaridade"]
-            datanasci = request.POST["datanasci"]
-            municipionasc = request.POST["municipionasc"]
-            ufnasci = request.POST["ufnasci"]
-            paisnasci = request.POST["paisnasci"]
-            nasciona = request.POST["nasciona"]
-            mae = request.POST["mae"]
-            pai = request.POST["pai"]
-            pis = request.POST["pis"]
-            teleitor =  request.POST["titulo"]
-            ctrabalho = request.POST["carteira"]       
-            serie = request.POST["serie"]
-            uf = request.POST["ufc"]
-            emissao = request.POST["emissao"]
-            celp = request.POST["celp"]
-            #trabalho# 
-        
-            emp = request.POST["empresa"]
-            dep = request.POST["departamento"]       
-            cargo = request.POST["cargo"]
-            vtrans = request.POST["vtrans"]
-            admissao = request.POST["admissao"]
-            demissao = request.POST["demissao"]
-            tipo = request.POST["tipoadmissao"]
-            indica =  request.POST["indica"]
-            priempr = request.POST["priempr"]
-            rtrab = request.POST["rtrab"]
-            rprev = request.POST["rprev"]
-            rjorn = request.POST["rjorn"]
-            naativ = request.POST["naativ"]
-            cat = request.POST["cat"]
-            codf = request.POST["codf"]
-            carh = request.POST["carh"]
-            unisa = request.POST["unisa"]
-            salvari = request.POST["salvari"]
-            #documento#
-            documento = request.POST["documento"]
-            ndocumento = request.POST["numero"]
-            oe = request.POST["oe"]
-            de = request.POST["expedicao"]
-            validade = request.POST["validade"]
-            #endereço#
-            cep = request.POST["cep"]
-            tipo = request.POST["tipo"]
-            num = request.POST["num"]
-            ufatual = request.POST["ufatual"]
-            muniatual = request.POST["muniatual"]
-            bairro = request.POST["bairro"]
-            logradouro = request.POST["logradouro"]
-            complemento = request.POST["complemeno"]
-            pais = request.POST["pais"]
-            #corporativo#
-            email1 = request.POST["email1"]       
-            email2 = request.POST["email2"]       
-            skype = request.POST["skype"]       
-            cel = request.POST["cel"]       
-            tel = request.POST["tel"]       
-            ramal = request.POST["ramal"]       
-            usuario = request.POST["usuario"]       
-            senha = request.POST["senha"]   
-            repassword = request.POST["senha"]    
-            grupo = request.POST["grupo"] 
-            gs = Group.objects.get(name=grupo)   
-        except:
-            if vtrans == "SIM":
-                vtrans =  "VALE TRANSPORTE"
-            if vtrans == "NÃo":
-                vtrans =  "AJUDA DE CUSTO"       
+        #pessoal#
+        nome = request.POST["nome"]
+        nome = nome.upper()
+        apelido = request.POST["apelido"]
+        cpf = request.POST["cpf"]
+        genero = request.POST["genero"]
+        cor = request.POST["cor"]
+        ecivil = request.POST["ecivil"]
+        escolaridade = request.POST["escolaridade"]
+        datanasci = request.POST["datanasci"]
+        municipionasc = request.POST["municipionasc"]
+        ufnasci = request.POST["ufnasci"]
+        paisnasci = request.POST["paisnasci"]
+        nasciona = request.POST["nasciona"]
+        mae = request.POST["mae"]
+        pai = request.POST["pai"]
+        pis = request.POST["pis"]
+        teleitor =  request.POST["titulo"]
+        ctrabalho = request.POST["carteira"]       
+        serie = request.POST["serie"]
+        uf = request.POST["ufc"]
+        emissao = request.POST["emissao"]
+        celp = request.POST["celp"]
+        #trabalho# 
+    
+        emp = request.POST["empresa"]
+        dep = request.POST["departamento"]       
+        cargo = request.POST["cargo"]
+        vtrans = request.POST["vtrans"]
+        admissao = request.POST["admissao"]
+        demissao = request.POST["demissao"]
+        tipo = request.POST["tipoadmissao"]
+        indica =  request.POST["indica"]
+        priempr = request.POST["priempr"]
+        rtrab = request.POST["rtrab"]
+        rprev = request.POST["rprev"]
+        rjorn = request.POST["rjorn"]
+        naativ = request.POST["naativ"]
+        cat = request.POST["cat"]
+        codf = request.POST["codf"]
+        carh = request.POST["carh"]
+        unisa = request.POST["unisa"]
+        salvari = request.POST["salvari"]
+        #documento#
+        documento = request.POST["documento"]
+        ndocumento = request.POST["numero"]
+        oe = request.POST["oe"]
+        de = request.POST["expedicao"]
+        validade = request.POST["validade"]
+        #endereço#
+        cep = request.POST["cep"]
+        tipo = request.POST["tipo"]
+        num = request.POST["num"]
+        ufatual = request.POST["ufatual"]
+        muniatual = request.POST["muniatual"]
+        bairro = request.POST["bairro"]
+        logradouro = request.POST["logradouro"]
+        complemento = request.POST["complemeno"]
+        pais = request.POST["pais"]
+        #corporativo#
+        email1 = request.POST["email1"]       
+        email2 = request.POST["email2"]       
+        skype = request.POST["skype"]       
+        cel = request.POST["cel"]       
+        tel = request.POST["tel"]       
+        ramal = request.POST["ramal"]       
+        usuario = request.POST["usuario"]       
+        senha = request.POST["senha"]   
+        repassword = request.POST["senha"]    
+        grupo = request.POST["grupo"] 
+        gs = Group.objects.get(name=grupo)   
+        if not demissao:
+            demissao = None 
+        if not admissao:
+            admissao = None 
+        if not apelido:
+            apelido = usuario
+        if not bairro:
+            bairro = None 
+        if not cargo:
+            cargo = None 
+        if not cat:
+            cat = None 
+        if not cel:
+            cel = None 
+        if not celp:
+            celp = None 
+        if not cep:
+            cep = None 
+        if not de:
+            de = None 
+        if not dep:
+            dep = None 
+        if not documento:
+            documento = None 
+        if not emissao:
+            emissao = None 
+        if not emp:
+            emp = None 
+        if not escolaridade:
+            escolaridade = None 
+        if not ecivil:
+            ecivil = None 
+        if not cor:
+            cor = None 
+        if not ctrabalho:
+            ctrabalho = 0 
+        if not complemento:
+            complemento = None 
+        if not indica:
+            indica = None 
+        if not logradouro:
+            logradouro = None 
+        if not mae:
+            mae = None 
+        if not muniatual:
+            muniatual = None 
+        if not serie:
+            serie = 0
+        if not pis:
+            pis = 0
+        if not naativ:
+            naativ = None 
+        if not nasciona:
+            nasciona = None 
+        if not ndocumento:
+            ndocumento = None 
+        if not teleitor:
+            teleitor = 0 
+        if not tel:
+            tel = None 
+        if not email1:
+            email1 ="---"
+        if not email2:
+            email2 = None 
+        if not num:
+            num = None 
+        if not oe:
+            oe = None 
+        if not ufnasci:
+            ufnasci = None 
+        if not ufatual:
+            ufatual = None 
+        if not uf:
+            uf = None 
+        if not unisa:
+            unisa = None 
+        if not vtrans:
+            vtrans = None 
+        if not pai:
+            pai = None 
+        if not tipo:
+            tipo = None 
+        if not pais:
+            pais = None 
+        if not paisnasci:
+            paisnasci = None 
+        if not priempr:
+            priempr = None 
+        if not ramal:
+            ramal = None 
+        if not rjorn:
+            rjorn = None 
+        if not rprev:
+            rprev = None 
+        if not rtrab:
+            rtrab = None 
+        if not salvari:
+            salvari = None 
+        if not skype:
+            skype = None    
+        if not municipionasc:
+            municipionasc = None 
+        if not codf:
+            codf = 00
+        if not carh:
+            carh= 1    
+        if not validade:
+            validade =  None
+        if not demissao:
+            demissao =  None    
+        if vtrans == "SIM":
+           vtrans =  "VALE TRANSPORTE"
+        if vtrans == "NÃo":
+           vtrans =  "AJUDA DE CUSTO"        
+    
+                  
         if not User.objects.filter(username=usuario).exists():
             if not User.objects.filter(email=email1).exists():                
                 if len(senha) < 6:
@@ -153,7 +264,7 @@ def add_usuarios(request):
                 if senha != repassword:
                     messages.error(request, "As senhas nao batem")
                     return render(request, 'users/add_usuarios.html', context)
-                user = User.objects.create(username=usuario,email=email1,name=nome)
+                user = User.objects.create(username=usuario,email=email1,first_name=nome)
                 user.set_password(senha)
                 user.is_active = True
                  
