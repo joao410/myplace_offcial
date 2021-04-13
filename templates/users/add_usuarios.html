@@ -181,7 +181,7 @@
                 <input  class="Retngulo_carteira form-control" type="text" name="carteira">
                 <input  class="Retngulo_serie form-control" type="text" name="serie">
                 <input  class="Retngulo_ufc form-control" type="text" name="ufc">
-                <input  class="Retngulo_emissao form-control" type="date" name="emissao">           
+                <input  class="Retngulo_emissao form-control" type="date" value="1900-01-01"name="emissao">           
                 <select name="cor"  class="form-select Retngulo_cor">
                     <option name="cor" value="">
                         <option value="INDIGENA">1 - INDIGENA </option>
@@ -236,8 +236,8 @@
                 </select>
                 <input  class="Retngulo2_ form-control" type="text" name="numero">
                 <input  class="Retngulo3_ form-control" type="text" name="oe">
-                <input  class="Retngulo4_ form-control" type="date" name="expedicao">
-                <input  class="Retngulo5_ form-control" type="date" name="validade">  
+                <input  class="Retngulo4_ form-control" type="date" autofocus="empty" name="expedicao">
+                <input  class="Retngulo5_ form-control" type="date"value="1900-01-01"name="validade">  
                 <input  class="Retngulo6_ form-control" type="text" name="cep">
                 <input  class="Retngulo7_ form-control" type="text" name="tipo">
                 <input  class="Retngulo8_ form-control" type="text" name="logradouro">
@@ -318,7 +318,7 @@
                         {% endfor %}
                     </option>
                 </select>
-                <select name="cargo"  class="form-select Retngulo_cargo" >
+                <select name="cargo"  class="form-select Retngulo_cargo" required >
                     <option name="cargo" value="">
                         {% for cargos in cargos %}
                         <option value="{{cargos.cargo}}">{{cargos.cargo}}</option>
@@ -337,8 +337,8 @@
                         <option value="nao">2-NÃO </option>                        
                     </option>
                 </select>     
-                <input  class="Retngulo_admissao form-control" type="date" name="admissao">
-                <input  class="Retngulo_demissao form-control" type="date" name="demissao">
+                <input  class="Retngulo_admissao form-control" type="date"value="1900-01-01" name="admissao">
+                <input  class="Retngulo_demissao form-control" type="date"value="1900-01-01"name="demissao">
                 <select name="tipoadmissao"  class="form-select Retngulo_tipoadmissao">
                     <option name="tipoadmissao" value="">
                         <option value="Admissão">1 - ADMISSÃO</option>
@@ -411,7 +411,7 @@
                         <option value="POR TAREFA">6 - POR TAREFA</option>             
                     </option>
                 </select>    
-                <input  class="Retngulo_83 form-control" type="number"  step=".01" name="salvari">
+                <input  class="Retngulo_83 form-control" type="text"   name="salvari">
         
         </div>
         <div class="content">

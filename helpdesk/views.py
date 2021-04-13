@@ -55,7 +55,12 @@ def atendimento(request, id):
     grupos= usuarioC.grupo.name
     chamado = Chamado.objects.get(pk=id)
     ticket = chamado.ticket
-    image = Image.objects.get(ticket=ticket)
+    try:
+        image = Image.objects.get(ticket=ticket)
+    except:
+        image = Image.objects.get(nome="padrao")
+    if not image.image:
+        image = Image.objects.get(nome="padrao")
     codigo = usuarioC.codigo.nome
     imageP = ImagePerfil.objects.get(nome=codigo)
     if not imageP.image:

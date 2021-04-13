@@ -68,6 +68,7 @@ def add_usuarios(request):
                     codigo = 10001
                                 
     if request.method == 'POST' and 'add_usu' in request.POST:  
+        
         #pessoal#
         nome = request.POST["nome"]
         nome = nome.upper()
@@ -134,121 +135,16 @@ def add_usuarios(request):
         cel = request.POST["cel"]       
         tel = request.POST["tel"]       
         ramal = request.POST["ramal"]       
-        usuario = request.POST["usuario"]       
-        senha = request.POST["senha"]   
+        usuario = request.POST["usuario"] 
+        usuario = usuario.upper()      
+        senha = request.POST["senha"]  
+        senha=senha.upper() 
         repassword = request.POST["senha"]    
+        repassword = repassword.upper()
+    
         grupo = request.POST["grupo"] 
         gs = Group.objects.get(name=grupo)   
-        if not demissao:
-            demissao = None 
-        if not admissao:
-            admissao = None 
-        if not apelido:
-            apelido = usuario
-        if not bairro:
-            bairro = None 
-        if not cargo:
-            cargo = None 
-        if not cat:
-            cat = None 
-        if not cel:
-            cel = None 
-        if not celp:
-            celp = None 
-        if not cep:
-            cep = None 
-        if not de:
-            de = None 
-        if not dep:
-            dep = None 
-        if not documento:
-            documento = None 
-        if not emissao:
-            emissao = None 
-        if not emp:
-            emp = None 
-        if not escolaridade:
-            escolaridade = None 
-        if not ecivil:
-            ecivil = None 
-        if not cor:
-            cor = None 
-        if not ctrabalho:
-            ctrabalho = 0 
-        if not complemento:
-            complemento = None 
-        if not indica:
-            indica = None 
-        if not logradouro:
-            logradouro = None 
-        if not mae:
-            mae = None 
-        if not muniatual:
-            muniatual = None 
-        if not serie:
-            serie = 0
-        if not pis:
-            pis = 0
-        if not naativ:
-            naativ = None 
-        if not nasciona:
-            nasciona = None 
-        if not ndocumento:
-            ndocumento = None 
-        if not teleitor:
-            teleitor = 0 
-        if not tel:
-            tel = None 
-        if not email1:
-            email1 ="---"
-        if not email2:
-            email2 = None 
-        if not num:
-            num = None 
-        if not oe:
-            oe = None 
-        if not ufnasci:
-            ufnasci = None 
-        if not ufatual:
-            ufatual = None 
-        if not uf:
-            uf = None 
-        if not unisa:
-            unisa = None 
-        if not vtrans:
-            vtrans = None 
-        if not pai:
-            pai = None 
-        if not tipo:
-            tipo = None 
-        if not pais:
-            pais = None 
-        if not paisnasci:
-            paisnasci = None 
-        if not priempr:
-            priempr = None 
-        if not ramal:
-            ramal = None 
-        if not rjorn:
-            rjorn = None 
-        if not rprev:
-            rprev = None 
-        if not rtrab:
-            rtrab = None 
-        if not salvari:
-            salvari = None 
-        if not skype:
-            skype = None    
-        if not municipionasc:
-            municipionasc = None 
-        if not codf:
-            codf = 00
-        if not carh:
-            carh= 1    
-        if not validade:
-            validade =  None
-        if not demissao:
-            demissao =  None    
+     
         if vtrans == "SIM":
            vtrans =  "VALE TRANSPORTE"
         if vtrans == "NÃo":
@@ -256,52 +152,61 @@ def add_usuarios(request):
     
                   
         if not User.objects.filter(username=usuario).exists():
-            if not User.objects.filter(email=email1).exists():                
-                if len(senha) < 6:
-                    messages.error(request, "Senha muito curta(<6)")
-                    return render(request, 'users/add_usuarios.html', context)
-                
-                if senha != repassword:
-                    messages.error(request, "As senhas nao batem")
-                    return render(request, 'users/add_usuarios.html', context)
-                user = User.objects.create(username=usuario,email=email1,first_name=nome)
-                user.set_password(senha)
-                user.is_active = True
-                 
-                user.save()
-                users = User.objects.get(username=usuario)
-                usu = UsuarioPessoal.objects.create(codigo=codigo,nome=nome,genero=genero, apelido=apelido,cpf=cpf,cor=cor,ecivil=ecivil,escolaridade=escolaridade,pis=pis,tituloeleitor=teleitor,carteiratrabalho=ctrabalho,serie=serie,ufcarteiratrabalho=uf,datacarteiratrabalho=emissao,datanacimento=datanasci,ufnacimento=ufnasci,municipionacimento=municipionasc,paisnacimento=paisnasci,paisnacionalidade=nasciona,nomemae=mae,nomepai=pai)
-                u = UsuarioPessoal.objects.get(nome=nome)
-                c= Cargo.objects.get(cargo=cargo)
+                        
+            if len(senha) < 6:
+                messages.error(request, "Senha muito curta(<6)")
+                return render(request, 'users/add_usuarios.html', context)
+            
+            if senha != repassword:
+                messages.error(request, "As senhas nao batem")
+                return render(request, 'users/add_usuarios.html', context)
+            user = User.objects.create(username=usuario,email=email1,first_name=nome)
+            user.set_password(senha)
+            user.is_active = True
+            user.save()
+            users = User.objects.get(username=usuario)
+            try:
+                UsuarioPessoal.objects.create(codigo=codigo,nome=nome,genero=genero,apelido=apelido,cpf=cpf,cor=cor,ecivil=ecivil,escolaridade=escolaridade,pis=pis,tituloeleitor=teleitor,carteiratrabalho=ctrabalho,serie=serie,ufcarteiratrabalho=uf,datacarteiratrabalho=emissao,datanacimento=datanasci,ufnacimento=ufnasci,municipionacimento=municipionasc,paisnacimento=paisnasci,paisnacionalidade=nasciona,nomemae=mae,nomepai=pai)
+            except:
+                UsuarioPessoal.objects.create(codigo=codigo,nome=nome,genero=genero,apelido=apelido,cpf=cpf,cor=cor,ecivil=ecivil,escolaridade=escolaridade,pis=pis,tituloeleitor=teleitor,carteiratrabalho=ctrabalho,serie=serie,ufcarteiratrabalho=uf,datanacimento=datanasci,ufnacimento=ufnasci,municipionacimento=municipionasc,paisnacimento=paisnasci,paisnacionalidade=nasciona,nomemae=mae,nomepai=pai)
+            u = UsuarioPessoal.objects.get(nome=nome)
+            c= Cargo.objects.get(cargo=cargo)
+            try:
                 usua = UsuarioTrabalho.objects.create(codigo=u,departamento=dep,empresa=emp,cargo=c,valetransporte=vtrans,dataadmissao=admissao,datademissao=demissao,indicativoadmissao=indica,primeiroemprego=priempr,regimetrabalho=rtrab,regimeprevidenciario=rprev,regimejornada=rjorn,naturezaatividade=naativ,categoria=cat,codigofuncao=codf,cargahorariam=carh,unidadesalarial=unisa,salariovariavel=salvari)
-                usua.save()
-                t = UsuarioTrabalho.objects.get(codigo=u)
-             
-                do = UsuarioDocumentos.objects.create(codigo=u,documento=documento,numerodocumento=ndocumento,orgao=oe,dataexpedissao=de,validade=validade)
-                do.save()
-                d =  UsuarioDocumentos.objects.get(codigo=u)
-                en = UsuarioEndereco.objects.create(codigo=u, cep=cep,tipo=tipo,logradouro=logradouro,numero=num,ufatual=ufatual,municipioatul=muniatual,bairroatual=bairro,complemento=complemento,pais=pais)
-                en.save()
-                e = UsuarioEndereco.objects.get(codigo=u)
-                usuar  = UsuarioCorporativo.objects.create(codigo=u,trabalho=t,documento=d,endereco=e,email=email1,emailCorporativo=email2,skype=skype,telefone=cel,tel=tel,ramal=ramal,usuario=users,grupo=gs)
-                usuar.save()
-                form = ImageForm(request.POST, request.FILES)
-                if form.is_valid():
-                    nome = request.POST['usuario']
-                    img = form.cleaned_data.get("imagem") 
-                    obs=''
-                    users = User.objects.get(username=usuario)
-                    usuari = UsuarioCorporativo.objects.get(usuario=users)
-                    us = usuari.codigo.nome
+            except:
+                pass
+            try:
+                usua = UsuarioTrabalho.objects.create(codigo=u,departamento=dep,empresa=emp,cargo=c,valetransporte=vtrans,dataadmissao=admissao,indicativoadmissao=indica,primeiroemprego=priempr,regimetrabalho=rtrab,regimeprevidenciario=rprev,regimejornada=rjorn,naturezaatividade=naativ,categoria=cat,codigofuncao=codf,cargahorariam=carh,unidadesalarial=unisa,salariovariavel=salvari)
+            except:
+                usua = UsuarioTrabalho.objects.create(codigo=u,departamento=dep,empresa=emp,cargo=c,valetransporte=vtrans,indicativoadmissao=indica,primeiroemprego=priempr,regimetrabalho=rtrab,regimeprevidenciario=rprev,regimejornada=rjorn,naturezaatividade=naativ,categoria=cat,codigofuncao=codf,cargahorariam=carh,unidadesalarial=unisa,salariovariavel=salvari)
+            usua.save()
+            t = UsuarioTrabalho.objects.get(codigo=u)
+            
+            do = UsuarioDocumentos.objects.create(codigo=u,documento=documento,numerodocumento=ndocumento,orgao=oe,dataexpedissao=de,validade=validade)
+            do.save()
+            d =  UsuarioDocumentos.objects.get(codigo=u)
+            en = UsuarioEndereco.objects.create(codigo=u, cep=cep,tipo=tipo,logradouro=logradouro,numero=num,ufatual=ufatual,municipioatul=muniatual,bairroatual=bairro,complemento=complemento,pais=pais)
+            en.save()
+            e = UsuarioEndereco.objects.get(codigo=u)
+            usuar  = UsuarioCorporativo.objects.create(codigo=u,trabalho=t,documento=d,endereco=e,email=email1,emailCorporativo=email2,skype=skype,telefone=cel,tel=tel,ramal=ramal,usuario=users,grupo=gs)
+            usuar.save()
+            form = ImageForm(request.POST, request.FILES)
+            if form.is_valid():
+                nome = request.POST['usuario']
+                img = form.cleaned_data.get("imagem") 
+                obs=''
+                users = User.objects.get(username=usuario)
+                usuari = UsuarioCorporativo.objects.get(usuario=users)
+                us = usuari.codigo.nome
 
-                         
-                    obj =ImagePerfil.objects.create(image=img,obs=obs,nome=us)
-                    obj.save()
-                    messages.success(request, 'Imagem adicionada')
-                else:
-                    messages.error(request, 'Imagem não adicionada')
-                messages.success(request, "Usuario criado com sucesso")
-                return redirect( 'presidente')
+                        
+                obj =ImagePerfil.objects.create(image=img,obs=obs,nome=us)
+                obj.save()
+                messages.success(request, 'Imagem adicionada')
+            else:
+                messages.error(request, 'Imagem não adicionada')
+            messages.success(request, "Usuario criado com sucesso")
+            return redirect( 'presidente')
         elif User.objects.filter(username=usuario).exists and UsuarioCorporativo.objects.filter(usuario=user).exists:
               messages.error(request, 'Usuario existente')
         else:
@@ -494,7 +399,7 @@ def edit_usuarios(request,id):
             
             'dtnaci':dtnaci,
             
-            'admissao':admissao, 
+            
             'demissao':demissao, 
     
             } 
@@ -581,102 +486,103 @@ def edit_usuarios(request,id):
         usuario = request.POST["usuario"]       
         
         grupo = request.POST["grupo"] 
-
+  
         gs = Group.objects.get(name=grupo)  
-        if not demissao:
-            demissao = None
-        if not validade:
-            validade = None    
+        
+        if vtrans == "SIM":
+           vtrans =  "VALE TRANSPORTE"
+        if vtrans == "NÃo":
+           vtrans =  "AJUDA DE CUSTO"       
 
         if  User.objects.filter(username=usuario).exists():  
-            if  User.objects.filter(email=email1).exists():                
-                
-                user = User.objects.get(username=usuario)
-                user.is_active = True
-                user.save()
-                users = User.objects.get(username=usuario)
-                usup.nome = nome
-                usup.apelido= apelido
-                usup.cpf = cpf
-                usup.pis = pis
-                usup.tituloeleitor = teleitor
-                usup.carteiratrabalho = ctrabalho
-                usup.serie = serie
-                usup.ufcarteiratrabalho = uf
-                usup.datacarteiratrabalho = datetime.strptime(emissao, '%d/%m/%Y').date() 
-                usup.genero = genero
-                usup.cor = cor
-                usup.ecivil= ecivil
-                usup.celpessoal= celp
-                usup.escolaridade  = escolaridade
-                usup.datanacimento = datetime.strptime(datanasci, '%d/%m/%Y').date() 
-                usup.ufnacimento = ufnasci
-                usup.municipionacimento = municipionasc
-                usup.paisnacimento = paisnasci
-                usup.paisnacionalidade = nasciona
-                usup.nomemae = mae
-                usup.nomepai = pai
-                usup.save()
-                usut.empresa = emp
-                usut.departamento = dep
-                usut.cargo = Cargo.objects.get(cargo=cargo)
-                usut.valetransporte = vtrans
-                usut.dataadmissao = datetime.strptime(admissao, '%d/%m/%Y').date() 
-                usut.datademissao = demissao
-                usut.tipoAdmissao = tipo
-                usut.indicativoadmissao= indica
-                usut.primeiroemprego = priempr
-                usut.regimetrabalho = rtrab
-                usut.regimeprevidenciario = rprev
-                usut.regimejornada = rjorn
-                usut.naturezaatividade = naativ
-                usut.categoria = cat
-                usut.codigofuncao = codf
-                usut.cargahorariam = carh
-                usut.unidadesalarial = unisa
-                usut.salariovariavel = Decimal(salvari.replace(',','.'))
-                usut.save()
-                usud.documento= documento
-                usud.numerodocumento = ndocumento
-                usud.orgao = oe
-                usud.dataexpedissao =  datetime.strptime(de, '%d/%m/%Y').date()
-                usud.validade = validade
-                usud.save()
-                usue.cep = cep
-                usue.tipo = tipoe
-                usue.logradouro = logradouro
-                usue.numero = num
-                usue.ufatual = ufatual
-                usue.MunicipioAtul = muniatual
-                usue.bairroatual = bairro
-                usue.complemento = complemento
-                usue.pais = pais
-                usue.save()
-                usu.email = email1
-                usu.emailCorporativo = email2
-                usu.skype = skype
-                usu.telefone = cel
-                usu.tel = tel
-                usu.ramal = ramal
-                usu.usuario = users
-                usu.grupo= gs
-                usu.save()
-                
-                #form = ImageForm(request.POST, request.FILES)
-                #if form.is_valid():
-                   # nome = request.POST['usuario']
-                    #img = form.cleaned_data.get("imagem") 
-                    #obs=''
-                   # users = User.objects.get(username=usuario)
-                   # usuari = UsuarioCorporativo.objects.get(usuario=users)
-                   # codigo = usuari.codigo.nome
-                   # obj =ImagePerfil.objects.get(nome=codigo)
-                   # obj.image = img
-                   # obj.save()
-                   # messages.success(request, 'Imagem salva')
-                #else:
-                 #   messages.error(request, 'Imagem não adicionada')
-                messages.success(request, "Usuario editado  com sucesso")
+                        
+            
+            user = User.objects.get(username=usuario)
+            user.is_active = True
+            user.save()
+            users = User.objects.get(username=usuario)
+            usup.nome = nome
+            usup.apelido= apelido
+            usup.cpf = cpf
+            usup.pis = pis
+            usup.tituloeleitor = teleitor
+            usup.carteiratrabalho = ctrabalho
+            usup.serie = serie
+            usup.ufcarteiratrabalho = uf
+            usup.datacarteiratrabalho = datetime.strptime(emissao, '%d/%m/%Y').date() 
+            usup.genero = genero
+            usup.cor = cor
+            usup.ecivil= ecivil
+            usup.celpessoal= celp
+            usup.escolaridade  = escolaridade
+            usup.datanacimento = datetime.strptime(datanasci, '%d/%m/%Y').date() 
+            usup.ufnacimento = ufnasci
+            usup.municipionacimento = municipionasc
+            usup.paisnacimento = paisnasci
+            usup.paisnacionalidade = nasciona
+            usup.nomemae = mae
+            usup.nomepai = pai
+            usup.save()
+            usut.empresa = emp
+            usut.departamento = dep
+            usut.cargo = Cargo.objects.get(cargo=cargo)
+            usut.valetransporte = vtrans
+            usut.dataadmissao = datetime.strptime(admissao, '%d/%m/%Y').date() 
+            usut.datademissao = demissao
+            usut.tipoAdmissao = tipo
+            usut.indicativoadmissao= indica
+            usut.primeiroemprego = priempr
+            usut.regimetrabalho = rtrab
+            usut.regimeprevidenciario = rprev
+            usut.regimejornada = rjorn
+            usut.naturezaatividade = naativ
+            usut.categoria = cat
+            usut.codigofuncao = codf
+            usut.cargahorariam = carh
+            usut.unidadesalarial = unisa
+            usut.salariovariavel = Decimal(salvari.replace(',','.'))
+            usut.save()
+            usud.documento= documento
+            usud.numerodocumento = ndocumento
+            usud.orgao = oe
+            usud.dataexpedissao =  datetime.strptime(de, '%d/%m/%Y').date()
+            usud.validade = validade
+            usud.save()
+            usue.cep = cep
+            usue.tipo = tipoe
+            usue.logradouro = logradouro
+            usue.numero = num
+            usue.ufatual = ufatual
+            usue.MunicipioAtul = muniatual
+            usue.bairroatual = bairro
+            usue.complemento = complemento
+            usue.pais = pais
+            usue.save()
+            usu.email = email1
+            usu.emailCorporativo = email2
+            usu.skype = skype
+            usu.telefone = cel
+            usu.tel = tel
+            usu.ramal = ramal
+            usu.usuario = users
+            usu.grupo= gs
+            usu.save()
+            
+            #form = ImageForm(request.POST, request.FILES)
+            #if form.is_valid():
+                # nome = request.POST['usuario']
+                #img = form.cleaned_data.get("imagem") 
+                #obs=''
+                # users = User.objects.get(username=usuario)
+                # usuari = UsuarioCorporativo.objects.get(usuario=users)
+                # codigo = usuari.codigo.nome
+                # obj =ImagePerfil.objects.get(nome=codigo)
+                # obj.image = img
+                # obj.save()
+                # messages.success(request, 'Imagem salva')
+            #else:
+                #   messages.error(request, 'Imagem não adicionada')
+            messages.success(request, "Usuario editado  com sucesso")
                 
 
     if request.method == 'POST' and 'exc_usu' in request.POST: 
