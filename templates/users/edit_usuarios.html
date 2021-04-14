@@ -169,7 +169,7 @@
         <input  class="Retngulo_carteira form-control" type="text" value="{{usu.codigo.carteiratrabalho}}" name="carteira">
         <input  class="Retngulo_serie form-control" type="text" value="{{usu.codigo.serie}}"name="serie">
         <input  class="Retngulo_ufc form-control" type="text" value="{{usu.codigo.ufcarteiratrabalho}}" name="ufc">
-        <input  class="Retngulo_emissao form-control" type="text"  value="{{dtemissao}}"  name="emissao" placeholder="{{dtemissao}}">           
+        <input  class="Retngulo_emissao form-control" type="text"  value="{{usu.codigo.datacarteiratrabalho|date:"SHORT_DATE_FORMAT"}}"  name="emissao" placeholder="{{dtemissao}}">           
         <select name="cor"  class="form-select Retngulo_cor">
             <option name="cor" value="" >
                 <option value="{{usu.codigo.cor}}" selected> {{usu.codigo.cor}}</option>
@@ -209,7 +209,7 @@
                 <option value="DOUTORADO COMPLETO">11 - DOUTORADO COMPLETO </option>
             </option>
         </select>
-        <input  class="Retngulo_dn form-control" value="{{dtnaci}}" type="text" name="datanasci">
+        <input  class="Retngulo_dn form-control" value="{{usu.codigo.datanacimento|date:"SHORT_DATE_FORMAT"}}" type="text" name="datanasci">
         <input  class="Retngulo_munasci form-control" type="text"value="{{usu.codigo.municipionacimento}}" name="municipionasc">
         <input  class="Retngulo_ufn form-control" type="text" value="{{usu.codigo.ufnacimento}}" name="ufnasci">                
         <input  class="Retngulo_pais form-control" type="text"  value="{{usu.codigo.paisnacimento}}"name="paisnasci">
@@ -226,8 +226,8 @@
         </select>
         <input  class="Retngulo2_ form-control"  value="{{usu.documento.numerodocumento}}" type="text" name="numero">
         <input  class="Retngulo3_ form-control"  value="{{usu.documento.orgao}}" type="text" name="oe">
-        <input  class="Retngulo4_ form-control"  value="{{expedissao}}"type="text" name="expedicao">
-        <input  class="Retngulo5_ form-control"  value="{{validade}}"type="text" name="validade">                
+        <input  class="Retngulo4_ form-control"  value="{{usu.documento.dataexpedissao|date:"SHORT_DATE_FORMAT"}}" type="text" name="expedicao">
+        <input  class="Retngulo5_ form-control"  value="{{usu.documento.validade|date:"SHORT_DATE_FORMAT"}}" type="text" name="validade">                
         <input  class="Retngulo6_ form-control"  value="{{usu.endereco.cep}}" type="text" name="cep">
         <input  class="Retngulo7_ form-control"  value="{{usu.endereco.tipo}}" type="text" name="tipo">
         <input  class="Retngulo8_ form-control"  value="{{usu.endereco.logradouro}}" type="text" name="logradouro">
@@ -346,8 +346,8 @@
                 <option value="nao">2-NÃO </option>                        
             </option>
         </select>     
-        <input  class="Retngulo_admissao form-control" value="{{admissao}}" type="text" name="admissao">
-        <input  class="Retngulo_demissao form-control" type="text" value="{{demissao}}" name="demicao">
+        <input  class="Retngulo_admissao form-control" value="{{usu.trabalho.dataadmissao|date:"SHORT_DATE_FORMAT"}}" type="text" name="admissao">
+        <input  class="Retngulo_demissao form-control" type="text" value="{{usu.trabalho.datademissao|date:"SHORT_DATE_FORMAT"}}" name="demicao">
         <select name="tipoadmissao"  class="form-select Retngulo_tipoadmissao">
             <option name="tipoadmissao" value="">^
                 <option value="{{usu.trabalho.tipoAdmissao}}" selected>{{usu.trabalho.tipoAdmissao}}</option>

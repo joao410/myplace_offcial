@@ -104,7 +104,7 @@ class UsuarioTrabalho(Base):
     codigofuncao = models.CharField("CodigoFuncao",max_length=20,blank=True,null=True ,default="")
     cargahorariam = models.CharField("CargaHorariaM",max_length=20,blank=True,null=True,default=None)
     unidadesalarial = models.CharField("UnidadeSalarial",max_length=15,blank=True,null=True,default=None)
-    salariovariavel =  models.DecimalField(max_digits=6, decimal_places=2,blank=True,null=True,default="00.00")
+    salariovariavel =  models.DecimalField(max_digits=6, decimal_places=2,blank=True,null=True,default=00.00)
 
     class Meta: 
        verbose_name = "UsuarioTrabalho"
