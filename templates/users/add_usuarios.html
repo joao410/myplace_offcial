@@ -21,14 +21,9 @@
         <div class="Retngulo_561 text-white border border-dark d-flex justify-content-center fs-5 fw-bold pt-2 ">
             <span>Usuários</span>
         </div>
-	
-   
-       
-       
-     
-            <div  class="container N_14  w-100" >
-                <div class="conteudo"> 
-                <form method="POST" action="{% url 'add_usuarios' %}" enctype="multipart/form-data">
+	    <div  class="container N_14  w-100" >
+        <div class="conteudo"> 
+        <form method="POST" action="{% url 'add_usuarios' %}" enctype="multipart/form-data">
                     {% csrf_token %}
                     
                 <svg class="Retngulo_55_">
@@ -329,9 +324,9 @@
                         {% endfor %}                       
                     </option>
                 </select>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    <img class="add-button5" src="{% static 'img/add-button.png' %}" >
-                </button>
+        
+                    <img  data-bs-toggle="modal" data-bs-target="#exampleModal" class="add-button5" src="{% static 'img/add-button.png' %}" >
+            
                 <select name="vtrans"  class="form-select Retngulo_vtrans">
                     <option name="vtrans" value="">
                         <option value="sim">1-SIM</option>
@@ -496,10 +491,10 @@
                         <span>Cadastrar Usuário</span>
                 </button>
                 
-                </form>
-            </div>  
-                </div>
-       </div> 
+        </form>
+        </div>  
+        </div>
+        </div> 
 </main>
 
 {% block modal %}
@@ -512,6 +507,7 @@
         </div>
         <div class="modal-body">
           <form method="POST" action="{% url 'cargo' %}">
+            {% csrf_token %}
           <label>Cargo:</label><br>    
           <input type="text" class="form-control" name="cargo"><br>
           <label>Ncbo:</label><br> 

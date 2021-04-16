@@ -800,6 +800,6 @@ def cargo(request):
         ncbo = request.POST["ncbo"]
         Cargo.objects.create(cargo=cargo,ncbo=ncbo)
         messages.success(request,'Cadastrado com sucesso')
-    return redirect ('users/add_usuarios.html')    
+    return redirect ('add_usuarios.html')    
 
 
