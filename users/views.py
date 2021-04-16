@@ -111,7 +111,7 @@ def add_usuarios(request):
         codf = request.POST["codf"]
         carh = request.POST["carh"]
         unisa = request.POST["unisa"]
-  
+        obs = request.POST["obs"]
         salvari = request.POST["salvari"]
         if not salvari:
            salvari =0.00
@@ -179,7 +179,7 @@ def add_usuarios(request):
             c= Cargo.objects.get(cargo=cargo)
 
 
-            usua = UsuarioTrabalho.objects.create(codigo=u,departamento=dep,empresa=emp,cargo=c,valetransporte=vtrans,dataadmissao=admissao,datademissao=demissao,indicativoadmissao=indica,primeiroemprego=priempr,regimetrabalho=rtrab,regimeprevidenciario=rprev,regimejornada=rjorn,naturezaatividade=naativ,categoria=cat,codigofuncao=codf,cargahorariam=carh,unidadesalarial=unisa,salariovariavel=salvari)
+            usua = UsuarioTrabalho.objects.create(codigo=u,departamento=dep,empresa=emp,cargo=c,valetransporte=vtrans,dataadmissao=admissao,datademissao=demissao,indicativoadmissao=indica,primeiroemprego=priempr,regimetrabalho=rtrab,regimeprevidenciario=rprev,regimejornada=rjorn,naturezaatividade=naativ,categoria=cat,codigofuncao=codf,cargahorariam=carh,unidadesalarial=unisa,salariovariavel=salvari,obs=obs)
             usua.save()
             t = UsuarioTrabalho.objects.get(codigo=u)
             
@@ -316,6 +316,7 @@ def edit_usuarios(request,id):
         codf = request.POST["codf"]
         carh = request.POST["carh"]
         unisa = request.POST["unisa"]
+        obs = request.POST["obs"]
         salvari = request.POST["salvari"]
         #documento#
         documento = request.POST["documento"]
@@ -414,6 +415,7 @@ def edit_usuarios(request,id):
             usut.cargahorariam = carh
             usut.unidadesalarial = unisa
             usut.salariovariavel = Decimal(salvari.replace(',','.'))
+            usut.obs = obs
             usut.save()
 
             usud.documento= documento

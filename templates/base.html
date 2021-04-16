@@ -31,7 +31,12 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>              
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>    
         <script src="http://code.jquery.com/jquery-latest.js"></script>
-        
+	    <script type="text/javascript" src="js/jquery-1.2.6.pack.js"></script>
+		<script type="text/javascript" src="js/jquery.maskedinput-1.1.4.pack.js"/></script>
+	    <script data-require="jquery" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+		<script src="{% static 'js/jquery.cep.min.js' %}"></script>
+		<script src="{% static 'js/script.js'%}"></script>
+	
 
 
         <!-- Adicionando JQuery -->
@@ -498,8 +503,8 @@
 	overflow: visible;
 	width: 132px;
 	height: 30px;
-	left: 435px;
-	top: 350px;
+	left: 287px;
+	top: 290px;
 	font-size: 12px;
 	border-color:  rgba(0, 0, 0, 0.161);
 	border-style: solid;
@@ -619,7 +624,7 @@
 	width: 270px;
 	height: 30px;
 	left: 8px;
-	top: 590px;
+	top: 647px;
 	font-size: 12px;
 	border-color:  rgba(0, 0, 0, 0.161);
 	border-style: solid;
@@ -631,9 +636,9 @@
 	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
 	position: absolute;
 	overflow: visible;
-	width: 135px;
+	width: 125px;
 	height: 30px;
-	left: 8px;
+	left: 155px;
 	top: 350px;
 	font-size: 12px;
 	border-color:  rgba(0, 0, 0, 0.161);
@@ -646,11 +651,11 @@
 	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
 	position: absolute;
 	overflow: visible;
-	width: 280px;
+	width: 130px;
 	height: 30px;
-	left: 287px;
+	left: 8px;
 	font-size: 12px;
-	top: 290px;
+	top: 350px;
 	border-color:  rgba(0, 0, 0, 0.161);
 	border-style: solid;
 	border-radius: 20px;
@@ -678,7 +683,7 @@
 	overflow: visible;
 	width: 129px;
 	height: 30px;
-	left: 145px;
+	left: 287px;
 	top: 350px;
 	font-size: 12px;
 	border-color:  rgba(0, 0, 0, 0.161);
@@ -693,7 +698,7 @@
 	overflow: visible;
 	width: 143px;
 	height: 30px;
-	left: 287px;
+	left: 420px;
 	top: 350px;
 	font-size: 12px;
 	border-color:  rgba(0, 0, 0, 0.161);
@@ -709,7 +714,7 @@
 	width: 270px;
 	height: 30px;
 	left: 8px;
-	top: 647px;
+	top: 590px;
 	font-size: 12px;
 	border-color:  rgba(0, 0, 0, 0.161);
 	border-style: solid;
@@ -861,8 +866,8 @@
 	width: 280px;
 	height: 30px;
 	font-size: 12px;
-	left: 287px;
-	top: 220px;
+	left: 8px;
+	top: 270px;
 	border-color:  rgba(0, 0, 0, 0.161);
 	border-style: solid;
 	border-radius: 20px;
@@ -873,9 +878,9 @@
 	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
 	position: absolute;
 	overflow: visible;
-	width: 270px;
+	width: 280px;
 	height: 30px;
-	left: 8px;
+	left: 287px;
 	top: 270px;
 	font-size: 12px;
 	border-color:  rgba(0, 0, 0, 0.161);
@@ -888,11 +893,11 @@
 	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
 	position: absolute;
 	overflow: visible;
-	width: 270px;
+	width: 280px;
 	height: 30px;
 	left: 287px;
 	font-size: 12px;
-	top: 270px;
+	top: 220px;
 	border-color:  rgba(0, 0, 0, 0.161);
 	border-style: solid;
 	border-radius: 20px;
@@ -1090,6 +1095,21 @@
 	font-size: 12px;
 	left: 8px;
 	top: 530px;
+	border-color:  rgba(0, 0, 0, 0.161);
+	border-style: solid;
+	border-radius: 20px;
+	padding-left: 10px;
+	text-transform: uppercase;
+}
+.Retngulo_84 {
+	filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 270px;
+	height: 30px;
+	font-size: 12px;
+	left: 8px;
+	top: 600px;
 	border-color:  rgba(0, 0, 0, 0.161);
 	border-style: solid;
 	border-radius: 20px;

@@ -175,7 +175,7 @@
                     </option>
                 </select>
                 <input  class="Retngulo_apelido form-control" type="text"  name="apelido">
-                <input  class="hibridCpf Retngulo_cpf form-control  "  type="text" required name="cpf">
+                <input id="cpf"  class="Retngulo_cpf   " type="text" required name="cpf">
                 <input  class="Retngulo_pis form-control" type="text" name="pis">   
                 <input  class="Retngulo_titulo form-control" type="text" name="titulo">
                 <input  class="Retngulo_carteira form-control" type="text" name="carteira">
@@ -192,7 +192,7 @@
                         <option value="NÃO INFORMADO ">6 - NÃO INFORMADO</option>
                     </option>
                 </select>
-                <input  class="Retngulo_celp form-control cel-sp-mask" type="text" name="celp">             
+                <input  id="tel"  class="Retngulo_celp form-control cel-sp-mask" type="text" name="celp">             
                 <select name="ecivil"  class="form-select Retngulo_ecivil">
                     <option name="ecivil" value="">
                         <option value="SOLTEIRO">1 - SOLTEIRO </option>
@@ -238,15 +238,15 @@
                 <input  class="Retngulo3_ form-control" type="text" name="oe">
                 <input  class="Retngulo4_ form-control" type="date" value="1900-01-01" name="expedicao">
                 <input  class="Retngulo5_ form-control" type="date"value="1900-01-01"name="validade">  
-                <input  class="Retngulo6_ form-control cep-mask" type="text" name="cep">
-                <input  class="Retngulo7_ form-control" type="text" name="tipo">
-                <input  class="Retngulo8_ form-control" type="text" name="logradouro">
+                <input id="cep" class="Retngulo6_ form-control cep-mask" type="text" name="cep">
+                <input data-cep="tipo_logradouro" class="Retngulo7_ form-control" type="text" name="tipo">
+                <input data-cep="endereco" class="Retngulo8_ form-control" type="text" name="logradouro">
                 <input  class="Retngulo9_ form-control" type="text" name="num">
-                <input  class="Retngulo10_ form-control" type="text" name="ufatual">
-                <input  class="Retngulo11_ form-control" type="text" name="muniatual">
-                <input  class="Retngulo12_ form-control" type="text" name="bairro">
-                <input  class="Retngulo13_ form-control" type="text" name="complemeno">
-                <input  class="Retngulo14_ form-control" type="text" name="pais">
+                <input data-cep="uf" class="Retngulo10_ form-control" type="text" name="ufatual">
+                <input data-cep="cidade" class="Retngulo11_ form-control" type="text" name="muniatual">
+                <input data-cep="bairro" class="Retngulo12_ form-control" type="text" name="bairro">
+                <input id="complemento" class="Retngulo13_ form-control" type="text" name="complemeno">
+                <input id="paisx" class="Retngulo14_ form-control" type="text" name="pais">
             </div>
             <div class="content">
             
@@ -303,8 +303,12 @@
                 <div id="unisa">
                     <span>Unidade Salarial </span>
                 </div>
+               
                 <div id="salvar">
                     <span>Salário Variável</span>
+                </div>
+                <div id="obs">
+                    <span>Observações </span>
                 </div>
 
                 <div id="Dados_Corporativos1">
@@ -415,17 +419,10 @@
                     </option>
                 </select>    
                 <input  class="Retngulo_83 form-control" type="number"     name="salvari">
+                <textarea rows="4" cols="50" name="obs" class="Retngulo_84 form-control" ></textarea>
         
         </div>
         <div class="content">
-           
-                
-        
-        
-        
-        
-        
-        
             <div id="Nome_Completo1">
                 <span>E-mail corporativo 01</span>
             </div>
@@ -459,8 +456,8 @@
             <input  class="Retngulo_60 form-control" type="text" name="email1">
             <input  class="Retngulo_61_ form-control" type="text" name="email2">
             <input  class="Retngulo_62_ form-control" style="margin-top:-20px" type="text" name="skype">
-            <input  class="Retngulo_63 form-control cel-sp-mask" type="text" name="cel">
-            <input  class="Retngulo_64 form-control cel-sp-mask" type="text" name="tel">
+            <input  id="tel" class="Retngulo_63 form-control cel-sp-mask" type="text" name="cel">
+            <input id="tel" class="Retngulo_64 form-control cel-sp-mask" type="text" name="tel">
             <input  class="Retngulo_65 form-control" type="text" name="ramal">
             <input  class="Retngulo_66 form-control" type="text" required name="usuario">
             <input  class="Retngulo_67 form-control" type="password" required name="senha">
@@ -530,38 +527,14 @@
   </div>
 {% endblock modal%}
 {% block js %}
-<script type="text/javascript" src="js/1.5.2.js"></script>
-<script type="text/javascript" src="js/jquery.maskedinput-1.3.min.js"></script>
-<script>
-
-$(".hibridCpf").on('focusin', function() {
-  var target = $(this);
-  var val = target.val();
-  target.unmask();
-  val = val.split(".").join("");
-  val = val.split("-").join("");
-  val = val.split("/").join("");
-  target.val(val);
-});
-$(".hibridCpf").on('focusout', function() {
-  var target = $(this);
-  var val = target.val();
-  val = val.split(".").join("");
-  val = val.split("-").join("");
-  val = val.split("/").join("");
-  if (val.length == 11) {
-    target.mask("999.999.999-99");
-    target.val(val);
-  } else {
-    if (val.length == 14) {
-      target.mask("99.999.999/9999-99");
-      target.val(val);
-    } else {
-      target.val('');
-    }
-  }
-});
-
+<script type="text/javascript" src="https://www.geradorcpf.com/assets/js/jquery-1.2.6.pack.js"></script>
+<script type="text/javascript" src="https://www.geradorcpf.com/assets/js/jquery.maskedinput-1.1.4.pack.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#cpf").mask("999.999.999-99");
+		$("#tel").mask("(99)99999-9999");
+		$("#dt").mask("99/99/9999");
+	});
 </script>
 <script>
     
@@ -573,5 +546,78 @@ $(".hibridCpf").on('focusout', function() {
     }
   };
 </script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+            <script src="{% static 'js/jquery.cep.min.js' %}"></script>
+            <script src="{% static 'js/script.js'%}"></script>          
+<script>
+    $(document).ready(function() {
+
+    function limpa_formulário_cep() {
+    // Limpa valores do formulário de cep.
+    $("#rua").val("");
+    $("#bairro").val("");
+    $("#cidade").val("");
+    $("#uf").val("");
+    $("#ibge").val("");
+    }
+
+    //Quando o campo cep perde o foco.
+    $("#cep").blur(function() {
+
+    //Nova variável "cep" somente com dígitos.
+    var cep = $(this).val().replace(/\D/g, '');
+
+    //Verifica se campo cep possui valor informado.
+    if (cep != "") {
+
+        //Expressão regular para validar o CEP.
+        var validacep = /^[0-9]{8}$/;
+
+        //Valida o formato do CEP.
+        if(validacep.test(cep)) {
+
+            //Preenche os campos com "..." enquanto consulta webservice.
+            $("#rua").val("...");
+            $("#bairro").val("...");
+            $("#cidade").val("...");
+            $("#uf").val("...");
+            $("#ibge").val("...");
+
+            //Consulta o webservice viacep.com.br/
+            $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+                if (!("erro" in dados)) {
+                    //Atualiza os campos com os valores da consulta.
+                    $("#rua").val(dados.logradouro);
+                    $("#bairro").val(dados.bairro);
+                    $("#cidade").val(dados.localidade);
+                    $("#ufx").val(dados.uf);
+                    $("#ibge").val(dados.ibge);
+                    $("#complemnto").val(dados.complemento);
+                    $("#paisx").val("Brasil");
+                } //end if.
+                else {
+                    //CEP pesquisado não foi encontrado.
+                    limpa_formulário_cep();
+                    alert("CEP não encontrado.");
+                }
+            });
+        } //end if.
+        else {
+            //cep é inválido.
+            limpa_formulário_cep();
+            alert("Formato de CEP inválido.");
+        }
+    } //end if.
+    else {
+        //cep sem valor, limpa formulário.
+        limpa_formulário_cep();
+    }
+    });
+    });
+
+</script>    
  {% endblock js %}   
  {% endblock content %}           

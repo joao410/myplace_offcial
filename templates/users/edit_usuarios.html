@@ -169,7 +169,7 @@
         <input  class="Retngulo_carteira form-control" type="text" value="{{usu.codigo.carteiratrabalho}}" name="carteira">
         <input  class="Retngulo_serie form-control" type="text" value="{{usu.codigo.serie}}"name="serie">
         <input  class="Retngulo_ufc form-control" type="text" value="{{usu.codigo.ufcarteiratrabalho}}" name="ufc">
-        <input  class="Retngulo_emissao form-control" type="text"  value="{{usu.codigo.datacarteiratrabalho|date:"SHORT_DATE_FORMAT"}}"  name="emissao" placeholder="{{dtemissao}}">           
+        <input id="dt"  class="Retngulo_emissao form-control" type="text"  value="{{usu.codigo.datacarteiratrabalho|date:"SHORT_DATE_FORMAT"}}"  name="emissao" placeholder="{{dtemissao}}">           
         <select name="cor"  class="form-select Retngulo_cor">
             <option name="cor" value="" >
                 <option value="{{usu.codigo.cor}}" selected> {{usu.codigo.cor}}</option>
@@ -181,7 +181,7 @@
                 <option value="NÃO INFORMADO ">6 - NÃO INFORMADO</option>
             </option>
         </select>
-        <input  class="Retngulo_celp form-control"  value="{{usu.codigo.celpessoal}}" type="text" name="celp">             
+        <input id="tel" class="Retngulo_celp form-control"  value="{{usu.codigo.celpessoal}}" type="text" name="celp">             
         <select name="ecivil"  class="form-select Retngulo_ecivil">
             <option name="ecivil" value="">
                 <option value="{{usu.codigo.ecivil}}" selected> {{usu.codigo.ecivil}}</option>
@@ -209,7 +209,7 @@
                 <option value="DOUTORADO COMPLETO">11 - DOUTORADO COMPLETO </option>
             </option>
         </select>
-        <input  class="Retngulo_dn form-control" value="{{usu.codigo.datanacimento|date:"SHORT_DATE_FORMAT"}}" type="text" name="datanasci">
+        <input id="dt" class="Retngulo_dn form-control" value="{{usu.codigo.datanacimento|date:"SHORT_DATE_FORMAT"}}" type="text" name="datanasci">
         <input  class="Retngulo_munasci form-control" type="text"value="{{usu.codigo.municipionacimento}}" name="municipionasc">
         <input  class="Retngulo_ufn form-control" type="text" value="{{usu.codigo.ufnacimento}}" name="ufnasci">                
         <input  class="Retngulo_pais form-control" type="text"  value="{{usu.codigo.paisnacimento}}"name="paisnasci">
@@ -226,8 +226,8 @@
         </select>
         <input  class="Retngulo2_ form-control"  value="{{usu.documento.numerodocumento}}" type="text" name="numero">
         <input  class="Retngulo3_ form-control"  value="{{usu.documento.orgao}}" type="text" name="oe">
-        <input  class="Retngulo4_ form-control"  value="{{usu.documento.dataexpedissao|date:"SHORT_DATE_FORMAT"}}" type="text" name="expedicao">
-        <input  class="Retngulo5_ form-control"  value="{{usu.documento.validade|date:"SHORT_DATE_FORMAT"}}" type="text" name="validade">                
+        <input id="dt"   class="Retngulo4_ form-control"  value="{{usu.documento.dataexpedissao|date:"SHORT_DATE_FORMAT"}}" type="text" name="expedicao">
+        <input id="dt"  class="Retngulo5_ form-control"  value="{{usu.documento.validade|date:"SHORT_DATE_FORMAT"}}" type="text" name="validade">                
         <input  class="Retngulo6_ form-control"  value="{{usu.endereco.cep}}" type="text" name="cep">
         <input  class="Retngulo7_ form-control"  value="{{usu.endereco.tipo}}" type="text" name="tipo">
         <input  class="Retngulo8_ form-control"  value="{{usu.endereco.logradouro}}" type="text" name="logradouro">
@@ -310,7 +310,9 @@
         <div id="salvar">
             <span>Salário Variavel</span>
         </div>
-
+        <div id="obs">
+            <span>Observações </span>
+        </div>
         <div id="Dados_Corporativos1">
             <span>Dados Empresariais</span>
         </div>
@@ -344,8 +346,8 @@
                 <option value="nao">2-NÃO </option>                        
             </option>
         </select>     
-        <input  class="Retngulo_admissao form-control" value="{{usu.trabalho.dataadmissao|date:"SHORT_DATE_FORMAT"}}" type="text" name="admissao">
-        <input  class="Retngulo_demissao form-control" type="text" value="{{usu.trabalho.datademissao|date:"SHORT_DATE_FORMAT"}}" name="demicao">
+        <input id="dt"  class="Retngulo_admissao form-control" value="{{usu.trabalho.dataadmissao|date:"SHORT_DATE_FORMAT"}}" type="text" name="admissao">
+        <input id="dt"   class="Retngulo_demissao form-control" type="text" value="{{usu.trabalho.datademissao|date:"SHORT_DATE_FORMAT"}}" name="demicao">
         <select name="tipoadmissao"  class="form-select Retngulo_tipoadmissao">
             <option name="tipoadmissao" value="">^
                 <option value="{{usu.trabalho.tipoAdmissao}}" selected>{{usu.trabalho.tipoAdmissao}}</option>
@@ -422,6 +424,8 @@
             </option>
         </select>    
         <input  class="Retngulo_83 form-control" type="text" value="{{usu.trabalho.salariovariavel}}"   name="salvari">
+        <textarea rows="4" cols="50" name="obs" class="Retngulo_84 form-control" value="{{usu.trabalho.obs}}" ></textarea>
+        
        
 </div>
 <div class="content">
@@ -466,8 +470,8 @@
     <input  class="Retngulo_60 form-control" type="text" value="{{usu.email}}"  name="email1">
     <input  class="Retngulo_61_ form-control" type="text" value="{{usu.emailCorporativo}}"  name="email2">
     <input  class="Retngulo_62_ form-control" style="margin-top:-20px"  value="{{usu.skype}}" type="text" name="skype">
-    <input  class="Retngulo_63 form-control" type="text"  value="{{usu.telefone}}" name="cel">
-    <input  class="Retngulo_64 form-control" type="text"  value="{{usu.tel}}"  name="tel">
+    <input id="tel" class="Retngulo_63 form-control" type="text"  value="{{usu.telefone}}" name="cel">
+    <input id="tel"  class="Retngulo_64 form-control" type="text"  value="{{usu.tel}}"  name="tel">
     <input  class="Retngulo_65 form-control" type="text"  value="{{usu.ramal}}"name="ramal">
     <input  class="Retngulo_66 form-control" type="text"  value="{{usu.usuario}}"  name="usuario">
     <input  class="Retngulo_67 form-control" type="password"  disabled value="{{usu.usuario.senha}}" name="senha">
@@ -534,7 +538,15 @@
     </div> 
 </main>
 {% block js %}
-
+<script type="text/javascript" src="https://www.geradorcpf.com/assets/js/jquery-1.2.6.pack.js"></script>
+<script type="text/javascript" src="https://www.geradorcpf.com/assets/js/jquery.maskedinput-1.1.4.pack.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#cpf").mask("999.999.999-99");
+		$("#tel").mask("(99)99999-9999");
+		$("#dt").mask("99/99/9999");
+	});
+</script>
 <script>
 
   var loadFile = function(event) {

@@ -83,7 +83,17 @@ class UsuarioPessoal(Base):
     def __str__(self):
         return f'{self.nome} - {self.cpf}'   
 
+class Contabancaria(Base):
+    codigo = models.ForeignKey(UsuarioPessoal,on_delete=models.CASCADE, null=True, blank=True )
+    banco = models.CharField("Banco", max_length=255,blank=True,null=True,default=None)
+    agencia = models.CharField("Agência", max_length=255,blank=True,null=True,default=None)
+    conta = models.CharField("Conta", max_length=255,blank=True,null=True,default=None)
+    class Meta:
+       verbose_name = "Contabancaria"
+       verbose_name_plural = "Contasbancarias"
 
+    def __str__(self):
+        return f'{self.banco} - {self.agencia} - {self.conta}'  
 
 class UsuarioTrabalho(Base):
     codigo = models.ForeignKey(UsuarioPessoal,on_delete=models.CASCADE, null=True, blank=True )
@@ -91,6 +101,7 @@ class UsuarioTrabalho(Base):
     cargo = models.ForeignKey(Cargo,on_delete=models.CASCADE, null=True, blank=True )
     departamento = models.CharField("Departamento",blank=True,null=True,max_length=100,default=None)
     valetransporte =  models.CharField("valetransporte",max_length=3,blank=True,null=True,default=None)
+    obs =  models.TextField("Observação",max_length=255,blank=True,null=True,default=None)
     dataadmissao = models.DateField(blank=True,null=True)
     datademissao = models.DateField(blank=True,null=True)
     tipoAdmissao  = models.CharField("tipoAdmissao",max_length=100,blank=True,null=True,default=None)
@@ -131,7 +142,7 @@ class UsuarioDocumentos(Base):
 class UsuarioEndereco(Base):
     codigo = models.ForeignKey(UsuarioPessoal,on_delete=models.CASCADE, null=True, blank=True)
     cep = models.CharField("Cep",max_length=9,blank=True,null=True,default=None)
-    tipo = models.CharField("Tipo",max_length=2,blank=True,null=True,default=None)
+    tipo = models.CharField("Tipo",max_length=100,blank=True,null=True,default=None)
     logradouro = models.CharField("Logradouro",blank=True,null=True ,max_length=250,default=None)
     numero = models.CharField("Numero",max_length=5,blank=True,null=True,default=None)
     ufatual = models.CharField("UfAtual",blank=True,null=True,max_length=2,default=None)
@@ -154,6 +165,7 @@ class UsuarioCorporativo(Base):
     trabalho = models.ForeignKey(UsuarioTrabalho,on_delete=models.CASCADE, null=True, blank=True)
     endereco = models.ForeignKey(UsuarioEndereco,on_delete=models.CASCADE, null=True, blank=True)
     documento = models.ForeignKey(UsuarioDocumentos,on_delete=models.CASCADE, null=True, blank=True)
+    banco = models.ForeignKey(Contabancaria,on_delete=models.DO_NOTHING, null=True, blank=True)
     email = models.CharField("email", blank=True,null=True,max_length=100, default=None)
     emailCorporativo = models.CharField("email_corporativo", max_length=100,blank=True,null=True,default=None)
     skype = models.CharField("skype",max_length=100,blank=True,null=True,default=None) 
