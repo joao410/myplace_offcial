@@ -42,7 +42,7 @@ def add_usuarios(request):
     if not imageP.image:
       imageP = ImagePerfil.objects.get(nome= "padrao")
     empresa = Empresa.objects.all()
-    cargos = Cargo.objects.all()
+    cargos = Cargo.objects.all().order_by("cargo")
     filtro = ChamadoFilter()
     context = {
     'chamados': chamados,
@@ -549,23 +549,24 @@ def home(request):
     admin = Chamado.objects.all()
           
     usuarioC = UsuarioCorporativo.objects.get(usuario=user)
-    try:  
-        codigo = usuarioC.codigo
-        usuarioT= UsuarioTrabalho.objects.get(codigo=codigo)
-        usuarioP = UsuarioPessoal.objects.get(nome=codigo.nome)
-        usuarioE = UsuarioEndereco.objects.get(codigo=codigo)
-        usuarioD = UsuarioDocumentos.objects.get(codigo=codigo)
-        grupo= usuarioC.grupo
-        chamados = Chamado.objects.filter(grupo=grupo).order_by("-id")    
-        chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("-id")
-        grupos= usuarioC.grupo.name
-   
-        filtro = ChamadoFilter()
+    codigo = usuarioC.codigo
+    usuarioT= UsuarioTrabalho.objects.get(codigo=codigo)
+    usuarioP = UsuarioPessoal.objects.get(nome=codigo.nome)
+    usuarioE = UsuarioEndereco.objects.get(codigo=codigo)
+    usuarioD = UsuarioDocumentos.objects.get(codigo=codigo)
+    grupo= usuarioC.grupo
+    chamados = Chamado.objects.filter(grupo=grupo).order_by("-id")    
+    chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("-id")
+    grupos= usuarioC.grupo.name
+
+    filtro = ChamadoFilter()
+    try:
         imageP = ImagePerfil.objects.get(nome= codigo.nome)
         if not imageP.image:
-            imageP = ImagePerfil.objects.get(nome= "padrao")  
-    except:   
-        pass     
+            imageP = ImagePerfil.objects.get(nome= "padrao")
+    except:
+        imageP = ImagePerfil.objects.get(nome= "padrao")          
+      
     
        
     
@@ -790,5 +791,13 @@ def problem(request):
                 }            
     return render(request, 'users/problem.html', context)
 
+@login_required(login_url='/authentication/login')    
+def cargo(request):
+    if request.method == 'POST' and 'cargo' in request.POST:
+        cargo = request.POST["cargo"]
+        ncbo = request.POST["ncbo"]
+        Cargo.objects.create(cargo=cargo,ncbo=ncbo)
+        messages.success(request,'Cadastrado com sucesso')
+    return redirect ('users/add_usuarios.html')    
 
 

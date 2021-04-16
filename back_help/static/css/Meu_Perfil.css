@@ -1288,6 +1288,14 @@ width: 500px;
 	top: 327px;
 	overflow: visible;
 }
+.add-button5{
+	position: absolute;
+	width: 5px;
+	height: 5px;
+	left: 295px;
+	top: 162px;
+	overflow: visible;
+}
 .add-button_cg {
 	position: absolute;
 	width: 102px;

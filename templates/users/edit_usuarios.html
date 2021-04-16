@@ -86,7 +86,7 @@
             <span>Data de Nascimento</span>
         </div>
        <div id="munasci">
-            <span>MunicÍpio</span>
+            <span>Município</span>
         </div>
        <div id="uf">
             <span>UF</span>
@@ -135,7 +135,7 @@
             <span>Uf</span>
         </div>
         <div id="endereco5">
-            <span>Municipio</span>
+            <span>Município</span>
         </div>
         <div id="endereco6">
             <span>Bairro</span>
@@ -287,7 +287,7 @@
             <span>Regime de Trabalho</span>
         </div>
         <div id="rprev">
-            <span>Regime Previdenciario</span>
+            <span>Regime Previdenciário</span>
         </div>
         <div id="rjorn">
             <span>Regime de Jornada</span>
@@ -299,7 +299,7 @@
             <span>Categoria</span>
         </div>
         <div id="codf">
-            <span>Codigo da Função</span>
+            <span>CBO</span>
         </div>
         <div id="carh">
             <span>Carga Horária</span>
@@ -315,7 +315,7 @@
             <span>Dados Empresariais</span>
         </div>
   
-    <input  class="Retngulo_60 form-control depright" value="{{usu.trabalho.departamento}}" type="text"  name="departamento">
+        <input  class="Retngulo_60 form-control depright" value="{{usu.trabalho.departamento}}" type="text"  name="departamento">
         <select name="empresa"  class="form-select Retngulo_empresa">
             <option name="empresa" value="">
                 <option value="{{usu.trabalho.empresa}}" selected>{{usu.trabalho.empresa}}</option>
@@ -333,15 +333,13 @@
             </option>
         </select>
         <select name="vtrans"  class="form-select Retngulo_vtrans">
-            <option name="vtrans" value="">
-                <option value="{{usu.trabalho.valetransporte}}" selected>{{usu.trabalho.valetransporte}}</option>
+            <option name="vtrans" value="{{usu.trabalho.valetransporte}}">
                 <option value="sim">1-SIM</option>
                 <option value="nao">2-NÃO</option>                        
             </option>
         </select>
         <select name="priempr"  class="form-select Retngulo_priempr">
-            <option name="priempr" value="">
-                <option value="{{usu.trabalho.primeiroemprego}}" selected>{{usu.trabalho.primeiroemprego}}</option>
+            <option name="priempr" value="{{usu.trabalho.primeiroemprego}}">
                 <option value="sim">1-SIM </option>
                 <option value="nao">2-NÃO </option>                        
             </option>
@@ -364,8 +362,7 @@
                 <option value="Decorrente de ação fiscal">2 - DECORRENTE DE AÇÃO FISCAL</option>
                 <option value="Decorrente de decisão judicial ">3 -DECORRENTE DE AÇÃO JUDICIAL</option>               
             </option>
-        </select>             
-            
+        </select>                    
         <select name="rtrab"  class="form-select Retngulo_75">
             <option name="rtrab" value="">
                 <option value="{{usu.trabalho.regimetrabalho}}" selected>{{usu.trabalho.regimetrabalho}}</option>
@@ -396,8 +393,7 @@
                 <option value="TRABALHO URBANO">1 - TRABALHO URBANO</option>
                 <option value="RURAL">2 -RURAL</option>
             </option>
-        </select>    
-       
+        </select>     
         <select name="cat"  class="form-select Retngulo_79">
             <option name="cat" value="">
                 <option value="{{usu.trabalho.categoria}}" selected>{{usu.trabalho.categoria}}</option>
@@ -412,9 +408,6 @@
                 <option value="ESTAGIÁRIO">9 - ESTAGIÁRIO </option>
             </option>
         </select>    
-
-
-
         <input  class="Retngulo_80 form-control" value="{{usu.trabalho.codigofuncao}}" type="text" name="codf">
         <input  class="Retngulo_81 form-control" value="{{usu.trabalho.cargahorariam}}"type="text" name="carh">
         <select name="unisa"  class="form-select Retngulo_82">
@@ -429,15 +422,6 @@
             </option>
         </select>    
         <input  class="Retngulo_83 form-control" type="text" value="{{usu.trabalho.salariovariavel}}"   name="salvari">
-
-
-
-
-
-
-        
-       
-    
        
 </div>
 <div class="content">

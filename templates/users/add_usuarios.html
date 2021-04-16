@@ -54,13 +54,13 @@
                 <div class="content">
         
                 <div id="Nome_Completo1">
-                    <span>Nome Completo</span>
+                    <span style="color: rgba(255,0,0,1);">*</span> <span>Nome Completo</span>
                 </div>
                 <div id="apelido">
                     <span>Apelido</span>
                 </div>
                 <div id="Cargo__Funo2">
-                    <span>CPF</span>
+                    <span style="color: rgba(255,0,0,1);">*</span>  <span>CPF</span>
                 </div>
                 <div id="pis">
                     <span>PIS</span>
@@ -96,10 +96,10 @@
                     <span>Escolaridade</span>
                 </div>
                <div id="dn">
-                    <span>Data de Nascimento</span>
+                <span style="color: rgba(255,0,0,1);">*</span>  <span>Data de Nascimento</span>
                 </div>
                <div id="munasci">
-                    <span>MunicÍpio</span>
+                    <span>Município</span>
                 </div>
                <div id="uf">
                     <span>UF</span>
@@ -175,7 +175,7 @@
                     </option>
                 </select>
                 <input  class="Retngulo_apelido form-control" type="text"  name="apelido">
-                <input  class="Retngulo_cpf form-control" type="text" required name="cpf">
+                <input  class="hibridCpf Retngulo_cpf form-control  "  type="text" required name="cpf">
                 <input  class="Retngulo_pis form-control" type="text" name="pis">   
                 <input  class="Retngulo_titulo form-control" type="text" name="titulo">
                 <input  class="Retngulo_carteira form-control" type="text" name="carteira">
@@ -192,7 +192,7 @@
                         <option value="NÃO INFORMADO ">6 - NÃO INFORMADO</option>
                     </option>
                 </select>
-                <input  class="Retngulo_celp form-control" type="text" name="celp">             
+                <input  class="Retngulo_celp form-control cel-sp-mask" type="text" name="celp">             
                 <select name="ecivil"  class="form-select Retngulo_ecivil">
                     <option name="ecivil" value="">
                         <option value="SOLTEIRO">1 - SOLTEIRO </option>
@@ -238,7 +238,7 @@
                 <input  class="Retngulo3_ form-control" type="text" name="oe">
                 <input  class="Retngulo4_ form-control" type="date" value="1900-01-01" name="expedicao">
                 <input  class="Retngulo5_ form-control" type="date"value="1900-01-01"name="validade">  
-                <input  class="Retngulo6_ form-control" type="text" name="cep">
+                <input  class="Retngulo6_ form-control cep-mask" type="text" name="cep">
                 <input  class="Retngulo7_ form-control" type="text" name="tipo">
                 <input  class="Retngulo8_ form-control" type="text" name="logradouro">
                 <input  class="Retngulo9_ form-control" type="text" name="num">
@@ -255,7 +255,7 @@
                     <span>Departamento</span>
                 </div>
                 <div id="cargo">
-                    <span>Cargo / Função</span>
+                    <span style="color: rgba(255,0,0,1);">*</span> <span>Cargo / Função</span>
                 </div>
                 
                 <div id="Empresa1">
@@ -283,7 +283,7 @@
                     <span>Regime de Trabalho</span>
                 </div>
                 <div id="rprev">
-                    <span>Regime Previdenciario</span>
+                    <span>Regime Previdenciário</span>
                 </div>
                 <div id="rjorn">
                     <span>Regime de Jornada</span>
@@ -295,7 +295,7 @@
                     <span>Categoria</span>
                 </div>
                 <div id="codf">
-                    <span>Codigo da Função</span>
+                    <span>CBO</span>
                 </div>
                 <div id="carh">
                     <span>Carga Horária</span>
@@ -325,6 +325,9 @@
                         {% endfor %}                       
                     </option>
                 </select>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <img class="add-button5" src="{% static 'img/add-button.png' %}" >
+                </button>
                 <select name="vtrans"  class="form-select Retngulo_vtrans">
                     <option name="vtrans" value="">
                         <option value="sim">1-SIM</option>
@@ -442,10 +445,10 @@
                 <span>Ramal</span>
             </div>
             <div id="Skype1">
-                <span>Usuário</span>
+                <span style="color: rgba(255,0,0,1);">*</span>  <span>Usuário</span>
             </div>
             <div id="Celular_Corporativo1">
-                <span>Senha</span>
+                <span style="color: rgba(255,0,0,1);">*</span> <span>Senha</span>
             </div>
           
             <div id="Dados_Corporativos1">
@@ -456,8 +459,8 @@
             <input  class="Retngulo_60 form-control" type="text" name="email1">
             <input  class="Retngulo_61_ form-control" type="text" name="email2">
             <input  class="Retngulo_62_ form-control" style="margin-top:-20px" type="text" name="skype">
-            <input  class="Retngulo_63 form-control" type="text" name="cel">
-            <input  class="Retngulo_64 form-control" type="text" name="tel">
+            <input  class="Retngulo_63 form-control cel-sp-mask" type="text" name="cel">
+            <input  class="Retngulo_64 form-control cel-sp-mask" type="text" name="tel">
             <input  class="Retngulo_65 form-control" type="text" name="ramal">
             <input  class="Retngulo_66 form-control" type="text" required name="usuario">
             <input  class="Retngulo_67 form-control" type="password" required name="senha">
@@ -501,7 +504,65 @@
                 </div>
        </div> 
 </main>
+
+{% block modal %}
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Cadastro de Função</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="POST" action="{% url 'cargo' %}">
+          <label>Cargo:</label><br>    
+          <input type="text" class="form-control" name="cargo"><br>
+          <label>Ncbo:</label><br> 
+          <input type="text" class="form-control" name="ncbo"><br>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fecha</button>
+          <button type="submit" class="btn btn-primary">Salvar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock modal%}
 {% block js %}
+<script type="text/javascript" src="js/1.5.2.js"></script>
+<script type="text/javascript" src="js/jquery.maskedinput-1.3.min.js"></script>
+<script>
+
+$(".hibridCpf").on('focusin', function() {
+  var target = $(this);
+  var val = target.val();
+  target.unmask();
+  val = val.split(".").join("");
+  val = val.split("-").join("");
+  val = val.split("/").join("");
+  target.val(val);
+});
+$(".hibridCpf").on('focusout', function() {
+  var target = $(this);
+  var val = target.val();
+  val = val.split(".").join("");
+  val = val.split("-").join("");
+  val = val.split("/").join("");
+  if (val.length == 11) {
+    target.mask("999.999.999-99");
+    target.val(val);
+  } else {
+    if (val.length == 14) {
+      target.mask("99.999.999/9999-99");
+      target.val(val);
+    } else {
+      target.val('');
+    }
+  }
+});
+
+</script>
 <script>
     
   var loadFile = function(event) {
