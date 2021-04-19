@@ -4,7 +4,7 @@ from django.forms import modelformset_factory
 import csv
 from .models import  User
 from helpdesk.models import  Chamado, Image , ImageLink, Chat
-from .models import   UsuarioCorporativo, UsuarioEndereco, UsuarioTrabalho,UsuarioDocumentos, Empresa, ImagePerfil, UsuarioPessoal,Cargo
+from .models import   UsuarioCorporativo, UsuarioEndereco, UsuarioTrabalho,UsuarioDocumentos, Empresa, ImagePerfil, UsuarioPessoal,Cargo,Contabancaria
 from helpdesk.forms import ImageForm, ImageForms
 from django.http import HttpResponseRedirect
 from django.contrib import messages
@@ -115,7 +115,10 @@ def add_usuarios(request):
         salvari = request.POST["salvari"]
         if not salvari:
            salvari =0.00
-
+        #conta#
+        banco = request.POST["banco"]
+        agencia = request.POST["agencia"]
+        conta = request.POST["conta"]
         #documento#
         documento = request.POST["documento"]
         ndocumento = request.POST["numero"]
@@ -145,7 +148,7 @@ def add_usuarios(request):
         senha=senha.upper() 
         repassword = request.POST["senha"]    
         repassword = repassword.upper()
-    
+        
         grupo = request.POST["grupo"] 
         gs = Group.objects.get(name=grupo)   
      
@@ -178,6 +181,8 @@ def add_usuarios(request):
             u = UsuarioPessoal.objects.get(nome=nome)
             c= Cargo.objects.get(cargo=cargo)
 
+            conta = Contabancaria.objects.create(codigo=u,banco=banco,conta=conta,agencia=agencia)
+            conta.save()
 
             usua = UsuarioTrabalho.objects.create(codigo=u,departamento=dep,empresa=emp,cargo=c,valetransporte=vtrans,dataadmissao=admissao,datademissao=demissao,indicativoadmissao=indica,primeiroemprego=priempr,regimetrabalho=rtrab,regimeprevidenciario=rprev,regimejornada=rjorn,naturezaatividade=naativ,categoria=cat,codigofuncao=codf,cargahorariam=carh,unidadesalarial=unisa,salariovariavel=salvari,obs=obs)
             usua.save()
@@ -191,7 +196,7 @@ def add_usuarios(request):
             en = UsuarioEndereco.objects.create(codigo=u, cep=cep,tipo=tipo,logradouro=logradouro,numero=num,ufatual=ufatual,municipioatul=muniatual,bairroatual=bairro,complemento=complemento,pais=pais)
             en.save()
             e = UsuarioEndereco.objects.get(codigo=u)
-            usuar  = UsuarioCorporativo.objects.create(codigo=u,trabalho=t,documento=d,endereco=e,email=email1,emailCorporativo=email2,skype=skype,telefone=cel,tel=tel,ramal=ramal,usuario=users,grupo=gs)
+            usuar  = UsuarioCorporativo.objects.create(codigo=u,trabalho=t,documento=d,endereco=e,email=email1,emailCorporativo=email2,skype=skype,telefone=cel,tel=tel,ramal=ramal,usuario=users,grupo=gs,banco=conta)
             usuar.save()
             form = ImageForm(request.POST, request.FILES)
             if form.is_valid():
@@ -318,6 +323,10 @@ def edit_usuarios(request,id):
         unisa = request.POST["unisa"]
         obs = request.POST["obs"]
         salvari = request.POST["salvari"]
+        #conta#
+        banco = request.POST["banco"]
+        agencia = request.POST["agencia"]
+        conta = request.POST["conta"]
         #documento#
         documento = request.POST["documento"]
         ndocumento = request.POST["numero"]
@@ -355,7 +364,7 @@ def edit_usuarios(request,id):
              vtrans = "---"     
 
         if  User.objects.filter(username=usuario).exists():  
-                        
+                   
             
             user = User.objects.get(username=usuario)
             user.is_active = True
@@ -389,8 +398,15 @@ def edit_usuarios(request,id):
             usup.nomemae = mae
             usup.nomepai = pai
             usup.save()
-
-
+            if Contabancaria.objects.filter(codigo =usup.nome).exists():  
+                conta = Contabancaria.objects.get(codigo=usup.nome)
+                conta.banco = banco
+                conta.agencia = agencia
+                conta.conta = conta
+                conta.save()
+            else:
+                conta = Contabancaria.objects.create(codigo=usup.nome,banco=banco,agencia=agencia,conta=conta)
+                conta.save()
             usut.empresa = emp
             usut.departamento = dep
             usut.cargo = Cargo.objects.get(cargo=cargo)

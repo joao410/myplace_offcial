@@ -1,3 +1,7 @@
+
+
+/*correçoes*/
+
 text {
 	padding: 0.75rem 1rem;
 	white-space: pre-wrap;
@@ -103,6 +107,62 @@ tr .sender span {
 
 
 
+#bd {
+	left:287px;
+	top: 570px;
+	position: absolute;
+	overflow: visible;
+	width: 57px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Segoe UI;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 16px;
+	color: rgba(93,90,90,1);
+}
+#bdbanco {
+	left:287px;
+	top: 600px;
+	position: absolute;
+	overflow: visible;
+	width: 57px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Segoe UI;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 16px;
+	color: rgba(93,90,90,1);
+}
+#bdagencia {
+	left:287px;
+	top: 630px;
+	position: absolute;
+	overflow: visible;
+	width: 57px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Segoe UI;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 16px;
+	color: rgba(93,90,90,1);
+}
+#bdconta {
+	left:287px;
+	top: 660px;
+	position: absolute;
+	overflow: visible;
+	width: 57px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Segoe UI;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 16px;
+	color: rgba(93,90,90,1);
+}
 
 
 
