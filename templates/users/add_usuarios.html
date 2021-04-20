@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block content %}
 <main role="main"  class="col-md-8 m-sm-auto col-lg-8 col-md-6 "  >
     <div class="container">
@@ -160,24 +161,24 @@
                     <span>Dados Pessoais</span>
                 </div>
               
-                <input  class="Retngulo_60 form-control" type="text"  required name="nome">
+                <input  class="Retngulo_60 " type="text"  required name="nome">
                 
-                <select name="genero"  class="form-select Retngulo_genero">
+                <select name="genero"  class=" Retngulo_genero">
                     <option name="genero" value="">
                         <option value="Masculno">Masculino</option>
                         <option value="Feminino">Feminino</option>
                         <option value="Prefiro não informar">Prefiro não informar</option>
                     </option>
                 </select>
-                <input  class="Retngulo_apelido form-control" type="text"  name="apelido">
+                <input  class="Retngulo_apelido " type="text"  name="apelido">
                 <input id="cpf"  class="Retngulo_cpf   " type="text" required name="cpf">
-                <input  class="Retngulo_pis form-control" type="text" name="pis">   
-                <input  class="Retngulo_titulo form-control" type="text" name="titulo">
-                <input  class="Retngulo_carteira form-control" type="text" name="carteira">
-                <input  class="Retngulo_serie form-control" type="text" name="serie">
-                <input  class="Retngulo_ufc form-control" type="text" name="ufc">
-                <input  class="Retngulo_emissao form-control" type="date" value="1900-01-01"name="emissao">           
-                <select name="cor"  class="form-select Retngulo_cor">
+                <input  class="Retngulo_pis " type="text" name="pis">   
+                <input  class="Retngulo_titulo " type="text" name="titulo">
+                <input  class="Retngulo_carteira " type="text" name="carteira">
+                <input  class="Retngulo_serie " type="text" name="serie">
+                <input  class="Retngulo_ufc " type="text" name="ufc">
+                <input  class="Retngulo_emissao " type="date" value="1900-01-01"name="emissao">           
+                <select name="cor"  class=" Retngulo_cor">
                     <option name="cor" value="">
                         <option value="INDIGENA">1 - INDIGENA </option>
                         <option value="BRANCA">2 - BRANCO</option>
@@ -187,8 +188,8 @@
                         <option value="NÃO INFORMADO ">6 - NÃO INFORMADO</option>
                     </option>
                 </select>
-                <input  id="tel"  class="Retngulo_celp form-control cel-sp-mask" type="text" name="celp">             
-                <select name="ecivil"  class="form-select Retngulo_ecivil">
+                <input  id="tel"  class="Retngulo_celp  cel-sp-mask" type="text" name="celp">             
+                <select name="ecivil"  class=" Retngulo_ecivil">
                     <option name="ecivil" value="">
                         <option value="SOLTEIRO">1 - SOLTEIRO </option>
                         <option value="CASADO">2 - CASADO</option>
@@ -198,7 +199,7 @@
                         <option value="UNIÃO ESTÁVEL">6 - UNIÃO ESTÁVEL</option>
                     </option>
                 </select>
-                 <select name="escolaridade"  class="form-select Retngulo_escol">
+                 <select name="escolaridade"  class=" Retngulo_escol">
                     <option name="escolaridade" value="">
                         <option value="ANALFABETO">1 - ANALFABETO </option>
                         <option value="ATÉ O 5° ANO INCOMPLETO">2 - ATÉ O 5° ANO INCOMPLETO</option>
@@ -215,33 +216,33 @@
                 </select>
 
 
-                <input  class="Retngulo_dn form-control" type="date" required name="datanasci">
-                <input  class="Retngulo_munasci form-control" type="text" name="municipionasc">
-                <input  class="Retngulo_ufn form-control" type="text" name="ufnasci">                
-                <input  class="Retngulo_pais form-control" type="text" name="paisnasci">
-                <input  class="Retngulo_nasci form-control" type="text" name="nasciona">
-                <input  class="Retngulo_pai form-control" type="text" name="pai">
-                <input  class="Retngulo_mae form-control" type="text" name="mae">
-                <select name="documento"  class="form-select Retngulo1_ ">
+                <input  class="Retngulo_dn " type="date" required name="datanasci">
+                <input  class="Retngulo_munasci " type="text" name="municipionasc">
+                <input  class="Retngulo_ufn " type="text" name="ufnasci">                
+                <input  class="Retngulo_pais " type="text" name="paisnasci">
+                <input  class="Retngulo_nasci " type="text" name="nasciona">
+                <input  class="Retngulo_pai " type="text" name="pai">
+                <input  class="Retngulo_mae " type="text" name="mae">
+                <select name="documento"  class=" Retngulo1_ ">
                     <option name="documento" value="">
                         <option value="PG">RG</option>
                         <option value="CNH">CNH</option>
                 
                     </option>
                 </select>
-                <input  class="Retngulo2_ form-control" type="text" name="numero">
-                <input  class="Retngulo3_ form-control" type="text" name="oe">
-                <input  class="Retngulo4_ form-control" type="date" value="1900-01-01" name="expedicao">
-                <input  class="Retngulo5_ form-control" type="date"value="1900-01-01"name="validade">  
-                <input id="cep" class="Retngulo6_ form-control cep-mask" type="text" name="cep">
-                <input data-cep="tipo_logradouro" class="Retngulo7_ form-control" type="text" name="tipo">
-                <input data-cep="endereco" class="Retngulo8_ form-control" type="text" name="logradouro">
-                <input  class="Retngulo9_ form-control" type="text" name="num">
-                <input data-cep="uf" class="Retngulo10_ form-control" type="text" name="ufatual">
-                <input data-cep="cidade" class="Retngulo11_ form-control" type="text" name="muniatual">
-                <input data-cep="bairro" class="Retngulo12_ form-control" type="text" name="bairro">
-                <input id="complemento" class="Retngulo13_ form-control" type="text" name="complemeno">
-                <input id="paisx" class="Retngulo14_ form-control" type="text" name="pais">
+                <input  class="Retngulo2_ " type="text" name="numero">
+                <input  class="Retngulo3_ " type="text" name="oe">
+                <input  class="Retngulo4_ " type="date" value="1900-01-01" name="expedicao">
+                <input  class="Retngulo5_ " type="date"value="1900-01-01"name="validade">  
+                <input id="cep" class="Retngulo6_  cep-mask" type="text" name="cep">
+                <input data-cep="tipo_logradouro" class="Retngulo7_ " type="text" name="tipo">
+                <input data-cep="endereco" class="Retngulo8_ " type="text" name="logradouro">
+                <input  class="Retngulo9_ " type="text" name="num">
+                <input data-cep="uf" class="Retngulo10_ " type="text" name="ufatual">
+                <input data-cep="cidade" class="Retngulo11_ " type="text" name="muniatual">
+                <input data-cep="bairro" class="Retngulo12_ " type="text" name="bairro">
+                <input id="complemento" class="Retngulo13_ " type="text" name="complemeno">
+                <input id="paisx" class="Retngulo14_ " type="text" name="pais">
             </div>
             <div class="content">
             
@@ -321,15 +322,15 @@
                 <div id="Dados_Corporativos1">
                     <span>Dados Empresariais</span>
                 </div>
-                <input  class="Retngulo_60 form-control depright" type="text"  name="departamento">
-                <select name="empresa"  class="form-select Retngulo_empresa">
+                <input  class="Retngulo_60 depright" type="text"  name="departamento">
+                <select name="empresa"  class=" Retngulo_empresa">
                     <option name="empresa" value="">
                         {% for empresa in empresa %}
                         <option value="{{empresa.nempresa}}">{{empresa.nempresa}}</option>
                         {% endfor %}
                     </option>
                 </select>
-                <select name="cargo"  class="form-select Retngulo_cargo" required >
+                <select name="cargo"  class=" Retngulo_cargo" required >
                     <option name="cargo" value="">
                         {% for cargos in cargos %}
                         <option value="{{cargos.cargo}}">{{cargos.cargo}}</option>
@@ -339,21 +340,21 @@
         
                     <img  data-bs-toggle="modal" data-bs-target="#exampleModal" class="add-button5" src="{% static 'img/add-button.png' %}" >
             
-                <select name="vtrans"  class="form-select Retngulo_vtrans">
+                <select name="vtrans"  class=" Retngulo_vtrans">
                     <option name="vtrans" value="">
                         <option value="sim">1-SIM</option>
                         <option value="nao">2-NÃO</option>                        
                     </option>
                 </select>
-                <select name="priempr"  class="form-select Retngulo_priempr">
+                <select name="priempr"  class=" Retngulo_priempr">
                     <option name="priempr" value="">
                         <option value="sim">1-SIM </option>
                         <option value="nao">2-NÃO </option>                        
                     </option>
                 </select>     
-                <input  class="Retngulo_admissao form-control" type="date"value="1900-01-01" name="admissao">
-                <input  class="Retngulo_demissao form-control" type="date"value="1900-01-01"name="demissao">
-                <select name="tipoadmissao"  class="form-select Retngulo_tipoadmissao">
+                <input  class="Retngulo_admissao " type="date"value="1900-01-01" name="admissao">
+                <input  class="Retngulo_demissao " type="date"value="1900-01-01"name="demissao">
+                <select name="tipoadmissao"  class=" Retngulo_tipoadmissao">
                     <option name="tipoadmissao" value="">
                         <option value="Admissão">1 - ADMISSÃO</option>
                         <option value="Transferencia de empresa do mesmo grupo empresarial">2 - TRANSFERENCIA DE EMPRESA DO MESMO GRUPO EMPRESARIAL</option>
@@ -361,7 +362,7 @@
                         <option value="Trabalhador cedido">4 - TRABALHADOR CEDIDO</option>   
                     </option>
                 </select>
-                <select name="indica"  class="form-select Retngulo_indica">
+                <select name="indica"  class=" Retngulo_indica">
                     <option name="indica" value="">
                         <option value="Normal">1 - NORMAL</option>
                         <option value="Decorrente de ação fiscal">2 - DECORRENTE DE AÇÃO FISCAL</option>
@@ -369,35 +370,35 @@
                     </option>
                 </select>             
                     
-                <select name="rtrab"  class="form-select Retngulo_75">
+                <select name="rtrab"  class=" Retngulo_75">
                     <option name="rtrab" value="">
                         <option value="CLT">1 - CLT</option>
                         <option value="RJU">2 - RJU</option>
                         <option value="RJP">3 - RJP </option>     
                     </option>
                 </select>
-                <select name="rprev"  class="form-select Retngulo_76">
+                <select name="rprev"  class=" Retngulo_76">
                     <option name="rprev" value="">
                         <option value="RGPS">1 - RGPS</option>
                         <option value="RPPS">2 - RPPS</option>
                         <option value="RPPE">3 - RPPE </option>                    
                     </option>
                 </select>               
-                <select name="rjorn"  class="form-select Retngulo_77">
+                <select name="rjorn"  class=" Retngulo_77">
                     <option name="rjorn" value="">
                         <option value="SUBMETIDO A HORÁRIOS DE TRABALHO">1 - SUBMETIDO A HORÁRIOS DE TRABALHO</option>
                         <option value="ATIVIDADE EXTERNA ESPECIFICADA">2 - ATIVIDADE EXTERNA ESPECIFICADA</option>
                         <option value="FUNÇÕES ESPECIFICAS">3 - FUNÇÕES ESPECIFICAS </option>
                     </option>
                 </select>    
-                <select name="naativ"  class="form-select Retngulo_78">
+                <select name="naativ"  class=" Retngulo_78">
                     <option name="naativ" value="">
                         <option value="TRABALHO URBANO">1 - TRABALHO URBANO</option>
                         <option value="RURAL">2 -RURAL</option>
                     </option>
                 </select>    
                
-                <select name="cat"  class="form-select Retngulo_79">
+                <select name="cat"  class=" Retngulo_79">
                     <option name="cat" value="">
                         <option value="EMPREGADO-GERAL">1 - EMPREGADO-GERAL</option>
                         <option value="EMPREGADO-TRABALHADOR RURAL POR PEQUENO PRAZO DA LEI 11.718/2008">2 - EMPREGADO-TRABALHADOR RURAL POR PEQUENO PRAZO DA LEI 11.718/2008</option>
@@ -413,9 +414,9 @@
 
 
 
-                <input  class="Retngulo_80 form-control" type="text" name="codf">
-                <input  class="Retngulo_81 form-control" type="text" name="carh">
-                <select name="unisa"  class="form-select Retngulo_82">
+                <input  class="Retngulo_80 " type="text" name="codf">
+                <input  class="Retngulo_81 " type="text" name="carh">
+                <select name="unisa"  class=" Retngulo_82">
                     <option name="unisa" value="">
                         <option value="POR HORA">1 - POR HORA</option>
                         <option value="POR DIA">2 - POR DIA</option>
@@ -425,14 +426,14 @@
                         <option value="POR TAREFA">6 - POR TAREFA</option>             
                     </option>
                 </select>    
-                <input  class="Retngulo_83 form-control" type="number"     name="salvari">
+                <input  class="Retngulo_83 " type="number"     name="salvari">
                 
-                <textarea rows="4" cols="50" name="obs" class="Retngulo_84 form-control" ></textarea>
-                <input  class="Retngulo_85 form-control" type="text"  name="banco">
+                <textarea rows="4" cols="50" name="obs" class="Retngulo_84 " ></textarea>
+                <input  class="Retngulo_85 " type="text"  name="banco">
 
-                <input  class="Retngulo_86 form-control" type="text"  name="agencia">
+                <input  class="Retngulo_86 " type="text"  name="agencia">
 
-                <input  class="Retngulo_87 form-control" type="text"  name="conta">
+                <input  class="Retngulo_87 " type="text"  name="conta">
 
         
         </div>
@@ -467,14 +468,14 @@
             </div>
           
           
-            <input  class="Retngulo_60 form-control" type="text" name="email1">
-            <input  class="Retngulo_61_ form-control" type="text" name="email2">
-            <input  class="Retngulo_62_ form-control" style="margin-top:-20px" type="text" name="skype">
-            <input  id="tel" class="Retngulo_63 form-control cel-sp-mask" type="text" name="cel">
-            <input id="tel" class="Retngulo_64 form-control cel-sp-mask" type="text" name="tel">
-            <input  class="Retngulo_65 form-control" type="text" name="ramal">
-            <input  class="Retngulo_66 form-control" type="text" required name="usuario">
-            <input  class="Retngulo_67 form-control" type="password" required name="senha">
+            <input  class="Retngulo_60 " type="text" name="email1">
+            <input  class="Retngulo_61_ " type="text" name="email2">
+            <input  class="Retngulo_62_ " style="margin-top:-20px" type="text" name="skype">
+            <input  id="tel" class="Retngulo_63  cel-sp-mask" type="text" name="cel">
+            <input id="tel" class="Retngulo_64  cel-sp-mask" type="text" name="tel">
+            <input  class="Retngulo_65 " type="text" name="ramal">
+            <input  class="Retngulo_66 " type="text" required name="usuario">
+            <input  class="Retngulo_67 " type="password" required name="senha">
     
     
     
@@ -487,7 +488,7 @@
             
     </div>
         </div>
-        <select name="grupo" required  class="form-select Retngulo_69">
+        <select name="grupo" required  class=" Retngulo_69">
             <option name="grupo" value="">
                 {% for gs in g %}
                 <option value="{{gs.name}}">{{gs.name}}</option>
@@ -528,9 +529,9 @@
           <form method="POST" action="{% url 'cargo' %}">
             {% csrf_token %}
           <label>Cargo:</label><br>    
-          <input type="text" class="form-control" name="cargo"><br>
+          <input type="text" class="" name="cargo"><br>
           <label>Ncbo:</label><br> 
-          <input type="text" class="form-control" name="ncbo"><br>
+          <input type="text" class="" name="ncbo"><br>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fecha</button>

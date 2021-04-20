@@ -379,18 +379,19 @@ def edit_usuarios(request,id):
             usup.serie = serie
             usup.ufcarteiratrabalho = uf
             try:
-                usup.datacarteiratrabalho = datetime.strptime(de, '%d/%m/%Y').date() 
+                usup.datacarteiratrabalho = datetime.strptime(de).date() 
             except:
-                pass    
+                usup.datacarteiratrabalho = de    
             usup.genero = genero
             usup.cor = cor
             usup.ecivil= ecivil
             usup.celpessoal= celp
             usup.escolaridade  = escolaridade
             try:
-                usup.datanacimento = datetime.strptime(datanasci, '%d/%m/%Y').date()
+               
+                usup.datanacimento = datetime.strptime(datanasci).date()
             except:
-                pass     
+                usup.datanacimento = datanasci  
             usup.ufnacimento = ufnasci
             usup.municipionacimento = municipionasc
             usup.paisnacimento = paisnasci
@@ -678,11 +679,6 @@ def presidente(request):
                 }  
     return render(request, 'users/presidente.html', context)     
 
-
-
-
-
-
 MDATA = datetime.now().strftime('%d-%m-%Y')
 def export_xlsx(model, filename, queryset, columns):
     response = HttpResponse(content_type='application/ms-excel')
@@ -731,23 +727,6 @@ def exportar_colaboradores(request):
     columns = ('Nome', 'Cargo','Departamento','Admissão','Data Nascimento')
     response = export_xlsx(model, filename_final, queryset,columns)
     return response
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @login_required(login_url='/authentication/login')    
 def problem(request): 

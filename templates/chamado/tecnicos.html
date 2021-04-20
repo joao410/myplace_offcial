@@ -32,26 +32,52 @@
         <div class="container N_5  " >
         <form method="POST" action="{% url 'tecnicos' %}">
             {% csrf_token %}
-        <div style="overflow-x: scroll;" class="row d-flex flex-nowrap  ">
-         
-        {% if images|length >= 1 %} 
-        {% for images in images %}  
-        <div  class="col-4 mx-2  p-2 ">
-        <a href="{{images.link}}" >  
-        <img style="border-radius: 20px;"  class="w-100" src="{{images.img.url}}" srcset="{{images.img.url}} 1x, {{images.img.url}}@2x.png 2x">
-        </a>
-        {% if grupos != "usuarios" %}
-        <button style="border-radius: 10px;" class=" shadow px-4 mt-3 py-2  " type="submit" value="{{images.id}}" name="inativar" >Inativar </button>
-        {% endif %}
-      </div>
-        {% endfor %}
-      </div>
-      {% else %}
-      <div style="border-radius: 20px;" class="row mt-4  shadow  d-flex justify-content-center p-2 " >
-   Não há Links cadastrados  
-    </div>    
-
-{% endif %} 
+            {% if images|length >= 1 %} 
+            <div class="row">
+              <div class="col-xl-12">
+                  <div class="card">
+                   
+                      <div class="card-body">
+                       
+                          <h4 class="card-title"></h4>
+                          <p class="card-title-desc">
+                             
+                          <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-interval="3000">
+                              <div class="carousel-inner" role="listbox">
+                                
+                                {% for images in images %}  
+                                <div class="carousel-item active">
+                                <a href="{{images.link}}" >  
+                                <img style="border-radius: 20px;"  class="w-100" src="{{images.img.url}}" srcset="{{images.img.url}} 1x, {{images.img.url}}@2x.png 2x">
+                                </a>
+                                {% if grupos != "usuarios" %}
+                                <button style="border-radius: 10px;" class=" shadow px-4 mt-3 py-2  " type="submit" value="{{images.id}}" name="inativar" >Inativar </button>
+                                {% endif %}
+                              </div>
+                                {% endfor %}
+                              </div>
+                              {% else %}
+                              <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="card">
+                                     
+                                        <div class="card-body">
+                                         
+                                            <h4 class="card-title"> Não há Links...</h4>
+                                            <p class="card-title-desc">
+                                              <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-interval="3000">
+                                                <div class="carousel-inner" role="listbox">
+                                              
+                        
+                        {% endif %} 
+                          
+                               
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+      
 </form>
     </div>
   </div>

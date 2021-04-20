@@ -1,5 +1,9 @@
 
-
+.push {
+	height: 50px;
+	position:absolute;
+	bottom: 0;
+  }
 /*correçoes*/
 
 text {
@@ -1685,7 +1689,7 @@ position: absolute;
 overflow: visible;
 width: 190px;
 height: 47px;
-left: 3%;
+left: 2%;
 top: -106px;
 }
 
@@ -2308,7 +2312,7 @@ border-color: rgba(0,76,162,1);
 		position: absolute;
 		overflow: visible;
 		width: 1000px;
-		height: 1100px;
+		height: 1000px;
 		left: -5px;
 		
 	}
@@ -2378,7 +2382,7 @@ border-color: rgba(0,76,162,1);
 	overflow: visible;
 	width: 220px;
 	height: 45px;
-	left: 75%;
+	left: 60%;
 	top: -106px;
 	border-radius: 20px;
 }
@@ -4170,12 +4174,11 @@ border-color: rgba(0,76,162,1);
     
 }
 #a{
-    
-	width: 137px;
-    height: 137px;
+
+	width: 107px;
+    height: 107px;
     border-radius: 50%;
 	
-
 }
 
 .ramais{
