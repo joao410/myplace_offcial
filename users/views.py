@@ -175,14 +175,13 @@ def add_usuarios(request):
             user.save()
             users = User.objects.get(username=usuario)
             try:
-                UsuarioPessoal.objects.create(codigo=codigo,nome=nome,genero=genero,apelido=apelido,cpf=cpf,cor=cor,ecivil=ecivil,escolaridade=escolaridade,pis=pis,tituloeleitor=teleitor,carteiratrabalho=ctrabalho,serie=serie,ufcarteiratrabalho=uf,datacarteiratrabalho=emissao,datanacimento=datanasci,ufnacimento=ufnasci,municipionacimento=municipionasc,paisnacimento=paisnasci,paisnacionalidade=nasciona,nomemae=mae,nomepai=pai)
+                UsuarioPessoal.objects.create(codigo=codigo,nome=nome,genero=genero,apelido=apelido,celpessoal=celp,cpf=cpf,cor=cor,ecivil=ecivil,escolaridade=escolaridade,pis=pis,tituloeleitor=teleitor,carteiratrabalho=ctrabalho,serie=serie,ufcarteiratrabalho=uf,datacarteiratrabalho=emissao,datanacimento=datanasci,ufnacimento=ufnasci,municipionacimento=municipionasc,paisnacimento=paisnasci,paisnacionalidade=nasciona,nomemae=mae,nomepai=pai)
             except:
-                UsuarioPessoal.objects.create(codigo=codigo,nome=nome,genero=genero,apelido=apelido,cpf=cpf,cor=cor,ecivil=ecivil,escolaridade=escolaridade,pis=pis,tituloeleitor=teleitor,carteiratrabalho=ctrabalho,serie=serie,ufcarteiratrabalho=uf,datanacimento=datanasci,ufnacimento=ufnasci,municipionacimento=municipionasc,paisnacimento=paisnasci,paisnacionalidade=nasciona,nomemae=mae,nomepai=pai)
+                UsuarioPessoal.objects.create(codigo=codigo,nome=nome,genero=genero,apelido=apelido,cpf=cpf,celpessoal=celp,cor=cor,ecivil=ecivil,escolaridade=escolaridade,pis=pis,tituloeleitor=teleitor,carteiratrabalho=ctrabalho,serie=serie,ufcarteiratrabalho=uf,datanacimento=datanasci,ufnacimento=ufnasci,municipionacimento=municipionasc,paisnacimento=paisnasci,paisnacionalidade=nasciona,nomemae=mae,nomepai=pai)
             u = UsuarioPessoal.objects.get(nome=nome)
             c= Cargo.objects.get(cargo=cargo)
 
-            conta = Contabancaria.objects.create(codigo=u,banco=banco,conta=conta,agencia=agencia)
-            conta.save()
+            
 
             usua = UsuarioTrabalho.objects.create(codigo=u,departamento=dep,empresa=emp,cargo=c,valetransporte=vtrans,dataadmissao=admissao,datademissao=demissao,indicativoadmissao=indica,primeiroemprego=priempr,regimetrabalho=rtrab,regimeprevidenciario=rprev,regimejornada=rjorn,naturezaatividade=naativ,categoria=cat,codigofuncao=codf,cargahorariam=carh,unidadesalarial=unisa,salariovariavel=salvari,obs=obs)
             usua.save()
@@ -196,7 +195,9 @@ def add_usuarios(request):
             en = UsuarioEndereco.objects.create(codigo=u, cep=cep,tipo=tipo,logradouro=logradouro,numero=num,ufatual=ufatual,municipioatul=muniatual,bairroatual=bairro,complemento=complemento,pais=pais)
             en.save()
             e = UsuarioEndereco.objects.get(codigo=u)
-            usuar  = UsuarioCorporativo.objects.create(codigo=u,trabalho=t,documento=d,endereco=e,email=email1,emailCorporativo=email2,skype=skype,telefone=cel,tel=tel,ramal=ramal,usuario=users,grupo=gs,banco=conta)
+            co = Contabancaria.objects.create(codigo=u,banco=banco,conta=conta,agencia=agencia)
+            co.save()
+            usuar  = UsuarioCorporativo.objects.create(codigo=u,trabalho=t,documento=d,endereco=e,email=email1,emailCorporativo=email2,skype=skype,telefone=cel,tel=tel,ramal=ramal,usuario=users,grupo=gs,banco=co)
             usuar.save()
             form = ImageForm(request.POST, request.FILES)
             if form.is_valid():
@@ -280,8 +281,30 @@ def edit_usuarios(request,id):
             image = ImagePerfil.objects.get(nome=cod)
             if not image.image:
                 image = ImagePerfil.objects.get(nome= "padrao")
+        
         except:
-            pass  
+            
+            try:
+                while id >0: 
+                    try:
+                        id = id+1  
+                        usu = UsuarioCorporativo.objects.get(pk=id)
+                        usup = UsuarioPessoal.objects.get(codigo= usu.codigo.codigo)
+                        usut = UsuarioTrabalho.objects.get(codigo=usu.codigo)
+                        usud = UsuarioDocumentos.objects.get(codigo=usu.codigo)
+                        usue = UsuarioEndereco.objects.get(codigo=usu.codigo)
+                        cod =usu.codigo.nome
+                        imageP = ImagePerfil.objects.get(nome= codigo)
+                        if not imageP.image:
+                            imageP = ImagePerfil.objects.get(nome= "padrao")
+                        image = ImagePerfil.objects.get(nome=cod)
+                        if not image.image:
+                            image = ImagePerfil.objects.get(nome= "padrao")
+                        break   
+                    except:
+                        pass 
+            except:
+                pass
     if request.method == 'POST' and 'previos' in request.POST:
         id = id - 1
         try:
@@ -298,7 +321,30 @@ def edit_usuarios(request,id):
             if not image.image:
                 image = ImagePerfil.objects.get(nome= "padrao")
         except:
-            pass  
+           while id >0: 
+                id = id-1  
+                try:
+                    usu = UsuarioCorporativo.objects.get(pk=id)
+                    usup = UsuarioPessoal.objects.get(codigo= usu.codigo.codigo)
+                    usut = UsuarioTrabalho.objects.get(codigo=usu.codigo)
+                    usud = UsuarioDocumentos.objects.get(codigo=usu.codigo)
+                    usue = UsuarioEndereco.objects.get(codigo=usu.codigo)
+                    cod =usu.codigo.nome
+                    imageP = ImagePerfil.objects.get(nome= codigo)
+                    if not imageP.image:
+                        imageP = ImagePerfil.objects.get(nome= "padrao")
+                    image = ImagePerfil.objects.get(nome=cod)
+                    if not image.image:
+                        image = ImagePerfil.objects.get(nome= "padrao")
+                except:
+                    pass
+                       
+             
+                   
+                    
+               
+
+
     context = {
         'chamados': chamados,
         'chamados_abertos': chamados_abertos,

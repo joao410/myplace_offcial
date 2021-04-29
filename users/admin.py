@@ -11,8 +11,8 @@ class UsuarioPessoalAdmin(admin.ModelAdmin):
     search_fields = ('create','active','codigo','nome','apelido','cpf','pis','tituloeleitor','carteiratrabalho','serie','ufcarteiratrabalho','datacarteiratrabalho','genero','cor','ecivil','escolaridade','datanacimento', 'ufnacimento','municipionacimento','paisnacimento','paisnacionalidade','nomemae','nomepai',)
 @admin.register(UsuarioCorporativo)
 class UsuarioCorporativoAdmin(admin.ModelAdmin):
-    list_display = ('create','active','codigo','email','emailCorporativo','skype','telefone','tel','ramal','usuario', 'grupo',)
-    search_fields = ('create','active','codigo','email','emailCorporativo','skype','telefone','tel','ramal','usuario', 'grupo',)
+    list_display = ('create','active','id','codigo','email','emailCorporativo','skype','telefone','tel','ramal','usuario', 'grupo',)
+    search_fields = ('create','active','id','codigo','email','emailCorporativo','skype','telefone','tel','ramal','usuario', 'grupo',)
 @admin.register(UsuarioTrabalho)
 class UsuarioTrabalhoAdmin(admin.ModelAdmin):
     list_display = ('create','active','codigo','cargo','tipoAdmissao','departamento','empresa', 'valetransporte','dataadmissao','datademissao','indicativoadmissao','primeiroemprego','regimetrabalho','regimeprevidenciario','regimejornada','naturezaatividade','categoria','codigofuncao','cargahorariam','unidadesalarial','salariovariavel',)

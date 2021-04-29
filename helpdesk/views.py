@@ -13,7 +13,6 @@ import json
 from django.conf import settings
 from .forms import ImageForm, ImageForms
 
-
 # Create your views here.   
 @login_required(login_url='/authentication/login')
 def chat(request, id):
@@ -163,6 +162,7 @@ def atendimento(request, id):
            return redirect('atendimento',id)     
        Chat.objects.create(idChat=chamado, From=From,mensagem=mensage,nome=name)
     return render(request, 'chamado/atendimento.html', context)
+
 @login_required(login_url='/authentication/login')    
 def linksup(request):
     user = request.user
@@ -358,10 +358,8 @@ def dash_index(request):
             'filtro': filtro,  
             'imageP':imageP,                   
                 }
-    return render(request, 'chamado/dash_index.html', context)    
-   
-    
-    
+    return render(request, 'chamado/dash_index.html', context)        
+
 @login_required(login_url='/authentication/login')
 def tecnico(request):
     user = request.user
