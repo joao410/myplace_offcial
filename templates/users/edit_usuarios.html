@@ -17,519 +17,721 @@
         <div class="container N_14  w-100" >
         <form method="POST" action="{% url 'edit_usuarios' usu.id %} " enctype="multipart/form-data">
             {% csrf_token %}
-            
-        <svg class="Retngulo_55_">
-            <rect id="Retngulo_55_" rx="0" ry="0" x="0" y="0" width="100%" height="100%">
-            </rect>
-        </svg>
-        <a href="{% url 'presidente' %}">
-        <img  id="close-button1" src="{% static 'img/close-button.png' %}" srcset="{% static 'img/close-button.png' %} 1x, {% static 'img/close-button@2x.png' %} 2x">
-        </a>
+                <div class="row  ml-5">
+                    <div class="col-lg-10 ml-5 ">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <h4 class="card-title mb-4">Cadastro</h4>
+                                    <a href="{% url 'presidente' %}">
+                                    <img  id="close-button1" src="{% static 'img/close-button.png' %}" srcset="{% static 'img/close-button.png' %} 1x, {% static 'img/close-button@2x.png' %} 2x">
+                                    </a>
+                                </div>
+                                
+                            
+                                <div id="basic-example">
+                                    <!-- Seller Details -->
+                                    <h3>Dados Pessoais</h3>
+                                    <section>
+                                        <div class="row">
+                                            <div class="col">
+                                            <span style="color: rgba(255,0,0,1);">*</span> <span>Nome Completo</span>
+                                            </div>
 
+                                            <div class="col">
+                                            <span>Apelido</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <input  class="Retngulo_60 " type="text" value="{{usu.codigo.nome}}"  name="nome">
+                                            </div>
 
-  
-        <input type="radio" name="tabs" id="tab1" checked>
-        <label for="tab1">Home</label>
-   
-        <input type="radio" name="tabs" id="tab2">
-        <label for="tab2">Sobre</label>
-   
-        <input type="radio" name="tabs" id="tab3">
-        <label for="tab3">Notícias</label>
+                                            <div class="col">
+                                                <input  class="Retngulo_apelido " type="text"  value="{{usu.codigo.apelido}}" name="apelido">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <span style="color: rgba(255,0,0,1);">*</span>  <span>CPF</span>
+                                            </div>
+                                            <div class="col-4">
+                                                <span>PIS</span>
+                                            </div>
+                                            <div class="col-4">
+                                                <span>Titulo de Eleitor  </span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <input id="cpf"  class="Retngulo_cpf   " value="{{usu.codigo.cpf}}" type="text"name="cpf">
+                                            </div>
+                                            <div class="col-4">
+                                                <input  class="Retngulo_pis " type="text" value="{{usu.codigo.pis}}" name="pis">
+                                            </div>
+                                            <div class="col-4">
+                                                <input  class="Retngulo_titulo " type="text" value="{{usu.codigo.tituloeleitor}}"  name="titulo">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <span>Carteira de Trabalho</span>
+                                            </div>
+                                            <div class="col-3">
+                                                <span>Série</span>
+                                            </div>
+                                            <div class="col-3">
+                                                <span>UF </span>
+                                            </div>
+                                            <div class="col-3">
+                                                <span>Data da Emissão</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <input  class="Retngulo_carteira " type="text" value="{{usu.codigo.carteiratrabalho}}" name="carteira">
+                                            </div>
+                                            <div class="col-3">
+                                                <input  class="Retngulo_serie " type="text" value="{{usu.codigo.serie}}" name="serie">
+                                            </div>
+                                            <div class="col-3">
+                                                <input  class="Retngulo_ufc " type="text" value="{{usu.codigo.ufcarteiratrabalho}}"  name="ufc">
+                                            </div>
+                                            <div class="col-3">
+                                                <input  class="Retngulo_emissao " type="date" value="{{usu.codigo.datacarteiratrabalho|date:"SHORT_DATE_FORMAT"}}" name="emissao"> 
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <span>Gênero</span>
+                                            </div>
+                                            <div class="col-4">
+                                                <span>Cor</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <select name="genero"  class=" Retngulo_genero">
+                                                    <option name="genero" value="{{usu.codigo.genero}}">
+                                                        <option value="{{usu.codigo.genero}}"selected>{{usu.codigo.genero}}</option>
+                                                        <option value="Masculno">Masculino</option>
+                                                        <option value="Feminino">Feminino</option>
+                                                        <option value="Prefiro não informar">Prefiro não informar</option>
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-4">
+                                                <select name="cor"  class=" Retngulo_cor">
+                                                    <option name="cor" value="{{usu.codigo.cor}}">
+                                                        <option value="{{usu.codigo.cor}}" selected>{{usu.codigo.cor}} </option>
+                                                        <option value="INDIGENA">1 - INDIGENA </option>
+                                                        <option value="BRANCA">2 - BRANCO</option>
+                                                        <option value="NEGRA">3 - NEGRA</option>
+                                                        <option value="AMARELO">4 - AMARELO</option>
+                                                        <option value="PARDA">5 - PARDA</option>
+                                                        <option value="NÃO INFORMADO ">6 - NÃO INFORMADO</option>
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <span>Celular Pessoal</span>
+                                            </div>
+                                            <div class="col">
+                                                <span>Estado Civil </span>
+                                            </div>
+                                        <div class="col">
+                                                <span>Escolaridade</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <input  id="tel"  class="Retngulo_celp  cel-sp-mask"  value="{{usu.codigo.celpessoal}}" type="text" name="celp">   
+                                            </div>
+                                            <div class="col">           
+                                                <select name="ecivil"  class=" Retngulo_ecivil">
+                                                    <option name="ecivil"value="{{usu.codigo.ecivil}}">
+                                                        <option value="{{usu.codigo.ecivil}}"selected>{{usu.codigo.ecivil}}</option>
+                                                        <option value="SOLTEIRO">1 - SOLTEIRO </option>
+                                                        <option value="CASADO">2 - CASADO</option>
+                                                        <option value="SEPARADO">3 - SEPARADO</option>
+                                                        <option value="DIVORCIADO">4 - DIVORCIADO</option>
+                                                        <option value="VIUVO">5 - VIUVO</option>
+                                                        <option value="UNIÃO ESTÁVEL">6 - UNIÃO ESTÁVEL</option>
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        <div class="col">
+                                            <select name="escolaridade"  class=" Retngulo_escol">
+                                                <option name="escolaridade" value="{{usu.codigo.escolaridade}}">
+                                                    <option value="{{usu.codigo.escolaridade}}" selected>{{usu.codigo.escolaridade}}</option>
+                                                    <option value="ANALFABETO">1 - ANALFABETO </option>
+                                                    <option value="ATÉ O 5° ANO INCOMPLETO">2 - ATÉ O 5° ANO INCOMPLETO</option>
+                                                    <option value="5° COMPLETO">3 - 5° COMPLETO</option>
+                                                    <option value="DO 6° AO 9° ANO INCOMPLETO">4 - DO 6° AO 9° ANO INCOMPLETO</option>
+                                                    <option value="ENSINO FUNDAMENTAL COMPLETO">5 - ENSINO FUNDAMENTAL COMPLETO</option>
+                                                    <option value="ENSINO MÉDIO INCOMPLETO">6 - ENSINO MÉDIO INCOMPLETO </option>
+                                                    <option value="ENSINO MÉDIO COMPLETO">7 - ENSINO MÉDIO COMPLETO </option>
+                                                    <option value="ENSINO SUPERIOR INCOMPLETO">8 - ENSINO SUPERIOR INCOMPLETO </option>
+                                                    <option value="ENSINO SUPERIOR COMPLETO">9 - ENSINO SUPERIOR COMPLETO </option>
+                                                    <option value="MESTRADO COMPLETO">10 - MESTRADO COMPLETO </option>
+                                                    <option value="DOUTORADO COMPLETO">11 - DOUTORADO COMPLETO </option>
+                                                </option>
+                                            </select>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                                <div class="col-3">
+                                                    <span style="color: rgba(255,0,0,1);">*</span>  <span>Data de Nascimento</span>
+                                                </div>
+                                            <div class="col-2">
+                                                    <span>Município</span>
+                                                </div>
+                                            <div class="col-2">
+                                                    <span>UF</span>
+                                                </div>
+                                                <div class="col-3">
+                                                    <span>País </span>
+                                                </div>
+                                                <div class="col-2">
+                                                    <span>Nacionalidade</span>
+                                                </div>
+                                        </div>
+                                        <div class="row">
+                                                <div class="col-3">
+                                                    <input  class="Retngulo_dn " type="date"  value="{{usu.codigo.datanacimento|date:"SHORT_DATE_FORMAT"}}" name="datanasci">
+                                                </div>
+                                                <div class="col-2">
+                                                <input  class="Retngulo_munasci " type="text" value="{{usu.codigo.municipionacimento}}" name="municipionasc">
+                                                </div>
+                                                <div class="col-2">
+                                                    <input  class="Retngulo_ufn " type="text" value="{{usu.codigo.ufnacimento}}"  name="ufnasci">       
+                                                </div>
+                                                <div class="col-3">
+                                                    <input  class="Retngulo_pais " type="text"  value="{{usu.codigo.paisnacimento}}" name="paisnasci">
+                                                </div>
+                                                <div class="col-2">
+                                                    <input  class="Retngulo_nasci " type="text"  value="{{usu.codigo.paisnacionalidade}}" name="nasciona">
+                                                </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <span>Nome da Mãe</span>
+                                            </div>
+                                            <div class="col-6">
+                                                <span>Nome do Pai</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input  class="Retngulo_mae "value="{{usu.codigo.nomepai}}" type="text" name="mae">
+                                            </div>
+                                            <div class="col-6">
+                                                <input  class="Retngulo_pai " value="{{usu.codigo.nomemae}}" type="text" name="pai">
+                                            </div>
+                                        </div>
+                                        <div class="row">                                             
+                                            <div class="col-2">
+                                                <span>Documento</span>
+                                            </div>
+                                            <div class="col-2">
+                                                <span>Número</span>
+                                            </div>
+                                            <div class="col-2">
+                                                <span>Orgão Emissor</span>
+                                            </div>
+                                            <div class="col-2">
+                                                <span>Expedição</span>
+                                            </div>
+                                            <div class="col">
+                                                <span>Validade</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">                                             
+                                            <div class="col-2">
+                                                <select name="documento"  class=" Retngulo1_ ">
+                                                    <option name="documento"value="{{usu.documento.documento}}" >
+                                                        <option value="{{usu.documento.documento}}" selected>{{usu.documento.documento}}</option>
+                                                        <option value="PG">RG</option>
+                                                        <option value="CNH">CNH</option>
+                                                
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-2">
+                                                <input  class="Retngulo2_ " type="text"  value="{{usu.documento.numerodocumento}}" name="numero">
+                                            </div>
+                                            <div class="col-2">
+                                                <input  class="Retngulo3_ " type="text" value="{{usu.documento.orgao}}" name="oe">
+                                            </div>
+                                            <div class="col-2">
+                                                <input  class="Retngulo4_ " type="date" value="{{usu.documento.dataexpedissao|date:"SHORT_DATE_FORMAT"}}"  name="expedicao">
+                                            </div>
+                                            <div class="col">
+                                                <input  class="Retngulo5_ " type="date"  value="{{usu.documento.validade|date:"SHORT_DATE_FORMAT"}}" name="validade"> 
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <span>Cep</span>
+                                            </div>
+                                            <div class="col-1 mr-1">
+                                                <span>Tipo</span>
+                                            </div>
+                                            <div class="col-2">
+                                                <span>Logradouro</span>
+                                            </div>
+                                            <div class="col-2">
+                                                <span>Nº</span>
+                                            </div>
+                                            <div class="col-2">
+                                                <span>UF</span>
+                                            </div>
+                                            <div class="col-2">
+                                                <span>Município</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <input id="cep" class="Retngulo6_  cep-mask" type="text" value="{{usu.endereco.cep}}"  name="cep">
+                                            </div>
+                                            <div class="col-1 mr-1">
+                                                <input data-cep="tipo_logradouro" class="Retngulo7_ " value="{{usu.endereco.tipo}}"  type="text" name="tipo">
+                                            </div>
+                                            <div class="col-2">
+                                                <input data-cep="endereco" class="Retngulo8_ " type="text" value="{{usu.endereco.logradouro}}" name="logradouro">
+                                            </div>
+                                            <div class="col-2">
+                                                <input  class="Retngulo9_ " type="text" value="{{usu.endereco.numero}}" name="num">
+                                            </div>
+                                            <div class="col-2">
+                                                <input data-cep="uf" class="Retngulo10_ " type="text" value="{{usu.endereco.ufatual}}" name="ufatual">
+                                            </div>
+                                            <div class="col-2">
+                                                <input data-cep="cidade" class="Retngulo11_ " type="text" value="{{usu.endereco.municipioatul}}" name="muniatual">
+                                            </div>
+                                        </div> 
+                                        <div class="row">    
+                                            <div class="col-2">
+                                                <span>Bairro</span>
+                                            </div>
+                                            <div class="col-2">
+                                                <span>Complemento</span>
+                                            </div>
+                                            <div class="col-2">
+                                                <span>País</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">   
+                                            <div class="col-2">
+                                                <input data-cep="bairro" class="Retngulo12_ "  type="text" value="{{usu.endereco.bairroatual}}" name="bairro">
+                                            </div>
+                                            <div class="col-2">
+                                                <input id="complemento" class="Retngulo13_ " type="text" value="{{usu.endereco.complemento}}" name="complemeno">
+                                            </div>
+                                            <div class="col-3">
+                                                <input id="paisx" class="Retngulo14_ " type="text" value="{{usu.endereco.pais}}" name="pais">
+                                            </div>
+                                        </div>
 
-        <div class="tabs">
-        <div class="content">
+                                    </section>
 
-        <div id="Nome_Completo1">
-            <span>Nome Completo</span>
-        </div>
-        <div id="apelido">
-            <span>Apelido</span>
-        </div>
-        <div id="Cargo__Funo2">
-            <span>CPF</span>
-        </div>
-        <div id="pis">
-            <span>PIS</span>
-        </div>
-        <div id="titulo">
-            <span>Titulo de Eleitor  </span>
-        </div>
-        <div id="carteira">
-            <span>Carteira de Trabalho</span>
-        </div>
-        <div id="serie">
-            <span>Série</span>
-        </div>
-        <div id="ufc">
-            <span>UF </span>
-        </div>
-        <div id="de">
-            <span>Data da Emissão</span>
-        </div>
-        <div id="genero">
-            <span>Gênero</span>
-        </div>
-        <div id="cor">
-            <span>Cor</span>
-        </div>
-        <div id="celp">
-            <span>Celular Pessoal</span>
-        </div>
-        <div id="ecivil">
-            <span>Estado Civil </span>
-        </div>
-       <div id="escol">
-            <span>Escolaridade</span>
-        </div>
-       <div id="dn">
-            <span>Data de Nascimento</span>
-        </div>
-       <div id="munasci">
-            <span>Município</span>
-        </div>
-       <div id="uf">
-            <span>UF</span>
-        </div>
-        <div id="pais">
-            <span>País </span>
-        </div>
-         <div id="nasci">
-            <span>Nacionalidade</span>
-        </div>
-         <div id="mae1">
-            <span>Nome da Mãe</span>
-        </div>
-      <div id="pai1">
-            <span>Nome do Pai</span>
-        </div>
-        <div id="document">
-            <span>documento</span>
-        </div>
-        <div id="document1">
-            <span>Número</span>
-        </div>
-        <div id="document2">
-            <span>Orgão Emissor</span>
-        </div>
-        <div id="document3">
-            <span>Expedição</span>
-        </div>
-        <div id="document4">
-            <span>Validade</span>
-        </div>
-      
-        <div id="endereco">
-            <span>Cep</span>
-        </div>
-        <div id="endereco1">
-            <span>Tipo</span>
-        </div>
-        <div id="endereco2">
-            <span>Logradouro</span>
-        </div>
-        <div id="endereco3">
-            <span>Nº</span>
-        </div>
-        <div id="endereco4">
-            <span>Uf</span>
-        </div>
-        <div id="endereco5">
-            <span>Município</span>
-        </div>
-        <div id="endereco6">
-            <span>Bairro</span>
-        </div>
-        <div id="endereco7">
-            <span>Complemento</span>
-        </div>
-        <div id="endereco8">
-            <span>País</span>
-        </div>
-      
-      
-        <div id="Dados_Corporativos1">
-            <span>Dados Pessoais</span>
-        </div>
-      
-        <input  class="Retngulo_60 form-control" type="text" value="{{usu.codigo.nome}}"   name="nome">
-        
-        <select name="genero"  class="form-select Retngulo_genero">
-            <option name="genero" value="">
-                <option selected value="{{usu.codigo.genero}}">{{usu.codigo.genero}}</option>
-                <option value="Masculno">Masculino</option>
-                <option value="Feminino">Feminino</option>
-                <option value="Prefiro não informar">Prefiro não informar</option>
-            </option>
-        </select>
-        <input  class="Retngulo_apelido form-control" type="text" value="{{usu.codigo.apelido}}"  name="apelido">
-        <input  class="Retngulo_cpf form-control" type="text" value="{{usu.codigo.cpf}}"  name="cpf">
-        <input  class="Retngulo_pis form-control" type="text" value="{{usu.codigo.pis}}" name="pis">   
-        <input  class="Retngulo_titulo form-control" type="text" value="{{usu.codigo.tituloeleitor}}" name="titulo">
-        <input  class="Retngulo_carteira form-control" type="text" value="{{usu.codigo.carteiratrabalho}}" name="carteira">
-        <input  class="Retngulo_serie form-control" type="text" value="{{usu.codigo.serie}}"name="serie">
-        <input  class="Retngulo_ufc form-control" type="text" value="{{usu.codigo.ufcarteiratrabalho}}" name="ufc">
-        <input id="dt"  class="Retngulo_emissao form-control" type="text"  value="{{usu.codigo.datacarteiratrabalho|date:"SHORT_DATE_FORMAT"}}"  name="emissao" placeholder="{{dtemissao}}">           
-        <select name="cor"  class="form-select Retngulo_cor">
-            <option name="cor" value="" >
-                <option value="{{usu.codigo.cor}}" selected> {{usu.codigo.cor}}</option>
-                <option value="INDIGENA">1 - INDIGENA </option>
-                <option value="BRANCA">2 - BRANCO</option>
-                <option value="NEGRA">3 - NEGRA</option>
-                <option value="AMARELO">4 - AMARELO</option>
-                <option value="PARDA">5 - PARDA</option>
-                <option value="NÃO INFORMADO ">6 - NÃO INFORMADO</option>
-            </option>
-        </select>
-        <input id="tel" class="Retngulo_celp form-control"  value="{{usu.codigo.celpessoal}}" type="text" name="celp">             
-        <select name="ecivil"  class="form-select Retngulo_ecivil">
-            <option name="ecivil" value="">
-                <option value="{{usu.codigo.ecivil}}" selected> {{usu.codigo.ecivil}}</option>
-                <option value="SOLTEIRO">1 - SOLTEIRO </option>
-                <option value="CASADO">2 - CASADO</option>
-                <option value="SEPARADO">3 - SEPARADO</option>
-                <option value="DIVORCIADO">4 - DIVORCIADO</option>
-                <option value="VIUVO">5 - VIUVO</option>
-                <option value="UNIÃO ESTÁVEL">6 - UNIÃO ESTÁVEL</option>
-            </option>
-        </select>
-         <select name="escolaridade"  class="form-select Retngulo_escol">
-            <option name="escolaridade" value="">
-                <option value="{{usu.codigo.escolaridade}}" selected> {{usu.codigo.escolaridade}}</option>
-                <option value="ANALFABETO">1 - ANALFABETO </option>
-                <option value="ATÉ O 5° ANO INCOMPLETO">2 - ATÉ O 5° ANO INCOMPLETO</option>
-                <option value="5° COMPLETO">3 - 5° COMPLETO</option>
-                <option value="DO 6° AO 9° ANO INCOMPLETO">4 - DO 6° AO 9° ANO INCOMPLETO</option>
-                <option value="ENSINO FUNDAMENTAL COMPLETO">5 - ENSINO FUNDAMENTAL COMPLETO</option>
-                <option value="ENSINO MÉDIO INCOMPLETO">6 - ENSINO MÉDIO INCOMPLETO </option>
-                <option value="ENSINO MÉDIO COMPLETO">7 - ENSINO MÉDIO COMPLETO </option>
-                <option value="ENSINO SUPERIOR INCOMPLETO">8 - ENSINO SUPERIOR INCOMPLETO </option>
-                <option value="ENSINO SUPERIOR COMPLETO">9 - ENSINO SUPERIOR COMPLETO </option>
-                <option value="MESTRADO COMPLETO">10 - MESTRADO COMPLETO </option>
-                <option value="DOUTORADO COMPLETO">11 - DOUTORADO COMPLETO </option>
-            </option>
-        </select>
-        <input id="dt" class="Retngulo_dn form-control" value="{{usu.codigo.datanacimento|date:"SHORT_DATE_FORMAT"}}" type="text" name="datanasci">
-        <input  class="Retngulo_munasci form-control" type="text"value="{{usu.codigo.municipionacimento}}" name="municipionasc">
-        <input  class="Retngulo_ufn form-control" type="text" value="{{usu.codigo.ufnacimento}}" name="ufnasci">                
-        <input  class="Retngulo_pais form-control" type="text"  value="{{usu.codigo.paisnacimento}}"name="paisnasci">
-        <input  class="Retngulo_nasci form-control" type="text" value="{{usu.codigo.paisnacionalidade}}"name="nasciona">
-        <input  class="Retngulo_pai form-control" type="text" value="{{usu.codigo.nomemae}}" name="pai">
-        <input  class="Retngulo_mae form-control" type="text" value="{{usu.codigo.nomepai}}" name="mae">
-        <select name="documento"  class="form-select Retngulo1_ ">
-            <option name="documento" value="">
-                <option value="{{usu.documento.documento}}" selected>{{usu.documento.documento}}</option>
-                <option value="PG">RG</option>
-                <option value="CNH">CNH</option>
-        
-            </option>
-        </select>
-        <input  class="Retngulo2_ form-control"  value="{{usu.documento.numerodocumento}}" type="text" name="numero">
-        <input  class="Retngulo3_ form-control"  value="{{usu.documento.orgao}}" type="text" name="oe">
-        <input id="dt"   class="Retngulo4_ form-control"  value="{{usu.documento.dataexpedissao|date:"SHORT_DATE_FORMAT"}}" type="text" name="expedicao">
-        <input id="dt"  class="Retngulo5_ form-control"  value="{{usu.documento.validade|date:"SHORT_DATE_FORMAT"}}" type="text" name="validade">                
-        <input  class="Retngulo6_ form-control"  value="{{usu.endereco.cep}}" type="text" name="cep">
-        <input  class="Retngulo7_ form-control"  value="{{usu.endereco.tipo}}" type="text" name="tipo">
-        <input  class="Retngulo8_ form-control"  value="{{usu.endereco.logradouro}}" type="text" name="logradouro">
-        <input  class="Retngulo9_ form-control"  value="{{usu.endereco.numero}}"type="text" name="num">
-        <input  class="Retngulo10_ form-control" value="{{usu.endereco.ufatual}}" type="text" name="ufatual">
-        <input  class="Retngulo11_ form-control" value="{{usu.endereco.municipioatul}}"type="text" name="muniatual">
-        <input  class="Retngulo12_ form-control" value="{{usu.endereco.bairroatual}}" type="text" name="bairro">
-        <input  class="Retngulo13_ form-control" value="{{usu.endereco.complemento}}"type="text" name="complemeno">
-        <input  class="Retngulo14_ form-control" value="{{usu.endereco.pais}}"type="text" name="pais">
+                                    <!-- Company Document -->
+                                    <h3>Dados Empresariais</h3>
+                                    <section>
+                                        <div class="row">
+                                                    <div class="col-4">
+                                                        <span>Departamento</span>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <span style="color: rgba(255,0,0,1);">*</span> <span>Cargo / Função</span>
+                                                        <img  data-bs-toggle="modal" data-bs-target="#exampleModal" class="add-button5" src="{% static 'img/add-button.png' %}" >
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <span>Empresa</span>
+                                                    </div>  
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <input  class="Retngulo_601 depright" type="text" value="{{usu.trabalho.departamento}}" name="departamento">
+                                            </div>
+                                            <div class="col-4">
+                                                <select name="cargo"  class=" Retngulo_cargo" >
+                                                    <option name="cargo" value="{{usu.trabalho.cargo.cargo}}">
+                                                        <option value="{{usu.trabalho.cargo.cargo}}"selected>{{usu.trabalho.cargo.cargo}}</option>
+                                                        {% for cargos in cargos %}
+                                                        <option value="{{cargos.cargo}}">{{cargos.cargo}}</option>
+                                                        {% endfor %}                       
+                                                    </option>
+                                                </select>      
+                                            </div>
+                                            <div class="col-4">
+                                                <select name="empresa"  class=" Retngulo_empresa">
+                                                    <option name="empresa" value="{{usu.trabalho.empresa}}">
+                                                        <option value="{{usu.trabalho.empresa}}" selected>{{usu.trabalho.empresa}}</option>
+                                                        {% for empresa in empresa %}
+                                                        <option value="{{empresa.nempresa}}">{{empresa.nempresa}}</option>
+                                                        {% endfor %}
+                                                    </option>
+                                                </select>
+                                            </div>  
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <span>Data de Admissão</span>
+                                            </div>
+                                            <div class="col">
+                                                <span>Data de Demissão</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <input  class="Retngulo_admissao " type="date"value="{{usu.trabalho.dataadmissao|date:"SHORT_DATE_FORMAT"}}" name="admissao">
+                                            </div>
+                                            <div class="col">
+                                                <input  class="Retngulo_demissao " type="date"value="{{usu.trabalho.datademissao|date:"SHORT_DATE_FORMAT"}}"name="demissao">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <span>Vale Transporte</span>
+                                            </div>
+                                                
+                                            <div class="col">
+                                                <span>Tipo de Admissão</span>
+                                            </div>
+                                            <div class="col">
+                                                <span>Indicativo Admissional</span>
+                                            </div>
+                                            <div class="col">
+                                                <span>Primeiro Emprego</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select name="vtrans"  class=" Retngulo_vtrans">
+                                                    <option name="vtrans" value="{{usu.trabalho.valetransporte}}">
+                                                        <option value="{{usu.trabalho.valetransporte}}" selected>{{usu.trabalho.valetransporte}}</option>
+                                                        <option value="sim">1-SIM</option>
+                                                        <option value="nao">2-NÃO</option>                        
+                                                    </option>
+                                                </select>
+                                            </div>
+                                                
+                                            <div class="col">
+                                                <select name="tipoadmissao"  class=" Retngulo_tipoadmissao">
+                                                    <option name="tipoadmissao" value="{{usu.trabalho.tipoAdmissao}}" >
+                                                        <option value="{{usu.trabalho.tipoAdmissao}}" selected>{{usu.trabalho.tipoAdmissao}}</option>
+                                                        <option value="Admissão">1 - ADMISSÃO</option>
+                                                        <option value="Transferencia de empresa do mesmo grupo empresarial">2 - TRANSFERENCIA DE EMPRESA DO MESMO GRUPO EMPRESARIAL</option>
+                                                        <option value="Admissão por sucessão, Incorporação, Cisão ou Fusão">3 - ADMISSÃO POR SUCESSÃO, INCORPORAÇÃO, CISÃO OU FUSÃO</option>
+                                                        <option value="Trabalhador cedido">4 - TRABALHADOR CEDIDO</option>   
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select name="indica"  class=" Retngulo_indica">
+                                                    <option name="indica" value="{{usu.trabalho.indicativoadmissao}}">
+                                                        <option  value="{{usu.trabalho.indicativoadmissao}} "selected>{{usu.trabalho.indicativoadmissao}}</option>
+                                                        <option value="Normal">1 - NORMAL</option>
+                                                        <option value="Decorrente de ação fiscal">2 - DECORRENTE DE AÇÃO FISCAL</option>
+                                                        <option value="Decorrente de decisão judicial ">3 -DECORRENTE DE AÇÃO JUDICIAL</option>               
+                                                    </option>
+                                                </select>   
+                                            </div>
+                                            <div class="col">
+                                                <select name="priempr"  class=" Retngulo_priempr">
+                                                    <option name="priempr" value="{{usu.trabalho.primeiroemprego}}">
+                                                        <option value="{{usu.trabalho.primeiroemprego}}" selected>{{usu.trabalho.primeiroemprego}} </option>
+                                                        <option value="sim">1-SIM </option>
+                                                        <option value="nao">2-NÃO </option>                        
+                                                    </option>
+                                                </select>     
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <span>Regime de Trabalho</span>
+                                            </div>
+                                            <div class="col">
+                                                <span>Regime Previdenciário</span>
+                                            </div>
+                                            <div class="col">
+                                                <span>Regime de Jornada</span>
+                                            </div>
+                                            <div class="col">
+                                                <span>Natureza da Atividade</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select name="rtrab"  class=" Retngulo_75">
+                                                    <option name="rtrab" value="{{usu.trabalho.regimetrabalho}}" >
+                                                        <option  value="{{usu.trabalho.regimetrabalho}}" selected>{{usu.trabalho.regimetrabalho}}</option>
+                                                        <option value="CLT">1 - CLT</option>
+                                                        <option value="RJU">2 - RJU</option>
+                                                        <option value="RJP">3 - RJP </option>     
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select name="rprev"  class=" Retngulo_76">
+                                                    <option name="rprev" value="{{usu.trabalho.regimeprevidenciario}}">
+                                                        <option value="{{usu.trabalho.regimeprevidenciario}}" selected>{{usu.trabalho.regimeprevidenciario}}</option>
+                                                        <option value="RGPS">1 - RGPS</option>
+                                                        <option value="RPPS">2 - RPPS</option>
+                                                        <option value="RPPE">3 - RPPE </option>                    
+                                                    </option>
+                                                </select>      
+                                            </div>
+                                            <div class="col">
+                                                <select name="rjorn"  class=" Retngulo_77">
+                                                    <option name="rjorn" value="{{usu.trabalho.regimejornada}}">
+                                                        <option value="{{usu.trabalho.regimejornada}}" selected>{{usu.trabalho.regimejornada}}</option>
+                                                        <option value="SUBMETIDO A HORÁRIOS DE TRABALHO">1 - SUBMETIDO A HORÁRIOS DE TRABALHO</option>
+                                                        <option value="ATIVIDADE EXTERNA ESPECIFICADA">2 - ATIVIDADE EXTERNA ESPECIFICADA</option>
+                                                        <option value="FUNÇÕES ESPECIFICAS">3 - FUNÇÕES ESPECIFICAS </option>
+                                                    </option>
+                                                </select>  
+                                            </div>
+                                            <div class="col">
+                                                <select name="naativ"  class=" Retngulo_78">
+                                                    <option name="naativ" value="{{usu.trabalho.naturezaatividade}}">
+                                                        <option selected value="{{usu.trabalho.naturezaatividade}}">{{usu.trabalho.naturezaatividade}}</option>
+                                                        <option value="TRABALHO URBANO">1 - TRABALHO URBANO</option>
+                                                        <option value="RURAL">2 -RURAL</option>
+                                                    </option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <span>Categoria</span>
+                                            </div>
+                                            <div class="col">
+                                                <span>CBO</span>
+                                            </div>
+                                            <div class="col">
+                                                <span>Carga Horária</span>
+                                            </div>
+                                            <div class="col">
+                                                <span>Unidade Salarial</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select name="cat"  class=" Retngulo_79">
+                                                    <option name="cat" value="{{usu.trabalho.categoria}}">
+                                                        <option selected value="{{usu.trabalho.categoria}}">{{usu.trabalho.categoria}}</option>
+                                                        <option value="EMPREGADO-GERAL">1 - EMPREGADO-GERAL</option>
+                                                        <option value="EMPREGADO-TRABALHADOR RURAL POR PEQUENO PRAZO DA LEI 11.718/2008">2 - EMPREGADO-TRABALHADOR RURAL POR PEQUENO PRAZO DA LEI 11.718/2008</option>
+                                                        <option value="EMPREGADO-APRENDIZ">3 - EMPREGADO-APRENDIZ</option>
+                                                        <option value="EMPREGADO-DOMÉSTICO">4 - EMPREGADO-DOMÉSTICO</option>
+                                                        <option value="EMPREGADO-CONTRATO A TERMO FIRMADO NOS TERMOS DA LEI 9601/98">5 - EMPREGADO-CONTRATO A TERMO FIRMADO NOS TERMOS DA LEI 9601/98</option>
+                                                        <option value="EMPREGADO-CONTRATO POR PRAZO DETERMINADO NOS TERMOS DA LEI 6019/74">6 - EMPREGADO-CONTRATO POR PRAZO DETERMINADO NOS TERMOS DA LEI 6019/74</option>
+                                                        <option value="TRABALHADOR NÃO VINCULADO AO RGPS COM DIREITO AO FGTS">7 - TRABALHADOR NÃO VINCULADO AO RGPS COM DIREITO AO FGTS</option>
+                                                        <option value="TRABALHADOR AVULSO - PORTUÁRIO">8 - TRABALHADOR AVULSO - PORTUÁRIO </option>
+                                                        <option value="ESTAGIÁRIO">9 - ESTAGIÁRIO </option>
+                                                    </option>
+                                                </select>  
+                                            </div>
+                                            <div class="col">
+                                                <input  class="Retngulo_80 " type="text" value="{{usu.trabalho.codigofuncao}}" name="codf">
+                                            </div>
+                                            <div class="col">
+                                                <input  class="Retngulo_81 " type="text"  value="{{usu.trabalho.cargahorariam}}"name="carh">
+                                            </div>
+                                            <div class="col">
+                                                <select name="unisa"  class=" Retngulo_82">
+                                                    <option name="unisa" selected value="{{usu.trabalho.unidadesalarial}}" >
+                                                        <option  selected value="{{usu.trabalho.unidadesalarial}}">{{usu.trabalho.unidadesalarial}}</option>
+                                                        <option value="POR HORA">1 - POR HORA</option>
+                                                        <option value="POR DIA">2 - POR DIA</option>
+                                                        <option value="POR SEMANA">3 - POR SEMANA</option>
+                                                        <option value="POR QUINZENA">4 - POR QUINZENA</option>
+                                                        <option value="POR MÊS">5 - POR MÊS</option>
+                                                        <option value="POR TAREFA">6 - POR TAREFA</option>             
+                                                    </option>
+                                                </select> 
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <span>Salário Variável</span>
+                                            </div>
+                                            <div class="col">
+                                                <span>Observações</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <input  class="Retngulo_83 " type="number" value="{{usu.trabalho.salariovariavel}}"     name="salvari">
+                                            </div>
+                                            <div class="col">
+                                                <textarea rows="4" cols="50" name="obs" class="Retngulo_84 "  value="{{usu.trabalho.obs}}" ></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">     
+                                                <span>Dados Bancários</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <span>Banco </span>
+                                            </div>
+                                            <div class="col">
+                                                <span>Agência </span>
+                                            </div>
+                                            <div class="col">
+                                                <span>Conta</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <input  class="Retngulo_85 " type="text" value="{{usu.banco.banco}}" name="banco">
+                                            </div>
+                                            <div class="col">
+                                                <input  class="Retngulo_86 " type="text" value="{{usu.banco.agencia}}" name="agencia">
+                                            </div>
+                                            <div class="col">
+                                                <input  class="Retngulo_87 " type="text" value="{{usu.banco.conta}}"  name="conta">
+                                            </div>
+                                        </div>
+                                    </section>
 
+                                    <!-- Bank Details -->
+                                    <h3>Dados Corporativos</h3>
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <span>E-mail corporativo 01</span>
+                                            </div>
+                                            <div class="col-4">
+                                                <span>E-mail corporativo 02</span>
+                                            </div>
+                                            <div class="col-4">
+                                                <span>*</span><span style="color:rgba(93,90,90,1);"> Perfil de Usuário</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <input  class="Retngulo_602 " type="text" value="{{usu.email}}"   name="email1">
+                                            </div>
+                                            <div class="col-4">
+                                                <input  class="Retngulo_61_ " type="text" value="{{usu.emailCorporativo}}" name="email2">
+                                            </div>
+                                            <div class="col-4">
+                                                <select name="grupo"  class=" Retngulo_69">
+                                                    <option name="grupo" value="">
+                                                        <option selected value="{{usu.grupo}}">{{usu.grupo}}</option>
+                                                        {% for gs in g %}
+                                                        <option value="{{gs.name}}">{{gs.name}}</option>
+                                                        {% endfor %}
+                                                    </option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <span>Celular Corporativo</span>
+                                            </div>
+                                            <div class="col-4">
+                                                <span>Telefone</span>
+                                            </div>
+                                            <div class="col-4">
+                                                    <span>Foto do Perfil</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <input  id="tel" class="Retngulo_63  cel-sp-mask" type="text" value="{{usu.telefone}}" name="cel">
+                                            </div>
+                                            <div class="col-4">
+                                                <input id="tel" class="Retngulo_64  cel-sp-mask" type="text"  value="{{usu.tel}}" name="tel">
+                                            </div>
+                                            <div class="col-4">
+                                                {{form.imagem}}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <span>Skype</span>
+                                            </div>
+                                            <div class="col-4">
+                                                <span>Ramal</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <input  class="Retngulo_62_ " style="margin-top:-20px" type="text"  value="{{usu.skype}}" name="skype">
+                                            </div>
+                                            <div class="col-4">
+                                                <input  class="Retngulo_65 " type="text"  value="{{usu.ramal}}" name="ramal">
+                                            </div>
+                                            <div class="col-4">
+                                                <img class="add-button3" id="output" src="{{image.image.url}}" >
+                                            </div>
+                                        
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <span style="color: rgba(255,0,0,1);">*</span>  <span>Usuário</span>
+                                            </div>
+                                            <div class="col-4">
+                                                <span style="color: rgba(255,0,0,1);">*</span> <span>Senha</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <input  class="Retngulo_66 " type="text" value="{{usu.usuario}}"  name="usuario">
+                                            </div>
+                                            <div class="col-4">
+                                                <input  class="Retngulo_67 " type="password" value="{{usu.usuario.password}}"  name="senha">
+                                            </div>
+                                            
+                                        
+                                            
+                                        </div>
+                                        
+                                        <div class="row mt-5">
+                                            <div class="col-3 mt-5">
+                                            <button type="submit" name="edit_usu" class=" btn btn-primary d-flex justify-content-center text-white p-1">
+                                                    <span>Salvar Alterações</span>
+                                            </button>
+                                            </div>
+                                            <div class="col-3 mt-5">
+                                                <button type="submit" name="exc_usu" value="{{usu.id}}" class="btn btn-secondary  ">
+                                                    Excluir Usuário
+                                                </button>
+                                            </div>
 
+                                        </div>  
+                                    </section>
 
+                    
+                                </div>
 
+                            </div>
+                            <!-- end card body -->
+                        </div>
+                        <!-- end card -->
+                    </div>
+                    <!-- end col -->
+                </div>   
+        <table class="mb-5">
+            <tr>
+            <td class="p-2 ">
+                <button type="submit" class="btn btn-primary" name="previos">Usuario Anterior</button>
+                
+            </td>
+            <td>
+                <button type="submit" class="btn btn-primary " name="next" >Proximo usuário</button>
+            </td>
+            </tr>
+        </table> 
 
-
-      
-       
-    </div>
-    <div class="content">
-        <div id="Nome_Completo1">
-            <span>Departamento</span>
-        </div>
-        <div id="cargo">
-            <span>Cargo / Função</span>
-        </div>
-        
-        <div id="Empresa1">
-            <span>Empresa</span>
-        </div>               
-        <div id="vtrans">
-            <span>Vale Transporte</span>
-        </div>
-        <div id="admissao">
-            <span>Data de Admissão</span>
-        </div>
-        <div id="demissao">
-            <span>Data de Demissão</span>
-        </div>
-        <div id=tipoadmissao>
-            <span>Tipo de Admissão</span>
-        </div>
-        <div id="admissional1">
-            <span>Indicativo Admissional</span>
-        </div>
-        <div id="priempr">
-            <span>Primeiro Emprego</span>
-        </div>
-        <div id="rtra">
-            <span>Regime de Trabalho</span>
-        </div>
-        <div id="rprev">
-            <span>Regime Previdenciário</span>
-        </div>
-        <div id="rjorn">
-            <span>Regime de Jornada</span>
-        </div>
-        <div id="naativ">
-            <span>Natureza da Atividade</span>
-        </div>
-        <div id="cat">
-            <span>Categoria</span>
-        </div>
-        <div id="codf">
-            <span>CBO</span>
-        </div>
-        <div id="carh">
-            <span>Carga Horária</span>
-        </div>
-        <div id="unisa">
-            <span>Unidade Salarial </span>
-        </div>
-        <div id="salvar">
-            <span>Salário Variavel</span>
-        </div>
-        <div id="obs">
-            <span>Observações </span>
-        </div>
-        <div id="bd">     
-            <span>Dados Bancários </span>
-        </div>
-        <div id="bdbanco">
-            <span>Banco </span>
-        </div>
-        <div id="bdagencia">
-            <span>Agência </span>
-        </div>
-        <div id="bdconta">
-            <span>Conta</span>
-        </div>
-        <div id="Dados_Corporativos1">
-            <span>Dados Empresariais</span>
-        </div>
-  
-        <input  class="Retngulo_60 form-control depright" value="{{usu.trabalho.departamento}}" type="text"  name="departamento">
-        <select name="empresa"  class="form-select Retngulo_empresa">
-            <option name="empresa" value="">
-                <option value="{{usu.trabalho.empresa}}" selected>{{usu.trabalho.empresa}}</option>
-                {% for empresa in empresa %}
-                <option value="{{empresa.nempresa}}">{{empresa.nempresa}}</option>
-                {% endfor %}
-            </option>
-        </select>
-        <select name="cargo"  class="form-select Retngulo_cargo">
-            <option name="cargo" value="">
-                <option value="{{usu.trabalho.cargo.cargo}}" selected>{{usu.trabalho.cargo.cargo}}</option>
-                {% for cargos in cargos %}
-                <option value="{{cargos.cargo}}">{{cargos.cargo}}</option>
-                {% endfor %}                       
-            </option>
-        </select>
-        <select name="vtrans"  class="form-select Retngulo_vtrans">
-            <option name="vtrans" value="{{usu.trabalho.valetransporte}}">
-                <option value="sim">1-SIM</option>
-                <option value="nao">2-NÃO</option>                        
-            </option>
-        </select>
-        <select name="priempr"  class="form-select Retngulo_priempr">
-            <option name="priempr" value="{{usu.trabalho.primeiroemprego}}">
-                <option value="sim">1-SIM </option>
-                <option value="nao">2-NÃO </option>                        
-            </option>
-        </select>     
-        <input id="dt"  class="Retngulo_admissao form-control" value="{{usu.trabalho.dataadmissao|date:"SHORT_DATE_FORMAT"}}" type="text" name="admissao">
-        <input id="dt"   class="Retngulo_demissao form-control" type="text" value="{{usu.trabalho.datademissao|date:"SHORT_DATE_FORMAT"}}" name="demicao">
-        <select name="tipoadmissao"  class="form-select Retngulo_tipoadmissao">
-            <option name="tipoadmissao" value="">^
-                <option value="{{usu.trabalho.tipoAdmissao}}" selected>{{usu.trabalho.tipoAdmissao}}</option>
-                <option value="Admissão">1 - ADMISSÃO</option>
-                <option value="Transferencia de empresa do mesmo grupo empresarial">2 - TRANSFERENCIA DE EMPRESA DO MESMO GRUPO EMPRESARIAL</option>
-                <option value="Admissão por sucessão, Incorporação, Cisão ou Fusão">3 - ADMISSÃO POR SUCESSÃO, INCORPORAÇÃO, CISÃO OU FUSÃO</option>
-                <option value="Trabalhador cedido">4 - TRABALHADOR CEDIDO</option>   
-            </option>
-        </select>
-        <select name="indica"  class="form-select Retngulo_indica">
-            <option name="indica" value="">
-                <option value="{{usu.trabalho.indicativoadmissao}}" selected>{{usu.trabalho.indicativoadmissao}}</option>
-                <option value="Normal">1 - NORMAL</option>
-                <option value="Decorrente de ação fiscal">2 - DECORRENTE DE AÇÃO FISCAL</option>
-                <option value="Decorrente de decisão judicial ">3 -DECORRENTE DE AÇÃO JUDICIAL</option>               
-            </option>
-        </select>                    
-        <select name="rtrab"  class="form-select Retngulo_75">
-            <option name="rtrab" value="">
-                <option value="{{usu.trabalho.regimetrabalho}}" selected>{{usu.trabalho.regimetrabalho}}</option>
-                <option value="CLT">1 - CLT</option>
-                <option value="RJU">2 - RJU</option>
-                <option value="RJP">3 - RJP </option>     
-            </option>
-        </select>
-        <select name="rprev"  class="form-select Retngulo_76">
-            <option name="rprev" value="">
-                <option value="{{usu.trabalho.regimeprevidenciario}}" selected>{{usu.trabalho.regimeprevidenciario}}</option>
-                <option value="RGPS">1 - RGPS</option>
-                <option value="RPPS">2 - RPPS</option>
-                <option value="RPPE">3 - RPPE </option>                    
-            </option>
-        </select>               
-        <select name="rjorn"  class="form-select Retngulo_77">
-            <option name="rjorn" value="">
-                <option value="{{usu.trabalho.regimejornada}}" selected>{{usu.trabalho.regimejornada}}</option>
-                <option value="SUBMETIDO A HORÁRIOS DE TRABALHO">1 - SUBMETIDO A HORÁRIOS DE TRABALHO</option>
-                <option value="ATIVIDADE EXTERNA ESPECIFICADA">2 - ATIVIDADE EXTERNA ESPECIFICADA</option>
-                <option value="FUNÇÕES ESPECIFICAS">3 - FUNÇÕES ESPECIFICAS </option>
-            </option>
-        </select>    
-        <select name="naativ"  class="form-select Retngulo_78">
-            <option name="naativ" value="">
-                <option value="{{usu.trabalho.naturezaatividade}}" selected>{{usu.trabalho.naturezaatividade}}</option>
-                <option value="TRABALHO URBANO">1 - TRABALHO URBANO</option>
-                <option value="RURAL">2 -RURAL</option>
-            </option>
-        </select>     
-        <select name="cat"  class="form-select Retngulo_79">
-            <option name="cat" value="">
-                <option value="{{usu.trabalho.categoria}}" selected>{{usu.trabalho.categoria}}</option>
-                <option value="EMPREGADO-GERAL">1 - EMPREGADO-GERAL</option>
-                <option value="EMPREGADO-TRABALHADOR RURAL POR PEQUENO PRAZO DA LEI 11.718/2008">2 - EMPREGADO-TRABALHADOR RURAL POR PEQUENO PRAZO DA LEI 11.718/2008</option>
-                <option value="EMPREGADO-APRENDIZ">3 - EMPREGADO-APRENDIZ</option>
-                <option value="EMPREGADO-DOMÉSTICO">4 - EMPREGADO-DOMÉSTICO</option>
-                <option value="EMPREGADO-CONTRATO A TERMO FIRMADO NOS TERMOS DA LEI 9601/98">5 - EMPREGADO-CONTRATO A TERMO FIRMADO NOS TERMOS DA LEI 9601/98</option>
-                <option value="EMPREGADO-CONTRATO POR PRAZO DETERMINADO NOS TERMOS DA LEI 6019/74">6 - EMPREGADO-CONTRATO POR PRAZO DETERMINADO NOS TERMOS DA LEI 6019/74</option>
-                <option value="TRABALHADOR NÃO VINCULADO AO RGPS COM DIREITO AO FGTS">7 - TRABALHADOR NÃO VINCULADO AO RGPS COM DIREITO AO FGTS</option>
-                <option value="TRABALHADOR AVULSO - PORTUÁRIO">8 - TRABALHADOR AVULSO - PORTUÁRIO </option>
-                <option value="ESTAGIÁRIO">9 - ESTAGIÁRIO </option>
-            </option>
-        </select>    
-        <input  class="Retngulo_80 form-control" value="{{usu.trabalho.codigofuncao}}" type="text" name="codf">
-        <input  class="Retngulo_81 form-control" value="{{usu.trabalho.cargahorariam}}"type="text" name="carh">
-        <select name="unisa"  class="form-select Retngulo_82">
-            <option name="unisa" value="">
-                <option value="{{usu.trabalho.unidadesalarial}}" selected>{{usu.trabalho.unidadesalarial}}</option>
-                <option value="POR HORA">1 - POR HORA</option>
-                <option value="POR DIA">2 - POR DIA</option>
-                <option value="POR SEMANA">3 - POR SEMANA</option>
-                <option value="POR QUINZENA">4 - POR QUINZENA</option>
-                <option value="POR MÊS">5 - POR MÊS</option>
-                <option value="POR TAREFA">6 - POR TAREFA</option>             
-            </option>
-        </select>    
-        <input  class="Retngulo_83 form-control" type="text" value="{{usu.trabalho.salariovariavel}}"   name="salvari">
-        <textarea rows="4" cols="50" name="obs" class="Retngulo_84 form-control" value="{{usu.trabalho.obs}}" ></textarea>
-       
-                <input  class="Retngulo_85 form-control" type="text" value="{{usu.banco.banco}}" name="banco">
-
-                <input  class="Retngulo_86 form-control" type="text" value="{{usu.banco.agencia}}" name="agencia">
-
-                <input  class="Retngulo_87 form-control" type="text" value="{{usu.banco.conta}}" name="conta">
-        
-       
-</div>
-<div class="content">
-    <div id="Nome_Completo1">
-        <span>E-mail corporativo 01</span>
-    </div>
-    <div id="Departamento1">
-        <span>Skype</span>
-    </div>
-    <div id="Cargo__Funo1">
-        <span>Celular Corporativo</span>
-    </div>
-    <div id="Empresa1">
-        <span>E-mail corporativo 02</span>
-    </div>
-    <div id="E-mail_corporativo_011">
-        <span>Telefone</span>
-    </div>
-    <div id="E-mail_corporativo_021">
-        <span>Ramal</span>
-    </div>
-    <div id="Skype1">
-        <span>Usuario</span>
-    </div>
-    <div id="Celular_Corporativo1">
-        <span>Senha</span>
-    </div>
-  
-    <div id="Dados_Corporativos1">
-        <span>Dados Corporativos</span>
-    </div>
-  
-  
-    <input  class="Retngulo_60 form-control" type="text" value="{{usu.email}}"  name="email1">
-    <input  class="Retngulo_61_ form-control" type="text" value="{{usu.emailCorporativo}}"  name="email2">
-    <input  class="Retngulo_62_ form-control" style="margin-top:-20px"  value="{{usu.skype}}" type="text" name="skype">
-    <input id="tel" class="Retngulo_63 form-control" type="text"  value="{{usu.telefone}}" name="cel">
-    <input id="tel"  class="Retngulo_64 form-control" type="text"  value="{{usu.tel}}"  name="tel">
-    <input  class="Retngulo_65 form-control" type="text"  value="{{usu.ramal}}"name="ramal">
-    <input  class="Retngulo_66 form-control" type="text"  value="{{usu.usuario}}"  name="usuario">
-    <input  class="Retngulo_67 form-control" type="password"  disabled value="{{usu.usuario.senha}}" name="senha">
-
-
-
-
-
-
-  
-   
-
-    
-</div>
-
-
-
-
-
-
-
-
-
-        <select name="grupo" value="{{usu.grupo}}"  class="form-select Retngulo_69">
-            <option name="grupo" value="{{usu.grupo}}" >
-                <option selected value="{{usu.grupo}}">{{usu.grupo}}</option>
-                {% for gs in g %}
-                <option value="{{gs.name}}">{{gs.name}}</option>
-                {% endfor %}
-            </option>
-        </select>
-
-
-
-
-
-       
-    
-        <div id="add-button4">
-            {{form.images}}
-        </div>   
-        <img class="add-button3" id="output" src="{{image.image.url}}" >
-    
-        <div id="Foto_do_Perfil1">
-            <span>Foto do Perfil</span>
-        </div>
-        <div id="_Perfil_de_Usurio">
-            <span>*</span><span style="color:rgba(93,90,90,1);"> Perfil de Usuário</span>
-        </div>
-        <button type="submit" name="edit_usu" class="Retngulo_581 d-flex justify-content-center text-white p-1">
-                <span>Salvar Alterações</span>
-        </button>
-        <button type="submit" name="exc_usu" value="{{usu.id}}" class="Retngulo_59  fw-bold ">
-            Excluir Usuário
-           </button>
-        
         </form>
      
 
@@ -539,7 +741,29 @@
 
     </div> 
 </main>
-{% block js %}
+
+ {% endblock content %}  
+ {% block javascript %}
+        <!-- JAVASCRIPT -->
+        <script src="{% static 'libs/jquery/jquery.min.js' %}"></script>
+        <script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'libs/metismenu/metisMenu.min.js' %}"></script>
+        <script src="{% static 'libs/simplebar/simplebar.min.js' %}"></script>
+        <script src="{% static 'libs/node-waves/waves.min.js' %}"></script>
+        <script src="{% static 'libs/waypoints/lib/jquery.waypoints.min.js' %}"></script>
+        <script src="{% static 'libs/jquery.counterup/jquery.counterup.min.js' %}"></script>
+
+        <!-- jquery step -->
+        <script src="{% static 'libs/jquery-steps/build/jquery.steps.min.js' %}"></script>
+
+        <!-- form wizard init -->
+        <script src="{% static 'js/form-wizard.init.js' %}"></script>
+
+        <script src="{% static 'js/app.js' %}"></script>
+
+
+{% endblock %}    
+ {% block js %}
 <script type="text/javascript" src="https://www.geradorcpf.com/assets/js/jquery-1.2.6.pack.js"></script>
 <script type="text/javascript" src="https://www.geradorcpf.com/assets/js/jquery.maskedinput-1.1.4.pack.js"></script>
 <script type="text/javascript">
@@ -560,5 +784,4 @@
   };
 </script>
 
-{% endblock js %}
- {% endblock content %}           
+{% endblock js %}      

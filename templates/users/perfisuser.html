@@ -7,16 +7,17 @@
       
     <main style="left:100px;" role="main"  class="col-md-6 m-sm-auto col-lg-10 "  >
      
-    <div class="container">
-    <div class="" id="Meu_Perfil_ba">
-        <span>Usuarios</span>
+    <div class="container mt-5">
+      <div class="mt-5 ml-5" id="mepeba">
+        <span>
+          Usuários
+        </span>
     </div>
-    
-    <svg class="Linha_1" viewBox="0 0 1482 1">
-        <path id="Linha_1" d="M 0 0 L 1482 0">
+  
+    <svg class="mt-2" viewBox="0 0 1500 1">
+        <path id="Linha_1" d="M 0 0 L 1500 0">
         </path>
     </svg>
-
     <a href="{% url 'presidente' %}">
     
       <img  id="close-button" src="{% static 'img/close-button.png' %}" srcset="{% static 'img/close-button.png' %} 1x, {% static 'img/close-button@2x.png' %} 2x">
@@ -24,87 +25,93 @@
     
  </a>
 
- 
+ <div class="m-2">
+  <div class="row">
+    <div class="col-9 ">
+            <div class="table-responsive">
+                <table class="table  table-bordered  mb-0 ">
+                    <tbody>
+                       
+                        <tr>
+                          <td>Departamento</td>
+                          <td>{{usuario.trabalho.departamento|upper|truncatechars:22 }}</td>
+                        </tr> 
+                        
+                        
+                        <tr>
+                          <td>E-mail corporativo 01</td>
+                          <td>{{usuario.email|upper|truncatechars:22 }}</td>
+                        </tr> 
+                        <tr>
+                          <td>E-mail corporativo 02</td>
+                          <td>{{usuario.emailCorporativo|upper|truncatechars:22 }}</td>
+                        </tr> 
+                        <tr>
+                          <td>Skype</td>
+                          <td>{{usuario.skype|upper|truncatechars:22 }}</td>
+                        </tr> 
+                        <tr>
+                          <td>Celular Corporativo</td>
+                          <td>{{usuario.telefone|upper|truncatechars:22 }}</td>
+                        </tr> 
+                        <tr>
+                          <td>Telefone</td>
+                          <td>{{usuario.tel|upper|truncatechars:22 }}</td>
+                        </tr> 
+                        <tr>
+                          <td>Ramal</td>
+                          <td>{{usuario.ramal|upper|truncatechars:22 }}</td>
+                        </tr> 
+                    </tbody>
+                </table>
+          
+  
+</div>
+  </div>
 
-    <div id="Nome_Completo">
-        <span>Nome Completo</span>
-    </div>
-    <div id="Departamento">
-		<span>Departamento</span>
-    </div>
-    <div id="Cargo__Funo">
-		<span>Cargo / Função</span>
-    </div>
-    <div id="Empresa">
-		<span>Empresa</span>
-    </div>
-    <div id="E-mail_corporativo_01">
-		<span>E-mail corporativo 01</span>
-    </div>
-    <div id="E-mail_corporativo_02">
-		<span>E-mail corporativo 02</span>
-    </div>
-    <div id="Skype">
-		<span>Skype</span>
-    </div>
-    <div id="Celular_Corporativo">
-		<span>Celular Corporativo</span>
-    </div>
-    <div id="Tel">
-		<span>Tel.</span>
-    </div>
-    <div id="Ramal">
-		<span>Ramal</span>
-    </div>
-    <div id="Dados_Corporativos">
-		<span>Dados Corporativos</span>
-    </div>
-    <img id="add-button" src="{{image.image.url}}" srcset="{{image.image.url}} 1x, {{image.image.url}} 2x">
-    <div id="Foto_do_Perfil">
-		<span>Foto do Perfil</span>
-    </div>
-    <div id="Joo_Felipe">
-		<span>{{usuario.codigo.nome|upper|truncatechars:22 }}</span>
-    </div>
-    <div id="TI">
-		<span>{{usuario.trabalho.departamento|upper|truncatechars:22 }}</span>
-    </div>
-    <div id="Assistente_de_Helpdesk">
-		<span>{{usuario.trabalho.cargo|upper|truncatechars:22 }}</span>
-    </div>
-    <div id="Arena_Vidros_by">
-		<span>{{usuario.trabalho.empresa|upper|truncatechars:22 }}</span>
-    </div>
-    <div id="joaoarenavidroscombr">
-		<span>{{usuario.email|upper|truncatechars:22 }}</span>
-    </div>
-    <div id="joaofgenioshopcombr">
-		<span>{{usuario.emailCorporativo|upper|truncatechars:22 }}</span>
-    </div>
-    <div style="width: 145px;" id="joaogenioshop" class="overflow-hidden">
-		<span>{{usuario.skype|upper|truncatechars:22 }}</span>
-    </div>
-    <div id="ID11_xxxxx-xxxx">
-		<span>{{usuario.telefone|upper|truncatechars:22 }}</span>
-    </div>
-    <div id="ID11_4000-0000">
-		<span>{{usuario.tel|upper|truncatechars:22 }}</span>
-    </div>
-    <div id="ID2365">
-		<span>{{usuario.ramal|upper|truncatechars:22 }}</span>
-    </div>
+  <div class="col-3">
+  <img id="add-button" src="{{imageP.image.url}}" srcset="{{imageP.image.url}} 1x, {{imageP.img.url}} 2x">
+  <div class="" scope="row">{{usuario.codigo.nome|upper|truncatechars:50 }}</div>
+<div class="" scope="row">{{usuario.trabalho.cargo|upper|truncatechars:22 }}</div>
+<div class="" scope="row">{{usuario.trabalho.empresa|upper|truncatechars:22 }}</div>
+  
+  
 
 
-
-
-
-    {% if grupos == "recursos humanos"%}
+<div class="row">
+{% if grupos == "recursos humanos"%}
     <a href="{% url 'edit_usuarios' usuario.id %}">
     <button class="Retngulo_582 text-white fw-bold  " >
       Editar Usuário
     </button>
   </a>
-   {% endif %}
+{% endif %}
+</div>
+</div>
+</div>
+
+
+
+
+
+</div>
+
+
+    
+    
+   
+
+   
+   
+    
+    
+
+
+
+
+
+
+    
  
    
 

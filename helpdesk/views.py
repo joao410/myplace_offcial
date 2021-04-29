@@ -163,11 +163,6 @@ def atendimento(request, id):
            return redirect('atendimento',id)     
        Chat.objects.create(idChat=chamado, From=From,mensagem=mensage,nome=name)
     return render(request, 'chamado/atendimento.html', context)
-
-
-
-
-
 @login_required(login_url='/authentication/login')    
 def linksup(request):
     user = request.user
@@ -495,6 +490,7 @@ def id_chamado(request, id):
     return render(request, 'chamado/id_chamado.html', context)
   
 def fastchamado(request):
+    
     if Chamado.objects.all():
             chamado_id = Chamado.objects.all().order_by('-id')[0].id
                 
@@ -518,11 +514,16 @@ def fastchamado(request):
         status = "aberto"
         grupo = "atendimento ti"
         urgencia = ""
-        
-        Chamado.objects.create(username=nome, problem=assunto,status=status,ticket=ticket,urgency=urgencia, grupo=grupo, des_problem=des) 
-        messages.success(request, 'Chamado criado com sucesso')
-
-    return render(request, 'fastchamado.html')
+        if User.objects.filter(username=nome).exists(): 
+            Chamado.objects.create(username=nome, problem=assunto,status=status,ticket=ticket,urgency=urgencia, grupo=grupo, des_problem=des) 
+            messages.success(request, 'Chamado criado com sucesso')
+        else:
+            context={
+                'des':des,
+            }
+            messages.error(request, 'Usuario invalido')
+           
+    return render(request,'fastchamado.html',context)
 @login_required(login_url='/authentication/login')   
 def add_chamado(request):
     user = request.user
@@ -642,7 +643,6 @@ def add_chamado(request):
             else:
                 messages.error(request, 'Imagem não adicionada')
     return render(request, 'chamado/add_chamado.html', context) 
-
 
 @login_required(login_url='/authentication/login')  
 def rh_chamado(request):

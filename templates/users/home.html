@@ -1,127 +1,86 @@
 {% extends 'base.html' %}
 {% load static %}
 
-    {% block content %}
+{% block content %}
 
 
       
-    <main style="left: 100px;" role="main"  class="col-md-6 m-sm-auto col-lg-10 "  >
+<main style="left: 100px;" role="main"  class="col-md-6 m-sm-auto col-lg-10 "  >
      
-    <div class="container">
-    <div class="" id="Meu_Perfil_ba">
-        <span>Meu Perfil</span>
-    </div>
+    <div class="container mt-5">
+
+        <div class="mt-5 ml-5" id="mepeba">
+            <span>Meu Perfil</span>
+        </div>
+      
+        <svg class="mt-2" viewBox="0 0 1500 1">
+            <path id="Linha_1" d="M 0 0 L 1500 0">
+            </path>
+        </svg>
+
+
+        <div class="m-2">
+          <div class="row">
+          <div class="col-9 ">
+                  <div class="table-responsive">
+                      <table class="table  table-bordered  mb-0 ">
+                          <tbody>
+                             
+                              <tr>
+                                <td>Departamento</td>
+                                <td>{{usuarioT.departamento|upper|truncatechars:22 }}</td>
+                              </tr> 
+                              
+                              
+                              <tr>
+                                <td>E-mail corporativo 01</td>
+                                <td>{{usuarioC.email|upper|truncatechars:22 }}</td>
+                              </tr> 
+                              <tr>
+                                <td>E-mail corporativo 02</td>
+                                <td>{{usuarioC.emailCorporativo|upper|truncatechars:22 }}</td>
+                              </tr> 
+                              <tr>
+                                <td>Skype</td>
+                                <td>{{usuarioC.skype|upper|truncatechars:22 }}</td>
+                              </tr> 
+                              <tr>
+                                <td>Celular Corporativo</td>
+                                <td>{{usuarioC.telefone|upper|truncatechars:22 }}</td>
+                              </tr> 
+                              <tr>
+                                <td>Telefone</td>
+                                <td>{{usuarioC.tel|upper|truncatechars:22 }}</td>
+                              </tr> 
+                              <tr>
+                                <td>Ramal</td>
+                                <td>{{usuarioC.ramal|upper|truncatechars:22 }}</td>
+                              </tr> 
+                          </tbody>
+                      </table>
+                
+        
+      </div>
+        </div>
+
+        <div class="col-3">
+        <img id="add-button" src="{{imageP.image.url}}" srcset="{{imageP.image.url}} 1x, {{imageP.img.url}} 2x">
+        <div class="" scope="row">{{usuarioP.nome|upper|truncatechars:50 }}</div>
+        <div class="" scope="row">{{usuarioT.cargo|upper|truncatechars:22 }}</div>
+        <div class="" scope="row">{{usuarioT.empresa|upper|truncatechars:22 }}</div>
+        </div>
+          </div>
+        
+
+
+
+
     
-    <svg class="Linha_1" viewBox="0 0 1500 1">
-        <path id="Linha_1" d="M 0 0 L 1500 0">
-        </path>
-    </svg>
+      </div>
 
-    <div id="Nome_Completo">
-        <span>Nome Completo</span>
-    </div>
-    <div id="Departamento">
-		<span>Departamento</span>
-    </div>
-    <div id="Cargo__Funo">
-		<span>Cargo / Função</span>
-    </div>
-    <div id="Empresa">
-		<span>Empresa</span>
-    </div>
-    <div id="E-mail_corporativo_01">
-		<span>E-mail corporativo 01</span>
-    </div>
-    <div id="E-mail_corporativo_02">
-		<span>E-mail corporativo 02</span>
-    </div>
-    <div id="Skype">
-		<span>Skype</span>
-    </div>
-    <div id="Celular_Corporativo">
-		<span>Celular Corporativo</span>
-    </div>
-    <div id="Tel">
-		<span>Tel.</span>
-    </div>
-    <div id="Ramal">
-		<span>Ramal</span>
-    </div>
-    <div id="Dados_Corporativos">
-		<span>Dados Corporativos</span>
-    </div>
-    <img id="add-button" src="{{imageP.image.url}}" srcset="{{imageP.image.url}} 1x, {{imageP.img.url}} 2x">
-    <div id="Foto_do_Perfil">
-		<span>Foto do Perfil</span>
-    </div>
-    <div id="Joo_Felipe">
-		<span>
-      {{usuarioP.nome|upper|truncatechars:22 }}
-    </span>
-    </div>
-    <div id="TI">
-		<span>{{usuarioT.departamento|upper|truncatechars:22 }}</span>
-    </div>
-    <div id="Assistente_de_Helpdesk">
-		<span>{{usuarioT.cargo|upper|truncatechars:22 }}</span>
-    </div>
-    <div id="Arena_Vidros_by">
-		<span>{{usuarioT.empresa|upper|truncatechars:22 }}</span>
-    </div>
-    <div id="joaoarenavidroscombr">
-		<span>{{usuarioC.email|upper|truncatechars:22 }}</span>
-    </div>
-    <div id="joaofgenioshopcombr">
-		<span>{{usuarioC.emailCorporativo|upper|truncatechars:22 }}</span>
-    </div>
-    <div id="joaogenioshop">
-		<span>{{usuarioC.skype|upper|truncatechars:22 }}</span>
-    </div>
-    <div id="ID11_xxxxx-xxxx">
-		<span>{{usuarioC.telefone|upper|truncatechars:22 }}</span>
-    </div>
-    <div id="ID11_4000-0000">
-		<span>{{usuarioC.tel|upper|truncatechars:22 }}</span>
-    </div>
-    <div id="ID2365">
-		<span>{{usuarioC.ramal|upper|truncatechars:22 }}</span>
-    </div>
- <!-- <button type="submit" name="perfil" class="Retngulo_49">
-			<span>Editar Informações</span>
-    </button>
+  </div>
 
-	
-
-	<div id="Abra_um_chamado_no_boto_abaixo">
-		<span>Abra um chamado no botão abaixo para editar<br/>as suas informações do perfil!</span>
-    </div>-->
-    </div>
 </main>
-  
-     
-
-
- <!--<div class=" w-100 bg-ligth d-flex justify-content-between shadow-sm p-2"> 
-    <h1>Home</h1> 
-    <a href="{% url 'login' %}" class="btn btn-primary btn-lg active " role="button" aria-pressed="true">Logout</a>
- </div>   
-
-<div class="container-fluid bg-ligth p-2 ">
-<div class="row bg-dark text-white d-flex justify-content-center p-2 m-3 rounded">
-    <h1 class="d-flex justify-content-center" > Em qual área gostaria de atendimento ?</h1>
-
-</div>
-<div class="d-flex justify-content-center align-middle  m-5">
-<div class="card p-3 m-5  shadow">
-    <a href="{% url 'add_chamado' %}" class="btn btn-primary btn-lg active  " role="button" aria-pressed="true">Suporte Técnico (TI)</a><br>
-    <a href="{% url 'rh_chamado' %}" class="btn btn-primary btn-lg active  " role="button" aria-pressed="true">Recursos Humanos (RH)</a><br>
-    <a href="{% url 'presidente' %}" class="btn btn-primary btn-lg active  " role="button" aria-pressed="true">Fale com o Presidente</a>
-
-</div>
-</div>
-
-</div>-->
-
 {% endblock content %}
 </body>
 </html>

@@ -44,7 +44,7 @@
               <form method="POST" action="{% url 'perfis' %}">
                 {% csrf_token %}
                 <div class="row">
-                  <div class="col-lg-11">
+                  <div class="col-lg-10">
                         <div class="table-responsive mb-4">
                             <table class="table table-centered datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
                                     <thead>
@@ -64,7 +64,7 @@
                                         <tr>
                                             
                                             
-                                            <td><a href="javascript: void(0);" class="text-dark fw-bold">{{users.codigo.nome}}</a> </td>
+                                            <td><a href="javascript: void(0);" class="text-dark fw-bold">{{users.codigo.nome|upper}}</a> </td>
                                             <td>
                                               {{users.trabalho.departamento|upper}}
                                             </td>

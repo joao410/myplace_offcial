@@ -2,10 +2,15 @@
 {% load static %}
 
 
-
+{% block style%}
+		{% include 'css.html' %}   
+		{%endblock style%}
 
 {% block content %}
 <style>
+  body{
+    background:url("{% static 'img/bmw-2017.png' ¨%}") ;
+  }
   .nomef{
 	position: absolute;
 	overflow: visible;
@@ -27,82 +32,114 @@
 }
 
 </style>
-<img style="width: 100%;height: 100%;" id="bmw-2017" src="{% static 'img/bmw-2017.png' %}" srcset="{% static 'img/bmw-2017.png' %} 1x, {% static 'img/bmw-2017@2x.png' %} 2x">
-<link rel="stylesheet" type="text/css" id="applicationStylesheet" href="{% static 'css/Meu_Perfil.css' %}"/>
-<svg class="Linha_1" viewBox="0 0 1482 1">
-  <path id="Linha_1" d="M 0 0 L 1482 0">
-  </path>
-</svg>
+
+
+
+
  <!--Main-->
  <div style="position: absolute; top:0; left:45%;">
  {% include 'partials/_messages.html' %}
  </div>
- <main role="main"  class="col-md-8 m-sm-auto col-lg-8 col-md-6 "  >
-  <div id="Atendimento_ba">
-    <span>Fast Chamado</span>
-  </div>
-  <div class="container">
-    <div class="container d-flex flex-nowrap  N_5 ">
-      <div id="Novo_Chamado">
-        <span>Novo Chamado</span>
-      </div>
-            
-    
+ <main role="main"  class="col-md-8 m-sm-auto col-lg-6 col-md-6 "  >
 
-    <form method="POST" action="{% url 'fastchamado' %}" >
-      {% csrf_token %}
-      <div id="nomef">
-        <span>Username:</span>
-      </div>
-      
-      <input  class="nomef form-control" value="{{user.username}}"type="text" name="requisitante" required>
-      
-        
-      <div style="height: 500px;" class="Retngulo_37"   >
-        <div id="Assunto_">
-          <span>Assunto</span>
-        </div>
-       
-        <input type="radio" name="assunto"  value="Problema com o Mecauto" class="Retngulo_28 " required>
-        </input>
-              
-        <input type="radio" name="assunto" value="Toner" class="Retngulo_29" required>
-        </input>
-         
-        <input type="radio" name="assunto"value="Não consigo imprimir" class="Retngulo_30" required>
-        </input>
+        <div class="container mt-5 ml-5">
+          <form method="POST" action="{% url 'fastchamado' %}" >
+            {% csrf_token %}
+            <div class="row mt-5">
+              <div class="col-xl-12 mt-5 " >
+                  <div class="card p-3">
+                      <div class="card-body">
+                          <h4 class="card-title">Chamado Rapido</h4>
+                                <div class="row">
+                                    <div class="row">
+                                      <div class="col-2">
+                                        Usuario:
+                                      </div>
+                                    <div class="col-3">
+                                       <input  class=" form-control" value="{{user.username}}"type="text" name="requisitante" required> 
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <span>Assunto</span>
+                                </div>
+                                <div class="row">
+                                    <div class="col-1">
+                                        <input type="radio" name="assunto"  value="Problema com o Mecauto" class=" " required>
+                                        </input>  
+                                    </div>
+                                    <div class="col-4">
+                                        <span>Problema com o Mecauto</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-1">
+                                        <input type="radio" name="assunto" value="Toner" class="" required>
+                                        </input>  
+                                    </div>
+                                    <div class="col-4">
+                                      <span>Toner</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-1">
+                                        <input type="radio" name="assunto"value="Não consigo imprimir" class="" required>   </input>  
+                                    </div>
+                                    <div class="col-4">
+                                      <span>Não consigo imprimir</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-1">
+                                        <input type="radio" name="assunto"value="Equipamentos" class="" required>
+                                        </input>
+                                    </div>
+                                    <div class="col-4">
+                                      <span>Equipamentos</span>
+                                    </div>
+                                </div>
 
-        <input type="radio" name="assunto"value="Equipamentos" class="Retngulo_31" required>
-        </input>
+                               <div class="row mt-2">
+                                  <div class="col-2">
+                                    <span>Mensagem</span>
+                                  </div>
+                                  <div class="col-6">
+                                      <textarea style="width: 500px; padding-left: 10px; font-size:small" class="  form-control" id="obs" name="obs" value="{{des}}" rows="8" placeholder="Descreve com a maior quantidade de informações possíveis a sua solicitação"></textarea> 
+                                  </div>    
+                               </div>   
+                            
+                            </div>
+                      <div>
+                          <div>
+                              <button type="submit" value="atendimento ti" class="btn btn-primary waves-effect waves-light me-1">
+                                Abrir Chamado
+                              </button>
+                             
+                          </div>
+                     </div>
+                  </div>
+              </div>
+            </div>
+        </form>
+      </div>
 
-        <div id="Problema_com_o_Mecauto">
-          <span>Problema com o Mecauto</span>
-        </div>
-        <div id="Problema_com_o_meu_ramal">
-          <span>Toner</span>
-        </div>
-        <div id="No_consigo_imprimir">
-          <span>Não consigo imprimir</span>
-        </div>
-        <div id="Estou_sem_internet">
-          <span>Equipamentos</span>
-        </div>
-        <div id="Mensagem_">
-          <span>Mensagem</span>
-        </div>
-        <textarea style="width: 400px; padding-left: 10px;" class=" Retngulo_19_ form-control" id="obs" name="obs" rows="8" placeholder="Descreve com a maior quantidade de informações possíveis a sua solicitação"></textarea> 
-     
-       
-  
-    
-      
-        <button type="submit"style="position: absolute;left: 295px;top: 425px; "   value="atendimento ti" class="Retngulo_36  text-white fw-bold">
-        <span>Abrir Chamado</span>
-        </button>
-      </div>
-       </form>
-      </div>
-      
-    </div>
 </main>
+{% endblock %}
+{% block javascript %}
+
+        <!-- JAVASCRIPT -->
+        <script src="{% static 'libs/jquery/jquery.min.js' %}"></script>
+        <script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'libs/metismenu/metisMenu.min.js' %}"></script>
+        <script src="{% static 'libs/simplebar/simplebar.min.js' %}"></script>
+        <script src="{% static 'libs/node-waves/waves.min.js' %}"></script>
+        <script src="{% static 'libs/waypoints/lib/jquery.waypoints.min.js' %}"></script>
+        <script src="{% static 'libs/jquery.counterup/jquery.counterup.min.js' %}"></script>
+
+        <!-- parsleyjs -->
+        <script src="{% static 'libs/parsleyjs/parsley.min.js' %}"></script>
+
+        <script src="{% static 'js/pages/form-validation.init.js' %}" ></script>
+
+        <script src="{% static 'js/app.js' %}"></script>
+
 {% endblock %}

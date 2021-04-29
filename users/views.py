@@ -264,7 +264,41 @@ def edit_usuarios(request,id):
     image = ImagePerfil.objects.get(nome=cod)
     if not image.image:
       image = ImagePerfil.objects.get(nome= "padrao")
-    
+
+    if request.method == 'POST' and 'next' in request.POST:
+        id = id + 1
+        try:
+            usu = UsuarioCorporativo.objects.get(pk=id)
+            usup = UsuarioPessoal.objects.get(codigo= usu.codigo.codigo)
+            usut = UsuarioTrabalho.objects.get(codigo=usu.codigo)
+            usud = UsuarioDocumentos.objects.get(codigo=usu.codigo)
+            usue = UsuarioEndereco.objects.get(codigo=usu.codigo)
+            cod =usu.codigo.nome
+            imageP = ImagePerfil.objects.get(nome= codigo)
+            if not imageP.image:
+                imageP = ImagePerfil.objects.get(nome= "padrao")
+            image = ImagePerfil.objects.get(nome=cod)
+            if not image.image:
+                image = ImagePerfil.objects.get(nome= "padrao")
+        except:
+            pass  
+    if request.method == 'POST' and 'previos' in request.POST:
+        id = id - 1
+        try:
+            usu = UsuarioCorporativo.objects.get(pk=id)
+            usup = UsuarioPessoal.objects.get(codigo= usu.codigo.codigo)
+            usut = UsuarioTrabalho.objects.get(codigo=usu.codigo)
+            usud = UsuarioDocumentos.objects.get(codigo=usu.codigo)
+            usue = UsuarioEndereco.objects.get(codigo=usu.codigo)
+            cod =usu.codigo.nome
+            imageP = ImagePerfil.objects.get(nome= codigo)
+            if not imageP.image:
+                imageP = ImagePerfil.objects.get(nome= "padrao")
+            image = ImagePerfil.objects.get(nome=cod)
+            if not image.image:
+                image = ImagePerfil.objects.get(nome= "padrao")
+        except:
+            pass  
     context = {
         'chamados': chamados,
         'chamados_abertos': chamados_abertos,
@@ -482,7 +516,10 @@ def edit_usuarios(request,id):
             #else:
                 #   messages.error(request, 'Imagem não adicionada')
             messages.success(request, "Usuario editado  com sucesso")
-                
+
+    
+
+
 
     if request.method == 'POST' and 'exc_usu' in request.POST: 
         id = request.POST['exc_usu']
