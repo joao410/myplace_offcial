@@ -15,8 +15,7 @@
         </div>
 
         <div class="container N_14  w-100" >
-        <form method="POST" action="{% url 'edit_usuarios' usu.id %} " enctype="multipart/form-data">
-            {% csrf_token %}
+       
                 <div class="row  ml-5">
                     <div class="col-lg-10 ml-5 ">
                         <div class="card">
@@ -28,7 +27,8 @@
                                     </a>
                                 </div>
                                 
-                            
+                                <form method="POST" action="{% url 'edit_usuarios' usu.id %} " enctype="multipart/form-data">
+                                    {% csrf_token %}
                                 <div id="basic-example">
                                     <!-- Seller Details -->
                                     <h3>Dados Pessoais</h3>
@@ -276,10 +276,10 @@
                                             <div class="col-2">
                                                 <span>Cep</span>
                                             </div>
-                                            <div class="col-1 mr-1">
+                                            <div class="col-2 mr-1">
                                                 <span>Tipo</span>
                                             </div>
-                                            <div class="col-2">
+                                            <div class="col-3">
                                                 <span>Logradouro</span>
                                             </div>
                                             <div class="col-2">
@@ -288,18 +288,16 @@
                                             <div class="col-2">
                                                 <span>UF</span>
                                             </div>
-                                            <div class="col-2">
-                                                <span>Município</span>
-                                            </div>
+                                          
                                         </div>
                                         <div class="row">
                                             <div class="col-2">
                                                 <input id="cep" class="Retngulo6_  cep-mask" type="text" value="{{usu.endereco.cep}}"  name="cep">
                                             </div>
-                                            <div class="col-1 mr-1">
+                                            <div class="col-2 mr-1">
                                                 <input data-cep="tipo_logradouro" class="Retngulo7_ " value="{{usu.endereco.tipo}}"  type="text" name="tipo">
                                             </div>
-                                            <div class="col-2">
+                                            <div class="col-3">
                                                 <input data-cep="endereco" class="Retngulo8_ " type="text" value="{{usu.endereco.logradouro}}" name="logradouro">
                                             </div>
                                             <div class="col-2">
@@ -308,26 +306,30 @@
                                             <div class="col-2">
                                                 <input data-cep="uf" class="Retngulo10_ " type="text" value="{{usu.endereco.ufatual}}" name="ufatual">
                                             </div>
-                                            <div class="col-2">
-                                                <input data-cep="cidade" class="Retngulo11_ " type="text" value="{{usu.endereco.municipioatul}}" name="muniatual">
-                                            </div>
+                                           
                                         </div> 
-                                        <div class="row">    
-                                            <div class="col-2">
+                                        <div class="row">   
+                                            <div class="col-3">
+                                                <span>Município</span>
+                                            </div> 
+                                            <div class="col-3">
                                                 <span>Bairro</span>
                                             </div>
-                                            <div class="col-2">
+                                            <div class="col-3">
                                                 <span>Complemento</span>
                                             </div>
-                                            <div class="col-2">
+                                            <div class="col-3">
                                                 <span>País</span>
                                             </div>
                                         </div>
                                         <div class="row">   
-                                            <div class="col-2">
+                                            <div class="col-3">
+                                                <input data-cep="cidade" class="Retngulo11_ " type="text" value="{{usu.endereco.municipioatul}}" name="muniatual">
+                                            </div>
+                                            <div class="col-3">
                                                 <input data-cep="bairro" class="Retngulo12_ "  type="text" value="{{usu.endereco.bairroatual}}" name="bairro">
                                             </div>
-                                            <div class="col-2">
+                                            <div class="col-3">
                                                 <input id="complemento" class="Retngulo13_ " type="text" value="{{usu.endereco.complemento}}" name="complemeno">
                                             </div>
                                             <div class="col-3">
@@ -712,6 +714,7 @@
 
                     
                                 </div>
+                            </form>
 
                             </div>
                             <!-- end card body -->
@@ -732,7 +735,7 @@
             </tr>
         </table> 
 
-        </form>
+        
      
 
         </div>

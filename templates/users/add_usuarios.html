@@ -19,8 +19,8 @@
         </div>
 	    <div  class="container N_14  w-100" >
         <div class="conteudo"> 
-        <form name="cadastro" method="POST" action="{% url 'add_usuarios' %}" enctype="multipart/form-data">
-                    {% csrf_token %}
+        
+                   
                 <div class="row mb-5 ml-5">
                     <div class="col-lg-10 ml-5 mb-4">
                         <div class="card">
@@ -32,7 +32,8 @@
                                     </a>
                                 </div>
                                 
-                            
+                                <form  method="POST" action="{% url 'add_usuarios' %}" enctype="multipart/form-data">
+                                    {% csrf_token %}
                                 <div id="basic-example">
                                     <!-- Seller Details -->
                                     <h3>Dados Pessoais</h3>
@@ -691,9 +692,9 @@
                                         </div>  
                                     </section>
 
-                      
+                               
                                 </div>
-
+                            </form>
                             </div>
                             <!-- end card body -->
                         </div>
@@ -703,7 +704,7 @@
                 </div>
                 </div>
                 </div>    
-        </form>
+       
         </div>  
 </main>
 
