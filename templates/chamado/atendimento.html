@@ -170,8 +170,9 @@
   </div>
 
   <a href="{% url 'dash_index'%}">
-  <img id="close-button_" src="{% static 'img/close-button.png' %}" srcset="{% static 'img/close-button.png' %} 1x, {% static 'img/close-button@2x.png' %} 2x">
+  <img id="close-button_"    src="{% static 'img/close-button.png' %}" srcset="{% static 'img/close-button.png' %} 1x, {% static 'img/close-button@2x.png' %} 2x">
   </a>	
+ 
   {% endif %}  
       
                                          
@@ -183,7 +184,9 @@
             </div>
         </div>
     </main>
-
+    <div>
+      <img style="position: absolute;top: 1500px;" id="" class=""  src="{% static 'img/close-button.png' %}" srcset="{% static 'img/close-button.png' %} 1x, {% static 'img/close-button@2x.png' %} 2x">
+    </div> 	
 
  
     {% block modal %} 

@@ -14,10 +14,7 @@ urlpatterns = [
     path('chamado/chat/<int:id>',views.chat,  name="chat"),
     path('chamado/linksup',views.linksup, name="linksup"),
     path('fastchamado',views.fastchamado, name="fastchamado"),
-
  
-
-   
    
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

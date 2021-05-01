@@ -704,3 +704,5 @@ def rh_chamado(request):
 
 
     return render(request, 'chamado/rh_chamado.html', context)    
+
+

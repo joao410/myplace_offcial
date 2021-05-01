@@ -285,7 +285,10 @@ def edit_usuarios(request,id):
         except:
             
             try:
-                while id >0: 
+                us = UsuarioCorporativo.objects.all()
+                indice= len(us)
+                i=us[indice].id
+                while id > 0 and id < i:
                     try:
                         id = id+1  
                         usu = UsuarioCorporativo.objects.get(pk=id)

@@ -19,7 +19,7 @@
 
   </div>
  
-<div class="container">
+<div class="container ">
   {% if values.status == 'fechado' %}
   <a href="{% url 'rh_chamado'%}">
     <img id="close-buttons" src="{% static 'img/close-button.png' %}" srcset="{% static 'img/close-button.png' %} 1x, {% static 'img/close-button@2x.png' %} 2x">
@@ -324,7 +324,7 @@
   {% if values.status != 'fechado' %}
   <form method="POST" action="{% url 'id_chamado' values.id  %}">
     {% csrf_token %}
-	<button type="submit" name="encerrar" class="Retngulo_43 d-flex justify-content-center pt-3 text-white fw-bold fs-4">
+	<button type="submit" name="encerrar" class="Retngulo_43 mb-5 d-flex justify-content-center pt-3 pb-5 text-white fw-bold fs-4">
     <span>Encerrar Chamado</span>	
 	</button>
 	
@@ -335,8 +335,10 @@
   </div>
 
   <a href="{% url 'rh_chamado'%}">
-  <img id="close-button_" src="{% static 'img/close-button.png' %}" srcset="{% static 'img/close-button.png' %} 1x, {% static 'img/close-button@2x.png' %} 2x">
-  </a>	
+  <img id="close-button_"  src="{% static 'img/close-button.png' %}" srcset="{% static 'img/close-button.png' %} 1x, {% static 'img/close-button@2x.png' %} 2x">
+  </a>
+ 
+
   {% endif %}  
  	
       
@@ -349,7 +351,11 @@
                 </div> 
             </div>
         </div>
+      
     </main>
+    <div>
+      <img style="position: absolute;top: 1500px;" id="" class=""  src="{% static 'img/close-button.png' %}" srcset="{% static 'img/close-button.png' %} 1x, {% static 'img/close-button@2x.png' %} 2x">
+    </div> 	
 
 
  
