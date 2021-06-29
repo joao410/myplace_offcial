@@ -4,17 +4,18 @@
     {% block content %}
 
 
-      
-    <main style="left:100px;" role="main"  class="col-md-6 m-sm-auto col-lg-10  "  >
+       
+<main style="left: 100px;" role="main"  class="col-md-10 m-sm-auto col-lg-10  d-flex justify-content-center"  >
      
-    <div class="container">
-      <div class="container mt-5">
-        <div class="mt-5 ml-5" id="mepeba">
-          <span>
-            Usuários
-          </span>
+  <div class="container mt-5">
+        <div class="col-9 mt-4" id="mepeba">
+          <div class="row ">
+          <div class="col-3">
+            <img id="add-button" src="{{imageP.image.url}}" srcset="{{imageP.image.url}} 1x, {{imageP.img.url}} 2x">
+            </div>
+            <div class="col mt-4"><span> Usuários</span></div>
       </div>
-    
+        </div>
       <svg class="mt-2" viewBox="0 0 1500 1">
           <path id="Linha_1" d="M 0 0 L 1500 0">
           </path>
@@ -24,42 +25,56 @@
         <img  id="close-button" src="{% static 'img/close-button.png' %}" srcset="{% static 'img/close-button.png' %} 1x, {% static 'img/close-button@2x.png' %} 2x">
       </a>
   
-   <div class="m-2">
-    <div class="row">
-      <div class="col-9 ">
-              <div class="table-responsive">
-                  <table class="table  table-bordered  mb-0 ">
+      <div class="m-2">
+        <div class="row">
+        <div class="col-lg-12 col-md-8   ">
+                <div class="table-responsive">
+                    <table class="table table-primary  table-bordered table-striped  mb-0 ">
                     <tbody>
+                      <tr >
+                        <td class="col-2">Nome</td>
+                        <td class="col-5">{% firstof usuario.codigo.nome|upper ''|upper|truncatechars:50 %}</td>
+                      </tr> 
+                     
+                      <tr >
+                        <td class="col-2">Cargo</td>
+                        <td class="col-5">{% firstof usuario.trabalho.cargo|upper ''|upper|truncatechars:22 %}</td>
+                      </tr> 
+                     
+                      <tr >
+                        <td class="col-2">Empresa</td>
+                        <td class="col-5">{% firstof usuario.trabalho.empresa|upper ''|upper|truncatechars:22 %}</td>
+                      </tr> 
                        
                       <tr>
                         <td>Departamento</td>
-                        <td>{{usuario.trabalho.departamento|upper|truncatechars:22 }}</td>
+                        <td class="col-5">{% firstof usuario.trabalho.departamento ''|upper|truncatechars:22 %}</td>
                       </tr> 
                       
                       
                       <tr>
                         <td>E-mail corporativo 01</td>
-                        <td>{{usuario.email|upper|truncatechars:22 }}</td>
+                        <td>{% firstof usuario.email ''|upper|truncatechars:22 %}</td>
                       </tr> 
                       <tr>
                         <td>E-mail corporativo 02</td>
-                        <td>{{usuario.emailCorporativo|upper|truncatechars:22 }}</td>
+                        <td>{% firstof usuario.emailCorporativo ''|upper|truncatechars:22 %}</td>
                       </tr> 
                       <tr>
                         <td>Skype</td>
-                        <td>{{usuario.skype|upper|truncatechars:22 }}</td>
+                        <td>{% firstof usuario.skype ''|upper|truncatechars:22 %}</td>
                       </tr> 
                       <tr>
                         <td>Celular Corporativo</td>
-                        <td>{{usuario.telefone|upper|truncatechars:22 }}</td>
+                        <td>{% firstof usuario.telefone ''|upper|truncatechars:22 %}</td>
                       </tr> 
                       <tr>
                         <td>Telefone</td>
-                        <td>{{usuario.tel|upper|truncatechars:22 }}</td>
+                        <td>{% firstof usuario.tel ''|upper|truncatechars:22 %}</td>
                       </tr> 
                       <tr>
                         <td>Ramal</td>
-                        <td>{{usuario.ramal|upper|truncatechars:22 }}</td>
+                        <td>{% firstof usuario.ramal ''|upper|truncatechars:22 %}</td>
                       </tr> 
                   </tbody>
                   </table>
@@ -68,12 +83,7 @@
   </div>
     </div>
 
-    <div class="col-3">
-    <img id="add-button" src="{{imageP.image.url}}" srcset="{{imageP.image.url}} 1x, {{imageP.img.url}} 2x">
-    <div class="" scope="row">{{usuario.codigo.nome|upper|truncatechars:28 }}</div>
-    <div class="" scope="row">{{usuario.trabalho.cargo|upper|truncatechars:22 }}</div>
-    <div class="" scope="row">{{usuario.trabalho.empresa|upper|truncatechars:22 }}</div>
-    </div>
+    
       </div>
     
   
@@ -90,5 +100,27 @@
 
 
 {% endblock content %}
-</body>
-</html>
+
+{% block javascript %}
+<!-- JAVASCRIPT -->
+<script src="{% static 'libs/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'libs/metismenu/metisMenu.min.js' %}"></script>
+<script src="{% static 'libs/simplebar/simplebar.min.js' %}"></script>
+<script src="{% static 'libs/node-waves/waves.min.js' %}"></script>
+<script src="{% static 'libs/waypoints/lib/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'libs/jquery.counterup/jquery.counterup.min.js' %}"></script>
+
+<!-- jquery step -->
+<script src="{% static 'libs/jquery-steps/build/jquery.steps.min.js' %}"></script>
+
+<!-- form wizard init -->
+<script src="{% static 'js/form-wizard.init.js' %}"></script>
+
+<script src="{% static 'js/app.js' %}"></script>
+
+
+
+
+
+{% endblock %} 

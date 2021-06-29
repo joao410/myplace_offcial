@@ -76,7 +76,7 @@
                             <li>
                                 <a href="{% url 'tecnicos' %}" class=" waves-effect">
                                     <i class="uil-comments-alt"></i>
-                                    <span class="badge rounded-pill bg-warning float-end">New</span>
+                                    <!--<span class="badge rounded-pill bg-warning float-end">New</span>-->
                                     <span>Links</span>
                                 </a>
                             </li>
@@ -105,7 +105,15 @@
                                 </a>
                                 
                             </li>
-
+                            {% if grupos == "atendimento ti"%}
+                            <li>
+                                <a href="{% url 'category' %}" class="">
+                                    <i class="uil-envelope"></i>
+                                    <span>inventario</span>
+                                </a>
+                                
+                            </li>
+                            {% endif %}
                                                 
 
                         </ul>

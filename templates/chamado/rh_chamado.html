@@ -19,9 +19,9 @@
       </path>
   </svg>
   <a href="{% url 'add_chamado' %}">
-  <div id="R_13" class="R_13 d-flex justify-content-center "  style="margin-top: 35px; margin-left: 20px;">
-    <div id="" class="fw-bold fs-4  text-white mt-1">
-      <span style="margin-top: 15px;">Abrir Chamado</span>
+  <div id="R_13" class="R_13 d-flex justify-content-center bg-primary"  style="margin-top: 10px; margin-left: 20px;">
+    <div id="" class="fw-bold fs-4  text-white mt-2">
+      <span class="mt-2">Abrir Chamado</span>
     </div>
   </div>
 </a>
@@ -72,7 +72,7 @@
 
         </form>
       -->
-        <table id="example" class="table ">
+        <table class="table table-bordered datatable ">
         <thead>
         <tr  >
   
@@ -179,37 +179,39 @@
   
 
 
-  {% block js %}
-  
-
-  <script >
-    	$(document).ready(function() {
-		$('#example').DataTable({
-    "scrollY":"900px",
-    "order": [[ 0, "desc" ]],
-    "language": {
-    "sSearch": "Buscar:",
-    "sInfo": "Chanados de _START_ a _END_ (Total _MAX_)",
-    "sInfoEmpty": "0 chamados",
-    "sInfoFiltered": "(filtrado de um total de _MAX_ chamados)",
-    "sLengthMenu": "Mostrar _MENU_ chamados",
-    "sZeroRecords": "Nenhum chamado encontrado",
-    "sEmptyTable": "Zero chamados",
-    "paginate": {
-    "previous": "Anterior",
-    "next": "Próxima"
-    },
-    
-  
-    
-}
-});
-	} );
-    
-    </script>
-    
-  {% endblock js %}
 
      
 
 {% endblock content %}  
+{% block javascript %}
+ <!-- JAVASCRIPT -->
+<script src="{% static 'libs/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'libs/metismenu/metisMenu.min.js' %}"></script>
+<script src="{% static 'libs/simplebar/simplebar.min.js' %}"></script>
+<script src="{% static 'libs/node-waves/waves.min.js' %}"></script>
+<script src="{% static 'libs/waypoints/lib/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'libs/jquery.counterup/jquery.counterup.min.js' %}"></script>
+
+<!-- Required datatable js -->
+<script src="{% static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+ <!-- Buttons examples -->
+ <script src="{% static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+ <script src="{% static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+ <script src="{% static 'libs/jszip/jszip.min.js' %}"></script>
+ <script src="{% static 'libs/pdfmake/build/pdfmake.min.js' %}"></script>
+ <script src="{% static 'libs/pdfmake/build/vfs_fonts.js' %}"></script>
+ <script src="{% static 'libs/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+ <script src="{% static 'libs/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+ <script src="{% static 'libs/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+ 
+<!-- Responsive examples -->
+<script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+
+<!-- init js -->
+<script src="{% static 'js/ecommerce-datatables.init2.js' %}"></script>
+
+<script src="{% static 'js/app.js' %}"></script>
+{% endblock %}

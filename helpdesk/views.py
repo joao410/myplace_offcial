@@ -112,6 +112,7 @@ def atendimento(request, id):
         chamado = Chamado.objects.get(pk=ids)
         chamado.name =   a
         chamado.status="em atendimento"
+        chamado.active= False
         chamado.save()  
                
         return redirect( 'atendimento',ids)

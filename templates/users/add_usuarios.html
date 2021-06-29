@@ -56,7 +56,11 @@
                                                 <input  class="Retngulo_apelido " type="text"  name="apelido">
                                             </div>
                                         </div>
-                                        
+                                        <div class="row bg-primary text-white rounded p-2 mt-1 mb-1"> 
+                                        Documentos Trabalhistas
+                                        </div> 
+
+
                                         <div class="row">
                                             <div class="col-4">
                                                 <span style="color: rgba(255,0,0,1);">*</span>  <span>CPF</span>
@@ -105,9 +109,52 @@
                                                 <input  class="Retngulo_ufc " type="text" name="ufc">
                                             </div>
                                             <div class="col-3">
-                                                <input  class="Retngulo_emissao " type="date" value="1900-01-01"name="emissao"> 
+                                                <input  class="Retngulo_emissao " type="date" name="emissao"> 
                                             </div>
                                         </div>
+                                        <div class="row">                                             
+                                            <div class="col-2">
+                                                <span>Documento</span>
+                                            </div>
+                                            <div class="col-2">
+                                                <span>Número</span>
+                                            </div>
+                                            <div class="col-2">
+                                                <span>Orgão Emissor</span>
+                                            </div>
+                                            <div class="col-2">
+                                                <span>Expedição</span>
+                                            </div>
+                                            <div class="col">
+                                                <span>Validade</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">                                             
+                                            <div class="col-2">
+                                                <select name="documento"  class=" Retngulo1_ ">
+                                                    <option name="documento" value="">
+                                                        <option value="RG">RG</option>
+                                                        <option value="CNH">CNH</option>
+                                                
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-2">
+                                                <input  class="Retngulo2_ " type="text" name="numero">
+                                            </div>
+                                            <div class="col-2">
+                                                <input  class="Retngulo3_ " type="text" name="oe">
+                                            </div>
+                                            <div class="col-2">
+                                                <input  class="Retngulo4_ " type="date"  name="expedicao">
+                                            </div>
+                                            <div class="col">
+                                                <input  class="Retngulo5_ " type="date"name="validade"> 
+                                            </div>
+                                        </div>
+                                        <div class="row bg-primary text-white rounded p-2 mt-1 mb-1"> 
+                                            Dados Pessoais
+                                            </div> 
                                         <div class="row">
                                             <div class="col-4">
                                                 <span>Gênero</span>
@@ -234,46 +281,9 @@
                                                 <input  class="Retngulo_pai " type="text" name="pai">
                                             </div>
                                         </div>
-                                        <div class="row">                                             
-                                            <div class="col-2">
-                                                <span>Documento</span>
-                                            </div>
-                                            <div class="col-2">
-                                                <span>Número</span>
-                                            </div>
-                                            <div class="col-2">
-                                                <span>Orgão Emissor</span>
-                                            </div>
-                                            <div class="col-2">
-                                                <span>Expedição</span>
-                                            </div>
-                                            <div class="col">
-                                                <span>Validade</span>
-                                            </div>
-                                        </div>
-                                        <div class="row">                                             
-                                            <div class="col-2">
-                                                <select name="documento"  class=" Retngulo1_ ">
-                                                    <option name="documento" value="">
-                                                        <option value="PG">RG</option>
-                                                        <option value="CNH">CNH</option>
-                                                
-                                                    </option>
-                                                </select>
-                                            </div>
-                                            <div class="col-2">
-                                                <input  class="Retngulo2_ " type="text" name="numero">
-                                            </div>
-                                            <div class="col-2">
-                                                <input  class="Retngulo3_ " type="text" name="oe">
-                                            </div>
-                                            <div class="col-2">
-                                                <input  class="Retngulo4_ " type="date" value="1900-01-01" name="expedicao">
-                                            </div>
-                                            <div class="col">
-                                                <input  class="Retngulo5_ " type="date"value="1900-01-01"name="validade"> 
-                                            </div>
-                                        </div>
+                                        <div class="row bg-primary text-white rounded p-2 mt-1 mb-1"> 
+                                            Endereço
+                                            </div> 
                                         <div class="row">
                                             <div class="col-2">
                                                 <span>Cep</span>
@@ -297,16 +307,16 @@
                                                 <input id="cep" class="Retngulo6_  cep-mask" type="text" name="cep">
                                             </div>
                                             <div class="col-2 mr-1">
-                                                <input data-cep="tipo_logradouro" class="Retngulo7_ " type="text" name="tipo">
+                                                <input id="" data-cep="tipo_logradouro" class="Retngulo7_ " type="text" name="tipo">
                                             </div>
                                             <div class="col-3">
-                                                <input data-cep="endereco" class="Retngulo8_ " type="text" name="logradouro">
+                                                <input id="rua"data-cep="endereco" class="Retngulo8_ " type="text" name="logradouro">
                                             </div>
                                             <div class="col-2">
                                                 <input  class="Retngulo9_ " type="text" name="num">
                                             </div>
                                             <div class="col-2">
-                                                <input data-cep="uf" class="Retngulo10_ " type="text" name="ufatual">
+                                                <input id="ufx" data-cep="uf" class="Retngulo10_ " type="text" name="ufatual">
                                             </div>
                                            
                                         </div> 
@@ -327,10 +337,10 @@
                                         </div>
                                         <div class="row">   
                                             <div class="col-3">
-                                                <input data-cep="cidade" class="Retngulo11_ " type="text" name="muniatual">
+                                                <input id="cidade" data-cep="cidade" class="Retngulo11_ " type="text" name="muniatual">
                                             </div>
                                             <div class="col-3">
-                                                <input data-cep="bairro" class="Retngulo12_ " type="text" name="bairro">
+                                                <input id="bairro" data-cep="bairro" class="Retngulo12_ " type="text" name="bairro">
                                             </div>
                                             <div class="col-3">
                                                 <input id="complemento" class="Retngulo13_ " type="text" name="complemeno">
@@ -345,6 +355,9 @@
                                     <!-- Company Document -->
                                     <h3>Dados Empresariais</h3>
                                     <section>
+                                        <div class="row bg-primary text-white rounded p-2 mt-1 mb-1"> 
+                                       Dados de Admissão
+                                            </div> 
                                         <div class="row">
                                                     <div class="col-4">
                                                         <span>Departamento</span>
@@ -390,20 +403,39 @@
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <input  class="Retngulo_admissao " type="date"value="1900-01-01" name="admissao">
+                                                <input  class="Retngulo_admissao " type="date" name="admissao">
                                             </div>
                                             <div class="col">
-                                                <input  class="Retngulo_demissao " type="date"value="1900-01-01"name="demissao">
+                                                <input  class="Retngulo_demissao " type="date"name="demissao">
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <span>Tipo de Admissão</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                                
+                                            <div class="col">
+                                                <select name="tipoadmissao"  class=" Retngulo_tipoadmissao">
+                                                    <option name="tipoadmissao" hidden value="{{usu.trabalho.tipoAdmissao}}" >
+                                                        <option value="{{usu.trabalho.tipoAdmissao}}" hidden selected>{% firstof usu.trabalho.tipoAdmissao '' %}</option>
+                                                        <option value="Admissão">1 - ADMISSÃO</option>
+                                                        <option value="Transferencia de empresa do mesmo grupo empresarial">2 - TRANSFERENCIA DE EMPRESA DO MESMO GRUPO EMPRESARIAL</option>
+                                                        <option value="Admissão por sucessão, Incorporação, Cisão ou Fusão">3 - ADMISSÃO POR SUCESSÃO, INCORPORAÇÃO, CISÃO OU FUSÃO</option>
+                                                        <option value="Trabalhador cedido">4 - TRABALHADOR CEDIDO</option>   
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row">
                                         <div class="row">
                                             <div class="col">
                                                 <span>Vale Transporte</span>
                                             </div>
                                                 
-                                            <div class="col">
-                                                <span>Tipo de Admissão</span>
-                                            </div>
+                                            
                                             <div class="col">
                                                 <span>Indicativo Admissional</span>
                                             </div>
@@ -421,16 +453,7 @@
                                                 </select>
                                             </div>
                                                 
-                                            <div class="col">
-                                                <select name="tipoadmissao"  class=" Retngulo_tipoadmissao">
-                                                    <option name="tipoadmissao" value="">
-                                                        <option value="Admissão">1 - ADMISSÃO</option>
-                                                        <option value="Transferencia de empresa do mesmo grupo empresarial">2 - TRANSFERENCIA DE EMPRESA DO MESMO GRUPO EMPRESARIAL</option>
-                                                        <option value="Admissão por sucessão, Incorporação, Cisão ou Fusão">3 - ADMISSÃO POR SUCESSÃO, INCORPORAÇÃO, CISÃO OU FUSÃO</option>
-                                                        <option value="Trabalhador cedido">4 - TRABALHADOR CEDIDO</option>   
-                                                    </option>
-                                                </select>
-                                            </div>
+                                          
                                             <div class="col">
                                                 <select name="indica"  class=" Retngulo_indica">
                                                     <option name="indica" value="">
@@ -449,6 +472,10 @@
                                                 </select>     
                                             </div>
                                         </div>
+                                        <div class="row bg-primary text-white rounded p-2 mt-1 mb-1"> 
+                                        Contrato
+                                        
+                                            </div> 
                                         <div class="row">
                                             <div class="col">
                                                 <span>Regime de Trabalho</span>
@@ -456,12 +483,7 @@
                                             <div class="col">
                                                 <span>Regime Previdenciário</span>
                                             </div>
-                                            <div class="col">
-                                                <span>Regime de Jornada</span>
-                                            </div>
-                                            <div class="col">
-                                                <span>Natureza da Atividade</span>
-                                            </div>
+                                           
                                         </div>
                                         <div class="row">
                                             <div class="col">
@@ -482,9 +504,21 @@
                                                     </option>
                                                 </select>      
                                             </div>
+                                            
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <span>Regime de Jornada</span>
+                                            </div>
+                                            <div class="col">
+                                                <span>Natureza da Atividade</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
                                             <div class="col">
                                                 <select name="rjorn"  class=" Retngulo_77">
-                                                    <option name="rjorn" value="">
+                                                    <option name="rjorn" hidden value="{{usu.trabalho.regimejornada}}">
+                                                        <option value="{{usu.trabalho.regimejornada}}" hidden selected>{% firstof usu.trabalho.regimejornada '' %}</option>
                                                         <option value="SUBMETIDO A HORÁRIOS DE TRABALHO">1 - SUBMETIDO A HORÁRIOS DE TRABALHO</option>
                                                         <option value="ATIVIDADE EXTERNA ESPECIFICADA">2 - ATIVIDADE EXTERNA ESPECIFICADA</option>
                                                         <option value="FUNÇÕES ESPECIFICAS">3 - FUNÇÕES ESPECIFICAS </option>
@@ -493,7 +527,8 @@
                                             </div>
                                             <div class="col">
                                                 <select name="naativ"  class=" Retngulo_78">
-                                                    <option name="naativ" value="">
+                                                    <option name="naativ" hidden value="{{usu.trabalho.naturezaatividade}}">
+                                                        <option selected hidden value="{{usu.trabalho.naturezaatividade}}">{% firstof usu.trabalho.naturezaatividade '' %}</option>
                                                         <option value="TRABALHO URBANO">1 - TRABALHO URBANO</option>
                                                         <option value="RURAL">2 -RURAL</option>
                                                     </option>
@@ -504,20 +539,12 @@
                                             <div class="col">
                                                 <span>Categoria</span>
                                             </div>
-                                            <div class="col">
-                                                <span>CBO</span>
-                                            </div>
-                                            <div class="col">
-                                                <span>Carga Horária</span>
-                                            </div>
-                                            <div class="col">
-                                                <span>Unidade Salarial</span>
-                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="col">
                                                 <select name="cat"  class=" Retngulo_79">
-                                                    <option name="cat" value="">
+                                                    <option name="cat" hidden value="{{usu.trabalho.categoria}}">
+                                                        <option selected hidden value="{{usu.trabalho.categoria}}">{% firstof usu.trabalho.categoria '' %}</option>
                                                         <option value="EMPREGADO-GERAL">1 - EMPREGADO-GERAL</option>
                                                         <option value="EMPREGADO-TRABALHADOR RURAL POR PEQUENO PRAZO DA LEI 11.718/2008">2 - EMPREGADO-TRABALHADOR RURAL POR PEQUENO PRAZO DA LEI 11.718/2008</option>
                                                         <option value="EMPREGADO-APRENDIZ">3 - EMPREGADO-APRENDIZ</option>
@@ -530,6 +557,21 @@
                                                     </option>
                                                 </select>  
                                             </div>
+                                        </div>
+                                        <div class="row">
+                                            
+                                            <div class="col">
+                                                <span>CBO</span>
+                                            </div>
+                                            <div class="col">
+                                                <span>Carga Horária</span>
+                                            </div>
+                                            <div class="col">
+                                                <span>Unidade Salarial</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            
                                             <div class="col">
                                                 <input  class="Retngulo_80 " type="text" name="codf">
                                             </div>
@@ -565,11 +607,9 @@
                                                 <textarea rows="4" cols="50" name="obs" class="Retngulo_84 " ></textarea>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col">     
-                                                <span>Dados Bancários</span>
-                                            </div>
-                                        </div>
+                                        <div class="row bg-primary text-white rounded p-2 mt-1 mb-1"> 
+                                            Dados Bancários
+                                            </div> 
                                         <div class="row">
                                             <div class="col">
                                                 <span>Banco </span>
@@ -721,7 +761,7 @@
             {% csrf_token %}
           <label>Cargo:</label><br>    
           <input type="text" class="" name="cargo"><br>
-          <label>Ncbo:</label><br> 
+          <label>CBO:</label><br> 
           <input type="text" class="" name="ncbo"><br>
         </div>
         <div class="modal-footer">
@@ -752,99 +792,11 @@
         <script src="{% static 'js/form-wizard.init.js' %}"></script>
 
         <script src="{% static 'js/app.js' %}"></script>
+        <script src="{% static 'js/cep.js' %}"></script>
+        <script src="{% static 'js/mask.js' %}"></script>
+        <script src="{% static 'js/jquery.cep.min.js' %}"></script>
 
 
 {% endblock %} 
-{% block js%}
-<script type="text/javascript" src="https://www.geradorcpf.com/assets/js/jquery-1.2.6.pack.js"></script>
-<script type="text/javascript" src="https://www.geradorcpf.com/assets/js/jquery.maskedinput-1.1.4.pack.js"></script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#cpf").mask("999.999.999-99");
-		$("#tel").mask("(99)99999-9999");
-		$("#dt").mask("99/99/9999");
-	});
-</script>
-<script>
     
-  var loadFile = function(event) {
-    var output = document.getElementById('output');
-    output.src = URL.createObjectURL(event.target.files[0]);
-    output.onload = function() {
-      URL.revokeObjectURL(output.src) // free memory
-    }
-  };
-</script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="crossorigin="anonymous"></script>
-<script src="{% static 'js/jquery.cep.min.js' %}"></script>
-<script src="{% static 'js/script.js'%}"></script>          
-<script>
-    $(document).ready(function() {
-
-    function limpa_formulário_cep() {
-    // Limpa valores do formulário de cep.
-    $("#rua").val("");
-    $("#bairro").val("");
-    $("#cidade").val("");
-    $("#uf").val("");
-    $("#ibge").val("");
-    }
-
-    //Quando o campo cep perde o foco.
-    $("#cep").blur(function() {
-
-    //Nova variável "cep" somente com dígitos.
-    var cep = $(this).val().replace(/\D/g, '');
-
-    //Verifica se campo cep possui valor informado.
-    if (cep != "") {
-
-        //Expressão regular para validar o CEP.
-        var validacep = /^[0-9]{8}$/;
-
-        //Valida o formato do CEP.
-        if(validacep.test(cep)) {
-
-            //Preenche os campos com "..." enquanto consulta webservice.
-            $("#rua").val("...");
-            $("#bairro").val("...");
-            $("#cidade").val("...");
-            $("#uf").val("...");
-            $("#ibge").val("...");
-
-            //Consulta o webservice viacep.com.br/
-            $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
-
-                if (!("erro" in dados)) {
-                    //Atualiza os campos com os valores da consulta.
-                    $("#rua").val(dados.logradouro);
-                    $("#bairro").val(dados.bairro);
-                    $("#cidade").val(dados.localidade);
-                    $("#ufx").val(dados.uf);
-                    $("#ibge").val(dados.ibge);
-                    $("#complemnto").val(dados.complemento);
-                    $("#paisx").val("Brasil");
-                } //end if.
-                else {
-                    //CEP pesquisado não foi encontrado.
-                    limpa_formulário_cep();
-                    alert("CEP não encontrado.");
-                }
-            });
-        } //end if.
-        else {
-            //cep é inválido.
-            limpa_formulário_cep();
-            alert("Formato de CEP inválido.");
-        }
-    } //end if.
-    else {
-        //cep sem valor, limpa formulário.
-        limpa_formulário_cep();
-    }
-    });
-    });
-
-</script>    
-{% endblock %}          
  
