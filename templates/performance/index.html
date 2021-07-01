@@ -163,7 +163,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Descrições {% now "F" %}</div>
-                                            <div class="h5 mb-0 ml-4 font-weight-bold text-gray-800">{{performance.1.conclude}}</div>
+                                            <div class="h5 mb-0 ml-4 font-weight-bold text-gray-800">{{performance.0.conclude}}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -183,7 +183,7 @@
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 ml-4 mb-0 mr-3 font-weight-bold text-gray-800">{{performance.0.conclude|add:performance.2.conclude|add:performance.3.conclude}}</div>
+                                                    <div class="h5 ml-4 mb-0 mr-3 font-weight-bold text-gray-800">{{performance.1.conclude|add:performance.2.conclude|add:performance.3.conclude}}</div>
                                                 </div>
                                                 <div class="col">
                                                     {% comment %} <div class="progress progress-sm mr-2">
@@ -237,7 +237,7 @@
                                     
                                     {% for performance in performance %} 
                                     
-                                    <h4 class="small font-weight-bold">{{performance.user.first_name}}{% if performance.user.first_name != "CAROLINA" %} ({% widthratio performance.porcentagem 3 1 %}%)<span
+                                    <h4 class="small font-weight-bold">{{performance.user.first_name}}{% if performance.meta != "300 - C.D" %} ({% widthratio performance.porcentagem 3 1 %}%)<span
                                             class="float-right"> {% widthratio  performance.conclude 3 1 %} {% else %}({{ performance.porcentagem }}%)<span
                                             class="float-right"> {{ performance.conclude }} {% endif %}de {{performance.meta.meta}}/mês</span></h4>
                                     <div class="progress mb-4">
