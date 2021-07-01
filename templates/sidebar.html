@@ -105,7 +105,7 @@
                                 </a>
                                 
                             </li>
-                            {% if grupos == "atendimento ti"%}
+                            {% if grupos == "atendimento ti" or grupos == "Administrador" %}
                             <li>
                                 <a href="{% url 'category' %}" class="">
                                     <i class="uil-envelope"></i>
@@ -114,6 +114,16 @@
                                 
                             </li>
                             {% endif %}
+                            {% if grupos != "Colaborador" or grupos != "recursos humanos" %}
+                            <li>
+                                <a href="{% url 'index' %}" class="">
+                                    <i class="uil-envelope"></i>
+                                    <span>Anuncios</span>
+                                </a>
+                                
+                            </li>
+                            {% endif %}
+
                                                 
 
                         </ul>

@@ -48,12 +48,12 @@
                                             
                                             <td><a href="javascript: void(0);" class="text-dark fw-bold">{{users.codigo.nome|upper}}</a> </td>
                                             <td>
-                                              {% firstof users.trabalho.departamento|upper ''|upper%}
+                                              {% firstof users.trabalho.departamento ""|upper %}
                                             </td>
-                                            <td>{% firstof users.ramal|upper ''|upper %}</td>
+                                            <td>{% firstof users.ramal ""|upper  %}</td>
                                             
                                             <td>
-                                              {% firstof users.tel|upper ''|upper%}
+                                              {% firstof users.tel ""|upper ''|upper%}
                                             </td>
                                             <td>
                                                 <div> {% firstof users.emailCorporativo|upper ''|upper%}</div>

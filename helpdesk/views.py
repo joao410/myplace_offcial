@@ -216,10 +216,7 @@ def dash_index(request):
     user = request.user
     usuarioC = UsuarioCorporativo.objects.get(usuario=user)
     codigo = usuarioC.codigo
-    usuarioT= UsuarioTrabalho.objects.get(codigo=codigo)
-    usuarioP = UsuarioPessoal.objects.get(nome=codigo.nome)
-    usuarioE = UsuarioEndereco.objects.get(codigo=codigo)
-    usuarioD = UsuarioDocumentos.objects.get(codigo=codigo)
+   
     grupo= usuarioC.grupo
     grupos= usuarioC.grupo.name
     if usuarioC.grupo.name == "Administrador":
@@ -237,11 +234,9 @@ def dash_index(request):
             'chamados': chamados,
             'grupos': grupos,
             'usuarioC':usuarioC,
-            'usuarioT':usuarioT,
+          
             'user' : user, 
-            'usuarioP':usuarioP, 
-            'usuarioE':usuarioE, 
-            'usuarioD':usuarioD, 
+             
             'user' : user,  
             'grupo':grupo,
             'filtro': filtro,
@@ -254,10 +249,7 @@ def dash_index(request):
                 user = request.user
                 usuarioC = UsuarioCorporativo.objects.get(usuario=user)
                 grupo= usuarioC.grupo
-                usuarioT= UsuarioTrabalho.objects.get(codigo=codigo)
-                usuarioP = UsuarioPessoal.objects.get(nome=codigo.nome)
-                usuarioE = UsuarioEndereco.objects.get(codigo=codigo)
-                usuarioD = UsuarioDocumentos.objects.get(codigo=codigo)
+               
                 codigo = usuarioC.codigo
                 chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("id")
                 grupos= usuarioC.grupo.name
@@ -267,11 +259,9 @@ def dash_index(request):
                     'chamados_abertos': chamados_abertos,
                     'grupos': grupos,
                     'usuarioC':usuarioC,
-                    'usuarioT':usuarioT,
+                    
                     'user' : user, 
-                    'usuarioP':usuarioP, 
-                    'usuarioE':usuarioE, 
-                    'usuarioD':usuarioD, 
+                   
                     'grupo':grupo,
                     'filtro': filtro,  
                     'imageP':imageP,                   
@@ -284,10 +274,7 @@ def dash_index(request):
         user = request.user
         usuarioC = UsuarioCorporativo.objects.get(usuario=user)
         grupo= usuarioC.grupo
-        usuarioT= UsuarioTrabalho.objects.get(codigo=codigo)
-        usuarioP = UsuarioPessoal.objects.get(nome=codigo.nome)
-        usuarioE = UsuarioEndereco.objects.get(codigo=codigo)
-        usuarioD = UsuarioDocumentos.objects.get(codigo=codigo)
+       
         codigo = usuarioC.codigo
         chamados = Chamado.objects.filter(grupo=grupo).order_by("-id")    
         chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("-id")
@@ -304,11 +291,9 @@ def dash_index(request):
         'chamados_abertos': chamados_abertos,
         'grupos': grupos,
         'usuarioC':usuarioC,
-        'usuarioT':usuarioT,
+      
         'user' : user, 
-        'usuarioP':usuarioP, 
-        'usuarioE':usuarioE, 
-        'usuarioD':usuarioD, 
+      
         'grupo':grupo,
         'admin':admin, 
         'filtro': filtro,
@@ -410,6 +395,8 @@ def id_chamado(request, id):
     image = Image.objects.get(ticket=chamado.ticket) 
     try:
       image.image     
+    except image.nome:
+        image = Image.objects.get(nome="padrao") 
     except:
        image = Image.objects.get(nome="padrao")   
    
@@ -571,7 +558,9 @@ def add_chamado(request):
             problema = request.POST["assunto"]
             urgencia = ""
             status = "aberto"
+            data = date.today() 
             des = request.POST["obs"] 
+            fin = "default"
            
             if not nome:
                     messages.error(
@@ -587,7 +576,7 @@ def add_chamado(request):
             if not grupo:
                     messages.error(request, "Por favor escolha a urgencia do assunto")
                     return render(request, 'chamado/add_chamado.html', context)        
-            Chamado.objects.create(username=nome, problem=problema,status=status,ticket=ticket,urgency=urgencia, grupo=grupo, des_problem=des) 
+            Chamado.objects.create(username=nome, problem=problema,status=status,ticket=ticket,data=data,finalizado= fin,urgency=urgencia, grupo=grupo, des_problem=des) 
             messages.success(request, 'Chamado criado com sucesso')
             form = ImageForm(request.POST, request.FILES)
             if form.is_valid():
@@ -598,7 +587,7 @@ def add_chamado(request):
                 if not img:
                     img = ""
                 obs = ''
-                Image.objects.create(chamado=chamados, ticket=ticket, nome=nome, image=img, obs=obs )
+                Image.objects.create( ticket=ticket, nome=nome, image=img, obs=obs )
                
                 messages.success(request, 'Imagem adicionada')
             else:
@@ -612,7 +601,8 @@ def add_chamado(request):
             urgencia = ""
             status = "aberto"
             des = request.POST["obs"] 
-           
+            data = date.today() 
+            fin = "default"
             if not nome:
                     messages.error(
                     request, "Por favor preencha os campos ")
@@ -627,7 +617,7 @@ def add_chamado(request):
             if not grupo:
                     messages.error(request, "Por favor escolha um grupo do assunto")
                     return render(request, 'chamado/add_chamado.html', context)        
-            Chamado.objects.create(username=nome, problem=problema,status=status,ticket=ticket,urgency=urgencia, grupo=grupo, des_problem=des) 
+            Chamado.objects.create(username=nome, problem=problema,status=status,ticket=ticket,urgency=urgencia,finalizado= fin, data=data,grupo=grupo, des_problem=des) 
             messages.success(request, 'Chamado criado com sucesso')
             form = ImageForms(request.POST, request.FILES)
             if form.is_valid():
@@ -636,7 +626,7 @@ def add_chamado(request):
                 nome = user
                 img = form.cleaned_data.get("imagens") 
                 obs = ''
-                Image.objects.create(chamado=chamados, ticket=ticket, nome=nome, image=img, obs=obs )
+                Image.objects.create( ticket=ticket, nome=nome, image=img, obs=obs )
                
                 messages.success(request, 'Imagem adicionada')
             else:
@@ -677,10 +667,7 @@ def rh_chamado(request):
         admin = Chamado.objects.all()        
         usuarioC = UsuarioCorporativo.objects.get(usuario=user)
         codigo = usuarioC.codigo
-        usuarioT= UsuarioTrabalho.objects.get(codigo=codigo)
-        usuarioP = UsuarioPessoal.objects.get(nome=codigo.nome)
-        usuarioE = UsuarioEndereco.objects.get(codigo=codigo)
-        usuarioD = UsuarioDocumentos.objects.get(codigo=codigo)
+       
         grupo= usuarioC.grupo
         chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("id")
         grupos= usuarioC.grupo.name
@@ -690,11 +677,9 @@ def rh_chamado(request):
             'chamados_abertos': chamados_abertos,
             'grupos': grupos,
             'usuarioC':usuarioC,
-            'usuarioT':usuarioT,
+            
             'user' : user, 
-            'usuarioP':usuarioP, 
-            'usuarioE':usuarioE, 
-            'usuarioD':usuarioD,
+          
             'user' : user,  
             'grupo':grupo,
             'filtro': filtro,  

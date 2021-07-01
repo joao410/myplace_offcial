@@ -110,7 +110,7 @@ class Log_entrance(Base):
     part_code = ForeignKey(Product_details,on_delete=DO_NOTHING)
     product_code = ForeignKey(Product,on_delete=DO_NOTHING)
     creator = ForeignKey(User,on_delete=DO_NOTHING)
-    amount = models.IntegerField("quantidade",default=0) 
+
 
     class Meta:
         abstract = True

@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\arena\projeto_python\myplace\myplacenv"
+VIRTUAL_ENV="C:\Django\myplacenv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

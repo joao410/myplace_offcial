@@ -16,25 +16,21 @@
 		{%endblock style%}
 	</head>
 	<body data-sidebar="dark">
-		{% include 'partials/_messages.html' %}
+		<div id="layout-wrapper">
+				{% include 'partials/_messages.html' %}
 				{% block header %}
 				{% include 'header.html' %}   
 				{% endblock %}   
 				{% block sidebar %}
 				{% include 'sidebar.html' %}   
 				{% endblock %}   
-
-		<div id="layout-wrapper">
-				
 				{% block content %}
 				{% endblock%} 
-
-				
+				{% block javascript %}
+				{% include 'javascript.html' %}   
+				{% endblock %}
 		</div>
 				
 	</body>
 </html>
-				{% block javascript %}
-				{% include 'javascript.html' %}   
-				{% endblock %}
     

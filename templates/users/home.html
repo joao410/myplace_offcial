@@ -31,22 +31,22 @@
                            
                               <tr >
                                 <td class="col-2">Nome</td>
-                                <td class="col-5">{% firstof usuarioP.nome|upper ''|upper|truncatechars:50 %}</td>
+                                <td class="col-5">{% firstof usuarioC.codigo.nome|upper ''|upper|truncatechars:50 %}</td>
                               </tr> 
                              
                               <tr >
                                 <td class="col-2">Cargo</td>
-                                <td class="col-5">{% firstof usuarioT.cargo|upper ''|upper|truncatechars:22 %}</td>
+                                <td class="col-5">{% firstof usuarioC.trabalho.cargo|upper ''|upper|truncatechars:22 %}</td>
                               </tr> 
                              
                               <tr >
                                 <td class="col-2">Empresa</td>
-                                <td class="col-5">{% firstof usuarioT.empresa|upper ''|upper|truncatechars:22 %}</td>
+                                <td class="col-5">{% firstof usuarioC.trabalho.empresa|upper ''|upper|truncatechars:22 %}</td>
                               </tr> 
                              
                               <tr >
                                 <td class="col-2">Departamento</td>
-                                <td class="col-5">{% firstof usuarioT.departamento|upper ''|upper|truncatechars:22 %}</td>
+                                <td class="col-5">{% firstof usuarioC.trabalho.departamento|upper ''|upper|truncatechars:22 %}</td>
                               </tr> 
                               
                               
