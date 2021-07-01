@@ -8,7 +8,7 @@
   <path id="Linha_1" d="M 0 0 L 1482 0">
   </path>
 </svg>
-<div style="top:1;left: 300px;" id="Atendimento_ba">
+<div class="" style="top:1;left: 300px;" id="Atendimento_ba">
   <span>Usuários</span>
 </div>
 <main style="left:100px;" role="main"  class="col-md-6 m-sm-auto col-lg-9 mb-5"  >
@@ -17,22 +17,22 @@
         
 
 
-        {% if grupos == "recursos humanos"%}
+        {% if grupos == "recursos humanos" or  grupos ==  "atendimento ti" %}
             <a href="{% url 'add_usuarios' %}">
-            <div class="Retngulo_58_ text-white fs-5 fw-bold d-flex justify-content-center pt-2">
+            <div class="Retngulo_58_ text-white bg-primary fs-5 fw-bold d-flex justify-content-center pt-2">
               <span>Cadastrar Usuário</span>
             </div>
             </a>
         {% endif %}
     
         
-      
-        <div class="Retngulo_56_ text-white border border-dark d-flex justify-content-center fs-5 fw-bold pt-2 ">
+        <!--
+        <div class="Retngulo_56_ text-white bg-primary border border-primary d-flex justify-content-center fs-5 fw-bold pt-2 ">
           <span>Usuários</span>
         
         </div>
       
-        <!--
+      
           <div class="Retngulo_57_ border border-dark d-flex justify-content-center text-dark fs-5 fw-bold pt-2">
             <span>Permissões</span>
           </div>
@@ -90,16 +90,26 @@
                                               <td>
                                                 {{users.trabalho.departamento|upper}}
                                               </td>
-                                              <td>{{users.ramal|upper}}</td>
+                                              <td> {% if users.ramal is not None %}
+                                                     {{users.ramal|upper}}
+                                                   {%endif%}
+                                              </td>
                                               
                                               <td>
+                                                {% if users.tel is not None %}
                                                 {{users.tel|upper}}
+                                                {%endif%}
                                               </td>
                                               <td>
+                                                {% if users.emailCorporativo is not None %}
                                                   <div>{{users.emailCorporativo|upper}}</div>
+                                                  {%endif%}
                                               </td>
                                               <td>
+                                                {% if users.skype is not None %}
                                                   <div>{{users.skype|upper}}</div>
+                                                  {%endif%}
+                                                  
                                               </td>
                                               
                                               <td>
@@ -118,11 +128,11 @@
                     </div>
                 </div>
         </form>
-
+        {% if grupos == "recursos humanos"%}
         <form action="{% url 'exportar' %}" class="mb-5">
               <button type="submit"  class="btn btn-secondary"id="btnExport" name="export" value=" Exportar excel " >Excel</button>
         </form>
-
+        {% endif %}
         
 
         </div>

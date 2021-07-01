@@ -5,7 +5,7 @@
 
 
 {% block content %}
-
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 <svg class="Linha_1" viewBox="0 0 1482 1">
   <path id="Linha_1" d="M 0 0 L 1482 0">
   </path>
@@ -34,11 +34,11 @@
               <span>Recursos Humanos</span>
             </button>
         
-            <button type="button"  name="tablee" id="t" value="atendimento ti" class="fw-bold" style="margin-left:50px;font-size: small;" onclick="mostrarti()">
+            <button type="button"  name="tablee" id="t" value="atendimento ti" class="fw-bold " style="margin-left:50px;font-size: small;" onclick="mostrarti()">
               <span>T.I</span>
             </button>
       
-            <div class="Retngulo_37"  id="RH_"  >
+            <div class="Retngulo_37 p-5"  id="RH_"  >
                   <div id="Assunto_">
                     <span>Assunto</span>
                   </div>
@@ -55,7 +55,7 @@
                   <input type="radio" name="assunto" value="Vale Transporte " class="Retngulo_31" required>
                   </input>
                   
-                  <input type="radio" name="assunto" value="Envio e Atestado Médico" class="Retngulo_32" required>
+                  <input type="radio" name="assunto" value="Envio de Atestado Médico" class="Retngulo_32" required>
                   </input>
                   
                   <input type="radio" name="assunto" value="banco de horas" class="Retngulo_33" required>
@@ -88,14 +88,14 @@
                   </div>
 
                   <div id="Problema_com_equipamento">
-                    <span>Envio e Atestado Médico</span>
+                    <span>Envio de Atestado Médico</span>
                   </div>
 
-                  <div id="Problema_com_equipamento_b">
+                  <div id="Problema_com_equipamento_c">
                     <span>Banco de horas</span>
                   </div>
 
-                  <div id="Outro_problema">
+                  <div id="Outro_problema_a">
                     <span>Sugestões</span>
                   </div>
             
@@ -103,13 +103,13 @@
                     <span>Mensagem</span>
                   </div>
 
-                  <textarea style="width: 250px;" class=" Retngulo_19_ form-control"  name="obs" rows="8" placeholder="Descreve com a maior quantidade de informações possíveis a sua solicitação"></textarea> 
+                  <textarea style="width: 250px;" class=" Retngulo_19_ form-control"  name="obs" rows="8" required placeholder="Descreve com a maior quantidade de informações possíveis a sua solicitação"></textarea> 
             
-                  <div style="left:105px;top:206px; position: absolute;"> {{form.imagem}}</div>
+                  <div style="left:105px;top:226px; position: absolute;"> {{form.imagem}}</div>
                   <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal"> <img id="output" class="add-buttona" src="{% static 'img/add-button.png' %}"></a>
               
           
-                  <button type="submit"  name="add_rh" value="recursos humanos" class="Retngulo_36  text-white fw-bold">
+                  <button type="submit"  name="add_rh" value="recursos humanos" class="Retngulo_36   text-white fw-bold">
                     <span>Abrir Chamado</span>
                   </button>
               
@@ -124,7 +124,7 @@
 
           <form method="POST" action="{% url 'add_chamado' %}" enctype="multipart/form-data">
                 {% csrf_token %}
-                <div class="Retngulo_37"  id="ti" >
+                <div class="Retngulo_37 p-5"  id="ti" >
                   
                       <div id="Assunto_">
                         <span>Assunto</span>
@@ -145,10 +145,17 @@
                       <input type="radio" name="assunto" value="Problema com equipamento" class="Retngulo_32">
                       </input>
                       
-                      <input type="radio" name="assunto" value="Outro problema" class="Retngulo_33">
+                      <input type="radio" name="assunto" value="Requisição de Equipamento" class="Retngulo_33">
                       </input>
                   
-                      <input type="radio" name="assunto" value="Sugestões" class="Retngulo_35">
+                      <input type="radio" name="assunto" value="Troca de Toner" class="Retngulo_35">
+                      </input>
+                      <input type="radio" name="assunto" value="Requisição de Papel" class="Retngulo_38">
+                      </input>
+                  
+                      <input type="radio" name="assunto" value="Outro problema" class="Retngulo_41">
+                      </input>
+                      <input type="radio" name="assunto" value="Sugestões" class="Retngulo_40">
                       </input>
                   
                       <div id="Anexos_">
@@ -169,6 +176,15 @@
                       <div id="Problema_com_equipamento">
                         <span>Problema com equipamento</span>
                       </div>
+                      <div id="Requisição_de_Equipamento">
+                        <span>Requisição de Equipamento</span>
+                      </div>
+                      <div id="Troca_de_Toner">
+                        <span>Troca de Toner</span>
+                      </div>
+                      <div id="Requisição_de_Papel">
+                        <span>Requisição de Papel</span>
+                      </div>
                       <div id="Problema_com_equipamento_b">
                         <span>Outro problema</span>
                       </div>
@@ -179,14 +195,14 @@
                         <span>Mensagem</span>
                       </div>
 
-                      <textarea style="width: 250px;" class=" Retngulo_19_ form-control"  name="obs" rows="8" placeholder="Descreve com a maior quantidade de informações possíveis a sua solicitação"></textarea> 
+                      <textarea style="width: 250px;" class=" Retngulo_19_ form-control" required  name="obs" rows="8" placeholder="Descreve com a maior quantidade de informações possíveis a sua solicitação"></textarea> 
               
                 
             
-                      <div style="left:105px;top: 206px; position: absolute;"> {{forms.imagens}}</div>
-                      <img id="input" class="add-buttona" src="{% static 'img/add-button.png' %}">
+                      <div style="left:105px;top: 226px; position: absolute;"> {{forms.imagens}}</div>
+                      <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal"> <img id="input" class="add-buttona" src="{% static 'img/add-button.png' %}"></a>
                 
-                      <button type="submit"  name="add_ti" value="atendimento ti" class="Retngulo_36  text-white fw-bold">
+                      <button type="submit"  name="add_ti" value="atendimento ti" class="Retngulo_36 text-white fw-bold">
                         <span>Abrir Chamado</span>
                       </button>
                       <a href="{% url 'rh_chamado' %}">
@@ -208,7 +224,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-            <img id="input" src="{{image.image.url}}" data-toggle="modal" data-target="#finalizadosModal" class="d-block w-100" alt="..." />
+            <img id="input" src="{% static 'img/add-button.png' %}" data-toggle="modal" data-target="#finalizadosModal" class="d-block w-100" alt="..." />
             </div>
       
 
@@ -221,9 +237,7 @@
 
         </div>
 
-        <div class="modal-footer">         
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-        </div>
+      
 
       </div>
     </div>
@@ -232,12 +246,11 @@
 
 </main>
 
-
 <script>
  function mostrarrh(){
   document.getElementById('RH_').style.display = 'block';
   document.getElementById('ti').style.display = 'none';
-  document.getElementById('rh').style.background = 'rgba(0,76,162,1)';
+  document.getElementById('rh').style.background = '#5b73e8';
   document.getElementById('rh').style.color = 'rgba(255,255,255,1)';
   document.getElementById('t').style.background = 'rgba(255,255,255,1)';
   document.getElementById('t').style.color = 'rgba(0,0,0,1)';
@@ -248,7 +261,7 @@
   document.getElementById('RH_').style.display = 'none';
   document.getElementById('rh').style.background = 'rgba(255,255,255,1)';
   document.getElementById('rh').style.color = 'rgba(0,0,0,1';
-  document.getElementById('t').style.background = 'rgba(0,76,162,1)';
+  document.getElementById('t').style.background = '#5b73e8';
   document.getElementById('t').style.color = 'rgba(255,255,255,1)';   
 }
  
@@ -274,5 +287,7 @@
 
 </script>
 
+
+        
 
   {% endblock content %}   

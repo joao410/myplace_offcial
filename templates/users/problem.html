@@ -20,25 +20,7 @@
                 </div>
                 
 
-            <!--<div class="container   N_23_  w-100 mb-5">
-                  <form method="GET">
-                    {% csrf_token %}
-                    <div class="row">
-                      <div style="left: -2%;" class="col-2">
-                        {{filtro.form.name}}
-                      </div>
-
-                      <div style="left: -6%;" class="col-2 ">
-                        {{filtro.form.departamento}}
-                      </div>
-
-                      <div style="left: 50%;" class="col-2 ">
-                        <span><button class="btn btn-primary" type="submit"
-                            style="border-radius: 20px; box-shadow:0 8px 6px -6px rgb(161, 161, 161)">Filtrar</button></span>
-                      </div>
-                    </div>
-                  </form>
-                </div>-->
+           
                 
             <div class="container ">
               <form method="POST" action="{% url 'perfis' %}">
@@ -66,18 +48,18 @@
                                             
                                             <td><a href="javascript: void(0);" class="text-dark fw-bold">{{users.codigo.nome|upper}}</a> </td>
                                             <td>
-                                              {{users.trabalho.departamento|upper}}
+                                              {% firstof users.trabalho.departamento ""|upper %}
                                             </td>
-                                            <td>{{users.ramal|upper}}</td>
+                                            <td>{% firstof users.ramal ""|upper  %}</td>
                                             
                                             <td>
-                                              {{users.tel|upper}}
+                                              {% firstof users.tel ""|upper ''|upper%}
                                             </td>
                                             <td>
-                                                <div>{{users.emailCorporativo|upper}}</div>
+                                                <div> {% firstof users.emailCorporativo|upper ''|upper%}</div>
                                             </td>
                                             <td>
-                                                <div>{{users.skype|upper}}</div>
+                                                <div>{% firstof users.skype|upper ''|upper%}</div>
                                             </td>
                                             
                                             <td>
@@ -104,8 +86,8 @@
 
 {% endblock content %}
 
-
 {% block javascript %}
+<!-- JAVASCRIPT -->
 <script src="{% static 'libs/jquery/jquery.min.js' %}"></script>
 <script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'libs/metismenu/metisMenu.min.js' %}"></script>
@@ -117,6 +99,15 @@
 <!-- Required datatable js -->
 <script src="{% static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
 <script src="{% static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<!-- Buttons examples -->
+<script src="{% static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'libs/jszip/jszip.min.js' %}"></script>
+<script src="{% static 'libs/pdfmake/build/pdfmake.min.js' %}"></script>
+<script src="{% static 'libs/pdfmake/build/vfs_fonts.js' %}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
 
 <!-- Responsive examples -->
 <script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>

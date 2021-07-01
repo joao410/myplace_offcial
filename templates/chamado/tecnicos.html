@@ -20,7 +20,7 @@
   </svg>
   {% if grupos != "Colaborador"  and grupos != "recursos humanos" %} 
   <a href="{% url 'linksup' %}">
-  <div class="Retngulo_58 d-flex justify-content-center pt-2 text-white fw-bold fs-5 ">
+  <div class="Retngulo_58 rounded bg-primary  d-flex justify-content-center pt-2 text-white fw-bold fs-5 ">
     <span>Cadastrar Link</span>
  </div>
   </a>
@@ -83,3 +83,17 @@
   </div>
   </main>
 {% endblock content %}  
+{% block javascript %}
+ <!-- JAVASCRIPT -->
+<script src="{% static 'libs/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'libs/metismenu/metisMenu.min.js' %}"></script>
+<script src="{% static 'libs/simplebar/simplebar.min.js' %}"></script>
+<script src="{% static 'libs/node-waves/waves.min.js' %}"></script>
+<script src="{% static 'libs/waypoints/lib/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'libs/jquery.counterup/jquery.counterup.min.js' %}"></script>
+<!-- init js -->
+<script src="{% static 'js/ecommerce-datatables.init2.js' %}"></script>
+
+<script src="{% static 'js/app.js' %}"></script>
+{% endblock %}

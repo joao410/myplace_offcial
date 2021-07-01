@@ -10,7 +10,7 @@
             <path id="Linha_1" d="M 0 0 L 1500 0">
             </path>
         </svg>
-        <div class="Retngulo_561 text-white border border-dark d-flex justify-content-center fs-5 fw-bold pt-2 ">
+        <div class="Retngulo_561 text-white bg-primary border border-primary d-flex justify-content-center fs-5 fw-bold pt-2 ">
             <span>Usuários</span>
         </div>
 
@@ -44,11 +44,11 @@
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <input  class="Retngulo_60 " type="text" value="{{usu.codigo.nome}}"  name="nome">
+                                                <input  class="Retngulo_60 " type="text" value="{% firstof usu.codigo.nome ''%}"  name="nome">
                                             </div>
 
                                             <div class="col">
-                                                <input  class="Retngulo_apelido " type="text"  value="{{usu.codigo.apelido}}" name="apelido">
+                                                <input  class="Retngulo_apelido " type="text"  value="{% firstof usu.codigo.apelido ''%}" name="apelido">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -64,13 +64,13 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-4">
-                                                <input id="cpf"  class="Retngulo_cpf   " value="{{usu.codigo.cpf}}" type="text"name="cpf">
+                                                <input id="cpf"  class="Retngulo_cpf   " value="{% firstof usu.codigo.cpf '' %}" type="text"name="cpf">
                                             </div>
                                             <div class="col-4">
-                                                <input  class="Retngulo_pis " type="text" value="{{usu.codigo.pis}}" name="pis">
+                                                <input  class="Retngulo_pis " type="text" value="{% firstof usu.codigo.pis '' %}" name="pis">
                                             </div>
                                             <div class="col-4">
-                                                <input  class="Retngulo_titulo " type="text" value="{{usu.codigo.tituloeleitor}}"  name="titulo">
+                                                <input  class="Retngulo_titulo " type="text" value="{% firstof usu.codigo.tituloeleitor '' %}"  name="titulo">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -89,16 +89,16 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-3">
-                                                <input  class="Retngulo_carteira " type="text" value="{{usu.codigo.carteiratrabalho}}" name="carteira">
+                                                <input  class="Retngulo_carteira " type="text" value="{% firstof usu.codigo.carteiratrabalho '' %}" name="carteira">
                                             </div>
                                             <div class="col-3">
-                                                <input  class="Retngulo_serie " type="text" value="{{usu.codigo.serie}}" name="serie">
+                                                <input  class="Retngulo_serie " type="text" value="{% firstof usu.codigo.serie '' %}" name="serie">
                                             </div>
                                             <div class="col-3">
-                                                <input  class="Retngulo_ufc " type="text" value="{{usu.codigo.ufcarteiratrabalho}}"  name="ufc">
+                                                <input  class="Retngulo_ufc " type="text" value="{% firstof usu.codigo.ufcarteiratrabalho ''%}"  name="ufc">
                                             </div>
                                             <div class="col-3">
-                                                <input  class="Retngulo_emissao " type="text" value="{{usu.codigo.datacarteiratrabalho|date:"SHORT_DATE_FORMAT"}}" name="emissao"> 
+                                                <input  class="Retngulo_emissao " type="datetime" value="{% firstof usu.codigo.datacarteiratrabalho|date:'SHORT_DATE_FORMAT' '' %}" name="emissao"> 
                                             </div>
                                         </div>
                                         <div class="row">
@@ -112,8 +112,8 @@
                                         <div class="row">
                                             <div class="col-4">
                                                 <select name="genero"  class=" Retngulo_genero">
-                                                    <option name="genero" value="{{usu.codigo.genero}}">
-                                                        <option value="{{usu.codigo.genero}}"selected>{{usu.codigo.genero}}</option>
+                                                    <option name="genero" hidden  value="{{usu.codigo.genero}}">
+                                                        <option value="{{usu.codigo.genero}}" hidden selected>{% firstof usu.codigo.genero ''%}</option>
                                                         <option value="Masculno">Masculino</option>
                                                         <option value="Feminino">Feminino</option>
                                                         <option value="Prefiro não informar">Prefiro não informar</option>
@@ -122,8 +122,8 @@
                                             </div>
                                             <div class="col-4">
                                                 <select name="cor"  class=" Retngulo_cor">
-                                                    <option name="cor" value="{{usu.codigo.cor}}">
-                                                        <option value="{{usu.codigo.cor}}" selected>{{usu.codigo.cor}} </option>
+                                                    <option name="cor" hidden value="{{usu.codigo.cor}}">
+                                                        <option value="{{usu.codigo.cor}}" hidden selected>{% firstof usu.codigo.cor  '' %} </option>
                                                         <option value="INDIGENA">1 - INDIGENA </option>
                                                         <option value="BRANCA">2 - BRANCO</option>
                                                         <option value="NEGRA">3 - NEGRA</option>
@@ -147,12 +147,12 @@
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <input  id="tel"  class="Retngulo_celp  cel-sp-mask"  value="{{usu.codigo.celpessoal}}" type="text" name="celp">   
+                                                <input  id="tel"  class="Retngulo_celp  cel-sp-mask"  value="{% firstof usu.codigo.celpessoal '' %}" type="text" name="celp">   
                                             </div>
                                             <div class="col">           
                                                 <select name="ecivil"  class=" Retngulo_ecivil">
-                                                    <option name="ecivil"value="{{usu.codigo.ecivil}}">
-                                                        <option value="{{usu.codigo.ecivil}}"selected>{{usu.codigo.ecivil}}</option>
+                                                    <option name="ecivil" hidden value="{{usu.codigo.ecivil}}">
+                                                        <option value="{{usu.codigo.ecivil}}" hidden selected>{% firstof usu.codigo.ecivil ''%}</option>
                                                         <option value="SOLTEIRO">1 - SOLTEIRO </option>
                                                         <option value="CASADO">2 - CASADO</option>
                                                         <option value="SEPARADO">3 - SEPARADO</option>
@@ -164,8 +164,8 @@
                                             </div>
                                         <div class="col">
                                             <select name="escolaridade"  class=" Retngulo_escol">
-                                                <option name="escolaridade" value="{{usu.codigo.escolaridade}}">
-                                                    <option value="{{usu.codigo.escolaridade}}" selected>{{usu.codigo.escolaridade}}</option>
+                                                <option name="escolaridade" hidden value="{{usu.codigo.escolaridade}}">
+                                                    <option value="{{usu.codigo.escolaridade}}" hidden selected>{% firstof usu.codigo.escolaridade ''%}</option>
                                                     <option value="ANALFABETO">1 - ANALFABETO </option>
                                                     <option value="ATÉ O 5° ANO INCOMPLETO">2 - ATÉ O 5° ANO INCOMPLETO</option>
                                                     <option value="5° COMPLETO">3 - 5° COMPLETO</option>
@@ -200,19 +200,19 @@
                                         </div>
                                         <div class="row">
                                                 <div class="col-3">
-                                                    <input  class="Retngulo_dn " type="text"  value="{{usu.codigo.datanacimento|date:"SHORT_DATE_FORMAT"}}" name="datanasci">
+                                                    <input  class="Retngulo_dn " type="text"  value="{% firstof usu.codigo.datanacimento|date:'SHORT_DATE_FORMAT' ''%}" name="datanasci">
                                                 </div>
                                                 <div class="col-2">
-                                                <input  class="Retngulo_munasci " type="text" value="{{usu.codigo.municipionacimento}}" name="municipionasc">
+                                                <input  class="Retngulo_munasci " type="text" value="{% firstof usu.codigo.municipionacimento ''%}" name="municipionasc">
                                                 </div>
                                                 <div class="col-2">
-                                                    <input  class="Retngulo_ufn " type="text" value="{{usu.codigo.ufnacimento}}"  name="ufnasci">       
+                                                    <input  class="Retngulo_ufn " type="text" value="{% firstof usu.codigo.ufnacimento '' %}"  name="ufnasci">       
                                                 </div>
                                                 <div class="col-3">
-                                                    <input  class="Retngulo_pais " type="text"  value="{{usu.codigo.paisnacimento}}" name="paisnasci">
+                                                    <input  class="Retngulo_pais " type="text"  value="{% firstof usu.codigo.paisnacimento ''%}" name="paisnasci">
                                                 </div>
                                                 <div class="col-2">
-                                                    <input  class="Retngulo_nasci " type="text"  value="{{usu.codigo.paisnacionalidade}}" name="nasciona">
+                                                    <input  class="Retngulo_nasci " type="text"  value="{% firstof usu.codigo.paisnacionalidade ''%}" name="nasciona">
                                                 </div>
                                         </div>
                                         <div class="row">
@@ -225,10 +225,10 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-6">
-                                                <input  class="Retngulo_mae "value="{{usu.codigo.nomepai}}" type="text" name="mae">
+                                                <input  class="Retngulo_mae "value="{% firstof usu.codigo.nomepai ''%}" type="text" name="mae">
                                             </div>
                                             <div class="col-6">
-                                                <input  class="Retngulo_pai " value="{{usu.codigo.nomemae}}" type="text" name="pai">
+                                                <input  class="Retngulo_pai " value="{% firstof usu.codigo.nomemae '' %}" type="text" name="pai">
                                             </div>
                                         </div>
                                         <div class="row">                                             
@@ -251,25 +251,25 @@
                                         <div class="row">                                             
                                             <div class="col-2">
                                                 <select name="documento"  class=" Retngulo1_ ">
-                                                    <option name="documento"value="{{usu.documento.documento}}" >
-                                                        <option value="{{usu.documento.documento}}" selected>{{usu.documento.documento}}</option>
-                                                        <option value="PG">RG</option>
+                                                    <option name="documento" hidden value="{{usu.documento.documento}}" >
+                                                        <option value="{{usu.documento.documento}}" hidden selected>{% firstof usu.documento.documento  ''%}</option>
+                                                        <option value="RG">RG</option>
                                                         <option value="CNH">CNH</option>
                                                 
                                                     </option>
                                                 </select>
                                             </div>
                                             <div class="col-2">
-                                                <input  class="Retngulo2_ " type="text"  value="{{usu.documento.numerodocumento}}" name="numero">
+                                                <input  class="Retngulo2_ " type="text"  value="{% firstof usu.documento.numerodocumento ''%}" name="numero">
                                             </div>
                                             <div class="col-2">
-                                                <input  class="Retngulo3_ " type="text" value="{{usu.documento.orgao}}" name="oe">
+                                                <input  class="Retngulo3_ " type="text" value="{% firstof  usu.documento.orgao ''%}" name="oe">
                                             </div>
                                             <div class="col-2">
-                                                <input  class="Retngulo4_ " type="text" value="{{usu.documento.dataexpedissao|date:"SHORT_DATE_FORMAT"}}"  name="expedicao">
+                                                <input  class="Retngulo4_ " type="datetime" value="{% firstof usu.documento.dataexpedissao|date:'SHORT_DATE_FORMAT' '' %}"  name="expedicao">
                                             </div>
                                             <div class="col">
-                                                <input  class="Retngulo5_ " type="text"  value="{{usu.documento.validade|date:"SHORT_DATE_FORMAT"}}" name="validade"> 
+                                                <input  class="Retngulo5_ " type="datetime"  value="{% firstof usu.documento.validade|date:'SHORT_DATE_FORMAT' ''%}" name="validade"> 
                                             </div>
                                         </div>
                                         <div class="row">
@@ -292,19 +292,19 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-2">
-                                                <input id="cep" class="Retngulo6_  cep-mask" type="text" value="{{usu.endereco.cep}}"  name="cep">
+                                                <input id="cep" class="Retngulo6_  cep-mask" type="text" value="{% firstof usu.endereco.cep '' %}"  name="cep">
                                             </div>
                                             <div class="col-2 mr-1">
-                                                <input data-cep="tipo_logradouro" class="Retngulo7_ " value="{{usu.endereco.tipo}}"  type="text" name="tipo">
+                                                <input   data-cep="tipo_logradouro" class="Retngulo7_ " value="{% firstof usu.endereco.tipo ''%}"  type="text" name="tipo">
                                             </div>
                                             <div class="col-3">
-                                                <input data-cep="endereco" class="Retngulo8_ " type="text" value="{{usu.endereco.logradouro}}" name="logradouro">
+                                                <input id="rua"data-cep="endereco" class="Retngulo8_ " type="text" value="{% firstof usu.endereco.logradouro ''%}" name="logradouro">
                                             </div>
                                             <div class="col-2">
-                                                <input  class="Retngulo9_ " type="text" value="{{usu.endereco.numero}}" name="num">
+                                                <input  class="Retngulo9_ " type="text" value="{% firstof usu.endereco.numero %}" name="num">
                                             </div>
                                             <div class="col-2">
-                                                <input data-cep="uf" class="Retngulo10_ " type="text" value="{{usu.endereco.ufatual}}" name="ufatual">
+                                                <input id="ufx" data-cep="uf" class="Retngulo10_ " type="text" value="{% firstof usu.endereco.ufatual '' %}" name="ufatual">
                                             </div>
                                            
                                         </div> 
@@ -324,16 +324,16 @@
                                         </div>
                                         <div class="row">   
                                             <div class="col-3">
-                                                <input data-cep="cidade" class="Retngulo11_ " type="text" value="{{usu.endereco.municipioatul}}" name="muniatual">
+                                                <input id="cidade" data-cep="cidade" class="Retngulo11_ " type="text" value="{% firstof usu.endereco.municipioatul ''%}" name="muniatual">
                                             </div>
                                             <div class="col-3">
-                                                <input data-cep="bairro" class="Retngulo12_ "  type="text" value="{{usu.endereco.bairroatual}}" name="bairro">
+                                                <input id="bairro" data-cep="bairro" class="Retngulo12_ "  type="text" value="{% firstof usu.endereco.bairroatual ''%}" name="bairro">
                                             </div>
                                             <div class="col-3">
-                                                <input id="complemento" class="Retngulo13_ " type="text" value="{{usu.endereco.complemento}}" name="complemeno">
+                                                <input id="complemento" class="Retngulo13_ " type="text" value="{% firstof usu.endereco.complemento '' %}" name="complemeno">
                                             </div>
                                             <div class="col-3">
-                                                <input id="paisx" class="Retngulo14_ " type="text" value="{{usu.endereco.pais}}" name="pais">
+                                                <input id="paisx" class="Retngulo14_ " type="text" value="{% firstof usu.endereco.pais '' %}" name="pais">
                                             </div>
                                         </div>
 
@@ -356,12 +356,12 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-4">
-                                                <input  class="Retngulo_601 depright" type="text" value="{{usu.trabalho.departamento}}" name="departamento">
+                                                <input  class="Retngulo_601 depright" type="text" value="{% firstof usu.trabalho.departamento ''%}" name="departamento">
                                             </div>
                                             <div class="col-4">
                                                 <select name="cargo"  class=" Retngulo_cargo" >
-                                                    <option name="cargo" value="{{usu.trabalho.cargo.cargo}}">
-                                                        <option value="{{usu.trabalho.cargo.cargo}}"selected>{{usu.trabalho.cargo.cargo}}</option>
+                                                    <option name="cargo" hidden value="{% firstof usu.trabalho.cargo.cargo '' %}">
+                                                        <option value="{{usu.trabalho.cargo.cargo}}" hidden selected>{% firstof  usu.trabalho.cargo.cargo ''%}</option>
                                                         {% for cargos in cargos %}
                                                         <option value="{{cargos.cargo}}">{{cargos.cargo}}</option>
                                                         {% endfor %}                       
@@ -370,8 +370,8 @@
                                             </div>
                                             <div class="col-4">
                                                 <select name="empresa"  class=" Retngulo_empresa">
-                                                    <option name="empresa" value="{{usu.trabalho.empresa}}">
-                                                        <option value="{{usu.trabalho.empresa}}" selected>{{usu.trabalho.empresa}}</option>
+                                                    <option name="empresa" hidden value="{{usu.trabalho.empresa}}">
+                                                        <option value="{{usu.trabalho.empresa}}" hidden selected>{% firstof usu.trabalho.empresa '' %}</option>
                                                         {% for empresa in empresa %}
                                                         <option value="{{empresa.nempresa}}">{{empresa.nempresa}}</option>
                                                         {% endfor %}
@@ -389,10 +389,30 @@
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <input  class="Retngulo_admissao " type="text"value="{{usu.trabalho.dataadmissao|date:"SHORT_DATE_FORMAT"}}" name="admissao">
+                                                <input  class="Retngulo_admissao " type="text"value="{% firstof usu.trabalho.dataadmissao|date:'SHORT_DATE_FORMAT' '' %}" name="admissao">
                                             </div>
                                             <div class="col">
-                                                <input  class="Retngulo_demissao " type="text"value="{{usu.trabalho.datademissao|date:"SHORT_DATE_FORMAT"}}"name="demissao">
+                                                <input  class="Retngulo_demissao " type="datetime"value="{% firstof usu.trabalho.datademissao|date:'SHORT_DATE_FORMAT' '' %}"name="demissao">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <span>Tipo de Admissão</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                                
+                                            <div class="col">
+                                                <select name="tipoadmissao"  class=" Retngulo_tipoadmissao">
+                                                    <option name="tipoadmissao" hidden value="{{usu.trabalho.tipoAdmissao}}" >
+                                                        <option value="{{usu.trabalho.tipoAdmissao}}" hidden selected>{% firstof usu.trabalho.tipoAdmissao '' %}</option>
+                                                        <option value="Admissão">1 - ADMISSÃO</option>
+                                                        <option value="Transferencia de empresa do mesmo grupo empresarial">2 - TRANSFERENCIA DE EMPRESA DO MESMO GRUPO EMPRESARIAL</option>
+                                                        <option value="Admissão por sucessão, Incorporação, Cisão ou Fusão">3 - ADMISSÃO POR SUCESSÃO, INCORPORAÇÃO, CISÃO OU FUSÃO</option>
+                                                        <option value="Trabalhador cedido">4 - TRABALHADOR CEDIDO</option>   
+                                                    </option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -400,9 +420,7 @@
                                                 <span>Vale Transporte</span>
                                             </div>
                                                 
-                                            <div class="col">
-                                                <span>Tipo de Admissão</span>
-                                            </div>
+                                            
                                             <div class="col">
                                                 <span>Indicativo Admissional</span>
                                             </div>
@@ -413,29 +431,18 @@
                                         <div class="row">
                                             <div class="col">
                                                 <select name="vtrans"  class=" Retngulo_vtrans">
-                                                    <option name="vtrans" value="{{usu.trabalho.valetransporte}}">
-                                                        <option value="{{usu.trabalho.valetransporte}}" selected>{{usu.trabalho.valetransporte}}</option>
+                                                    <option name="vtrans" hidden value="{{usu.trabalho.valetransporte|upper}}">
+                                                        <option value="{{usu.trabalho.valetransporte}}" hidden selected>{% firstof usu.trabalho.valetransporte|upper ''|upper %}</option>
                                                         <option value="sim">1-SIM</option>
                                                         <option value="nao">2-NÃO</option>                        
                                                     </option>
                                                 </select>
                                             </div>
-                                                
-                                            <div class="col">
-                                                <select name="tipoadmissao"  class=" Retngulo_tipoadmissao">
-                                                    <option name="tipoadmissao" value="{{usu.trabalho.tipoAdmissao}}" >
-                                                        <option value="{{usu.trabalho.tipoAdmissao}}" selected>{{usu.trabalho.tipoAdmissao}}</option>
-                                                        <option value="Admissão">1 - ADMISSÃO</option>
-                                                        <option value="Transferencia de empresa do mesmo grupo empresarial">2 - TRANSFERENCIA DE EMPRESA DO MESMO GRUPO EMPRESARIAL</option>
-                                                        <option value="Admissão por sucessão, Incorporação, Cisão ou Fusão">3 - ADMISSÃO POR SUCESSÃO, INCORPORAÇÃO, CISÃO OU FUSÃO</option>
-                                                        <option value="Trabalhador cedido">4 - TRABALHADOR CEDIDO</option>   
-                                                    </option>
-                                                </select>
-                                            </div>
+                                            
                                             <div class="col">
                                                 <select name="indica"  class=" Retngulo_indica">
-                                                    <option name="indica" value="{{usu.trabalho.indicativoadmissao}}">
-                                                        <option  value="{{usu.trabalho.indicativoadmissao}} "selected>{{usu.trabalho.indicativoadmissao}}</option>
+                                                    <option name="indica" hidden value="{{usu.trabalho.indicativoadmissao}}">
+                                                        <option  value="{{usu.trabalho.indicativoadmissao}} " hidden selected>{% firstof usu.trabalho.indicativoadmissao '' %}</option>
                                                         <option value="Normal">1 - NORMAL</option>
                                                         <option value="Decorrente de ação fiscal">2 - DECORRENTE DE AÇÃO FISCAL</option>
                                                         <option value="Decorrente de decisão judicial ">3 -DECORRENTE DE AÇÃO JUDICIAL</option>               
@@ -444,8 +451,8 @@
                                             </div>
                                             <div class="col">
                                                 <select name="priempr"  class=" Retngulo_priempr">
-                                                    <option name="priempr" value="{{usu.trabalho.primeiroemprego}}">
-                                                        <option value="{{usu.trabalho.primeiroemprego}}" selected>{{usu.trabalho.primeiroemprego}} </option>
+                                                    <option name="priempr" hidden value="{{usu.trabalho.primeiroemprego}}">
+                                                        <option value="{{usu.trabalho.primeiroemprego}}" hidden selected>{% firstof usu.trabalho.primeiroemprego ''%} </option>
                                                         <option value="sim">1-SIM </option>
                                                         <option value="nao">2-NÃO </option>                        
                                                     </option>
@@ -459,6 +466,32 @@
                                             <div class="col">
                                                 <span>Regime Previdenciário</span>
                                             </div>
+                                            
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select name="rtrab"  class=" Retngulo_75">
+                                                    <option name="rtrab" hidden value="{{usu.trabalho.regimetrabalho}}" >
+                                                        <option  value="{{usu.trabalho.regimetrabalho}}" hidden selected>{% firstof usu.trabalho.regimetrabalho ''%}</option>
+                                                        <option value="CLT">1 - CLT</option>
+                                                        <option value="RJU">2 - RJU</option>
+                                                        <option value="RJP">3 - RJP </option>     
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select name="rprev"  class=" Retngulo_76">
+                                                    <option name="rprev" hidden value="{{usu.trabalho.regimeprevidenciario}}">
+                                                        <option value="{{usu.trabalho.regimeprevidenciario}}" hidden selected>{% firstof usu.trabalho.regimeprevidenciario '' %}</option>
+                                                        <option value="RGPS">1 - RGPS</option>
+                                                        <option value="RPPS">2 - RPPS</option>
+                                                        <option value="RPPE">3 - RPPE </option>                    
+                                                    </option>
+                                                </select>      
+                                            </div>
+                                        
+                                        </div>
+                                        <div class="row">
                                             <div class="col">
                                                 <span>Regime de Jornada</span>
                                             </div>
@@ -468,29 +501,9 @@
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <select name="rtrab"  class=" Retngulo_75">
-                                                    <option name="rtrab" value="{{usu.trabalho.regimetrabalho}}" >
-                                                        <option  value="{{usu.trabalho.regimetrabalho}}" selected>{{usu.trabalho.regimetrabalho}}</option>
-                                                        <option value="CLT">1 - CLT</option>
-                                                        <option value="RJU">2 - RJU</option>
-                                                        <option value="RJP">3 - RJP </option>     
-                                                    </option>
-                                                </select>
-                                            </div>
-                                            <div class="col">
-                                                <select name="rprev"  class=" Retngulo_76">
-                                                    <option name="rprev" value="{{usu.trabalho.regimeprevidenciario}}">
-                                                        <option value="{{usu.trabalho.regimeprevidenciario}}" selected>{{usu.trabalho.regimeprevidenciario}}</option>
-                                                        <option value="RGPS">1 - RGPS</option>
-                                                        <option value="RPPS">2 - RPPS</option>
-                                                        <option value="RPPE">3 - RPPE </option>                    
-                                                    </option>
-                                                </select>      
-                                            </div>
-                                            <div class="col">
                                                 <select name="rjorn"  class=" Retngulo_77">
-                                                    <option name="rjorn" value="{{usu.trabalho.regimejornada}}">
-                                                        <option value="{{usu.trabalho.regimejornada}}" selected>{{usu.trabalho.regimejornada}}</option>
+                                                    <option name="rjorn" hidden value="{{usu.trabalho.regimejornada}}">
+                                                        <option value="{{usu.trabalho.regimejornada}}" hidden selected>{% firstof usu.trabalho.regimejornada '' %}</option>
                                                         <option value="SUBMETIDO A HORÁRIOS DE TRABALHO">1 - SUBMETIDO A HORÁRIOS DE TRABALHO</option>
                                                         <option value="ATIVIDADE EXTERNA ESPECIFICADA">2 - ATIVIDADE EXTERNA ESPECIFICADA</option>
                                                         <option value="FUNÇÕES ESPECIFICAS">3 - FUNÇÕES ESPECIFICAS </option>
@@ -499,8 +512,8 @@
                                             </div>
                                             <div class="col">
                                                 <select name="naativ"  class=" Retngulo_78">
-                                                    <option name="naativ" value="{{usu.trabalho.naturezaatividade}}">
-                                                        <option selected value="{{usu.trabalho.naturezaatividade}}">{{usu.trabalho.naturezaatividade}}</option>
+                                                    <option name="naativ" hidden value="{{usu.trabalho.naturezaatividade}}">
+                                                        <option selected hidden value="{{usu.trabalho.naturezaatividade}}">{% firstof usu.trabalho.naturezaatividade '' %}</option>
                                                         <option value="TRABALHO URBANO">1 - TRABALHO URBANO</option>
                                                         <option value="RURAL">2 -RURAL</option>
                                                     </option>
@@ -511,21 +524,12 @@
                                             <div class="col">
                                                 <span>Categoria</span>
                                             </div>
-                                            <div class="col">
-                                                <span>CBO</span>
-                                            </div>
-                                            <div class="col">
-                                                <span>Carga Horária</span>
-                                            </div>
-                                            <div class="col">
-                                                <span>Unidade Salarial</span>
-                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="col">
                                                 <select name="cat"  class=" Retngulo_79">
-                                                    <option name="cat" value="{{usu.trabalho.categoria}}">
-                                                        <option selected value="{{usu.trabalho.categoria}}">{{usu.trabalho.categoria}}</option>
+                                                    <option name="cat" hidden value="{{usu.trabalho.categoria}}">
+                                                        <option selected hidden value="{{usu.trabalho.categoria}}">{% firstof usu.trabalho.categoria ''|upper %}</option>
                                                         <option value="EMPREGADO-GERAL">1 - EMPREGADO-GERAL</option>
                                                         <option value="EMPREGADO-TRABALHADOR RURAL POR PEQUENO PRAZO DA LEI 11.718/2008">2 - EMPREGADO-TRABALHADOR RURAL POR PEQUENO PRAZO DA LEI 11.718/2008</option>
                                                         <option value="EMPREGADO-APRENDIZ">3 - EMPREGADO-APRENDIZ</option>
@@ -538,16 +542,32 @@
                                                     </option>
                                                 </select>  
                                             </div>
+                                        </div>
+                                             
+                                        <div class="row">
+                                            
                                             <div class="col">
-                                                <input  class="Retngulo_80 " type="text" value="{{usu.trabalho.codigofuncao}}" name="codf">
+                                                <span>CBO</span>
                                             </div>
                                             <div class="col">
-                                                <input  class="Retngulo_81 " type="text"  value="{{usu.trabalho.cargahorariam}}"name="carh">
+                                                <span>Carga Horária</span>
+                                            </div>
+                                            <div class="col">
+                                                <span>Unidade Salarial</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                           
+                                            <div class="col">
+                                                <input  class="Retngulo_80 " type="text" value="{% firstof usu.trabalho.codigofuncao ''%}" name="codf">
+                                            </div>
+                                            <div class="col">
+                                                <input  class="Retngulo_81 " type="text"  value="{% firstof usu.trabalho.cargahorariam ''%}"name="carh">
                                             </div>
                                             <div class="col">
                                                 <select name="unisa"  class=" Retngulo_82">
-                                                    <option name="unisa" selected value="{{usu.trabalho.unidadesalarial}}" >
-                                                        <option  selected value="{{usu.trabalho.unidadesalarial}}">{{usu.trabalho.unidadesalarial}}</option>
+                                                    <option name="unisa" hidden selected value="{{usu.trabalho.unidadesalarial}}" >
+                                                        <option  selected hidden value="{{usu.trabalho.unidadesalarial}}">{% firstof  usu.trabalho.unidadesalarial ''%}</option>
                                                         <option value="POR HORA">1 - POR HORA</option>
                                                         <option value="POR DIA">2 - POR DIA</option>
                                                         <option value="POR SEMANA">3 - POR SEMANA</option>
@@ -568,7 +588,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <input  class="Retngulo_83 " type="number" value="{{usu.trabalho.salariovariavel}}"     name="salvari">
+                                                <input  class="Retngulo_83 " type="number" value="{% firstof usu.trabalho.salariovariavel ''%}"     name="salvari">
                                             </div>
                                             <div class="col">
                                                 <textarea rows="4" cols="50" name="obs" class="Retngulo_84 "  value="{{usu.trabalho.obs}}" ></textarea>
@@ -592,13 +612,13 @@
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <input  class="Retngulo_85 " type="text" value="{{usu.banco.banco}}" name="banco">
+                                                <input  class="Retngulo_85 " type="text" value="{% firstof usu.banco.banco ''%}" name="banco">
                                             </div>
                                             <div class="col">
-                                                <input  class="Retngulo_86 " type="text" value="{{usu.banco.agencia}}" name="agencia">
+                                                <input  class="Retngulo_86 " type="text" value="{% firstof usu.banco.agencia '' %}" name="agencia">
                                             </div>
                                             <div class="col">
-                                                <input  class="Retngulo_87 " type="text" value="{{usu.banco.conta}}"  name="conta">
+                                                <input  class="Retngulo_87 " type="text" value="{% firstof usu.banco.conta  ''%}"  name="conta">
                                             </div>
                                         </div>
                                     </section>
@@ -619,15 +639,15 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-4">
-                                                <input  class="Retngulo_602 " type="text" value="{{usu.email}}"   name="email1">
+                                                <input  class="Retngulo_602 " type="text" value="{% firstof usu.email ''%}"   name="email1">
                                             </div>
                                             <div class="col-4">
-                                                <input  class="Retngulo_61_ " type="text" value="{{usu.emailCorporativo}}" name="email2">
+                                                <input  class="Retngulo_61_ " type="text" value="{% firstof usu.emailCorporativo ''%}" name="email2">
                                             </div>
                                             <div class="col-4">
                                                 <select name="grupo"  class=" Retngulo_69">
-                                                    <option name="grupo" value="">
-                                                        <option selected value="{{usu.grupo}}">{{usu.grupo}}</option>
+                                                    <option name="grupo" hidden value="">
+                                                        <option selected hidden value="{{usu.grupo}}">{% firstof usu.grupo ''%}</option>
                                                         {% for gs in g %}
                                                         <option value="{{gs.name}}">{{gs.name}}</option>
                                                         {% endfor %}
@@ -648,10 +668,10 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-4">
-                                                <input  id="tel" class="Retngulo_63  cel-sp-mask" type="text" value="{{usu.telefone}}" name="cel">
+                                                <input  id="tel" class="Retngulo_63  cel-sp-mask" type="text" value="{% firstof usu.telefone '' %}" name="cel">
                                             </div>
                                             <div class="col-4">
-                                                <input id="tel" class="Retngulo_64  cel-sp-mask" type="text"  value="{{usu.tel}}" name="tel">
+                                                <input id="tel" class="Retngulo_64  cel-sp-mask" type="text"  value="{% firstof usu.tel '' %}" name="tel">
                                             </div>
                                             <div class="col-4">
                                                 {{form.imagem}}
@@ -667,10 +687,10 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-4">
-                                                <input  class="Retngulo_62_ " style="margin-top:-20px" type="text"  value="{{usu.skype}}" name="skype">
+                                                <input  class="Retngulo_62_ " style="margin-top:-20px" type="text"  value="{% firstof usu.skype ''%}" name="skype">
                                             </div>
                                             <div class="col-4">
-                                                <input  class="Retngulo_65 " type="text"  value="{{usu.ramal}}" name="ramal">
+                                                <input  class="Retngulo_65 " type="text"  value="{% firstof usu.ramal ''%}" name="ramal">
                                             </div>
                                             <div class="col-4">
                                                 <img class="add-button3" id="output" src="{{image.image.url}}" >
@@ -726,11 +746,11 @@
         <table class="mb-5">
             <tr>
             <td class="p-2 ">
-                <button type="submit" class="btn btn-primary" name="previos">Usuario Anterior</button>
+                <button type="submit" class="btn btn-primary" name="previos">Usuário Anterior</button>
                 
             </td>
             <td>
-                <button type="submit" class="btn btn-primary " name="next" >Proximo usuário</button>
+                <button type="submit" class="btn btn-primary " name="next" >Proximo Usuário</button>
             </td>
             </tr>
         </table> 
@@ -763,28 +783,28 @@
         <script src="{% static 'js/form-wizard.init.js' %}"></script>
 
         <script src="{% static 'js/app.js' %}"></script>
+        <script src="{% static 'js/cep.js' %}"></script>
 
-
+        
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#cpf").mask("999.999.999-99");
+                $("#tel").mask("(99)99999-9999");
+                $("#dt").mask("99/99/9999");
+            });
+        </script>
+        <script>
+        
+          var loadFile = function(event) {
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function() {
+              URL.revokeObjectURL(output.src) // free memory
+            }
+          };
+        </script>
 {% endblock %}    
  {% block js %}
-<script type="text/javascript" src="https://www.geradorcpf.com/assets/js/jquery-1.2.6.pack.js"></script>
-<script type="text/javascript" src="https://www.geradorcpf.com/assets/js/jquery.maskedinput-1.1.4.pack.js"></script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#cpf").mask("999.999.999-99");
-		$("#tel").mask("(99)99999-9999");
-		$("#dt").mask("99/99/9999");
-	});
-</script>
-<script>
 
-  var loadFile = function(event) {
-    var output = document.getElementById('output');
-    output.src = URL.createObjectURL(event.target.files[0]);
-    output.onload = function() {
-      URL.revokeObjectURL(output.src) // free memory
-    }
-  };
-</script>
 
 {% endblock js %}      

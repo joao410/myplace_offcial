@@ -70,88 +70,104 @@ def add_usuarios(request):
     if request.method == 'POST' and 'add_usu' in request.POST:  
         
         #pessoal#
-        nome = request.POST["nome"]
-        nome = nome.upper()
-        apelido = request.POST["apelido"]
-        cpf = request.POST["cpf"]
-        genero = request.POST["genero"]
-        cor = request.POST["cor"]
-        ecivil = request.POST["ecivil"]
-        escolaridade = request.POST["escolaridade"]
-        datanasci = request.POST["datanasci"]
-        municipionasc = request.POST["municipionasc"]
-        ufnasci = request.POST["ufnasci"]
-        paisnasci = request.POST["paisnasci"]
-        nasciona = request.POST["nasciona"]
-        mae = request.POST["mae"]
-        pai = request.POST["pai"]
-        pis = request.POST["pis"]
-        teleitor =  request.POST["titulo"]
-        ctrabalho = request.POST["carteira"]       
-        serie = request.POST["serie"]
-        uf = request.POST["ufc"]
-        emissao = request.POST["emissao"]
-        celp = request.POST["celp"]
+        try :
+            nome = request.POST["nome"]
+            nome = nome.upper()
+            apelido = request.POST["apelido"]
+            cpf = request.POST["cpf"]
+            genero = request.POST["genero"]
+            cor = request.POST["cor"]
+            ecivil = request.POST["ecivil"]
+            escolaridade = request.POST["escolaridade"]
+            datanasci = request.POST["datanasci"]
+            municipionasc = request.POST["municipionasc"]
+            ufnasci = request.POST["ufnasci"]
+            paisnasci = request.POST["paisnasci"]
+            nasciona = request.POST["nasciona"]
+            mae = request.POST["mae"]
+            pai = request.POST["pai"]
+            pis = request.POST["pis"]
+            teleitor =  request.POST["titulo"]
+            ctrabalho = request.POST["carteira"]       
+            serie = request.POST["serie"]
+            uf = request.POST["ufc"]
+            emissao = request.POST["emissao"]
+            celp = request.POST["celp"]
+        except:
+            pass    
         #trabalho# 
-    
-        emp = request.POST["empresa"]
-        dep = request.POST["departamento"]       
-        cargo = request.POST["cargo"]
-        vtrans = request.POST["vtrans"]
-        admissao = request.POST["admissao"]
-        demissao = request.POST["demissao"]
-        tipo = request.POST["tipoadmissao"]
-        indica =  request.POST["indica"]
-        priempr = request.POST["priempr"]
-        rtrab = request.POST["rtrab"]
-        rprev = request.POST["rprev"]
-        rjorn = request.POST["rjorn"]
-        naativ = request.POST["naativ"]
-        cat = request.POST["cat"]
-        codf = request.POST["codf"]
-        carh = request.POST["carh"]
-        unisa = request.POST["unisa"]
-        obs = request.POST["obs"]
-        salvari = request.POST["salvari"]
-        if not salvari:
-           salvari =0.00
+        try:
+            emp = request.POST["empresa"]
+            dep = request.POST["departamento"]       
+            cargo = request.POST["cargo"]
+            vtrans = request.POST["vtrans"]
+            admissao = request.POST["admissao"]
+            demissao = request.POST["demissao"]
+            tipo = request.POST["tipoadmissao"]
+            indica =  request.POST["indica"]
+            priempr = request.POST["priempr"]
+            rtrab = request.POST["rtrab"]
+            rprev = request.POST["rprev"]
+            rjorn = request.POST["rjorn"]
+            naativ = request.POST["naativ"]
+            cat = request.POST["cat"]
+            codf = request.POST["codf"]
+            carh = request.POST["carh"]
+            unisa = request.POST["unisa"]
+            obs = request.POST["obs"]
+            salvari = request.POST["salvari"]
+            if not salvari:
+                salvari =0.00
+        except:
+            pass
         #conta#
-        banco = request.POST["banco"]
-        agencia = request.POST["agencia"]
-        conta = request.POST["conta"]
+        try:
+            banco = request.POST["banco"]
+            agencia = request.POST["agencia"]
+            conta = request.POST["conta"]
+        except:
+            pass    
         #documento#
-        documento = request.POST["documento"]
-        ndocumento = request.POST["numero"]
-        oe = request.POST["oe"]
-        de = request.POST["expedicao"]
-        validade = request.POST["validade"]
+        try:
+            documento = request.POST["documento"]
+            ndocumento = request.POST["numero"]
+            oe = request.POST["oe"]
+            de = request.POST["expedicao"]
+            validade = request.POST["validade"]
+        except:
+            pass     
         #endereço#
-        cep = request.POST["cep"]
-        tipo = request.POST["tipo"]
-        num = request.POST["num"]
-        ufatual = request.POST["ufatual"]
-        muniatual = request.POST["muniatual"]
-        bairro = request.POST["bairro"]
-        logradouro = request.POST["logradouro"]
-        complemento = request.POST["complemeno"]
-        pais = request.POST["pais"]
+        try:
+            cep = request.POST["cep"]
+            tipo = request.POST["tipo"]
+            num = request.POST["num"]
+            ufatual = request.POST["ufatual"]
+            muniatual = request.POST["muniatual"]
+            bairro = request.POST["bairro"]
+            logradouro = request.POST["logradouro"]
+            complemento = request.POST["complemeno"]
+            pais = request.POST["pais"]
+        except:
+            pass
         #corporativo#
-        email1 = request.POST["email1"]       
-        email2 = request.POST["email2"]       
-        skype = request.POST["skype"]       
-        cel = request.POST["cel"]       
-        tel = request.POST["tel"]       
-        ramal = request.POST["ramal"]       
-        usuario = request.POST["usuario"] 
-        usuario = usuario.upper()      
-        senha = request.POST["senha"]  
-        senha=senha.upper() 
-        repassword = request.POST["senha"]    
-        repassword = repassword.upper()
-        
-        grupo = request.POST["grupo"] 
-        gs = Group.objects.get(name=grupo)   
-     
+        try:
+            email1 = request.POST["email1"]       
+            email2 = request.POST["email2"]       
+            skype = request.POST["skype"]       
+            cel = request.POST["cel"]       
+            tel = request.POST["tel"]       
+            ramal = request.POST["ramal"]       
+            usuario = request.POST["usuario"] 
+            usuario = usuario.upper()      
+            senha = request.POST["senha"]  
+            senha=senha.upper() 
+            repassword = request.POST["senha"]    
+            repassword = repassword.upper()
+            
+            grupo = request.POST["grupo"] 
+            gs = Group.objects.get(name=grupo)   
+        except:
+            pass
         if vtrans == "SIM":
            vtrans =  "VALE TRANSPORTE"
         if vtrans == "NÃo":
@@ -169,7 +185,7 @@ def add_usuarios(request):
             if senha != repassword:
                 messages.error(request, "As senhas nao batem")
                 return render(request, 'users/add_usuarios.html', context)
-            user = User.objects.create(username=usuario,email=email1,first_name=nome)
+            user = User.objects.create(username=usuario,email=email1,first_name=usuario)
             user.set_password(senha)
             user.is_active = True
             user.save()
@@ -180,25 +196,30 @@ def add_usuarios(request):
                 UsuarioPessoal.objects.create(codigo=codigo,nome=nome,genero=genero,apelido=apelido,cpf=cpf,celpessoal=celp,cor=cor,ecivil=ecivil,escolaridade=escolaridade,pis=pis,tituloeleitor=teleitor,carteiratrabalho=ctrabalho,serie=serie,ufcarteiratrabalho=uf,datanacimento=datanasci,ufnacimento=ufnasci,municipionacimento=municipionasc,paisnacimento=paisnasci,paisnacionalidade=nasciona,nomemae=mae,nomepai=pai)
             u = UsuarioPessoal.objects.get(nome=nome)
             c= Cargo.objects.get(cargo=cargo)
-
+            try:
+                usua = UsuarioTrabalho.objects.create(codigo=u,departamento=dep,empresa=emp,cargo=c,valetransporte=vtrans,dataadmissao=admissao,datademissao=demissao,indicativoadmissao=indica,primeiroemprego=priempr,regimetrabalho=rtrab,regimeprevidenciario=rprev,regimejornada=rjorn,naturezaatividade=naativ,categoria=cat,codigofuncao=codf,cargahorariam=carh,unidadesalarial=unisa,salariovariavel=salvari,obs=obs)
+                t = UsuarioTrabalho.objects.get(codigo=u)
+            except:
+                pass    
+            try:
+                do = UsuarioDocumentos.objects.create(codigo=u,documento=documento,numerodocumento=ndocumento,orgao=oe,dataexpedissao=de,validade=validade)
+                d =  UsuarioDocumentos.objects.get(codigo=u)
+            except:
+                pass    
+            try:
+                en = UsuarioEndereco.objects.create(codigo=u, cep=cep,tipo=tipo,logradouro=logradouro,numero=num,ufatual=ufatual,municipioatul=muniatual,bairroatual=bairro,complemento=complemento,pais=pais)
+                e = UsuarioEndereco.objects.get(codigo=u)
+            except:
+                pass    
+            try:
+                co = Contabancaria.objects.create(codigo=u,banco=banco,conta=conta,agencia=agencia)
+            except:
+                pass
+            try:    
+                usuar  = UsuarioCorporativo.objects.create(codigo=u,trabalho=t,documento=d,endereco=e,email=email1,emailCorporativo=email2,skype=skype,telefone=cel,tel=tel,ramal=ramal,usuario=users,grupo=gs,banco=co)
+            except:
+                 usuar  = UsuarioCorporativo.objects.create(codigo=u,email=email1,emailCorporativo=email2,skype=skype,telefone=cel,tel=tel,ramal=ramal,usuario=users,grupo=gs)
             
-
-            usua = UsuarioTrabalho.objects.create(codigo=u,departamento=dep,empresa=emp,cargo=c,valetransporte=vtrans,dataadmissao=admissao,datademissao=demissao,indicativoadmissao=indica,primeiroemprego=priempr,regimetrabalho=rtrab,regimeprevidenciario=rprev,regimejornada=rjorn,naturezaatividade=naativ,categoria=cat,codigofuncao=codf,cargahorariam=carh,unidadesalarial=unisa,salariovariavel=salvari,obs=obs)
-            usua.save()
-            t = UsuarioTrabalho.objects.get(codigo=u)
-            
-
-
-            do = UsuarioDocumentos.objects.create(codigo=u,documento=documento,numerodocumento=ndocumento,orgao=oe,dataexpedissao=de,validade=validade)
-            do.save()
-            d =  UsuarioDocumentos.objects.get(codigo=u)
-            en = UsuarioEndereco.objects.create(codigo=u, cep=cep,tipo=tipo,logradouro=logradouro,numero=num,ufatual=ufatual,municipioatul=muniatual,bairroatual=bairro,complemento=complemento,pais=pais)
-            en.save()
-            e = UsuarioEndereco.objects.get(codigo=u)
-            co = Contabancaria.objects.create(codigo=u,banco=banco,conta=conta,agencia=agencia)
-            co.save()
-            usuar  = UsuarioCorporativo.objects.create(codigo=u,trabalho=t,documento=d,endereco=e,email=email1,emailCorporativo=email2,skype=skype,telefone=cel,tel=tel,ramal=ramal,usuario=users,grupo=gs,banco=co)
-            usuar.save()
             form = ImageForm(request.POST, request.FILES)
             if form.is_valid():
                 nome = request.POST['usuario']
@@ -249,7 +270,8 @@ def edit_usuarios(request,id):
     chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("-id")
     grupos= usuarioC.grupo.name
     codigo = usuarioC.codigo.nome
-    
+    empresa = Empresa.objects.all()
+    cargos = Cargo.objects.all().order_by("cargo")
     filtro = ChamadoFilter()
     usu = UsuarioCorporativo.objects.get(pk=id)
     usup = UsuarioPessoal.objects.get(codigo= usu.codigo.codigo)
@@ -362,6 +384,8 @@ def edit_usuarios(request,id):
         'form':ImageForm,
         'usu': usu,
         'image':image,
+        'empresa':empresa,
+        'cargos':cargos, 
             }  
     if request.method == 'POST' and 'edit_usu' in request.POST:  
         nome = request.POST["nome"]
@@ -392,7 +416,7 @@ def edit_usuarios(request,id):
         cargo = request.POST["cargo"]
         vtrans = request.POST["vtrans"]
         admissao = request.POST["admissao"]
-        demissao = request.POST["demicao"]
+        demissao = request.POST["demissao"]
         tipo = request.POST["tipoadmissao"]
         indica =  request.POST["indica"]
         priempr = request.POST["priempr"]
@@ -462,19 +486,15 @@ def edit_usuarios(request,id):
             usup.serie = serie
             usup.ufcarteiratrabalho = uf
             try:
-                usup.datacarteiratrabalho = datetime.strptime(de).date() 
+                usup.datacarteiratrabalho = datetime.strptime(de,'%d/%m/%Y')
             except:
-                usup.datacarteiratrabalho = de    
+                usup.datacarteiratrabalho = None      
             usup.genero = genero
             usup.cor = cor
             usup.ecivil= ecivil
             usup.celpessoal= celp
             usup.escolaridade  = escolaridade
-            try:
-               
-                usup.datanacimento = datetime.strptime(datanasci).date()
-            except:
-                usup.datanacimento = datanasci  
+            usup.datanacimento = datetime.strptime(datanasci ,'%d/%m/%Y')
             usup.ufnacimento = ufnasci
             usup.municipionacimento = municipionasc
             usup.paisnacimento = paisnasci
@@ -482,27 +502,28 @@ def edit_usuarios(request,id):
             usup.nomemae = mae
             usup.nomepai = pai
             usup.save()
-            if Contabancaria.objects.filter(codigo =usup.nome).exists():  
-                conta = Contabancaria.objects.get(codigo=usup.nome)
+            if Contabancaria.objects.filter(codigo=usup.codigo).exists():  
+                conta = Contabancaria.objects.get(codigo=usup.codigo)
                 conta.banco = banco
                 conta.agencia = agencia
                 conta.conta = conta
                 conta.save()
             else:
-                conta = Contabancaria.objects.create(codigo=usup.nome,banco=banco,agencia=agencia,conta=conta)
+                u=UsuarioPessoal.objects.get(pk=usup.id)
+                conta = Contabancaria.objects.create(codigo=u,banco=banco,agencia=agencia,conta=conta)
                 conta.save()
             usut.empresa = emp
             usut.departamento = dep
             usut.cargo = Cargo.objects.get(cargo=cargo)
             usut.valetransporte = vtrans
             try:
-                usut.dataadmissao = datetime.strptime(admissao).date() 
+                usut.dataadmissao = datetime.strptime(admissao,'%d/%m/%Y')
             except:
-                pass
+                usut.dataadmissao = None
             try:   
-                usut.datademissao = datetime.strptime(demissao).date()
+                usut.datademissao = datetime.strptime(demissao,'%d/%m/%Y')
             except:
-                pass  
+                usut.datademissao = None
             usut.tipoAdmissao = tipo
             usut.indicativoadmissao= indica
             usut.primeiroemprego = priempr
@@ -514,7 +535,10 @@ def edit_usuarios(request,id):
             usut.codigofuncao = codf
             usut.cargahorariam = carh
             usut.unidadesalarial = unisa
-            usut.salariovariavel = Decimal(salvari.replace(',','.'))
+            try:
+                usut.salariovariavel = Decimal(salvari.replace(',','.'))
+            except :
+                usut.salariovariavel = 0
             usut.obs = obs
             usut.save()
 
@@ -522,13 +546,13 @@ def edit_usuarios(request,id):
             usud.numerodocumento = ndocumento
             usud.orgao = oe
             try:
-                usud.dataexpedissao =  datetime.strptime(de).date()
+                usud.dataexpedissao =  datetime.strptime(de,'%d/%m/%Y')
             except:
-                pass    
+               usud.dataexpedissao = None
             try:
-                 usud.validade =  datetime.strptime(validade).date()
+                usud.validade =  datetime.strptime(validade,'%d/%m/%Y')
             except:
-                pass  
+                usud.validade = None
             usud.save()
             usue.cep = cep
             usue.tipo = tipoe
@@ -549,21 +573,9 @@ def edit_usuarios(request,id):
             usu.usuario = users
             usu.grupo= gs
             usu.save()
-            
-            #form = ImageForm(request.POST, request.FILES)
-            #if form.is_valid():
-                # nome = request.POST['usuario']
-                #img = form.cleaned_data.get("imagem") 
-                #obs=''
-                # users = User.objects.get(username=usuario)
-                # usuari = UsuarioCorporativo.objects.get(usuario=users)
-                # codigo = usuari.codigo.nome
-                # obj =ImagePerfil.objects.get(nome=codigo)
-                # obj.image = img
-                # obj.save()
-                # messages.success(request, 'Imagem salva')
-            #else:
-                #   messages.error(request, 'Imagem não adicionada')
+            image = ImagePerfil.objects.get(nome = cod)
+            image.nome = usup.nome
+            image.save() 
             messages.success(request, "Usuario editado  com sucesso")
 
     
@@ -624,12 +636,20 @@ def perfisuser(request):
     grupos= usuarioC.grupo.name
     codigo = usuarioC.codigo.nome
     cod =usuario.codigo.nome
-    image = ImagePerfil.objects.get(nome=cod)
-    if not image.image:
-      image = ImagePerfil.objects.get(nome= "padrao")  
+    
+    try:
+        image = ImagePerfil.objects.get(nome=cod)
+        if not image.image:
+            image = ImagePerfil.objects.get(nome="padrao")
+    except:
+        image = ImagePerfil.objects.get(nome= "padrao") 
     imageP = ImagePerfil.objects.get(nome=codigo) 
-    if not imageP.image:
-      imageP = ImagePerfil.objects.get(nome= "padrao")  
+    try:
+        imageP = ImagePerfil.objects.get(nome= codigo.nome)
+        if not imageP.image:
+            imageP = ImagePerfil.objects.get(nome= "padrao")
+    except:
+        imageP = ImagePerfil.objects.get(nome= "padrao")
     filtro = ChamadoFilter()
     context = {
     'chamados': chamados,
@@ -655,10 +675,6 @@ def home(request):
           
     usuarioC = UsuarioCorporativo.objects.get(usuario=user)
     codigo = usuarioC.codigo
-    usuarioT= UsuarioTrabalho.objects.get(codigo=codigo)
-    usuarioP = UsuarioPessoal.objects.get(nome=codigo.nome)
-    usuarioE = UsuarioEndereco.objects.get(codigo=codigo)
-    usuarioD = UsuarioDocumentos.objects.get(codigo=codigo)
     grupo= usuarioC.grupo
     chamados = Chamado.objects.filter(grupo=grupo).order_by("-id")    
     chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("-id")
@@ -682,11 +698,7 @@ def home(request):
     'chamados_abertos': chamados_abertos,
     'grupos': grupos,
     'usuarioC':usuarioC,
-    'usuarioT':usuarioT,
     'user' : user, 
-    'usuarioP':usuarioP, 
-    'usuarioE':usuarioE, 
-    'usuarioD':usuarioD, 
     'grupo':grupo,
     'admin':admin, 
     'filtro': filtro,
@@ -821,10 +833,7 @@ def problem(request):
     usuarioC = UsuarioCorporativo.objects.get(usuario=user)
     users = UsuarioCorporativo.objects.all()
     codigo = usuarioC.codigo
-    usuarioT= UsuarioTrabalho.objects.get(codigo=codigo)
-    usuarioP = UsuarioPessoal.objects.get(nome=codigo.nome)
-    usuarioE = UsuarioEndereco.objects.get(codigo=codigo)
-    usuarioD = UsuarioDocumentos.objects.get(codigo=codigo)
+   
     grupo= usuarioC.grupo
     chamados = Chamado.objects.filter(grupo=grupo).order_by("-id")    
     chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("-id")
@@ -841,10 +850,7 @@ def problem(request):
             'user' : user, 
             'users' : users,
             'usuarioC':usuarioC,
-            'usuarioT':usuarioT,
-            'usuarioP':usuarioP, 
-            'usuarioE':usuarioE, 
-            'usuarioD':usuarioD,
+            
             'grupo':grupo,
             'filtro': filtro,  
             'imageP':imageP,                   
@@ -863,10 +869,7 @@ def problem(request):
             'chamados_abertos': chamados_abertos,
             'grupos': grupos,
             'usuarioC':usuarioC,
-            'usuarioT':usuarioT,
-            'usuarioP':usuarioP, 
-            'usuarioE':usuarioE, 
-            'usuarioD':usuarioD,
+            
             'user' : user,  
             'grupo':grupo,
             'filtro': filtro,  
