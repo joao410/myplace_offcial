@@ -32,6 +32,8 @@
     {% block style %}
     <style>
 .N_1 {
+    background-color: rgba(0,76,162,1);
+    border-radius: 80px;
 	position: absolute;
 	overflow: visible;
 	width: 509px;
@@ -119,7 +121,7 @@
   </div>
         <div style="border-radius: 80px;" class="bg-white Retngulo_96  position-absolute top-50 start-50 translate-middle  col-md-10 ml-sm-auto mr-sm-auto col-lg-6  ">
             
-            <div style="background-color: rgba(0,76,162,1); border-radius: 80px;" class="N_1 position-absolute top-0 start-0  col-lg-12 ">
+            <div style="position:absolute"  class="N_1 position-absolute top-0 start-0  col-lg-12 ">
             <img class=" " id="Logo-branca-sem-fundo-com-somb" src="{% static 'img/Logo-branca-sem-fundo-com-somb.png' %}" srcset="{% static 'img/Logo-branca-sem-fundo-com-somb.png' %} 1x, {% static 'img/Logo-branca-sem-fundo-com-somb@2x.png' %} 2x"> 
             <form class="" action="{% url 'login' %}" method="post" >
             {% csrf_token %}
