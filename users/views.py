@@ -1,7 +1,5 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.forms import modelformset_factory
-import csv
 from .models import  User
 from helpdesk.models import  Chamado, Image , ImageLink, Chat
 from .models import   UsuarioCorporativo, UsuarioEndereco, UsuarioTrabalho,UsuarioDocumentos, Empresa, ImagePerfil, UsuarioPessoal,Cargo,Contabancaria
@@ -17,11 +15,13 @@ from django.forms import modelformset_factory
 from django.http import JsonResponse, HttpResponse
 from openpyxl.styles import PatternFill
 from openpyxl.utils.dataframe import dataframe_to_rows
-from openpyxl import load_workbook
-from shutil import copyfile
 import pandas as pd
 from decimal import Decimal
 import xlwt
+from performance.forms import ImportForm
+import xlrd3 as xlrd
+
+
 
 
 
@@ -58,6 +58,7 @@ def add_usuarios(request):
     'imageP':imageP, 
     'cargos':cargos,  
     'form':ImageForm,
+    
             }  
     if UsuarioPessoal.objects.all():
             Usuario_id = UsuarioPessoal.objects.all().order_by('-id')[0].id
@@ -241,7 +242,7 @@ def add_usuarios(request):
               messages.error(request, 'Usuario existente')
         else:
                 users = User.objects.get(username=usuario)
-                usu = Usuarios.objects.create(name=nome,empresa=emp, departamento=dep,cargo=cargo,email=email1,email_corporativo=email2,skype=skype,telefone=cel,tel=tel,ramal=ramal,usuario=users,password=senha,grupo=gs)
+                usu = UsuarioCorporativo.objects.create(name=nome,empresa=emp, departamento=dep,cargo=cargo,email=email1,email_corporativo=email2,skype=skype,telefone=cel,tel=tel,ramal=ramal,usuario=users,password=senha,grupo=gs)
                 usu.save()
                 form = ImageForm(request.POST, request.FILES)
                 if form.is_valid():
@@ -249,10 +250,11 @@ def add_usuarios(request):
                     img = form.cleaned_data.get("imagem") 
                     obs=''
                     users = User.objects.get(username=usuario)
-                    usuari = Usuarios.objects.get(usuario=users)
+                    usuari = UsuarioCorporativo.objects.get(usuario=users)
                     obj =ImagePerfil.objects.create(usuario=usuari,image=img,obs=obs,nome=nome)
                     obj.save()
                     messages.success(request, 'Imagem adicionada')
+               
 
                 
     return render(request, 'users/add_usuarios.html', context)        
@@ -732,7 +734,7 @@ def presidente(request):
     user = request.user
     admin = Chamado.objects.all()        
     usuarioC = UsuarioCorporativo.objects.get(usuario=user)
-    users = UsuarioCorporativo.objects.all()
+    users = UsuarioCorporativo.objects.all().order_by("codigo")
     grupo= usuarioC.grupo
     chamados = Chamado.objects.filter(grupo=grupo).order_by("-id")    
     chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("-id")
@@ -753,14 +755,15 @@ def presidente(request):
     'grupo':grupo,
     'admin':admin, 
     'filtro': filtro,
-    'imageP':imageP,    
+    'imageP':imageP, 
+    'form':ImportForm(),   
             }  
     if request.method == 'GET':
         myFilter = ChamadoFilter(request.GET, queryset=users)
         users = myFilter.qs
                
         user = request.user
-        usuarioC = UsuarioCorporativo.objects.get(usuario=user)
+        users = UsuarioCorporativo.objects.all().order_by("codigo")
         grupo= usuarioC.grupo
         chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("id")
         grupos= usuarioC.grupo.name
@@ -773,8 +776,96 @@ def presidente(request):
             'user' : user,  
             'grupo':grupo,
             'filtro': filtro,  
-            'imageP':imageP,                   
+            'imageP':imageP,   
+            'form':ImportForm(),                   
                 }  
+    
+    if request.method == 'POST' and 'btn_import' in request.POST:
+        input_excel = request.FILES['file']
+        workbook =xlrd.open_workbook(file_contents=input_excel.read())
+        sheet = workbook.sheet_by_index(0)
+       
+
+        erro_list = list()
+        a =1
+       
+        for sheet.nrows in range(sheet.nrows):
+            try:
+                nome = sheet.cell_value(a,0)
+                nome = nome.upper()
+                cargo = sheet.cell_value(a,1)
+                cpf = sheet.cell_value(a,2)
+                datanasci = sheet.cell_value(a,3)
+                usuario =sheet.cell_value(a,4) 
+                usuario = usuario.upper()      
+                senha = sheet.cell_value(a,5) 
+                repassword = sheet.cell_value(a,5)    
+                grupo = sheet.cell_value(a,6) 
+                gs = Group.objects.get(name=grupo)   
+            except:
+                pass
+            if UsuarioPessoal.objects.all():
+                Usuario_id = UsuarioPessoal.objects.all().order_by('-id')[0].id
+                
+
+                codigo = Usuario_id + 10001
+            else:
+                    codigo = 10001
+            
+            try :
+                usern = User.objects.values().get(username=usuario)
+                erro_list.append(usern)
+                test_erro = True
+                        
+            except:
+                usern = User.objects.create(username=str(usuario),first_name=str(usuario))
+                usern.set_password(int(senha))
+                usern.is_active = True
+                usern.group = str(gs)
+                usern.save()
+               
+                up= UsuarioPessoal.objects.create(codigo=codigo,nome=nome,cpf=cpf)
+                up.save()
+                u = UsuarioPessoal.objects.get(codigo=codigo)
+                us = u.codigo
+                try:
+                    c= Cargo.objects.get(cargo=cargo)
+                    ta= UsuarioTrabalho.objects.create(codigo=us,cargo=c)
+                    ta.save()
+                except:
+                    pass     
+                try:
+                    t = UsuarioTrabalho.objects.get(codigo=us)
+                except:
+                    pass    
+                try:
+                    uc = UsuarioCorporativo.objects.create(codigo=u,trabalho=t,usuario=usern,grupo=gs)   
+                    uc.save()
+                except:
+                    uc = UsuarioCorporativo.objects.create(codigo=u,usuario=usern,grupo=gs) 
+                    uc.save()   
+                a = a+1     
+                        
+        context = {
+            'form':ImportForm(),
+            
+            'test_erro':test_erro,
+            'erro_list':erro_list,
+            'form_image':ImageForm,
+            'chamados': chamados,
+            'chamados_abertos': chamados_abertos,
+            'grupos': grupos,
+            'usuarioC':usuarioC,
+            'user': request.user,
+            'users' : users,  
+            'grupo':grupo,
+            'admin':admin, 
+            'filtro': filtro,
+            'imageP':imageP, 
+            'form':ImportForm(),   
+        }
+
+        return render(request, 'users/presidente.html', context)                
     return render(request, 'users/presidente.html', context)     
 
 MDATA = datetime.now().strftime('%d-%m-%Y')

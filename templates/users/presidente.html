@@ -22,7 +22,16 @@
             <div class="Retngulo_58_ text-white bg-primary fs-5 fw-bold d-flex justify-content-center pt-2">
               <span>Cadastrar Usuário</span>
             </div>
-            </a>
+            </a> 
+            <form action="{% url 'presidente' %}" method="post" enctype="multipart/form-data" >
+              {% csrf_token %}
+            <div>
+            {{form.as_p}} 
+            </div>         
+            <button  class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"  type="submit" name="btn_import">
+                <i class="fas fa-download fa-sm text-white-50"></i> Importar .xlsx
+            </button>
+            </form>
         {% endif %}
     
         
@@ -86,7 +95,7 @@
                                           <tr>
                                               
                                               
-                                              <td><a href="javascript: void(0);" class="text-dark fw-bold">{{users.codigo.nome|upper}}</a> </td>
+                                              <td><a href="javascript: void(0);" class="text-dark fw-bold">{{users.codigo.nome|upper|truncatechars:22}}</a> </td>
                                               <td>
                                                 {{users.trabalho.departamento|upper}}
                                               </td>
