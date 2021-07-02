@@ -1,7 +1,11 @@
+from os import name
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
 import uuid
+from django.db.models.deletion import DO_NOTHING
+
+from django.db.models.fields.related import ForeignKey
 
 
 # Create your models here.
@@ -26,6 +30,16 @@ class Empresa(Base):
 
     def __str__(self):
         return f'{self.nempresa} - {self.telefone}'   
+class Departamento(Base):
+    name = models.CharField("name",max_length=250)
+    empresa = ForeignKey(Empresa,on_delete=DO_NOTHING)
+
+    class Meta:
+        verbose_name = "Departamento"
+        verbose_name_plural = "Departamentos"
+
+    def __str__(self):
+        return f'{self.name} - {self.empresa}'   
 
 class Cargo(Base):
     cargo  = models.CharField("cargo", max_length=100,default="...")
@@ -200,6 +214,9 @@ class ImagePerfil(Base):
 
     def __str__(self):
         return f'{self.id} - {self.nome}'    
+
+
+
 
 
 
