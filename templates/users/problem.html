@@ -46,20 +46,20 @@
                                         <tr>
                                             
                                             
-                                            <td><a href="javascript: void(0);" class="text-dark fw-bold">{{users.codigo.nome|upper}}</a> </td>
+                                            <td><a href="javascript: void(0);" class="text-dark fw-bold">{{users.codigo.nome|upper|truncatechars:22}}</a> </td>
                                             <td>
                                               {% firstof users.trabalho.departamento ""|upper %}
                                             </td>
                                             <td>{% firstof users.ramal ""|upper  %}</td>
                                             
                                             <td>
-                                              {% firstof users.tel ""|upper ''|upper%}
+                                              {% firstof users.tel  ""|upper %}
                                             </td>
                                             <td>
-                                                <div> {% firstof users.emailCorporativo|upper ''|upper%}</div>
+                                                <div> {% firstof users.emailCorporativo ""|upper ''|upper%}</div>
                                             </td>
                                             <td>
-                                                <div>{% firstof users.skype|upper ''|upper%}</div>
+                                                <div>{% firstof users.skype  ""|upper ''|upper%}</div>
                                             </td>
                                             
                                             <td>
