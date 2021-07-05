@@ -372,7 +372,14 @@
                                         </div>
                                         <div class="row">
                                                     <div class="col-4">
-                                                        <input  class="Retngulo_601 depright" type="text"  name="departamento">
+                                                        <select name="departamento"  class=" Retngulo_601">
+                                                            <option name="departamento" hidden value="">
+                                                                <option value="" hidden selected></option>
+                                                                {% for departamento in departamento %}
+                                                                <option value="{{departamento.name}}">{{departamento.name}}</option>
+                                                                {% endfor %}
+                                                            </option>
+                                                        </select>
                                                     </div>
                                                     <div class="col-4">
                                                         <select name="cargo"  class=" Retngulo_cargo" required >

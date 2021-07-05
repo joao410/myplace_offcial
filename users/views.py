@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import  User
+from .models import  Departamento, User
 from helpdesk.models import  Chamado, Image , ImageLink, Chat
 from .models import   UsuarioCorporativo, UsuarioEndereco, UsuarioTrabalho,UsuarioDocumentos, Empresa, ImagePerfil, UsuarioPessoal,Cargo,Contabancaria
 from helpdesk.forms import ImageForm, ImageForms
@@ -34,6 +34,7 @@ def add_usuarios(request):
     usuarioC = UsuarioCorporativo.objects.get(usuario=user)
     g = Group.objects.all()
     grupo= usuarioC.grupo
+    departamento = Departamento.objects.all().order_by("name")
     chamados = Chamado.objects.filter(grupo=grupo).order_by("-id")    
     chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("-id")
     grupos= usuarioC.grupo.name
@@ -58,6 +59,7 @@ def add_usuarios(request):
     'imageP':imageP, 
     'cargos':cargos,  
     'form':ImageForm,
+    'departamento':departamento,
     
             }  
     if UsuarioPessoal.objects.all():
@@ -267,22 +269,16 @@ def edit_usuarios(request,id):
     usuarioC = UsuarioCorporativo.objects.get(usuario=user)
     g = Group.objects.all()
     grupo= usuarioC.grupo
-   
     chamados = Chamado.objects.filter(grupo=grupo).order_by("-id")    
     chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("-id")
     grupos= usuarioC.grupo.name
     codigo = usuarioC.codigo.nome
     empresa = Empresa.objects.all()
+    departamento = Departamento.objects.all().order_by("name")
     cargos = Cargo.objects.all().order_by("cargo")
     filtro = ChamadoFilter()
     usu = UsuarioCorporativo.objects.get(pk=id)
-    usup = UsuarioPessoal.objects.get(codigo= usu.codigo.codigo)
-    usut = UsuarioTrabalho.objects.get(codigo=usu.codigo)
-    usud = UsuarioDocumentos.objects.get(codigo=usu.codigo)
-    usue = UsuarioEndereco.objects.get(codigo=usu.codigo)
     cod =usu.codigo.nome
-
-    
     imageP = ImagePerfil.objects.get(nome= codigo)
     if not imageP.image:
       imageP = ImagePerfil.objects.get(nome= "padrao")
@@ -291,12 +287,12 @@ def edit_usuarios(request,id):
       image = ImagePerfil.objects.get(nome= "padrao")
 
     if request.method == 'POST' and 'next' in request.POST:
-        id = id + 1
+        id = usu.id + 1
         try:
             usu = UsuarioCorporativo.objects.get(pk=id)
             usup = UsuarioPessoal.objects.get(codigo= usu.codigo.codigo)
-            usut = UsuarioTrabalho.objects.get(codigo=usu.codigo)
-            usud = UsuarioDocumentos.objects.get(codigo=usu.codigo)
+          
+           
             usue = UsuarioEndereco.objects.get(codigo=usu.codigo)
             cod =usu.codigo.nome
             imageP = ImagePerfil.objects.get(nome= codigo)
@@ -309,17 +305,13 @@ def edit_usuarios(request,id):
         except:
             
             try:
-                us = UsuarioCorporativo.objects.all()
-                indice= len(us)
-                i=us[indice].id
-                while id > 0 and id < i:
+                us = UsuarioCorporativo.objects.all().last()
+                i= us.id
+                while id > 0 and id <= i:
                     try:
                         id = id+1  
                         usu = UsuarioCorporativo.objects.get(pk=id)
-                        usup = UsuarioPessoal.objects.get(codigo= usu.codigo.codigo)
-                        usut = UsuarioTrabalho.objects.get(codigo=usu.codigo)
-                        usud = UsuarioDocumentos.objects.get(codigo=usu.codigo)
-                        usue = UsuarioEndereco.objects.get(codigo=usu.codigo)
+                       
                         cod =usu.codigo.nome
                         imageP = ImagePerfil.objects.get(nome= codigo)
                         if not imageP.image:
@@ -333,13 +325,10 @@ def edit_usuarios(request,id):
             except:
                 pass
     if request.method == 'POST' and 'previos' in request.POST:
-        id = id - 1
+        id = usu.id -1
         try:
             usu = UsuarioCorporativo.objects.get(pk=id)
-            usup = UsuarioPessoal.objects.get(codigo= usu.codigo.codigo)
-            usut = UsuarioTrabalho.objects.get(codigo=usu.codigo)
-            usud = UsuarioDocumentos.objects.get(codigo=usu.codigo)
-            usue = UsuarioEndereco.objects.get(codigo=usu.codigo)
+           
             cod =usu.codigo.nome
             imageP = ImagePerfil.objects.get(nome= codigo)
             if not imageP.image:
@@ -352,10 +341,7 @@ def edit_usuarios(request,id):
                 id = id-1  
                 try:
                     usu = UsuarioCorporativo.objects.get(pk=id)
-                    usup = UsuarioPessoal.objects.get(codigo= usu.codigo.codigo)
-                    usut = UsuarioTrabalho.objects.get(codigo=usu.codigo)
-                    usud = UsuarioDocumentos.objects.get(codigo=usu.codigo)
-                    usue = UsuarioEndereco.objects.get(codigo=usu.codigo)
+                   
                     cod =usu.codigo.nome
                     imageP = ImagePerfil.objects.get(nome= codigo)
                     if not imageP.image:
@@ -363,32 +349,10 @@ def edit_usuarios(request,id):
                     image = ImagePerfil.objects.get(nome=cod)
                     if not image.image:
                         image = ImagePerfil.objects.get(nome= "padrao")
+                    break    
                 except:
                     pass
-                       
-             
-                   
-                    
-               
-
-
-    context = {
-        'chamados': chamados,
-        'chamados_abertos': chamados_abertos,
-        'grupos': grupos,
-        'usuarioC':usuarioC,
-        'user' : user,
-        'g':g,  
-        'grupo':grupo,
-        'admin':admin, 
-        'filtro': filtro,
-        'imageP':imageP,   
-        'form':ImageForm,
-        'usu': usu,
-        'image':image,
-        'empresa':empresa,
-        'cargos':cargos, 
-            }  
+   
     if request.method == 'POST' and 'edit_usu' in request.POST:  
         nome = request.POST["nome"]
         apelido = request.POST["apelido"]
@@ -469,16 +433,17 @@ def edit_usuarios(request,id):
            vtrans =  "VALE TRANSPORTE"
         if vtrans == "NÃo":
            vtrans =  "AJUDA DE CUSTO"  
-        if not vtrans:  
-             vtrans = "---"     
+        if vtrans == "None":  
+            vtrans = "---"     
+        if priempr == "None":  
+            priempr = "---"     
 
-        if  User.objects.filter(username=usuario).exists():  
-                   
-            
-            user = User.objects.get(username=usuario)
-            user.is_active = True
-            user.save()
+        if  User.objects.filter(username=usuario).exists():             
+            usern = User.objects.get(username=usuario)
+            usern.is_active = True
+            usern.save()
             users = User.objects.get(username=usuario)
+            usup = UsuarioPessoal.objects.get(codigo= usu.codigo.codigo)
             usup.nome = nome
             usup.apelido= apelido
             usup.cpf = cpf
@@ -504,68 +469,107 @@ def edit_usuarios(request,id):
             usup.nomemae = mae
             usup.nomepai = pai
             usup.save()
-            if Contabancaria.objects.filter(codigo=usup.codigo).exists():  
-                conta = Contabancaria.objects.get(codigo=usup.codigo)
-                conta.banco = banco
-                conta.agencia = agencia
-                conta.conta = conta
-                conta.save()
-            else:
+            try: 
+                    contas = Contabancaria.objects.get(codigo=usu.codigo)
+                    contas.banco = banco
+                    contas.agencia = agencia
+                    contas.conta = conta
+                    contas.save()
+            except:
+                    u=UsuarioPessoal.objects.get(pk=usup.id)
+                    contab = Contabancaria.objects.create(codigo=u,banco=banco,agencia=agencia,conta=conta)
+                    contab.save()
+                    usu.banco = contab
+                    usu.save
+            if UsuarioTrabalho.objects.filter(codigo=usu.codigo).exists():    
+                    usut = UsuarioTrabalho.objects.get(codigo=usu.codigo)
+                    usut.empresa = emp
+                    usut.departamento = dep
+                    usut.cargo = Cargo.objects.get(cargo=cargo)
+                
+                    usut.valetransporte = vtrans
+                    
+                    try:
+                        usut.dataadmissao = datetime.strptime(admissao,'%d/%m/%Y')
+                    except:
+                        usut.dataadmissao = None
+                    try:   
+                        usut.datademissao = datetime.strptime(demissao,'%d/%m/%Y')
+                    except:
+                        usut.datademissao = None
+                    usut.tipoAdmissao = tipo
+                    usut.indicativoadmissao= indica
+                    usut.primeiroemprego = priempr
+                    usut.regimetrabalho = rtrab
+                    usut.regimeprevidenciario = rprev
+                    usut.regimejornada = rjorn
+                    usut.naturezaatividade = naativ
+                    usut.categoria = cat
+                    usut.codigofuncao = codf
+                    usut.cargahorariam = carh
+                    usut.unidadesalarial = unisa
+                    try:
+                        usut.salariovariavel = Decimal(salvari.replace(',','.'))
+                    except :
+                        usut.salariovariavel = 0
+                    usut.obs = obs
+                    usut.save()
+            else:   
+                    c =Cargo.objects.get(cargo=cargo)
+                    u=UsuarioPessoal.objects.get(pk=usup.id)
+                    trab = UsuarioTrabalho.objects.create(codigo=u,cargo=c)
+                    trab.save()
+                    usu.trabalho = trab
+                    usu.save()
+            try:
+                if UsuarioDocumentos.objects.filter(codigo=usu.codigo).exists():
+                        usud = UsuarioDocumentos.objects.get(codigo=usu.codigo)  
+                        usud.documento= documento
+                        usud.numerodocumento = ndocumento
+                        usud.orgao = oe
+                        try:
+                            usud.dataexpedissao =  datetime.strptime(de,'%d/%m/%Y')
+                        except:
+                            usud.dataexpedissao = None
+                        try:
+                            usud.validade =  datetime.strptime(validade,'%d/%m/%Y')
+                        except:
+                            usud.validade = None
+                        usud.save()
+                else:  
+                
+                        u=UsuarioPessoal.objects.get(pk=usup.id)
+                        do = UsuarioDocumentos.objects.create(codigo=u,documento=documento,numerodocumento=ndocumento,orgao=oe,dataexpedissao=de,validade=validade)
+                        do.save()
+                        usu.documento = do
+                        usu.save()
+            except:      
                 u=UsuarioPessoal.objects.get(pk=usup.id)
-                conta = Contabancaria.objects.create(codigo=u,banco=banco,agencia=agencia,conta=conta)
-                conta.save()
-            usut.empresa = emp
-            usut.departamento = dep
-            usut.cargo = Cargo.objects.get(cargo=cargo)
-            usut.valetransporte = vtrans
-            try:
-                usut.dataadmissao = datetime.strptime(admissao,'%d/%m/%Y')
-            except:
-                usut.dataadmissao = None
-            try:   
-                usut.datademissao = datetime.strptime(demissao,'%d/%m/%Y')
-            except:
-                usut.datademissao = None
-            usut.tipoAdmissao = tipo
-            usut.indicativoadmissao= indica
-            usut.primeiroemprego = priempr
-            usut.regimetrabalho = rtrab
-            usut.regimeprevidenciario = rprev
-            usut.regimejornada = rjorn
-            usut.naturezaatividade = naativ
-            usut.categoria = cat
-            usut.codigofuncao = codf
-            usut.cargahorariam = carh
-            usut.unidadesalarial = unisa
-            try:
-                usut.salariovariavel = Decimal(salvari.replace(',','.'))
-            except :
-                usut.salariovariavel = 0
-            usut.obs = obs
-            usut.save()
+                doc = UsuarioDocumentos.objects.create(codigo=u)
+                doc.save()
+                usu.documento = doc
+                usu.save()   
+            if UsuarioEndereco.objects.filter(codigo=usu.codigo).exists():  
+                    usue = UsuarioEndereco.objects.get(codigo=usu.codigo)
+                    usue.cep = cep
+                    usue.tipo = tipoe
+                    usue.logradouro = logradouro
+                    usue.numero = num
+                    usue.ufatual = ufatual
+                    usue.MunicipioAtul = muniatual
+                    usue.bairroatual = bairro
+                    usue.complemento = complemento
+                    usue.pais = pais
+                    usue.save()
 
-            usud.documento= documento
-            usud.numerodocumento = ndocumento
-            usud.orgao = oe
-            try:
-                usud.dataexpedissao =  datetime.strptime(de,'%d/%m/%Y')
-            except:
-               usud.dataexpedissao = None
-            try:
-                usud.validade =  datetime.strptime(validade,'%d/%m/%Y')
-            except:
-                usud.validade = None
-            usud.save()
-            usue.cep = cep
-            usue.tipo = tipoe
-            usue.logradouro = logradouro
-            usue.numero = num
-            usue.ufatual = ufatual
-            usue.MunicipioAtul = muniatual
-            usue.bairroatual = bairro
-            usue.complemento = complemento
-            usue.pais = pais
-            usue.save()
+            else:
+            
+                    u=UsuarioPessoal.objects.get(pk=usup.id)
+                    en = UsuarioEndereco.objects.create(codigo=u, cep=cep,tipo=tipo,logradouro=logradouro,numero=num,ufatual=ufatual,municipioatul=muniatual,bairroatual=bairro,complemento=complemento,pais=pais)
+                    en.save()
+                    usu.endereco = en
+                    usu.save()
+                   
             usu.email = email1
             usu.emailCorporativo = email2
             usu.skype = skype
@@ -575,21 +579,40 @@ def edit_usuarios(request,id):
             usu.usuario = users
             usu.grupo= gs
             usu.save()
-            image = ImagePerfil.objects.get(nome = cod)
-            image.nome = usup.nome
-            image.save() 
-            messages.success(request, "Usuario editado  com sucesso")
-
+            try:
+                form = ImageForm(request.POST, request.FILES)
+                imageu = ImagePerfil.objects.get(nome = cod)
+                imageu.nome = usup.nome
+                imageu.image =  form.cleaned_data.get("imagem")  
+                imageu.save() 
+                messages.success(request, "Usuario editado  com sucesso")
+            except:
+                pass
     
-
-
 
     if request.method == 'POST' and 'exc_usu' in request.POST: 
         id = request.POST['exc_usu']
-        usuario= Usuarios.objects.get(pk=id)
+        usuario= UsuarioCorporativo.objects.get(pk=id)
         usuario.delete()
         return redirect( 'presidente')         
-                
+    context = {
+        'chamados': chamados,
+        'chamados_abertos': chamados_abertos,
+        'grupos': grupos,
+        'usuarioC':usuarioC,
+        'user' : user,
+        'g':g,  
+        'grupo':grupo,
+        'admin':admin, 
+        'filtro': filtro,
+        'imageP':imageP,   
+        'form':ImageForm,
+        'usu': usu,
+        'image':image,
+        'empresa':empresa,
+        'cargos':cargos, 
+        'departamento':departamento,
+            }              
     return render(request, 'users/edit_usuarios.html', context)        
 @login_required(login_url='/authentication/login')    
 def perfis(request):
@@ -804,6 +827,7 @@ def presidente(request):
                 gs = Group.objects.get(name=grupo)   
             except:
                 pass
+            
             if UsuarioPessoal.objects.all():
                 Usuario_id = UsuarioPessoal.objects.all().order_by('-id')[0].id
                 
@@ -816,6 +840,8 @@ def presidente(request):
                 usern = User.objects.values().get(username=usuario)
                 erro_list.append(usern)
                 test_erro = True
+                obj =ImagePerfil.objects.create(nome=nome)
+                obj.save()
                         
             except:
                 usern = User.objects.create(username=str(usuario),first_name=str(usuario))
@@ -843,8 +869,11 @@ def presidente(request):
                     uc.save()
                 except:
                     uc = UsuarioCorporativo.objects.create(codigo=u,usuario=usern,grupo=gs) 
-                    uc.save()   
-                a = a+1     
+                    uc.save()  
+                obj =ImagePerfil.objects.create(nome=nome)
+                obj.save()     
+
+            a = a+1     
                         
         context = {
             'form':ImportForm(),

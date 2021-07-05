@@ -1,5 +1,5 @@
 from django.contrib import admin
-from users.models import UsuarioPessoal,UsuarioTrabalho,UsuarioDocumentos,UsuarioEndereco,UsuarioCorporativo, ImagePerfil,Empresa,Cargo,Contabancaria
+from users.models import UsuarioPessoal,UsuarioTrabalho,UsuarioDocumentos,UsuarioEndereco,UsuarioCorporativo, ImagePerfil,Empresa,Cargo,Contabancaria,Departamento
 
 
 # Register your models here.
@@ -39,6 +39,10 @@ class ImagePerfilAdmin(admin.ModelAdmin):
 class EmpresaAdmin(admin.ModelAdmin):
     list_display = ('id','create','active','nempresa','telefone', 'cnpj',)
     search_fields =('id','create','active','nempresa','telefone', 'cnpj',)
+@admin.register(Departamento)
+class DepartamentoAdmin(admin.ModelAdmin):
+    list_display = ('id','create','active','name','empresa',)
+    search_fields =('id','create','active','name','empresa',)
 @admin.register(Cargo)
 class cargoAdmin(admin.ModelAdmin):
     list_display = ('id','create','active','cargo','descricao', 'ncbo',)

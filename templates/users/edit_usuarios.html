@@ -51,6 +51,9 @@
                                                 <input  class="Retngulo_apelido " type="text"  value="{% firstof usu.codigo.apelido ''%}" name="apelido">
                                             </div>
                                         </div>
+                                        <div class="row bg-primary text-white rounded p-2 mt-1 mb-1"> 
+                                            Documentos Trabalhistas
+                                            </div> 
                                         <div class="row">
                                             <div class="col-4">
                                                 <span style="color: rgba(255,0,0,1);">*</span>  <span>CPF</span>
@@ -101,6 +104,50 @@
                                                 <input  class="Retngulo_emissao " type="datetime" value="{% firstof usu.codigo.datacarteiratrabalho|date:'SHORT_DATE_FORMAT' '' %}" name="emissao"> 
                                             </div>
                                         </div>
+                                        <div class="row">                                             
+                                            <div class="col-2">
+                                                <span>Documento</span>
+                                            </div>
+                                            <div class="col-2">
+                                                <span>Número</span>
+                                            </div>
+                                            <div class="col-2">
+                                                <span>Orgão Emissor</span>
+                                            </div>
+                                            <div class="col-2">
+                                                <span>Expedição</span>
+                                            </div>
+                                            <div class="col">
+                                                <span>Validade</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">                                             
+                                            <div class="col-2">
+                                                <select name="documento"  class=" Retngulo1_ ">
+                                                    <option name="documento" hidden value="{{usu.documento.documento}}" >
+                                                        <option value="{{usu.documento.documento}}" hidden selected>{% firstof usu.documento.documento  ''%}</option>
+                                                        <option value="RG">RG</option>
+                                                        <option value="CNH">CNH</option>
+                                                
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-2">
+                                                <input  class="Retngulo2_ " type="text"  value="{% firstof usu.documento.numerodocumento ''%}" name="numero">
+                                            </div>
+                                            <div class="col-2">
+                                                <input  class="Retngulo3_ " type="text" value="{% firstof  usu.documento.orgao ''%}" name="oe">
+                                            </div>
+                                            <div class="col-2">
+                                                <input  class="Retngulo4_ " type="datetime" value="{% firstof usu.documento.dataexpedissao|date:'SHORT_DATE_FORMAT' '' %}"  name="expedicao">
+                                            </div>
+                                            <div class="col">
+                                                <input  class="Retngulo5_ " type="datetime"  value="{% firstof usu.documento.validade|date:'SHORT_DATE_FORMAT' ''%}" name="validade"> 
+                                            </div>
+                                        </div>
+                                        <div class="row bg-primary text-white rounded p-2 mt-1 mb-1"> 
+                                            Dados Pessoais
+                                            </div> 
                                         <div class="row">
                                             <div class="col-4">
                                                 <span>Gênero</span>
@@ -231,47 +278,10 @@
                                                 <input  class="Retngulo_pai " value="{% firstof usu.codigo.nomemae '' %}" type="text" name="pai">
                                             </div>
                                         </div>
-                                        <div class="row">                                             
-                                            <div class="col-2">
-                                                <span>Documento</span>
-                                            </div>
-                                            <div class="col-2">
-                                                <span>Número</span>
-                                            </div>
-                                            <div class="col-2">
-                                                <span>Orgão Emissor</span>
-                                            </div>
-                                            <div class="col-2">
-                                                <span>Expedição</span>
-                                            </div>
-                                            <div class="col">
-                                                <span>Validade</span>
-                                            </div>
-                                        </div>
-                                        <div class="row">                                             
-                                            <div class="col-2">
-                                                <select name="documento"  class=" Retngulo1_ ">
-                                                    <option name="documento" hidden value="{{usu.documento.documento}}" >
-                                                        <option value="{{usu.documento.documento}}" hidden selected>{% firstof usu.documento.documento  ''%}</option>
-                                                        <option value="RG">RG</option>
-                                                        <option value="CNH">CNH</option>
-                                                
-                                                    </option>
-                                                </select>
-                                            </div>
-                                            <div class="col-2">
-                                                <input  class="Retngulo2_ " type="text"  value="{% firstof usu.documento.numerodocumento ''%}" name="numero">
-                                            </div>
-                                            <div class="col-2">
-                                                <input  class="Retngulo3_ " type="text" value="{% firstof  usu.documento.orgao ''%}" name="oe">
-                                            </div>
-                                            <div class="col-2">
-                                                <input  class="Retngulo4_ " type="datetime" value="{% firstof usu.documento.dataexpedissao|date:'SHORT_DATE_FORMAT' '' %}"  name="expedicao">
-                                            </div>
-                                            <div class="col">
-                                                <input  class="Retngulo5_ " type="datetime"  value="{% firstof usu.documento.validade|date:'SHORT_DATE_FORMAT' ''%}" name="validade"> 
-                                            </div>
-                                        </div>
+                                        <div class="row bg-primary text-white rounded p-2 mt-1 mb-1"> 
+                                            Endereço
+                                            </div> 
+
                                         <div class="row">
                                             <div class="col-2">
                                                 <span>Cep</span>
@@ -342,6 +352,9 @@
                                     <!-- Company Document -->
                                     <h3>Dados Empresariais</h3>
                                     <section>
+                                        <div class="row bg-primary text-white rounded p-2 mt-1 mb-1"> 
+                                            Dados de Admissão
+                                                 </div> 
                                         <div class="row">
                                                     <div class="col-4">
                                                         <span>Departamento</span>
@@ -356,12 +369,22 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-4">
-                                                <input  class="Retngulo_601 depright" type="text" value="{% firstof usu.trabalho.departamento ''%}" name="departamento">
+                                             
+                                               
+                                                <select name="departamento"  class=" Retngulo_601">
+                                                    <option name="departamento" hidden value="{% firstof usu.trabalho.departamento %}">
+                                                        <option value="{{usu.trabalho.departamento }}" hidden selected>{% firstof usu.trabalho.departamento ""%}</option>
+                                                        {% for departamento in departamento %}
+                                                        <option value="{{departamento.name}}">{{departamento.name}}</option>
+                                                        {% endfor %}
+                                                    </option>
+                                                </select>
+
                                             </div>
                                             <div class="col-4">
                                                 <select name="cargo"  class=" Retngulo_cargo" >
                                                     <option name="cargo" hidden value="{% firstof usu.trabalho.cargo.cargo '' %}">
-                                                        <option value="{{usu.trabalho.cargo.cargo}}" hidden selected>{% firstof  usu.trabalho.cargo.cargo ''%}</option>
+                                                        <option value="{{usu.trabalho.cargo.cargo}}"  selected>{% firstof  usu.trabalho.cargo.cargo "" %}</option>
                                                         {% for cargos in cargos %}
                                                         <option value="{{cargos.cargo}}">{{cargos.cargo}}</option>
                                                         {% endfor %}                       
@@ -371,7 +394,7 @@
                                             <div class="col-4">
                                                 <select name="empresa"  class=" Retngulo_empresa">
                                                     <option name="empresa" hidden value="{{usu.trabalho.empresa}}">
-                                                        <option value="{{usu.trabalho.empresa}}" hidden selected>{% firstof usu.trabalho.empresa '' %}</option>
+                                                        <option value="{{usu.trabalho.empresa}}" hidden selected>{% firstof usu.trabalho.empresa "" %}</option>
                                                         {% for empresa in empresa %}
                                                         <option value="{{empresa.nempresa}}">{{empresa.nempresa}}</option>
                                                         {% endfor %}
@@ -406,7 +429,7 @@
                                             <div class="col">
                                                 <select name="tipoadmissao"  class=" Retngulo_tipoadmissao">
                                                     <option name="tipoadmissao" hidden value="{{usu.trabalho.tipoAdmissao}}" >
-                                                        <option value="{{usu.trabalho.tipoAdmissao}}" hidden selected>{% firstof usu.trabalho.tipoAdmissao '' %}</option>
+                                                        <option value="{{usu.trabalho.tipoAdmissao}}" hidden selected>{% firstof usu.trabalho.tipoAdmissao ""%}</option>
                                                         <option value="Admissão">1 - ADMISSÃO</option>
                                                         <option value="Transferencia de empresa do mesmo grupo empresarial">2 - TRANSFERENCIA DE EMPRESA DO MESMO GRUPO EMPRESARIAL</option>
                                                         <option value="Admissão por sucessão, Incorporação, Cisão ou Fusão">3 - ADMISSÃO POR SUCESSÃO, INCORPORAÇÃO, CISÃO OU FUSÃO</option>
@@ -432,7 +455,7 @@
                                             <div class="col">
                                                 <select name="vtrans"  class=" Retngulo_vtrans">
                                                     <option name="vtrans" hidden value="{{usu.trabalho.valetransporte|upper}}">
-                                                        <option value="{{usu.trabalho.valetransporte}}" hidden selected>{% firstof usu.trabalho.valetransporte|upper ''|upper %}</option>
+                                                        <option value="{{usu.trabalho.valetransporte}}" hidden selected>{% firstof usu.trabalho.valetransporte ""|upper %}</option>
                                                         <option value="sim">1-SIM</option>
                                                         <option value="nao">2-NÃO</option>                        
                                                     </option>
@@ -459,6 +482,9 @@
                                                 </select>     
                                             </div>
                                         </div>
+                                        <div class="row bg-primary text-white rounded p-2 mt-1 mb-1"> 
+                                            Contrato
+                                          </div> 
                                         <div class="row">
                                             <div class="col">
                                                 <span>Regime de Trabalho</span>
@@ -594,11 +620,9 @@
                                                 <textarea rows="4" cols="50" name="obs" class="Retngulo_84 "  value="{{usu.trabalho.obs}}" ></textarea>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col">     
-                                                <span>Dados Bancários</span>
-                                            </div>
-                                        </div>
+                                        <div class="row bg-primary text-white rounded p-2 mt-1 mb-1"> 
+                                            Dados Bancários
+                                        </div> 
                                         <div class="row">
                                             <div class="col">
                                                 <span>Banco </span>

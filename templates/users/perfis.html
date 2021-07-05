@@ -33,48 +33,48 @@
                     <tbody>
                       <tr >
                         <td class="col-2">Nome</td>
-                        <td class="col-5">{% firstof usuario.codigo.nome|upper ''|upper|truncatechars:50 %}</td>
+                        <td class="col-5">{% firstof usuario.codigo.nome|upper ""|upper|truncatechars:50 %}</td>
                       </tr> 
                      
                       <tr >
                         <td class="col-2">Cargo</td>
-                        <td class="col-5">{% firstof usuario.trabalho.cargo|upper ''|upper|truncatechars:22 %}</td>
+                        <td class="col-5">{% firstof usuario.trabalho.cargo ""|upper|truncatechars:22 %}</td>
                       </tr> 
                      
                       <tr >
                         <td class="col-2">Empresa</td>
-                        <td class="col-5">{% firstof usuario.trabalho.empresa|upper ''|upper|truncatechars:22 %}</td>
+                        <td class="col-5">{% firstof usuario.trabalho.empresa  ""|upper|truncatechars:22 %}</td>
                       </tr> 
                        
                       <tr>
                         <td>Departamento</td>
-                        <td class="col-5">{% firstof usuario.trabalho.departamento ''|upper|truncatechars:22 %}</td>
+                        <td class="col-5">{% firstof usuario.trabalho.departamento ""|upper|truncatechars:22 %}</td>
                       </tr> 
                       
                       
                       <tr>
                         <td>E-mail corporativo 01</td>
-                        <td>{% firstof usuario.email ''|upper|truncatechars:22 %}</td>
+                        <td>{% firstof usuario.email ""|upper|truncatechars:22 %}</td>
                       </tr> 
                       <tr>
                         <td>E-mail corporativo 02</td>
-                        <td>{% firstof usuario.emailCorporativo ''|upper|truncatechars:22 %}</td>
+                        <td>{% firstof usuario.emailCorporativo ""|upper|truncatechars:22 %}</td>
                       </tr> 
                       <tr>
                         <td>Skype</td>
-                        <td>{% firstof usuario.skype ''|upper|truncatechars:22 %}</td>
+                        <td>{% firstof usuario.skype ""|upper|truncatechars:22 %}</td>
                       </tr> 
                       <tr>
                         <td>Celular Corporativo</td>
-                        <td>{% firstof usuario.telefone ''|upper|truncatechars:22 %}</td>
+                        <td>{% firstof usuario.telefone ""|upper|truncatechars:22 %}</td>
                       </tr> 
                       <tr>
                         <td>Telefone</td>
-                        <td>{% firstof usuario.tel ''|upper|truncatechars:22 %}</td>
+                        <td>{% firstof usuario.tel ""|upper|truncatechars:22 %}</td>
                       </tr> 
                       <tr>
                         <td>Ramal</td>
-                        <td>{% firstof usuario.ramal ''|upper|truncatechars:22 %}</td>
+                        <td>{% firstof usuario.ramal ""|upper|truncatechars:22 %}</td>
                       </tr> 
                   </tbody>
                   </table>

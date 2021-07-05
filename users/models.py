@@ -107,7 +107,7 @@ class Contabancaria(Base):
        verbose_name_plural = "Contasbancarias"
 
     def __str__(self):
-        return f'{self.banco} - {self.agencia} - {self.conta}'  
+        return f'{self.banco} - {self.agencia} '  
 
 class UsuarioTrabalho(Base):
     codigo = models.ForeignKey(UsuarioPessoal,on_delete=models.CASCADE, null=True, blank=True )
