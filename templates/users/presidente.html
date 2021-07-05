@@ -97,27 +97,27 @@
                                               
                                               <td><a href="javascript: void(0);" class="text-dark fw-bold">{{users.codigo.nome|upper|truncatechars:22}}</a> </td>
                                               <td>
-                                                {{users.trabalho.departamento|upper}}
+                                                  {% firstof  users.trabalho.departamento "" |upper %}
                                               </td>
-                                              <td> {% if users.ramal is not None %}
-                                                     {{users.ramal|upper}}
-                                                   {%endif%}
+                                              <td> 
+                                                {% firstof users.ramal  ""|upper %}
+                                                  
                                               </td>
                                               
                                               <td>
-                                                {% if users.tel is not None %}
-                                                {{users.tel|upper}}
-                                                {%endif%}
+                                                
+                                                {% firstof users.tel ""|upper %} 
+                                      
                                               </td>
                                               <td>
-                                                {% if users.emailCorporativo is not None %}
-                                                  <div>{{users.emailCorporativo|upper}}</div>
-                                                  {%endif%}
+                                              
+                                                  <div> {% firstof  users.emailCorporativo ""|upper %}</div>
+                                      
                                               </td>
                                               <td>
-                                                {% if users.skype is not None %}
-                                                  <div>{{users.skype|upper}}</div>
-                                                  {%endif%}
+                                     
+                                                  <div>{% firstof  users.skype ""|upper%}</div>
+                                       
                                                   
                                               </td>
                                               
