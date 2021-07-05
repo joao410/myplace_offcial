@@ -30,56 +30,73 @@
 
   
         <div class="container N_5 mt-5  " >
-        <form method="POST" action="{% url 'tecnicos' %}">
-            {% csrf_token %}
-            {% if images|length >= 1 %} 
-            <div class="row w-25">
-              <div class="col-xl-12 ">
-                  <div class="card ">
-                   
-                      <div class="card-body ">
-                       
-                          <h4 class="card-title"></h4>
-                          <p class="card-title-desc">
-              
-                          <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-interval="3000">
-                              <div class="carousel-inner" role="listbox">
-                                
-                                {% for images in images %}  
-                                <div class="carousel-item active">
-                                <a href="{{images.link}}" >  
-                                <img style="border-radius: 20px;"  class="w-100" src="{{images.img.url}}" srcset="{{images.img.url}} 1x, {{images.img.url}}@2x.png 2x">
-                                </a>
-                                {% if grupos != "usuarios" %}
-                                <button style="border-radius: 10px;" class=" shadow px-4 mt-3 py-2  " type="submit" value="{{images.id}}" name="inativar" >Inativar </button>
-                                {% endif %}
-                              </div>
-                                {% endfor %}
-                              </div>
-                              {% else %}
-                              <div class="row">
-                                <div class="col-xl-12">
-                                    <div class="card">
+            <form method="POST" action="{% url 'tecnicos' %}">
+                {% csrf_token %}
+                {% if images|length >= 1 %} 
+                          <div class="col-xl-6">
+                                <div class="card">
+                                  <div class="card-body">
                                      
-                                        <div class="card-body">
-                                         
-                                            <h4 class="card-title"> Não há Links...</h4>
-                                            <p class="card-title-desc">
-                                              <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-interval="3000">
-                                                <div class="carousel-inner" role="listbox">
-                                              
-                        
-                        {% endif %} 
+                                      <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                                          <ol class="carousel-indicators">
+                                              <li data-target="#carouselExampleFade" data-slide-to="0" class="active"></li>
+                                              <li data-target="#carouselExampleFade" data-slide-to="1"></li>
+                                              <li data-target="#carouselExampleFade" data-slide-to="2"></li>
+                                          </ol>
+                                          <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                              <a href="{{images.0.link}}" target="blank_" >  
+                                                <img style="border-radius: 20px;"  class="w-100" src="{{images.0.img.url}}" >
+                                              </a>                                             
+                                              {% if grupos != "usuarios" %}
+                                                <button style="border-radius: 10px;" class=" shadow px-4 mt-3 py-2  " type="submit" value="{{images.0.id}}" name="inativar" >Inativar </button>
+                                              {% endif %}
+                                            </div>
+                                            {% for images in images %}  
+                                              <div class="carousel-item">
+                                                <a href="{{images.link}}" >  
+                                                  <img style="border-radius: 20px;"  class="w-100" src="{{images.img.url}}" >
+                                                </a>                                             
+                                                {% if grupos != "usuarios" %}
+                                                  <button style="border-radius: 10px;" class=" shadow px-4 mt-3 py-2  " type="submit" value="{{images.id}}" name="inativar" >Inativar </button>
+                                                {% endif %}
+                                              </div>
+                                            {% endfor %}
+                                          <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-bs-slide="prev">
+                                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                              <span class="sr-only">Previous</span>
+                                          </a>
+                                          <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-bs-slide="next">
+                                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                              <span class="sr-only">Next</span>
+                                          </a>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          
+                          
+                          
+                          {% endif %} 
                           
                                
                               </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-      
-</form>
-    </div>
-  </div>
+            </form>
+        </div>
+                        
+
   </main>
+  {% block javascript %}
+        <!-- JAVASCRIPT -->
+        <script src="{% static 'libs/jquery/jquery.min.js' %}"></script>
+        <script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'libs/metismenu/metisMenu.min.js' %}"></script>
+        <script src="{% static 'libs/simplebar/simplebar.min.js' %}"></script>
+        <script src="{% static 'libs/node-waves/waves.min.js' %}"></script>
+        <script src="{% static 'libs/waypoints/lib/jquery.waypoints.min.js' %}"></script>
+        <script src="{% static 'libs/jquery.counterup/jquery.counterup.min.js' %}"></script>
+
+        <script src="{% static 'js/app.js' %}"></script>
+{% endblock %}
+  
 {% endblock content %}  
