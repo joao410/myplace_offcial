@@ -291,9 +291,7 @@ def dash_index(request):
         'chamados_abertos': chamados_abertos,
         'grupos': grupos,
         'usuarioC':usuarioC,
-      
         'user' : user, 
-      
         'grupo':grupo,
         'admin':admin, 
         'filtro': filtro,
