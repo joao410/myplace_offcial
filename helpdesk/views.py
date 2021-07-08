@@ -390,6 +390,7 @@ def id_chamado(request, id):
     grupo= usuarioC.grupo
     grupos= usuarioC.grupo.name
     chamado = Chamado.objects.get(pk=id)
+    ticket = chamado.ticket
     try:
         image = Image.objects.get(ticket=ticket)
     except:
