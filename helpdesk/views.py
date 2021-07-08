@@ -390,24 +390,19 @@ def id_chamado(request, id):
     grupo= usuarioC.grupo
     grupos= usuarioC.grupo.name
     chamado = Chamado.objects.get(pk=id)
-    image = Image.objects.get(ticket=chamado.ticket) 
+    ticket = chamado.ticket
     try:
-      image.image     
-    except image.nome:
-        image = Image.objects.get(nome="padrao") 
+        image = Image.objects.get(ticket=ticket)
     except:
-       image = Image.objects.get(nome="padrao")   
+        image = Image.objects.get(nome="padrao")
+    if not image.image:
+        image = Image.objects.get(nome="padrao") 
    
-
-
         
     codigo = usuarioC.codigo.nome
-    try:
-        imageP = ImagePerfil.objects.get(nome=codigo)
-    except imageP.image:
-        imageP = ImagePerfil.objects.get(nome= "padrao")
-    except imageP.nome:  
-        imageP = ImagePerfil.objects.get(nome= "padrao") 
+    imageP = ImagePerfil.objects.get(nome=codigo)
+    if not imageP.image:
+      imageP = ImagePerfil.objects.get(nome= "padrao")   
     chat= Chat.objects.filter(idChat= id).order_by('id')
     u = chamado
     e = usuarioC.codigo.nome
