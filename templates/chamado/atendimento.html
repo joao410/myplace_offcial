@@ -156,7 +156,8 @@
 
 </div>
 
-
+<form  method="POST" action="{% url 'atendimento' values.id %}">
+  {% csrf_token %}
 
   {% if values.status != 'fechado' %}
 	<button type="submit" name="encerrar" class="Retngulo_43 d-flex justify-content-center pt-3 text-white fw-bold fs-4">
