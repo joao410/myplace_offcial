@@ -116,7 +116,7 @@
                                 
                             </li>
                             {% endif %}
-                            {% if grupos != "Colaborador" or grupos != "recursos humanos" %}
+                            {% if grupos == "atendimento ti"  or grupos == "Administrador" or grupos == "Online"%}
                             <li>
                                 <a href="{% url 'index' %}" class="">
                                     <i class="uil-envelope"></i>
