@@ -7,10 +7,15 @@ import xlrd
 from django.contrib import messages
 import datetime
 import os
+from users.models import UsuarioCorporativo
 
 
 @login_required(login_url='/authentication/login')
 def index(request):
+    user = request.user
+    usuarioC = UsuarioCorporativo.objects.get(usuario=user)
+    grupos= usuarioC.grupo.name
+    
     
     today = datetime.date.today()
 
@@ -93,6 +98,7 @@ def index(request):
             'form_image':ImageForm,
             'performance':performance,
             'image_profile':image_profile,
+            'grupos':grupos,
         }
         return render(request, 'performance/index.html', context)
 
