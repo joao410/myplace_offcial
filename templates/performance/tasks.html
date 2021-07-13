@@ -7,9 +7,10 @@
 
     <div class="row m-2 mt-5 p-1 border " >
         <h1 class="bg-danger w-100 rounded text-white p-2">Anúncios: Não Iniciados!</h1>
-        <table id="table_tasks" class="display table table-stripped table-hover" style="width:100%">
+        <div class="app-table mb-2 w-100 p-4 bg-white">
+        <table id="table_tasks" class="table table-sm table table-stripped table-hover mb-2" style="width:100%">
             <thead>
-                <tr  class="bg-white">
+                <tr class="bg-white">
                     <th>SKU</th>
                     <th>Nome</th>
                     <th>Descrição</th>
@@ -20,10 +21,10 @@
             <tbody>
                 {% for initial_tasks in initial_tasks %}
                 <tr class="">
-                    <td class="col-2"><a href="{% url 'anuncio' initial_tasks.sku %}">{{initial_tasks.sku}}</a></td>
-                    <td class="col-4">{{initial_tasks.name}}</td>
-                    <td class="col-4"><a href="{% url 'anuncio' initial_tasks.sku %}"><button class="btn-danger rounded" type="button" name="btn_desc"  value="{{initial_tasks.sku}}">Adicionar</button></a></td>
-                    <td class="col-2"><a href="{% url 'anuncio' initial_tasks.sku %}"><button type="button" class="btn-info rounded" >Add </button></a>({{initial_tasks.number_images}}/3)</td>
+                    <td><a href="{% url 'anuncio' initial_tasks.sku %}">{{initial_tasks.sku}}</a></td>
+                    <td >{{initial_tasks.name}}</td>
+                    <td><a href="{% url 'anuncio' initial_tasks.sku %}"><button class="btn-danger rounded" type="button" name="btn_desc"  value="{{initial_tasks.sku}}">Adicionar</button></a></td>
+                    <td ><a href="{% url 'anuncio' initial_tasks.sku %}"><button type="button" class="btn-info rounded" >Add </button></a>({{initial_tasks.number_images}}/3)</td>
     
                     {% if initial_tasks.user == request.user %}
                     <td><button type="button" class="btn-danger rounded" onclick="pegarValor()" value={{initial_tasks.id}} id="del_descricao" data-bs-toggle="modal" data-bs-target="#del_descri_modal">X</button></td>
@@ -34,6 +35,7 @@
                 {% endfor %} 
             </tbody>
         </table>
+    </div>
     
     </div>
 
@@ -126,7 +128,7 @@
 
 <div class="row m-2 mt-5 p-1 border " >
     <h1 class="bg-info w-100 rounded text-white p-2">Anúncios: Adicione a Descrição!</h1>
-    <table id="table_tasks" class="display table table-stripped table-hover" style="width:100%">
+    <table id="table_tasks" class="display table table-stripped w-100 table-hover" style="width:100%">
         <thead>
             <tr  class="bg-white">
                 <th>SKU</th>
@@ -159,7 +161,48 @@
 
 
 
+{% block js %}
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+{% comment %} <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
+<!-- Core plugin JavaScript-->
+<script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+
+<!-- Page level plugins -->
+<script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+
+<!-- Page level custom scripts -->
+<script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
+<script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>  {% endcomment %}
+<script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+
+<script >
+    $(document).ready(function() {
+        $('#table_tasks').DataTable({
+        "pageLength" : 5,
+        "lengthMenu": [[5, 10, 20, 50, -1], [5, 10, 20, 50, 'Todas']],
+        "order": [[ 0, "desc" ]],
+        "language": {
+        "sSearch": "Buscar:",
+        "sInfo": "Tarefas de _START_ a _END_ (Total _MAX_)",
+        "sInfoEmpty": "0 Tarefas",
+        "sInfoFiltered": "(filtrado de um total de _MAX_ Tarefas)",
+        "sLengthMenu": "Mostrar _MENU_ tarefas",
+        "sZeroRecords": "Nenhuma tarefa encontrado",
+        "sEmptyTable": "Zero Tarefas",
+        "paginate": {
+        "previous": "Anterior",
+        "next": "Próxima"
+        }
+    }
+    } );
+    } );
+    
+    </script>
+  
 
 <script>
 
@@ -177,7 +220,7 @@
 
 
 
-
+{% endblock js %}
 
 
     {% block Modal %}
@@ -211,7 +254,7 @@
 
 
     {% endblock %}
-
+   
 {% endblock content %}
 
 
