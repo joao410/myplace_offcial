@@ -43,8 +43,8 @@
 
     <h1 class="bg-primary w-100 rounded text-white p-2">Anúncios: Descrição Iniciada!</h1>
   
-    
-    <table id="table_tasks" class="display table table-stripped table-hover" style="width:100%">
+    <div class="app-table mb-2 w-100 p-4 bg-white">
+    <table id="table_task"  class="display table table-stripped table-hover" style="width:100%">
         <thead>
            
             <tr class="bg-white">
@@ -80,6 +80,7 @@
             {% endfor %} 
         </tbody>
     </table>
+    </div>
 
 
 </div>
@@ -89,7 +90,8 @@
 
         {% csrf_token %}
     <h1 class="bg-warning w-100 rounded p-2">Anúncios: Adicione as Imagens!</h1>
-    <table id="table_tasks" class="display table table-stripped table-hover" style="width:100%">
+    <div class="app-table mb-2 w-100 p-4 bg-white">
+    <table id="table_task_img" class="display table table-stripped table-hover" style="width:100%">
         <thead>
             <tr  class="bg-white">
                 <th>SKU</th>
@@ -122,13 +124,15 @@
             {% endfor %} 
         </tbody>
     </table>
+    </div>
 
 </div>
 
 
 <div class="row m-2 mt-5 p-1 border " >
     <h1 class="bg-info w-100 rounded text-white p-2">Anúncios: Adicione a Descrição!</h1>
-    <table id="table_tasks" class="display table table-stripped w-100 table-hover" style="width:100%">
+    <div class="app-table mb-2 w-100 p-4 bg-white">
+    <table id="table_task_desc" class="display table table-stripped w-100 table-hover" style="width:100%">
         <thead>
             <tr  class="bg-white">
                 <th>SKU</th>
@@ -155,6 +159,7 @@
             {% endfor %} 
         </tbody>
     </table>
+    </div>
 
 </div>
 
@@ -178,30 +183,12 @@
 <script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
 <script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>  {% endcomment %}
 <script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'js/datatable_tasks.js' %}"></script>
+<script src="{% static 'js/datatable_task.js' %}"></script>
+<script src="{% static 'js/datatable_task_img.js' %}"></script>
+<script src="{% static 'js/datatable_task_desc.js' %}"></script>
 
-<script >
-    $(document).ready(function() {
-        $('#table_tasks').DataTable({
-        "pageLength" : 5,
-        "lengthMenu": [[5, 10, 20, 50, -1], [5, 10, 20, 50, 'Todas']],
-        "order": [[ 0, "desc" ]],
-        "language": {
-        "sSearch": "Buscar:",
-        "sInfo": "Tarefas de _START_ a _END_ (Total _MAX_)",
-        "sInfoEmpty": "0 Tarefas",
-        "sInfoFiltered": "(filtrado de um total de _MAX_ Tarefas)",
-        "sLengthMenu": "Mostrar _MENU_ tarefas",
-        "sZeroRecords": "Nenhuma tarefa encontrado",
-        "sEmptyTable": "Zero Tarefas",
-        "paginate": {
-        "previous": "Anterior",
-        "next": "Próxima"
-        }
-    }
-    } );
-    } );
-    
-    </script>
+
   
 
 <script>
