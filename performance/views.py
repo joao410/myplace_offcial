@@ -27,8 +27,7 @@ def index(request):
     test_erro = "False"
    
     performance = Performance.objects.filter(month=today.month, year=today.year)
-    try:
-        def complete_anuncio():
+    def complete_anuncio():
             announcements = Announcement.objects.filter(description_active=True, images_active=True)
             for announcement in announcements:
                 announcement.complete = True
@@ -36,12 +35,11 @@ def index(request):
                 announcement.date_complete = datetime.datetime.now()
                 announcement.save()
         
-        complete_anuncio()
-    except:
-        pass
-    try:
-        def update_page():
+    complete_anuncio()
+    
+    def update_page():
             usuarios = User.objects.filter(groups__name='Online')
+           
 
 
             for usuario in usuarios:
@@ -53,7 +51,7 @@ def index(request):
 
                 try:
                     update_perf = Performance.objects.get(month=today.month, year=today.year, user=usuario, meta=meta)
-                    if usuario.username == 'carolina':
+                    if usuario.username == 'CAROLINA' or usuario.username == 'MADSON.MATOS' :
                         meta_carol = len(Announcement.objects.filter(user=usuario,description_active=True, description_complete__month=today.month))
                         update_perf.conclude = int(meta_carol)
                         update_perf.porcentagem = int((meta_carol*100)/meta.meta)
@@ -83,9 +81,8 @@ def index(request):
 
 
             return render(request, 'performance/index.html', context)
-        update_page()
-    except:
-        pass
+    update_page()
+    
 
     if request.method == 'GET':
        
@@ -300,8 +297,8 @@ def announcement(request, sku):
                 'images': images,
                 'form': ImageForm,
                 'user':request.user,
-                 'details':details,
-                 'image_profile':image_profile,
+                'details':details,
+                'image_profile':image_profile,
                 # 'n_tasks':n_tasks,
             }
 
@@ -321,8 +318,8 @@ def announcement(request, sku):
                 'images': images,
                 'form': ImageForm,
                 'user':request.user,
-                 'details':details,
-                 'image_profile':image_profile,
+                'details':details,
+                'image_profile':image_profile,
                 # 'n_tasks':n_tasks,
             }
 
