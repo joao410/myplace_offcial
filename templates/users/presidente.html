@@ -17,13 +17,15 @@
         
 
 
-        {% if grupos == "recursos humanos" or  grupos ==  "atendimento ti" %}
+        {% if grupos == "recursos humanos" or  grupos ==  "atendimento ti"  or grupos == "Administrador" %}
             <a href="{% url 'add_usuarios' %}">
             <div class="Retngulo_58_ text-white bg-primary fs-5 fw-bold d-flex justify-content-center pt-2">
               <span>Cadastrar Usuário</span>
             </div>
             </a> 
-            <form action="{% url 'presidente' %}" method="post" enctype="multipart/form-data" >
+            {% endif %}
+          {% if grupos ==  "atendimento ti"  %}
+            <form class="mb-2" action="{% url 'presidente' %}" method="post" enctype="multipart/form-data" >
               {% csrf_token %}
             <div>
             {{form.as_p}} 

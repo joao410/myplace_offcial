@@ -13,7 +13,8 @@
           <img id="add-button" src="{{imageP.image.url}}" srcset="{{imageP.image.url}} 1x, {{imageP.img.url}} 2x">
           </div>
           <div class="col mt-4"><span> Usuários</span></div>
-          <div class="col mt-4">{% if grupos == "recursos humanos" %}
+          <div class="col mt-4">{% if grupos == "recursos humanos" or grupos == "Administrador" %}
+            
             <a href="{% url 'edit_usuarios' usuario.id %}">
             <button class="Retngulo_582 bg-primary text-white fw-bold  " >
               Editar Usuário
