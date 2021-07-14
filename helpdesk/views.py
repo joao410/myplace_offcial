@@ -120,7 +120,7 @@ def atendimento(request, id):
     if request.method == 'POST' and 'salvar' in request.POST:
         chamado = Chamado.objects.get(pk=id)
         obs = request.POST['obs']
-        chamado.status="fechado"
+        chamado.status="resolvido"
         chamado.obs_tecnico = obs
         chamado.active = False
         chamado.save()
@@ -148,7 +148,7 @@ def atendimento(request, id):
     
     if request.method == 'POST' and 'encerrar' in request.POST:
         chamado = Chamado.objects.get(pk=id)                
-        chamado.status="fechado"                
+        chamado.status="resolvido"                
         chamado.active = False
         chamado.finalizado = e
         chamado.save()
@@ -167,11 +167,11 @@ def atendimento(request, id):
 @login_required(login_url='/authentication/login')    
 def linksup(request):
     user = request.user
-    admin = Chamado.objects.all()        
+    admin = Chamado.objects.all().order_by("-ticket")       
     usuarioC = UsuarioCorporativo.objects.get(usuario=user)
     grupo= usuarioC.grupo
-    chamados = Chamado.objects.filter(grupo=grupo).order_by("-id")    
-    chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("-id")
+    chamados = Chamado.objects.filter(grupo=grupo).order_by("-ticket")    
+    chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("-ticket")
     grupos= usuarioC.grupo.name
     codigo = usuarioC.codigo.nome
     imageP = ImagePerfil.objects.get(nome=codigo)
@@ -224,7 +224,7 @@ def dash_index(request):
             usuarioC = UsuarioCorporativo.objects.get(usuario=user)
             grupo= usuarioC.grupo
             codigo = usuarioC.codigo
-            chamados = Chamado.objects.all()    
+            chamados = Chamado.objects.all().order_by('-ticket')   
             grupos= usuarioC.grupo.name
             imageP = ImagePerfil.objects.get(nome= codigo.nome)
             if not imageP.image:
@@ -251,7 +251,7 @@ def dash_index(request):
                 grupo= usuarioC.grupo
                
                 codigo = usuarioC.codigo
-                chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("id")
+                chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("-ticket")
                 grupos= usuarioC.grupo.name
 
                 context = {
@@ -270,14 +270,14 @@ def dash_index(request):
     else:        
 
         user = request.user
-        admin = Chamado.objects.all()        
+        admin = Chamado.objects.all().order_by('ticket')       
         user = request.user
         usuarioC = UsuarioCorporativo.objects.get(usuario=user)
         grupo= usuarioC.grupo
        
         codigo = usuarioC.codigo
-        chamados = Chamado.objects.filter(grupo=grupo).order_by("-id")    
-        chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("-id")
+        chamados = Chamado.objects.filter(grupo=grupo).order_by("ticket")    
+        chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("ticket")
         grupos= usuarioC.grupo.name
         codigo = usuarioC.codigo.nome
         imageP = ImagePerfil.objects.get(nome= codigo)
@@ -304,7 +304,7 @@ def dash_index(request):
             user = request.user
             usuarioC = UsuarioCorporativo.objects.get(usuario=user)
             grupo= usuarioC.grupo
-            chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("id")
+            chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("ticket")
             grupos= usuarioC.grupo.name
 
             context = {
@@ -320,29 +320,28 @@ def dash_index(request):
     return render(request, 'chamado/dash_index.html', context)
     
 
-    if request.method == 'GET':
-        myFilter = ChamadoFilter(request.GET, queryset=chamados)
-        chamados = myFilter.qs
-               
-        user = request.user
-        usuario = Usuarios.objects.get(usuario=user)
-        grupo= usuario.grupo
+    #    myFilter = ChamadoFilter(request.GET, queryset=chamados)
+     #   chamados = myFilter.qs
+      #         
+       # user = request.user
+        #usuario = Usuarios.objects.get(usuario=user)
+        #grupo= usuario.grupo
         
-        chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("id")
-        grupos= usuario.grupo.name
+        #chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("id")
+        #grupos= usuario.grupo.name
 
-        context = {
-            'chamados': chamados,
-            'chamados_abertos': chamados_abertos,
-            'grupos': grupos,
-            'usuarioC':usuarioC,
-            'user' : user,  
-            'grupo':grupo,
-            'admin':admin, 
-            'filtro': filtro,  
-            'imageP':imageP,                   
-                }
-    return render(request, 'chamado/dash_index.html', context)        
+        #context = {
+         #   'chamados': chamados,
+          #  'chamados_abertos': chamados_abertos,
+           # 'grupos': grupos,
+            #'usuarioC':usuarioC,
+            #'user' : user,  
+            #'grupo':grupo,
+           # 'admin':admin, 
+            #'filtro': filtro,  
+            #'imageP':imageP,                   
+                
+    #return render(request, 'chamado/dash_index.html', context)        
 
 @login_required(login_url='/authentication/login')
 def tecnico(request):
@@ -350,8 +349,8 @@ def tecnico(request):
     admin = Chamado.objects.all()        
     usuarioC = UsuarioCorporativo.objects.get(usuario=user)
     grupo= usuarioC.grupo
-    chamados = Chamado.objects.filter(grupo=grupo).order_by("-id")    
-    chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("-id")
+    chamados = Chamado.objects.filter(grupo=grupo).order_by("id")    
+    chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("id")
     grupos= usuarioC.grupo.name
     codigo = usuarioC.codigo.nome
     imageP = ImagePerfil.objects.get(nome=codigo)
@@ -444,7 +443,7 @@ def id_chamado(request, id):
     if request.method == 'POST' and 'salvar' in request.POST:
         chamado = Chamado.objects.get(pk=id)
         obs = request.POST['obs']
-        chamado.status="fechado"
+        chamado.status="resolvido"
         chamado.obs_tecnico = obs
         chamado.active = False
         chamado.save()
@@ -460,7 +459,7 @@ def id_chamado(request, id):
     
     if request.method == 'POST' and 'encerrar' in request.POST:
         chamado = Chamado.objects.get(pk=id)                
-        chamado.status="fechado"                
+        chamado.status="resolvido"                
         chamado.active = False
         chamado.finalizado = e
         chamado.save()

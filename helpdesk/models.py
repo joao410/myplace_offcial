@@ -45,7 +45,7 @@ class Chamado(Base):
         ('aberto', 'aberto'),
         ('aguardando', 'aguardando'),
         ('em atendimento', 'em atendimento'),
-        ('fechado', 'fechado'),
+        ('resolvido', 'resolvido'),
 
     }
     status  =   models.CharField("status", max_length=100,choices=STATUS_CHOICES,  default='aberto')
@@ -54,6 +54,7 @@ class Chamado(Base):
     class Meta:
        verbose_name = "Chamado"
        verbose_name_plural = "Chamados"
+       ordering = ['-ticket']
 
     def __str__(self):
         return f'{self.id} - {self.urgency}' 
