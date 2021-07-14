@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from .models import Category,Product,Product_details,Log_entrance
+from .models import Category,Product,Product_details,Log_entrance,Log_cat_entrance
 from users.models import   UsuarioCorporativo, UsuarioEndereco, UsuarioTrabalho,UsuarioDocumentos, Empresa, ImagePerfil, UsuarioPessoal
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -92,6 +92,26 @@ def add_category(request):
     imageP = ImagePerfil.objects.get(nome= codigo)
     if not imageP.image:
         imageP = ImagePerfil.objects.get(nome= "padrao")  
+    if Log_cat_entrance.objects.all():
+            LOG_id = Log_cat_entrance.objects.all().order_by('-cat_entrance_code')[0].cat_entrance_code
+                
+
+            cod = LOG_id + 1
+    else:
+                    cod = 100      
+    if request.method == 'POST' and 'cat_register' in request.POST:       
+        name= request.POST['category_name']
+        code = request.POST['category_code']
+        category = Category.objects.create(name=name,category_code=code)
+        category.save()
+        ########LOG#########
+        Log_cat_entrance.objects.create(cat_entrance_code=cod,category_code=category,creator=user)
+        messages.success(request, "Registrado com sucesso")
+        return redirect( 'category')
+
+        
+        
+           
     
     context={
     'grupo' : grupo,

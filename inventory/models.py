@@ -1,3 +1,4 @@
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
@@ -120,7 +121,24 @@ class Log_entrance(Base):
        verbose_name_plural = "Entradas"
 
     def __str__(self):
-        return f'{self.entrance_code} - {self.part_code} - {self.amount}'
+        return f'{self.entrance_code} - {self.part_code} '
+
+class Log_cat_entrance(Base):
+    cat_entrance_code = models.IntegerField("codigo da entrada", primary_key=True)
+    category_code = ForeignKey(Category,on_delete=DO_NOTHING)
+    creator = ForeignKey(User,on_delete=DO_NOTHING)
+
+
+    class Meta:
+        abstract = True
+
+    class Meta:
+       verbose_name = "Entrada de categoria"
+       verbose_name_plural = "Entrada de categorias"
+
+    def __str__(self):
+        return f'{self.cat_entrance_code} - {self.category_code}'
+
 
 
 
