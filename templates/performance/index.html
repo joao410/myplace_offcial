@@ -27,7 +27,7 @@
 
                                
 
-                                {% if grupos == "Administrador" %}
+                                {% if user.groups.all.0.name == 'Super' %}
                                 <form method="post" enctype="multipart/form-data" >
 
 
