@@ -141,7 +141,7 @@
      {% endfor %}
   </div>
 </div>
- {% if values.name.nome == usuarioC.codigo.nome and values.status == "em atendimento" %} 
+ {% if values.name.nome == usuarioC.codigo.nome and values.status == "em atendimento"  or grupos == "Administrador"%} 
   <div class="chat">
     <form method="POST" action="{% url 'atendimento' values.id %}">
       {% csrf_token %}
