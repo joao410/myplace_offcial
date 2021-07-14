@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from .models import Category,Product,Product_details,Log_entrance,Log_cat_entrance
+from .models import Category,Product,Product_details,Log_entrance,Log_cat_entrance,Log_pro_entrance
 from users.models import   UsuarioCorporativo, UsuarioEndereco, UsuarioTrabalho,UsuarioDocumentos, Empresa, ImagePerfil, UsuarioPessoal
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -92,6 +92,8 @@ def add_category(request):
     imageP = ImagePerfil.objects.get(nome= codigo)
     if not imageP.image:
         imageP = ImagePerfil.objects.get(nome= "padrao")  
+    category = Category.objects.all()
+    product = Product.objects.all()    
     if Log_cat_entrance.objects.all():
             LOG_id = Log_cat_entrance.objects.all().order_by('-cat_entrance_code')[0].cat_entrance_code
                 
@@ -113,11 +115,13 @@ def add_category(request):
         
            
     
-    context={
-    'grupo' : grupo,
-    'grupos':grupos,
-    'usuarioC':usuarioC,
-    'imageP' : imageP, 
+    context= {
+       'category':category,
+       'grupo' : grupo,
+       'grupos':grupos,
+       'usuarioC':usuarioC,
+       'imageP' : imageP, 
+       'product':product,
     }
 
     return render(request, 'inventory/category.html',context)   
@@ -133,11 +137,37 @@ def add_product(request):
     if not imageP.image:
         imageP = ImagePerfil.objects.get(nome= "padrao")  
 
-    context={
-    'grupo' : grupo,
-    'grupos':grupos,
-    'usuarioC':usuarioC,
-    'imageP' : imageP, 
+    category = Category.objects.all()
+    product = Product.objects.all()
+
+    if Log_cat_entrance.objects.all():
+            LOG_id = Log_cat_entrance.objects.all().order_by('-cat_entrance_code')[0].cat_entrance_code
+                
+
+            cod = LOG_id + 1
+    else:
+                    cod = 100        
+    if request.method == 'POST' and 'pro_register' in request.POST:       
+            brand= request.POST['brand']
+            model = request.POST['model']
+            product_code =request.POST['product_code']
+            category_code=request.POST['category_code']
+            category= Category.objects.get(category_code=category_code)
+            product = Product.objects.create(product_code=product_code,brand=brand,model=model,category_code=category)
+            product.save()
+            ########LOG#########
+            product = Product.objects.get(product_code=product_code)
+            Log_pro_entrance.objects.create(pro_entrance_code= cod, product_code=product,category_code=category,creator=user)
+            messages.success(request, "Registrado com sucesso")
+            return redirect( 'category')
+
+    context= {
+       'category':category,
+       'grupo' : grupo,
+       'grupos':grupos,
+       'usuarioC':usuarioC,
+       'imageP' : imageP, 
+       'product':product,
     }
 
     return render(request, 'inventory/category.html',context)   
@@ -175,7 +205,7 @@ def add_part(request):
         Log_entrance.objects.create(entrance_code=cod,part_code=part,product_code=product,creator=user)
         
         messages.success(request, "Registrado com sucesso")
-        return redirect( 'product')
+        return redirect( 'category')
 
         
 

@@ -1,4 +1,5 @@
 
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
@@ -117,8 +118,8 @@ class Log_entrance(Base):
         abstract = True
 
     class Meta:
-       verbose_name = "Entrada"
-       verbose_name_plural = "Entradas"
+       verbose_name = "Entrada de peça"
+       verbose_name_plural = "Entrada de peças"
 
     def __str__(self):
         return f'{self.entrance_code} - {self.part_code} '
@@ -138,6 +139,23 @@ class Log_cat_entrance(Base):
 
     def __str__(self):
         return f'{self.cat_entrance_code} - {self.category_code}'
+
+class Log_pro_entrance(Base):
+    pro_entrance_code = models.IntegerField("codigo da entrada", primary_key=True)
+    product_code = ForeignKey(Product,on_delete=DO_NOTHING)
+    category_code=ForeignKey(Category,on_delete=DO_NOTHING)
+    creator = ForeignKey(User,on_delete=DO_NOTHING)
+
+
+    class Meta:
+        abstract = True
+
+    class Meta:
+       verbose_name = "Entrada de produto"
+       verbose_name_plural = "Entrada de produtos"
+
+    def __str__(self):
+        return f'{self.pro_entrance_code} - {self.product_code}'
 
 
 
