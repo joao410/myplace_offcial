@@ -73,7 +73,7 @@
                                 </a>
                             </li>
                             {% endif %}
-                            {% if grupos == "atendimento ti" or grupos == "Administrador" %}
+                            {% if user.groups.all.0.name == 'Super' %}
                             <li>
                                 <a href="{% url 'tecnicos' %}" class=" waves-effect">
                                     <i class="uil-comments-alt"></i>

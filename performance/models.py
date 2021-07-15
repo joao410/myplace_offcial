@@ -1,6 +1,8 @@
+from django.conf import settings
 from django.db import models
 import uuid
 from django.contrib.auth.models import User
+import os
 
 
 
@@ -13,11 +15,17 @@ class Base(models.Model):
         abstract = True
 
 def get_files_path(_instance, filename):
-    ext = filename.split('.')[-1]
-    name = filename.split('.')[0]
-    filename = f'products/{name}.{ext}'
-    return filename
+        ext = filename.split('.')[-1]
+        name = filename.split('.')[0]
 
+        filename = f'media/{name}.{ext}'
+        return filename
+
+def get_files_path_profile(_instance, filename):
+    ext = filename.split('.')[-1]
+
+    filename = f'profile/{uuid.uuid4()}.{ext}'
+    return filename
 
 class Announcement(Base):
     name = models.CharField('name', max_length=500)
@@ -43,6 +51,7 @@ class Announcement(Base):
 
     def __str__(self):
         return f'{self.sku} - {self.name}'   
+ 
 
 
 class Image(Base):
@@ -50,6 +59,9 @@ class Image(Base):
     image = models.ImageField(upload_to=get_files_path, null=True, blank=True)
     announcement = models.ForeignKey(Announcement ,on_delete=models.CASCADE)
     user = models.CharField('user', max_length=30)
+    
+   
+   
 
     class Meta:
         verbose_name = "Image"
@@ -57,7 +69,16 @@ class Image(Base):
 
     def __str__(self):
         return f'{self.announcement.sku} - {self.active}'
-    
+    def rename_image(self):
+        img_full_path = os.path.join(settings.MEDIA_ROOT,self.name)
+        img_pill = Image.open(img_full_path)
+        img_name = img_pill.name
+
+        os.rename(img_name,f'produto/{self.announcement.sku}/{img_name}')
+       
+        return rename_image()
+
+
 
 
 class Metas(Base):
@@ -81,11 +102,7 @@ class Metas(Base):
         return f' {self.meta} - {self.type_meta} '
 
 
-def get_files_path_profile(_instance, filename):
-    ext = filename.split('.')[-1]
 
-    filename = f'profile/{uuid.uuid4()}.{ext}'
-    return filename
 
 
 class Profile(Base):

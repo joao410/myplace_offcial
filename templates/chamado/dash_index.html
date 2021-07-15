@@ -189,6 +189,11 @@
 
 {% endblock content %}
 {% block javascript %}
+<script>
+	window.setTimeout(function () {
+  	window.location.reload();
+	}, 30000);
+	</script>
  <!-- JAVASCRIPT -->
 <script src="{% static 'libs/jquery/jquery.min.js' %}"></script>
 <script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
