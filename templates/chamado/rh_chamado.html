@@ -184,7 +184,15 @@
 
 {% endblock content %}  
 {% block javascript %}
+
+
  <!-- JAVASCRIPT -->
+
+ <script>
+	window.setTimeout(function () {
+  	window.location.reload();
+	}, 30000);
+	</script>
 <script src="{% static 'libs/jquery/jquery.min.js' %}"></script>
 <script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'libs/metismenu/metisMenu.min.js' %}"></script>
