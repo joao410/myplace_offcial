@@ -151,6 +151,7 @@ def atendimento(request, id):
         chamado.status="resolvido"                
         chamado.active = False
         chamado.finalizado = e
+        chamado.end_datetime = datetime.now()
         chamado.save()
         return redirect( 'dash_index')                     
     if request.method == 'POST' and 'send' in request.POST:
@@ -502,6 +503,7 @@ def fastchamado(request):
             messages.error(request, 'Usuario invalido')
            
     return render(request,'fastchamado.html',context)
+
 @login_required(login_url='/authentication/login')   
 def add_chamado(request):
     user = request.user
@@ -594,7 +596,10 @@ def add_chamado(request):
             status = "aberto"
             des = request.POST["obs"] 
             data = date.today() 
+            datetime_start = datetime.now()
+
             fin = "default"
+            
             if not nome:
                     messages.error(
                     request, "Por favor preencha os campos ")
@@ -609,7 +614,7 @@ def add_chamado(request):
             if not grupo:
                     messages.error(request, "Por favor escolha um grupo do assunto")
                     return render(request, 'chamado/add_chamado.html', context)        
-            Chamado.objects.create(username=nome, problem=problema,status=status,ticket=ticket,urgency=urgencia,finalizado= fin, data=data,grupo=grupo, des_problem=des) 
+            Chamado.objects.create(username=nome, problem=problema,status=status,ticket=ticket,urgency=urgencia,finalizado= fin, data=data,grupo=grupo, des_problem=des, start_datetime=datetime_start) 
             messages.success(request, 'Chamado criado com sucesso')
             form = ImageForms(request.POST, request.FILES)
             if form.is_valid():

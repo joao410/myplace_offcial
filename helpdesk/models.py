@@ -30,8 +30,11 @@ class Chamado(Base):
     name     =   models.ForeignKey(UsuarioPessoal, on_delete=models.DO_NOTHING, null=True, blank=True)
     data = models.CharField("data", max_length=50,default=None)
     finalizado = models.CharField("finalizado" , max_length=100, default=None)
-    
     grupo = models.CharField("grupo", max_length=20,default=None)
+
+
+    start_datetime = models.DateTimeField(blank=True, null=True)
+    end_datetime = models.DateTimeField(blank=True, null=True)
 
     URGENCY_CHOICES = {
         ('Baixa', 'Baixa'),
