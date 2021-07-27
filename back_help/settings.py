@@ -38,14 +38,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
 
     'helpdesk',
     'users',
     'login',
     'performance',
     'inventory',
+    'files',
+    'purchases',
+    
     
 ]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -76,6 +82,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'back_help.wsgi.application'
+DATABASE_ROUTERS = [ 
+    'helpdesk.dbrouters.ChamadosDBRouter',
+    'performance.dbrouters.PerformanceDBRouter',
+    'inventory.dbrouters.InventoryDBRouter',
+    'purchases.dbrouters.PurchasesDBRouter',
+                        ]
 
 
 # Database
@@ -85,6 +97,42 @@ DATABASES = {
     'default': {
         'ENGINE': 'sql_server.pyodbc',
         'NAME': 'SY_RH',
+        'USER': 'tigenios',
+        'PASSWORD': '0567senh@',
+        'HOST': 'tigenios',
+        'PORT': '1433',
+
+        'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server',
+        },
+    },
+    'online':{
+        'ENGINE': 'sql_server.pyodbc',
+        'NAME': 'Online',
+        'USER': 'tigenios',
+        'PASSWORD': '0567senh@',
+        'HOST': 'tigenios',
+        'PORT': '1433',
+
+        'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server',
+        },
+    },
+    'tickets':{
+        'ENGINE': 'sql_server.pyodbc',
+        'NAME': 'Tickets',
+        'USER': 'tigenios',
+        'PASSWORD': '0567senh@',
+        'HOST': 'tigenios',
+        'PORT': '1433',
+
+        'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server',
+        },
+    },
+    'inventory':{
+        'ENGINE': 'sql_server.pyodbc',
+        'NAME': 'Inventory',
         'USER': 'tigenios',
         'PASSWORD': '0567senh@',
         'HOST': 'tigenios',
@@ -153,7 +201,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+PREVIEW_ROOT = os.path.join(BASE_DIR, 'preview')
+
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'back_help/static')]
 
 
