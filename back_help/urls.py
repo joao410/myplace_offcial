@@ -24,7 +24,7 @@ urlpatterns = [
     path('performance/', include('performance.urls')), 
     path('inventory/', include('inventory.urls')),
     path('files/', include('files.urls')),
-    path('purchases/', include('purchases.urls')),
+    # path('purchases/', include('purchases.urls')),
   
     
 ]

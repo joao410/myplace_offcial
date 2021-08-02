@@ -1,3 +1,4 @@
+
 from django.conf import settings
 from django.db import models
 import uuid
@@ -17,8 +18,7 @@ class Base(models.Model):
 def get_files_path(_instance, filename):
         ext = filename.split('.')[-1]
         name = filename.split('.')[0]
-
-        filename = f'media/{name}.{ext}'
+        filename = f'produto/{name}.{ext}'
         return filename
 
 def get_files_path_profile(_instance, filename):
@@ -69,14 +69,9 @@ class Image(Base):
 
     def __str__(self):
         return f'{self.announcement.sku} - {self.active}'
-    def rename_image(self):
-        img_full_path = os.path.join(settings.MEDIA_ROOT,self.name)
-        img_pill = Image.open(img_full_path)
-        img_name = img_pill.name
 
-        os.rename(img_name,f'produto/{self.announcement.sku}/{img_name}')
-       
-        return rename_image()
+    
+    
 
 
 

@@ -85,10 +85,10 @@ def atendimento(request, id):
         img = ImagePerfil.objects.get(nome=n.codigo.nome)
         if not img.image:
             img = ImagePerfil.objects.get(nome= "padrao")     
-        z = chamado.name.nome
-        
-      
-        images  = ImagePerfil.objects.get(nome = z)
+        try:       
+            images  = ImagePerfil.objects.get(nome =chamado.name.nome)
+        except:    
+             images  = ImagePerfil.objects.get(nome ="padrao")
         context = {
 
         'values': chamado,
@@ -98,7 +98,7 @@ def atendimento(request, id):
         'image' : image,
         'imageP' : imageP, 
         'img':img,
-        'z':z,
+        
         'images':images,
         'chat': chat,
             }
@@ -615,7 +615,7 @@ def add_chamado(request):
                     messages.error(request, "Por favor escolha um grupo do assunto")
                     return render(request, 'chamado/add_chamado.html', context)        
             Chamado.objects.create(username=nome, problem=problema,status=status,ticket=ticket,urgency=urgencia,finalizado= fin, data=data,grupo=grupo, des_problem=des, start_datetime=datetime_start) 
-            messages.success(request, 'Chamado criado com sucesso')
+            
             form = ImageForms(request.POST, request.FILES)
             if form.is_valid():
                 chamados = Chamado.objects.get(ticket=ticket)  
@@ -625,7 +625,7 @@ def add_chamado(request):
                 obs = ''
                 Image.objects.create( ticket=ticket, nome=nome, image=img, obs=obs )
                
-                messages.success(request, 'Imagem adicionada')
+                messages.success(request, 'Chamado criado com sucesso')
             else:
                 messages.error(request, 'Imagem não adicionada')
     return render(request, 'chamado/add_chamado.html', context) 

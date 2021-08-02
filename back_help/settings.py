@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'performance',
     'inventory',
     'files',
-    'purchases',
+    
     
     
 ]
@@ -82,12 +82,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'back_help.wsgi.application'
-DATABASE_ROUTERS = [ 
-    'helpdesk.dbrouters.ChamadosDBRouter',
-    'performance.dbrouters.PerformanceDBRouter',
-    'inventory.dbrouters.InventoryDBRouter',
-    'purchases.dbrouters.PurchasesDBRouter',
-                        ]
+# DATABASE_ROUTERS = [ 
+#     'helpdesk.dbrouters.ChamadosDBRouter',
+#     'performance.dbrouters.PerformanceDBRouter',
+#     'inventory.dbrouters.InventoryDBRouter',
+#     'purchases.dbrouters.PurchasesDBRouter',
+#                         ]
 
 
 # Database
@@ -106,42 +106,42 @@ DATABASES = {
             'driver': 'ODBC Driver 17 for SQL Server',
         },
     },
-    'online':{
-        'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'Online',
-        'USER': 'tigenios',
-        'PASSWORD': '0567senh@',
-        'HOST': 'tigenios',
-        'PORT': '1433',
+    # 'online':{
+    #     'ENGINE': 'sql_server.pyodbc',
+    #     'NAME': 'Online',
+    #     'USER': 'tigenios',
+    #     'PASSWORD': '0567senh@',
+    #     'HOST': 'tigenios',
+    #     'PORT': '1433',
 
-        'OPTIONS': {
-            'driver': 'ODBC Driver 17 for SQL Server',
-        },
-    },
-    'tickets':{
-        'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'Tickets',
-        'USER': 'tigenios',
-        'PASSWORD': '0567senh@',
-        'HOST': 'tigenios',
-        'PORT': '1433',
+    #     'OPTIONS': {
+    #         'driver': 'ODBC Driver 17 for SQL Server',
+    #     },
+    # },
+    # 'tickets':{
+    #     'ENGINE': 'sql_server.pyodbc',
+    #     'NAME': 'Tickets',
+    #     'USER': 'tigenios',
+    #     'PASSWORD': '0567senh@',
+    #     'HOST': 'tigenios',
+    #     'PORT': '1433',
 
-        'OPTIONS': {
-            'driver': 'ODBC Driver 17 for SQL Server',
-        },
-    },
-    'inventory':{
-        'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'Inventory',
-        'USER': 'tigenios',
-        'PASSWORD': '0567senh@',
-        'HOST': 'tigenios',
-        'PORT': '1433',
+    #     'OPTIONS': {
+    #         'driver': 'ODBC Driver 17 for SQL Server',
+    #     },
+    # },
+    # 'inventory':{
+    #     'ENGINE': 'sql_server.pyodbc',
+    #     'NAME': 'Inventory',
+    #     'USER': 'tigenios',
+    #     'PASSWORD': '0567senh@',
+    #     'HOST': 'tigenios',
+    #     'PORT': '1433',
 
-        'OPTIONS': {
-            'driver': 'ODBC Driver 17 for SQL Server',
-        },
-    },
+    #     'OPTIONS': {
+    #         'driver': 'ODBC Driver 17 for SQL Server',
+    #     },
+    # },
 }
 #DATABASES = {
 #    'default': {
