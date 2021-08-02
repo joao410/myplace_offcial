@@ -108,7 +108,7 @@ class ImageLink(Base):
 class Chat(Base):
     From= models.CharField("from", max_length=100,default=None)
     idChat = models.ForeignKey(Chamado, on_delete=models.CASCADE,null=True,blank=True)
-    mensagem = models.CharField("mensagem", max_length=205,default=None)
+    mensagem = models.CharField("mensagem", max_length=500,default=None)
     nome = models.CharField("nome",max_length=100,default=None)
     
 
