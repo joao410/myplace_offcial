@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.db.models.fields import URLField
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import  Departamento, User
@@ -16,14 +18,14 @@ from django.http import JsonResponse, HttpResponse
 from openpyxl.styles import PatternFill
 from openpyxl.utils.dataframe import dataframe_to_rows
 import pandas as pd
-from decimal import Decimal
+from decimal import Context, Decimal
 import xlwt
 from performance.forms import ImportForm
 import xlrd3 as xlrd
 
 
 
-
+today = date.today()
 
 # Create your views here.
 
@@ -1005,5 +1007,6 @@ def cargo(request):
         Cargo.objects.create(cargo=cargo,ncbo=ncbo)
         messages.success(request,'Cadastrado com sucesso')
     return redirect ('add_usuarios.html')    
+
 
 

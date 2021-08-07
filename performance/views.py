@@ -36,52 +36,54 @@ def index(request):
                 announcement.save()
         
     complete_anuncio()
-    
-    def update_page():
-            usuarios = User.objects.filter(groups__name='Online')
-           
+    try:
+        def update_page():
+                usuarios = User.objects.filter(groups__name='Online')
+            
 
 
-            for usuario in usuarios:
-                profile_meta = Profile.objects.get(user=usuario)
-                try:
-                    meta = profile_meta.metas.all()[0]
-                except:
-                    pass 
+                for usuario in usuarios:
+                    profile_meta = Profile.objects.get(user=usuario)
+                    try:
+                        meta = profile_meta.metas.all()[0]
+                    except:
+                        pass 
 
-                try:
-                    update_perf = Performance.objects.get(month=today.month, year=today.year, user=usuario, meta=meta)
-                    if usuario.username == 'CAROLINA' or usuario.username == 'MADSON.MATOS' :
-                        meta_carol = len(Announcement.objects.filter(user=usuario,description_active=True, description_complete__month=today.month))
-                        update_perf.conclude = int(meta_carol)
-                        update_perf.porcentagem = int((meta_carol*100)/meta.meta)
-                        update_perf.save()
-                    else:
-                        a = len(Announcement.objects.filter(user_image=usuario.username ,image_complete__month=today.month))
-                        b = len(Image.objects.filter(user=usuario.username ,create__month=today.month))
-                        update_perf.conclude = int(a+b)
-                        update_perf.porcentagem = int((a+b)*100/meta.meta)
-                        update_perf.save()
+                    try:
+                        update_perf = Performance.objects.get(month=today.month, year=today.year, user=usuario, meta=meta)
+                        if usuario.username == 'CAROLINA'  :
+                            meta_carol = len(Announcement.objects.filter(user=usuario,description_active=True, description_complete__month=today.month))
+                            update_perf.conclude = int(meta_carol)
+                            update_perf.porcentagem = int((meta_carol*100)/meta.meta)
+                            update_perf.save()
+                        else:
+                            a = len(Announcement.objects.filter(user_image=usuario.username ,image_complete__month=today.month))
+                            b = len(Image.objects.filter(user=usuario.username ,create__month=today.month))
+                            update_perf.conclude = int(a+b)
+                            update_perf.porcentagem = int((a+b)*100/meta.meta)
+                            update_perf.save()
 
-                except:
-                    Performance.objects.create(month=today.month, year=today.year, user=usuario, meta=meta)
-
-
-            performance = Performance.objects.filter(month=today.month, year=today.year)
-            context = {
-                'announcements': announcements,
-                'form':ImportForm(),
-                'user':request.user,
-                'form_image':ImageForm,
-                'size_complete_month':size_complete_month,
-                'performance':performance,
-                'image_profile':image_profile,
-                
-            }
+                    except:
+                        Performance.objects.create(month=today.month, year=today.year, user=usuario, meta=meta)
 
 
-            return render(request, 'performance/index.html', context)
-    update_page()
+                performance = Performance.objects.filter(month=today.month, year=today.year)
+                context = {
+                    'announcements': announcements,
+                    'form':ImportForm(),
+                    'user':request.user,
+                    'form_image':ImageForm,
+                    'size_complete_month':size_complete_month,
+                    'performance':performance,
+                    'image_profile':image_profile,
+                    
+                }
+
+
+                return render(request, 'performance/index.html', context)
+        update_page()
+    except:
+        pass    
     
 
     if request.method == 'GET':
