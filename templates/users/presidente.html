@@ -24,9 +24,9 @@
             </div>
             </a> 
             {% endif %}
-          {% if grupos ==  "atendimento ti"  %}
-            <form class="mb-2" action="{% url 'presidente' %}" method="post" enctype="multipart/form-data" >
-              {% csrf_token %}
+         
+            <form class="mb-2" action="{% url 'presidente' %}" method="" enctype="multipart/form-data" >
+              
             <div>
             {{form.as_p}} 
             </div>         
@@ -34,7 +34,12 @@
                 <i class="fas fa-download fa-sm text-white-50"></i> Importar .xlsx
             </button>
             </form>
-        {% endif %}
+
+
+            <!--Relatorio RH-->
+
+            
+   
     
         
         <!--

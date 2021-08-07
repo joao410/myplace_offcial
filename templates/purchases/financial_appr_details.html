@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load my_tags %}
+{% block content %}
+<main role="main"  class="col-md-4 col-sm-4 m-sm-auto m-xl-auto m-auto col-lg-7 col-xl-9  justify-content-left pt-5"  >
+    <div class="container-fluid bg-light mt-4 p-3 shadow  ">
+
+        <form method="POST" action="#">
+            {% csrf_token %}
+        <div class=" row bg-info  p-2 mb-3   fs-5  fw-bold border-bottom rounded" >
+            <div class="col-11  text-white d-flex justify-content-center">
+            <span>Requisição - {{purch_req.purchase_requisition_id}} - {{products.0.requisition_product}} - {{purch_req.status}}</span> 
+            </div>  
+            <div class="col-1  d-flex justify-content-end">
+                <a href="{% url 'financial_approval' %}">
+                    <img  id="" src="{% static 'img/close-button.png' %}" srcset="{% static 'img/close-button.png' %} 1x, {% static 'img/close-button@2x.png' %} 2x">
+                </a>
+            </div>   
+        </div>
+        
+        <div class="row bg-light border p-3 rounded">
+            <div class="col-3 bg-light "><strong class="bg-info text-white  p-2 rounded">Requisitante : </strong></div>
+            <div class="col-3 bg-light"><span class="fw-bold" > {{purch_req.requester}}</span></div>
+            <div class="col-3 bg-light "><strong class="bg-info text-white  p-2 rounded">Status : </strong></div>
+            <div class="col-3 bg-light"><span class="fw-bold" > {{purch_req.status|upper}}</span></div>
+        </div>
+        <div class="row bg-light border p-3 rounded">
+            <div class="col-3 bg-light "><strong class="bg-info text-white  p-2 rounded">Prazo de entrega esperado : </strong></div>
+            <div class="col-3 bg-light"><span class="fw-bold" > {% firstof  purch_req.deadline ""|upper %}</span></div>
+            <div class="col-3 bg-light "><strong class="bg-info text-white  p-2 rounded">Prazo de consumo estimado : </strong></div>
+            <div class="col-3 bg-light"><span class="fw-bold" > {% firstof purch_req.forecast ""|upper %}</span></div>
+        </div>
+     
+        <div class=" bg-info rounded p-2 mb-2 mt-2">
+        </div>  
+        <div class="row bg-light border p-2 rounded">
+            <div class="col bg-light d-flex justify-content-center "><strong class="bg-info text-white  p-2 rounded">Quantidade: </strong></div>
+            <div class="col bg-light d-flex justify-content-center "><strong class="bg-info text-white  p-2 rounded">Unidade: </strong></div>
+            <div class="col bg-light  d-flex justify-content-center"><strong class="bg-info text-white p-2 rounded">Produto:</strong></div>
+            <div class="col bg-light  d-flex justify-content-center"><strong class="bg-info text-white p-2 rounded">Imagem:</strong></div>
+            <div class="col bg-light  d-flex justify-content-center"><strong class="bg-info text-white p-2 rounded">Cotações</strong></div>
+            <div class="col bg-light  d-flex justify-content-center"><strong class="bg-info text-white p-2 rounded">Preço unitario:</strong></div>
+            
+        </div>
+        {% for product in products %}
+
+
+       
+        <!-- lin-->
+        <div class="row bg-light border mb-3 p-2 rounded">
+            <div class="col bg-light d-flex justify-content-center" ><span class="fw-bold p-2 " > {{product.amount}}</span></div>
+            <div class="col bg-light d-flex justify-content-center"><span class="fw-bold p-2 " > {% firstof product.unit  ""|upper%}</span></div>
+            <div class="col bg-light d-flex justify-content-center"><span class="fw-bold p-2 " > {{product.requisition_product|upper}}</span></div>
+
+            <div class="col bg-light  d-flex justify-content-center"><span class="p-2  w-50" ><a href="#" class="d-flex justify-content-center" data-bs-toggle="modal" data-bs-target="#imageModal">
+            {% Productimage  product.id as img %} <img src="{{img.image.url}}"class="  w-25" ></a></span></div>           
+            <div class="col bg-light d-flex justify-content-center"><span class="fw-bold p-2 " >  <a href="#" data-bs-toggle="modal" data-bs-target="#cotationModal{{product.id}}">  {{product.cotations_length}}/3</span></a></span></div>
+            <div class="col bg-light d-flex justify-content-center"><span class="fw-bold p-2 " > {{product.price_product|upper}}</span></div>
+        </div>   
+        
+        
+
+
+         <!--modal image -->
+            <div class="modal fade" id="imageModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel">Imagem</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="{{img.image.url}}"class="w-100" >
+                  </div>
+                  <div class="modal-footer">
+                               
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+              
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+                   <!--modal cotation -->
+         <div class="modal fade" id="cotationModal{{product.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header bg-success">
+                  <h5 class="modal-title text-white" id="staticBackdropLabel">Cotação</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="carouselExampleControls{{product.id}}" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+
+                            <div class="carousel-item active">
+
+                                        
+                                    <div class="row border bg-light  rounded mb-2 p-2 ">
+                                        <div class="col">
+                                            VALOR:
+                                        </div>
+                                        <div class="col">
+                                            {{product.first_cotation}}
+                                        </div>
+                                    </div>
+
+                                    <div class="row   border bg-light rounded mb-2 p-2 ">
+                                        <div class="col">
+                                            FORNECEDOR:
+                                        </div>
+                                        <div class="col">
+                                            {{product.first_provider}}
+                                        </div>
+                                    </div>
+                            </div>
+
+                            <div class="carousel-item">
+                                <div class="row border bg-light  rounded mb-2 p-2 ">
+                                    <div class="col">
+                                        VALOR:
+                                    </div>
+                                    <div class="col">
+                                        {{product.second_cotation}}
+                                    </div>
+                                </div>
+
+                                <div class="row   border bg-light rounded mb-2 p-2 ">
+                                    <div class="col">
+                                        FORNECEDOR:
+                                    </div>
+                                    <div class="col">
+                                        {{product.second_provider}}
+                                    </div>
+                                </div>
+
+
+                            </div> 
+
+                            <div class="carousel-item">
+
+                                <div class="row border bg-light  rounded mb-2 p-2 ">
+                                    <div class="col">
+                                        VALOR:
+                                    </div>
+                                    <div class="col">
+                                        {{product.third_cotation}}
+                                    </div>
+                                </div>
+
+                                <div class="row   border bg-light rounded mb-2 p-2 ">
+                                    <div class="col">
+                                        FORNECEDOR:
+                                    </div>
+                                    <div class="col">
+                                        {{product.third_provider}}
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <a class="carousel-control-prev bg-success" href="#carouselExampleControls{{product.id}}" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Anterior</span>
+                              </a>
+
+                              <a class="carousel-control-next bg-success" href="#carouselExampleControls{{product.id}}" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Proximo</span>
+                              </a>
+
+                        </div>
+                    </div>
+                </div>
+              <div class="modal-footer">  
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+            {% endfor %}    
+          
+           
+            <div class="row mt-2">
+                <div class=" d-flex justify-content-between">
+                <button type="submit" class="btn btn-success" value="{{requisition.purchase_requisition_id}}" name="req_approved" >Aprovar requisição</button>     
+                <button type="submit" class="btn text-dark border-danger "   value="{{requisition.purchase_requisition_id}}" name="req_denied" >Negar requisição</button>
+              </div>
+            </div>   
+         
+        </form>
+        </div>
+</main>
+{% endblock content %}
