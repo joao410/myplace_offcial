@@ -13,6 +13,7 @@ import json
 from django.conf import settings
 from .forms import ImageForm, ImageForms
 
+
 # Create your views here.   
 @login_required(login_url='/authentication/login')
 def chat(request, id):
@@ -48,6 +49,11 @@ def chat(request, id):
 
 @login_required(login_url='/authentication/login')
 def atendimento(request, id):
+    
+    
+
+  
+
     user = request.user
     usuarioC = UsuarioCorporativo.objects.get(usuario=user)
     grupo= usuarioC.grupo
@@ -84,7 +90,8 @@ def atendimento(request, id):
         n = UsuarioCorporativo.objects.get(usuario=user)
         img = ImagePerfil.objects.get(nome=n.codigo.nome)
         if not img.image:
-            img = ImagePerfil.objects.get(nome= "padrao")     
+            img = ImagePerfil.objects.get(nome= "padrao")  
+
         try:       
             images  = ImagePerfil.objects.get(nome =chamado.name.nome)
         except:    
