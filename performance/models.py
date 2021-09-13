@@ -1,3 +1,4 @@
+
 from django.conf import settings
 from django.db import models
 import uuid
@@ -17,8 +18,7 @@ class Base(models.Model):
 def get_files_path(_instance, filename):
         ext = filename.split('.')[-1]
         name = filename.split('.')[0]
-
-        filename = f'media/{name}.{ext}'
+        filename = f'produto/{name}.{ext}'
         return filename
 
 def get_files_path_profile(_instance, filename):
@@ -48,7 +48,6 @@ class Announcement(Base):
     class Meta:
         verbose_name = "Announcement"
         verbose_name_plural = "Announcements"
-        
 
     def __str__(self):
         return f'{self.sku} - {self.name}'   
@@ -70,7 +69,9 @@ class Image(Base):
 
     def __str__(self):
         return f'{self.announcement.sku} - {self.active}'
-  
+
+    
+    
 
 
 

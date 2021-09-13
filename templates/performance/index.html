@@ -95,7 +95,7 @@
                                         <tr>
                                             <td><a href="{% url 'anuncio' announcement.sku %}">{{announcement.sku}}</a></td>
                                             <td>{{announcement.name}}</td>
-                                            {% if announcement.editable == False and announcement.description_active == False %}
+                                            {% if announcement.editable == False and announcement.description_active                                                == False %}
                                             <td>Andamento por: {{announcement.user.first_name}}</td>
                                             {% elif announcement.description_active == True %}
                                             <td>Concluída por: {{announcement.user.first_name}}</td>

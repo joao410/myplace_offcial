@@ -2,124 +2,89 @@
 {% block sidebar %}
 <div class="vertical-menu ">
 
-                <!-- LOGO -->
-                <div class="navbar-brand-box ">
-                    <a href="#" class="logo logo-dark">
-                        <span class="logo-sm">
-                            <img src="{% static 'img/mp.png' %}" alt="" height="30">
-                        </span>
-                        <span class="logo-lg">
-                            <img src="{% static 'img/Logo-branca-sem-fundo-com-somb_bd.png' %}" alt="" height="50">
-                        </span>
+    <!-- LOGO -->
+    <div class="navbar-brand-box">
+        <a href="#" class="logo logo-dark">
+            <span class="logo-sm">
+                <img src="{% static 'img/mp.png' %}" alt="" height="30">
+            </span>
+            <span class="logo-lg">
+                <img src="{% static 'img/Logo-branca-sem-fundo-com-somb_bd.png' %}" alt="" height="50">
+            </span>
+        </a>
+
+        <a href="#" class="logo logo-light">
+            <span class="logo-sm">
+                <img src="{% static 'img/mp.png' %}" alt="" height="30">
+            </span>
+            <span class="logo-lg">
+                <img src="{% static 'img/Logo-branca-sem-fundo-com-somb_bd.png' %}" alt="" height="50">
+            </span>
+        </a>
+    </div>
+
+    <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect vertical-menu-btn">
+        <i class="fa fa-fw fa-bars"></i>
+    </button>
+
+
+
+
+
+
+
+    <div data-simplebar class="sidebar-menu-scroll">
+
+        <!--- Sidemenu -->
+        <div id="sidebar-menu">
+            <!-- Left Menu Start -->
+
+
+
+
+
+
+            <ul class="metismenu list-unstyled" id="side-menu">
+                <li class="menu-title">Chamados</li>
+
+                {% if grupos == "atendimento ti" or grupos == "recursos humanos" or grupos == "Administrador"%}
+                <li>
+                    <a href="{% url 'dash_index' %}">
+                        <i class="uil-home-alt"></i><span
+                            class="badge rounded-pill bg-primary float-end">{{chamados_abertos|length}}</span>
+                        <span>Atendimento</span>
+                    </a>
+                </li>
+                {% endif %}
+
+                <li>
+                    <a href="{% url 'rh_chamado' %}" class="">
+                        <i class="uil-window-section"></i>
+                        <span>Meus chamados</span>
                     </a>
 
-                    <a href="#" class="logo logo-light">
-                        <span class="logo-sm">
-                            <img src="{% static 'img/mp.png' %}" alt="" height="30">
-                        </span>
-                        <span class="logo-lg">
-                            <img src="{% static 'img/Logo-branca-sem-fundo-com-somb_bd.png' %}" alt="" height="50">
-                        </span>
+                </li>
+
+                <li class="menu-title">Controle</li>
+                {% if grupos == "atendimento ti" or grupos == "recursos humanos" or grupos == "Administrador" %}
+                <li>
+                    <a href="{% url 'presidente' %}" class="waves-effect">
+                        <i class="uil-user-circle"></i>
+                        <span>Usuários</span>
                     </a>
-                </div>
+                </li>
+                {% endif %}
+                {% if user.groups.all.0.name == 'Super' %}
+                <li>
+                    <a href="{% url 'tecnicos' %}" class=" waves-effect">
+                        <i class="uil-comments-alt"></i>
+                        <!--<span class="badge rounded-pill bg-warning float-end">New</span>-->
+                        <span>Links</span>
+                    </a>
+                </li>
+                {% endif %}
 
-                <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect vertical-menu-btn">
-                    <i class="fa fa-fw fa-bars"></i>
-                </button>
-
-
-                 
-                 
-                 
-
-
-                <div data-simplebar class="sidebar-menu-scroll">
-
-                    <!--- Sidemenu -->
-                    <div id="sidebar-menu">
-                        <!-- Left Menu Start -->
-
-                       
-                           
-                        
-
-
-                        <ul class="metismenu list-unstyled" id="side-menu">
-                            <li class="menu-title">Chamados</li>
-
-                            {% if grupos == "atendimento ti" or grupos == "recursos humanos" or grupos == "Administrador"%}
-                            <li>
-                                <a href="{% url 'dash_index' %}">
-                                    <i class="uil-home-alt"></i><span class="badge rounded-pill bg-primary float-end">{{chamados_abertos|length}}</span>
-                                    <span>Atendimento</span>
-                                </a>
-                            </li>
-                            {% endif %}
-
-                            <li>
-                                <a href="{% url 'rh_chamado' %}" class="">
-                                    <i class="uil-window-section"></i>
-                                    <span>Meus chamados</span>
-                                </a>
-                               
-                            </li>
-                           
-                            <li>
-                                <a href="{% url 'my_purchase_request' %}" class="">
-                                    <i class="uil-shopping-bag"></i>
-                                    <span>Minhas Requisições</span>
-                                </a>
-                                
-                            </li>
-                            {% if grupos == 'compras' or grupos == 'atendimento ti'   or grupos == 'Administrador'%}
-                            <li>
-                                <a href="{% url 'purchase_request' %}" class="">
-                                    <i class="uil-shopping-bag"></i>
-                                    <span> Requisições</span>
-                                </a>
-                                
-                            </li>
-                            {% endif %}
-                            {% if user.groups.all.0.name == 'gestor'  or user.groups.all.1.name == 'gestor' or user.groups.all.2.name == 'gestor' %}
-                            <li>
-                                <a href="{% url 'manager_requisition' %}" class=" waves-effect">
-                                    <i class="uil-check"></i>
-                                    <!--<span class="badge rounded-pill bg-warning float-end">New</span>-->
-                                    <span>Validação de requisição</span>
-                                </a>
-                            </li>
-                            {% endif %}
-                            {% if usuarioC.trabalho.cargo.cargo == "GESTOR FINANCEIRO" or grupos == 'Administrador'%}
-                            <li>
-                                <a href="{% url 'financial_approval' %}" class="">
-                                    <i class="uil-bill"></i>
-                                    <span>Financeiro</span>
-                                </a>
-                                
-                            </li>
-                            {% endif %}
-
-                            <li class="menu-title">Controle</li>
-                            {% if grupos == "atendimento ti" or grupos == "recursos humanos" or grupos == "Administrador" %}
-                            <li>
-                                <a href="{% url 'presidente' %}" class="waves-effect">
-                                    <i class="uil-user-circle"></i>
-                                    <span>Usuários</span>
-                                </a>
-                            </li>
-                            {% endif %}
-                            {% if user.groups.all.0.name == 'Super'  %}
-                            <li>
-                                <a href="{% url 'tecnicos' %}" class=" waves-effect">
-                                    <i class="uil-comments-alt"></i>
-                                    <!--<span class="badge rounded-pill bg-warning float-end">New</span>-->
-                                    <span>Links</span>
-                                </a>
-                            </li>
-                            {% endif %}
-                           
-
-                           <!-- <li>
+                <!-- <li>
                                 <a href="javascript: void(0);" class="has-arrow waves-effect">
                                     <i class="uil-store"></i>
                                     <span>Produtos</span>
@@ -136,48 +101,56 @@
                                 </ul>
                             </li>-->
 
+                <li>
+                    <a href="{% url 'problem' %}" class="">
+                        <i class="uil-envelope"></i>
+                        <span>Ramais</span>
+                    </a>
+
+                </li>
+                {% if grupos == "atendimento ti" or grupos == "Administrador" %}
+                <li>
+                    <a href="{% url 'category' %}" class="">
+                        <i class="uil-envelope"></i>
+                        <span>inventario</span>
+                    </a>
+
+                </li>
+                {% endif %}
+                {% if grupos == "atendimento ti" or grupos == "Administrador"%}
+                <li>
+                    <a href="{% url 'index' %}" class="">
+                        <i class="uil-envelope"></i>
+                        <span>Anuncios</span>
+                    </a>
+
+                </li>
+                {% endif %}
+                {% if usuarioC.trabalho.cargo.cargo == "COORDENADOR DE RH" %}
+                <li>
+                    <a href="{% url 'reports' %}" class="">
+                        <i class="uil-file-alt"></i>
+                        <span>Relatorios</span>
+                    </a>
+
+                </li>
+                {% endif %}
+                <!-- {% comment %}{% if grupos != 'Colaborador' and grupos != 'Online'   and grupos != 'recursos humanos'%}
                             <li>
-                                <a href="{% url 'problem' %}" class="">
-                                    <i class="uil-envelope"></i>
-                                    <span>Ramais</span>
-                                </a>
-                                
-                            </li>
-                            {% if grupos == "atendimento ti" or grupos == "Administrador" %}
-                            <li>
-                                <a href="{% url 'category' %}" class="">
-                                    <i class="uil-envelope"></i>
-                                    <span>inventario</span>
-                                </a>
-                                
-                            </li>
-                            {% endif %}
-                            {% if grupos == "atendimento ti"  or grupos == "Administrador" or grupos == "Online"%}
-                            <li>
-                                <a href="{% url 'index' %}" class="">
-                                    <i class="uil-envelope"></i>
-                                    <span>Anuncios</span>
-                                </a>
-                                
-                            </li>
-                            {% endif %}
-                            {% if usuarioC.trabalho.cargo.cargo == "COORDENADOR DE RH" or grupos == 'Administrador' %}
-                            <li>
-                                <a href="{% url 'reports' %}" class="">
+                                <a href="{% url 'purchase_request' %}" class="">
                                     <i class="uil-file-alt"></i>
-                                    <span>Relatorios</span>
+                                    <span>Requisição de compra</span>
                                 </a>
                                 
                             </li>
-                            {% endif %}
-                            
+                            {% endif %}{%endcomment%} -->
 
 
-                                                
 
-                        </ul>
-                    </div>
-                    <!-- Sidebar  new-->
-                </div>
-            </div>
-{% endblock %}        
+
+            </ul>
+        </div>
+        <!-- Sidebar -->
+    </div>
+</div>
+{% endblock %}

@@ -1,38 +1,39 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <title>MyPlace - Genios Shop  </title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        <meta charset="utf-8">
-		
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-        <meta name="generator" content="Jekyll v4.0.1">
-		<link rel="shortcut icon" href="{% static 'img/mp.png'%}">
-		<!--Javascript-->
-		
-		<!--Style-->
-		{% block style%}
-		{% include 'css.html' %}   
-		{%endblock style%}
-	</head>
-	<body data-sidebar="dark">
-		<div id="layout-wrapper">
-				{% include 'partials/_messages.html' %}
-				{% block header %}
-				{% include 'header.html' %}   
-				{% endblock %}   
-				{% block sidebar %}
-				{% include 'sidebar.html' %}   
-				{% endblock %}   
-				{% block content %}
-				{% endblock%} 
-				{% block javascript %}
-				{% include 'javascript.html' %}   
-				{% endblock %}
-		</div>
-				
-	</body>
-	
+
+<head>
+	<title>MyPlace - Genios Shop </title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta charset="utf-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<meta name="generator" content="Jekyll v4.0.1">
+	<link rel="shortcut icon" href="{% static 'img/mp.png'%}">
+	<!--Javascript-->
+
+	<!--Style-->
+	{% block style%}
+	{% include 'css.html' %}
+	{%endblock style%}
+</head>
+
+<body data-sidebar="dark">
+	<div id="layout-wrapper">
+		{% include 'partials/_messages.html' %}
+		{% block header %}
+		{% include 'header.html' %}
+		{% endblock %}
+		{% block sidebar %}
+		{% include 'sidebar.html' %}
+		{% endblock %}
+		{% block content %}
+		{% endblock%}
+		{% block javascript %}
+		{% include 'javascript.html' %}
+		{% endblock %}
+	</div>
+
+</body>
+
 </html>
-    

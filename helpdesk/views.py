@@ -3,8 +3,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.forms import modelformset_factory
 from django.http import JsonResponse
-from .models import  Chamado , ImageLink, Chat
-from users.models import   UsuarioCorporativo, UsuarioEndereco, UsuarioTrabalho,UsuarioDocumentos, Companies,UsuarioPessoal
+from .models import  Chamado, Image , ImageLink, Chat
+from users.models import   UsuarioCorporativo, UsuarioEndereco, UsuarioTrabalho,UsuarioDocumentos, Empresa, ImagePerfil, UsuarioPessoal
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from .filters import ChamadoFilter
@@ -85,11 +85,13 @@ def atendimento(request, id):
             }
     if  Chat.objects.filter(idChat= id).exists(): 
         chamado = Chamado.objects.get(pk=id)
-        user = User.objects.get(username=chamado.username)
-        corporate = UsuarioCorporativo.objects.get(usuario=user)
-        img = ImagePerfil.objects.get(nome=corporate.codigo.nome)
+        u = chamado.username
+        user = User.objects.get(username=u)
+        n = UsuarioCorporativo.objects.get(usuario=user)
+        img = ImagePerfil.objects.get(nome=n.codigo.nome)
         if not img.image:
             img = ImagePerfil.objects.get(nome= "padrao")  
+
         try:       
             images  = ImagePerfil.objects.get(nome =chamado.name.nome)
         except:    
@@ -103,7 +105,7 @@ def atendimento(request, id):
         'image' : image,
         'imageP' : imageP, 
         'img':img,
-     
+        
         'images':images,
         'chat': chat,
             }
@@ -112,9 +114,10 @@ def atendimento(request, id):
         ids = request.POST['aceitar']
         user = request.user
         atendente = UsuarioCorporativo.objects.get(usuario=user)
- 
+        at =atendente.codigo.nome    
+        a = UsuarioPessoal.objects.get(nome=at) 
         chamado = Chamado.objects.get(pk=ids)
-        chamado.name =   str(UsuarioPessoal.objects.get(nome=atendente.codigo.nome))
+        chamado.name =   a
         chamado.status="em atendimento"
         chamado.active= False
         chamado.save()  
@@ -619,7 +622,7 @@ def add_chamado(request):
                     messages.error(request, "Por favor escolha um grupo do assunto")
                     return render(request, 'chamado/add_chamado.html', context)        
             Chamado.objects.create(username=nome, problem=problema,status=status,ticket=ticket,urgency=urgencia,finalizado= fin, data=data,grupo=grupo, des_problem=des, start_datetime=datetime_start) 
-            messages.success(request, 'Chamado criado com sucesso')
+            
             form = ImageForms(request.POST, request.FILES)
             if form.is_valid():
                 chamados = Chamado.objects.get(ticket=ticket)  
@@ -629,7 +632,7 @@ def add_chamado(request):
                 obs = ''
                 Image.objects.create( ticket=ticket, nome=nome, image=img, obs=obs )
                
-                messages.success(request, 'Imagem adicionada')
+                messages.success(request, 'Chamado criado com sucesso')
             else:
                 messages.error(request, 'Imagem não adicionada')
     return render(request, 'chamado/add_chamado.html', context) 
