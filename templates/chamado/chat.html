@@ -1,0 +1,15 @@
+{% for chat in chat %}
+{% if chat.From == 'atendente'%}
+<div class="row chatRow d-flex justify-content-start mb-2">
+  <div class="col-1"><img id="avatar_b" src="{{img.image.url}}"></div>
+   <div class="col ">{{chat.nome}}<br><div class="mensagem mt-2">{{chat.mensagem}}</div></div>
+   </div>
+  {% endif %}
+  {% if chat.From == 'cliente'%}
+  <div class="row chatRow d-flex justify-content-end mb-2">
+   <div class="col d-flex justify-content-end">{{chat.nome}}<div class=" mensagem1">{{chat.mensagem}}</div></div>
+   <div class="col-1"><img id="avatar_c" src="{{img.image.url}}"></div>
+   </div>
+  {% endif %}
+    
+   {% endfor %}

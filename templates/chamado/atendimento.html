@@ -1,0 +1,368 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+ 
+
+<svg class="Linha_1" viewBox="0 0 1482 1">
+  <path id="Linha_1" d="M 0 0 L 1482 0">
+  </path>
+</svg>
+	
+<svg class="Linha_3" viewBox="0 0 1482 1">
+  <path id="Linha_3" d="M 0 0 L 1482 0">
+  </path>
+</svg>
+<svg class="Linha_4" viewBox="0 0 1482 1">
+    <path id="Linha_4" d="M 0 0 L 1482 0">
+    </path>
+</svg>
+<main role="main"  class="col-md-8 m-sm-auto col-lg-8 col-md-6  "  >
+  <div id="Atendimento_ba">
+    <span>Meus Chamados</span>
+  </div>
+
+<div class="container">
+  {% if values.status == 'fechado' %}
+  <a href="{% url 'rh_chamado'%}">
+    <img id="close-buttons" src="{% static 'img/close-button.png' %}" srcset="{% static 'img/close-button.png' %} 1x, {% static 'img/close-button@2x.png' %} 2x">
+    </a>
+  {% endif %}
+  <form action="{% url 'atendimento' values.id %}" method="POST">
+  {% csrf_token %}
+  <div id="Status">
+		<span>Status</span>
+  </div>
+  <div id="Chamado_ID">
+		<span>Chamado ID</span>
+  </div>
+  <div id="Data">
+		<span>Data</span>
+  </div>
+  <div id="rea">
+		<span>Área</span>
+  </div>
+  <div id="Assunto">
+		<span>Assunto</span>
+  </div>
+  <div id="Mensagem">
+		<span>Mensagem</span>
+  </div>
+  <div id="Anexos">
+		<span>Anexos</span>
+	</div>
+  
+  
+    {% if values.status == "em atendimento" %}
+    <div class="Retngulo_10 d-flex justify-content-center text-white fw-bold pt-2"  >
+    <span> atendendo</span>
+    </div>
+    {% endif %}
+  {% if values.status == "fechado" %}
+  <div class="Retngulo_11 d-flex justify-content-center text-white fw-bold pt-2"  >
+		<span> {{values.status}}</span>
+  </div>
+  {% endif %}
+  {% if values.status == "aberto" %}
+  <div class="Retngulo_12 d-flex justify-content-center text-white fw-bold pt-2"  >
+		<span> {{values.status}}</span>
+	</div>
+  {% endif %}
+    
+  
+ 
+  
+  <div id="ID2365_">
+		<span>{{values.ticket}}</span>
+  </div>    
+  <div id="ID29122020">
+		<span>{{values.create}}</span>
+  </div>      
+  <div id="Recursos_Humanos">
+		<span>{{values.grupo}}</span>
+  </div>         
+  <div id="Atestado_Mdico">
+		<span>{{values.problem}}</span>
+  </div> 
+  <textarea class=" form-control " id="Retngulo_19"  name="obs" rows="4" disabled>	{{values.des_problem}}</textarea>
+  
+  <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal"><img id="add-button_" class="" src="{{image.image.url}}" srcset="{{image.image.url}} 1x,{{image.image.url}} 2x"></a>
+				
+  <!--<img id="add-button_cc" src="{% static 'img/add-button.png' %}" srcset="{% static 'img/add-button.png' %} 1x, {% static 'img/add-button@2x.png' %} 2x">-->
+    
+   
+	<div id="Ate">
+		<span>Atendimento</span>
+    </div>
+    {% if values.status  == "aberto" %}
+    {% if usuarios.name != values.username  %}
+	  <button type="submit" name="aceitar" value="{{values.id}}" id="AT43" class="at43">
+        <span>Aceitar Chamado</span>
+    </button>
+    {% endif %}
+    {% endif %}
+	
+    {% if values.status != "aberto" %}
+    <button type="submit" name="reabrir" id="at47" class="at47">
+        <span>Reabrir Chamado</span>
+    </button>
+    {% endif %}
+		
+    {% if values.status != 'fechado' %}
+    <a href="#" data-bs-toggle="modal" data-bs-target="#redirect">
+    <button type="submit" name="red" id="at48" class="at48">
+		<span>Redirecionar</span>
+    </button>
+    </a>
+    {% endif %} 
+  </form>
+    <div id="Timeline">
+      <span>Timeline</span>{{z.name}}
+    </div>
+<div  style="position: absolute; top: 900px;">
+  
+<div id="chatBody" class=" chatBody">
+  <div id="text">
+  {% for chat in chat %}
+  {% if chat.From == 'atendente'%}
+  <div class="row chatRow d-flex justify-content-start mb-2">
+    <div class="col-1"><img id="avatar_b" src="{{img.image.url}}"></div>
+     <div class="col ">{{chat.nome}}<br><div class="mensagem ">{{chat.mensagem}}</div></div>
+     
+     </div>
+   {% else %}
+    <div class="row chatRow d-flex justify-content-end mb-2">
+     <div class="col d-flex justify-content-end ">{{chat.nome}}<div class="mt-4  mensagem1">{{chat.mensagem}}</div></div>
+     <div class="col-1"><img id="avatar_c" src="{{img.image.url}}"></div>
+     
+     </div>
+    {% endif %}
+
+     {% endfor %}
+  </div>
+</div>
+ {% if values.name.nome == usuarioC.codigo.nome and values.status == "em atendimento"  or grupos == "Administrador"%} 
+  <div class="chat">
+    <form method="POST" action="{% url 'atendimento' values.id %}">
+      {% csrf_token %}
+    <input type="hidden" value="atendente" name="atendente">
+    <input type="hidden" value="{{usuarioC.codigo.nome}}" name="nome">
+    <div class=" d-flex flex-nowrap"> <input type="text"   class="form-control" name="mensagem">
+    <button style="width: 60px;" type="submit" class="form-control but" name="send">Enviar</button></div>
+
+</form>
+  </div>
+ {% endif %} 
+
+</div>
+
+<form  method="POST" action="{% url 'atendimento' values.id %}">
+  {% csrf_token %}
+
+  {% if values.status != 'fechado' %}
+	<button type="submit" name="encerrar" class="Retngulo_43 d-flex justify-content-center pt-3 text-white fw-bold fs-4">
+    <span>Encerrar Chamado</span>	
+	</button>
+	
+
+
+	<div id="Apenas_encerre_o_chamado_se_o_">
+		<span>Apenas encerre o chamado se o seu problema já foi solucionado!</span>
+  </div>
+
+  <a href="{% url 'dash_index'%}">
+  <img id="close-button_"    src="{% static 'img/close-button.png' %}" srcset="{% static 'img/close-button.png' %} 1x, {% static 'img/close-button@2x.png' %} 2x">
+  </a>	
+ 
+  {% endif %}  
+      
+                                         
+                                     
+         
+                       </div>
+                    </form>
+                </div> 
+            </div>
+        </div>
+    </main>
+    <div>
+      <img style="position: absolute;top: 1500px;" id="" class=""  src="{% static 'img/close-button.png' %}" srcset="{% static 'img/close-button.png' %} 1x, {% static 'img/close-button@2x.png' %} 2x">
+    </div> 	
+
+ 
+    {% block modal %} 
+    <!--modal tecnicos-->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Confirmar fechamento</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+                <form action="{% url 'id_chamado' values.id %}" method="POST">
+                {% csrf_token %}
+                <label for="obs">Observação:</label>
+                <textarea class="form-control" id="obs" name="obs" rows="4"></textarea>
+             
+              </div>
+              <div class="modal-footer">
+                 
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <button type="submit" name="salvar" id="salvar" class="btn btn-primary" >Salvar</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+         <!--modal rh-->
+<div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Respondendo requisição </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+                  <form action="{% url 'id_chamado' values.id %}" method="POST">
+                  {% csrf_token %}
+                  <label for="obs">Atendimento ao Cliente </label>
+                  <textarea class="form-control" id="obs" name="obs" rows="4"></textarea>
+               
+                </div>
+                <div class="modal-footer">
+                   
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                  <button type="submit" name="salvar" id="salvar" class="btn btn-primary" >Salvar</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+   
+<!-- Modal Agendados-->
+<div class="modal fade" id="imageModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Imagem</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        {% if image.image %}
+        <div class="">
+        
+        <img src="{{image.image.url}}" data-toggle="modal" data-target="#finalizadosModal" class="d-block w-100" alt="..." />
+
+        </div>
+        {% else %}
+        <div class="container">
+          <div class="row justify-content-center">
+            <img src="{% static 'img/ICONE_ERRO.png' %}" >
+          </div>
+          <div class="row justify-content-center">
+            <h6>Por favor adicionar Imagem.</h6>
+          </div>
+          
+        </div>
+        
+        {% endif %}
+
+        {% if image.observacao %}
+        <div class="d-fles justify-content-center">
+          <label for="obs" style="display: block;">Observação:</label>
+          <textarea rows="4" cols="50" name="obs" style="display: block;">{{image.observacao}}</textarea>
+        </div>  
+        {% endif %}
+      </div>
+      <div class="modal-footer">
+                   
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+  
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal redirecionar-->
+<div class="modal fade" id="redirect" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">redirecionar chamado</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <form action="{% url 'atendimento' values.id %}" method="POST">
+        {% csrf_token %}
+        {% if values.grupo == 'recursos humanos' %}
+        <div class="">
+         <button type="submit" name="redti" >
+             Atendimento TI
+         </button>
+          
+        </div>
+        {% elif values.grupo == 'atendimento ti' %}
+        <div class="container">
+            <button type="submit" name="redrh" >
+                Atendimento RH
+            </button>
+        </div>
+        {% else %}
+        <button type="submit" name="redrh" >
+            Atendimento RH
+        </button>
+        <button type="submit" name="redti" >
+            Atendimento TI
+        </button>
+        
+        {% endif %}
+
+       
+    </form>
+    </div>
+      <div class="modal-footer">
+                   
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+  
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    {% endblock modal %}    
+<script>
+function refresh(){
+  var div = "{% url 'chat' values.id %}"
+  $.ajax({
+    url: div,
+    success: function(data) {
+    $('#text').html(data)
+    
+  }
+});
+}
+$(document).ready(function($) {
+  refresh();
+  setInterval("refresh()", 3000);
+}) 
+</script> 
+<script>
+  $(document).ready(function() {
+          var divMensagem = document.getElementById('chatBody');
+          divMensagem.scrollTop = divMensagem.scrollHeight;
+  });
+</script>
+<script>
+  $(document).ready(function($) {
+          var divMensagem = document.getElementById('#text');
+          divMensagem.scrollTop = divMensagem.scrollHeight;
+  });
+</script>
+
+</body>
+</html>
+{% endblock content %}  

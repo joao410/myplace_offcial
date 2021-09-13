@@ -1,0 +1,186 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<svg class="Linha_1" viewBox="0 0 1482 1">
+  <path id="Linha_1" d="M 0 0 L 1482 0">
+  </path>
+</svg>
+
+
+
+<div class="" style="top:1;left: 300px;" id="Atendimento_ba">
+  <span>Inventário</span>
+</div>
+
+
+<main style="left:100px;" role="main"  class="col-md-6 m-sm-auto col-lg-9 mb-5"  >
+ 
+      <div style="top:150px;left:300px;"  class="container  mb-5">
+        <div class="p-4 shadow rounded">
+            <div class="row d-flex justify-content-center text-white   bg-primary p-2 mb-3 rounded">
+              CATEGORIAS
+            </div>  
+            <div class="dropdown mb-3">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Cadastrar 
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addcategory">Categoria</a></li>
+                  <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addproduto">Produto</a></li>
+          
+                </ul>
+            </div>   
+            <div class="row   g-2  bg-white p-2">
+                <div class="col-xl-12 col-lg-10 col-md-8 col-sm-6 col-xs-4 bg-light p-2">
+                      <div class="table-responsive mb-4">
+                          <table id="datatable-buttons" class="table table-centered datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
+                                  <thead>
+                                      <tr class="bg-transparent">
+                                            
+                                            <th>Codigo</th>
+                                            <th>Categoria</th>
+                                            <th>Quantidade</th>
+                                          
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                  {%for category in category %}
+
+                                  <tr>
+                                    
+                                        <td class="col-2">
+                                            <a href="{% url 'product' category.category_code  %}">
+                                            <span class="fw-bold">{{category.category_code}}</span>
+                                        </a>
+                                        </td>
+                                  
+                                        <td class="col-2">
+                                            <span>{{category.name}}</span>
+                                        </td>
+                                        <td class="col-2">
+                                            <span>{{category.amount}}</span>
+                                        </td>
+                                  </tr>
+                                  
+                                
+                                  {% endfor %}
+                                    
+                                    
+                                      
+                                  </tbody>
+                          </table>
+                      </div> 
+                </div>
+            </div>
+        </div>    
+
+      </div>
+
+</main>
+
+
+{% block modal%}
+
+
+<!-- Modal cadastro categoria-->
+<div class="modal fade" id="addcategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-success">
+          <h5 class="modal-title " id="exampleModalLabel">cadastro categoria</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <form method="POST" action="{% url 'add_category'%}">
+            {% csrf_token %}
+            <label for="category_name">Nome</label>
+            <input type="text" name="category_name" class="form-control">
+            <label for="category_code">Codigo</label>
+            <input type="text" name="category_code" class="form-control">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" name="cat_register">Cadastrar</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
+  <!-- Modal cadastro produto-->
+  <div class="modal fade" id="addproduto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-success">
+          <h5 class="modal-title " id="exampleModalLabel">cadastro Produto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <form method="POST" action="{% url 'add_product'%}">
+            {% csrf_token %}
+            <label for="category_code">Categoria</label>
+            <select name="category_code"  class=" form-control">
+                <option name="category_code" hidden value="">
+                    {% for category in category %}
+                    <option value="{{category.category_code}}">{{category.name}}</option>
+                     {%endfor%}         
+                </option>
+            </select> 
+            <label for="product_code">Código</label>
+            <input type="text" name="product_code" class="form-control">
+            <label for="brand">Marca</label>
+            <input type="text" name="brand" class="form-control">
+            <label for="model">Modelo</label>
+            <input type="text" name="model" class="form-control">
+           
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+          <button type="submit" class="btn btn-primary" name="pro_register">Cadastrar</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+{% endblock modal%}
+
+
+{% endblock content %}  
+
+
+{% block javascript %}
+ <!-- JAVASCRIPT -->
+<script src="{% static 'libs/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'libs/metismenu/metisMenu.min.js' %}"></script>
+<script src="{% static 'libs/simplebar/simplebar.min.js' %}"></script>
+<script src="{% static 'libs/node-waves/waves.min.js' %}"></script>
+<script src="{% static 'libs/waypoints/lib/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'libs/jquery.counterup/jquery.counterup.min.js' %}"></script>
+
+<!-- Required datatable js -->
+<script src="{% static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+ <!-- Buttons examples -->
+ <script src="{% static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+ <script src="{% static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+ <script src="{% static 'libs/jszip/jszip.min.js' %}"></script>
+ <script src="{% static 'libs/pdfmake/build/pdfmake.min.js' %}"></script>
+ <script src="{% static 'libs/pdfmake/build/vfs_fonts.js' %}"></script>
+ <script src="{% static 'libs/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+ <script src="{% static 'libs/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+ <script src="{% static 'libs/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+ 
+<!-- Responsive examples -->
+<script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+
+<!-- init js -->
+<script src="{% static 'js/ecommerce-datatables.init.js' %}"></script>
+
+<script src="{% static 'js/app.js' %}"></script>
+{% endblock %}

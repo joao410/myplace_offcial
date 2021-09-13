@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<svg class="Linha_1" viewBox="0 0 1482 1">
+  <path id="Linha_1" d="M 0 0 L 1482 0">
+  </path>
+</svg>
+<div class="" style="top:1;left: 300px;" id="Atendimento_ba">
+  <span>Inventário</span>
+</div>
+<main style="left:100px;" role="main"  class="col-md-6 m-sm-auto col-lg-9 mb-5"  >
+ 
+      <div style="top:250px;left:300px;"  class="container  mb-5">
+
+        <div class=" shadow p-4">
+
+          <div class="row p-2 rounded text-white d-flex justify-content-center  fs-5 bg-primary mb-2">
+                {{product.0.category_code.name|upper}}
+          </div>
+
+          <div class="mb-3">
+              <button class="btn btn-primary " type="button"   data-bs-toggle="modal" data-bs-target="#addpeca">
+              Cadastrar peça
+              </button>
+          </div>
+
+          <div class="row bg-white p-3">
+              <div class="col-lg-12 bg-light">
+                    <div class="table-responsive mb-4">
+                        <table id="datatable-buttons" class="table table-centered datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
+                                <thead>
+                                    <tr class="bg-transparent">
+                                          
+                                          <th>Codigo</th>
+                                          <th>Marca</th>
+                                          <th>Modelo</th>
+                                          <th>Quantidade</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {%for product in product %}
+
+                                <tr>
+                                  
+                                      <td class="col-2">
+                                          <a href="{% url 'part' product.product_code %} ">
+                                          <span class="fw-bold">{{product.product_code}}</span>
+                                          </a>
+                                      </td>
+                                  
+                                      <td class="col-2">
+                                          <span>{{product.brand}}</span>
+                                      </td>
+                                      <td class="col-2">
+                                          <span>{{product.model}}</span>
+                                      </td>
+                                      <td class="col-2">
+                                          <span>{{product.amount}}</span>
+                                      </td>
+                                </tr>
+                                  
+                              
+                                {% endfor %}
+                                  
+                                  
+                                    
+                                </tbody>
+                        </table>
+                    </div> 
+              </div>
+          </div> 
+        </div>  
+
+      </div>
+
+</main>
+
+
+{% block modal %}
+
+
+
+ <!-- Modal cadastro peca-->
+ <div class="modal fade" id="addpeca" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-success">
+          <h5 class="modal-title " id="exampleModalLabel">cadastro peças</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <form method="POST" action="{% url 'add_part'  %}">
+            {% csrf_token %}
+            <label for="product_code">Producto</label>
+            <select name="product_code"  class=" form-control">
+                <option name="product_code" value="">
+                    {% for product in product %}
+                    <option value="{{product.product_code}}">{{product.brand}}-{{product.model}}</option>
+                     {%endfor%}       
+                </option>
+             
+            </select> 
+            <label for="part_code">Codigo</label>
+            <input type="text" name="part_code" class="form-control">
+            <label for="part_details">Detalhes</label>
+            <textarea rows="4" cols="50" name="part_details" class="form-control " ></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+          <button type="submit" name="register" class="btn btn-primary">Salvar</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+{% endblock modal%}
+
+
+{% endblock content %}  
+
+
+{% block javascript %}
+ <!-- JAVASCRIPT -->
+<script src="{% static 'libs/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'libs/metismenu/metisMenu.min.js' %}"></script>
+<script src="{% static 'libs/simplebar/simplebar.min.js' %}"></script>
+<script src="{% static 'libs/node-waves/waves.min.js' %}"></script>
+<script src="{% static 'libs/waypoints/lib/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'libs/jquery.counterup/jquery.counterup.min.js' %}"></script>
+
+<!-- Required datatable js -->
+<script src="{% static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+ <!-- Buttons examples -->
+ <script src="{% static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+ <script src="{% static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+ <script src="{% static 'libs/jszip/jszip.min.js' %}"></script>
+ <script src="{% static 'libs/pdfmake/build/pdfmake.min.js' %}"></script>
+ <script src="{% static 'libs/pdfmake/build/vfs_fonts.js' %}"></script>
+ <script src="{% static 'libs/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+ <script src="{% static 'libs/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+ <script src="{% static 'libs/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+ 
+<!-- Responsive examples -->
+<script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+
+<!-- init js -->
+<script src="{% static 'js/ecommerce-datatables.init.js' %}"></script>
+
+<script src="{% static 'js/app.js' %}"></script>
+{% endblock %}

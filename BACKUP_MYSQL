@@ -1,0 +1,2887 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 13.0
+-- Dumped by pg_dump version 13.0
+
+-- Started on 2021-05-04 16:51:07
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 207 (class 1259 OID 140054)
+-- Name: auth_group; Type: TABLE; Schema: public; Owner: arena
+--
+
+CREATE TABLE public.auth_group (
+    id integer NOT NULL,
+    name character varying(150) NOT NULL
+);
+
+
+ALTER TABLE public.auth_group OWNER TO arena;
+
+--
+-- TOC entry 206 (class 1259 OID 140052)
+-- Name: auth_group_id_seq; Type: SEQUENCE; Schema: public; Owner: arena
+--
+
+CREATE SEQUENCE public.auth_group_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_group_id_seq OWNER TO arena;
+
+--
+-- TOC entry 3304 (class 0 OID 0)
+-- Dependencies: 206
+-- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arena
+--
+
+ALTER SEQUENCE public.auth_group_id_seq OWNED BY public.auth_group.id;
+
+
+--
+-- TOC entry 209 (class 1259 OID 140064)
+-- Name: auth_group_permissions; Type: TABLE; Schema: public; Owner: arena
+--
+
+CREATE TABLE public.auth_group_permissions (
+    id integer NOT NULL,
+    group_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_group_permissions OWNER TO arena;
+
+--
+-- TOC entry 208 (class 1259 OID 140062)
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: arena
+--
+
+CREATE SEQUENCE public.auth_group_permissions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_group_permissions_id_seq OWNER TO arena;
+
+--
+-- TOC entry 3305 (class 0 OID 0)
+-- Dependencies: 208
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arena
+--
+
+ALTER SEQUENCE public.auth_group_permissions_id_seq OWNED BY public.auth_group_permissions.id;
+
+
+--
+-- TOC entry 205 (class 1259 OID 140046)
+-- Name: auth_permission; Type: TABLE; Schema: public; Owner: arena
+--
+
+CREATE TABLE public.auth_permission (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    content_type_id integer NOT NULL,
+    codename character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.auth_permission OWNER TO arena;
+
+--
+-- TOC entry 204 (class 1259 OID 140044)
+-- Name: auth_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: arena
+--
+
+CREATE SEQUENCE public.auth_permission_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_permission_id_seq OWNER TO arena;
+
+--
+-- TOC entry 3306 (class 0 OID 0)
+-- Dependencies: 204
+-- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arena
+--
+
+ALTER SEQUENCE public.auth_permission_id_seq OWNED BY public.auth_permission.id;
+
+
+--
+-- TOC entry 211 (class 1259 OID 140072)
+-- Name: auth_user; Type: TABLE; Schema: public; Owner: arena
+--
+
+CREATE TABLE public.auth_user (
+    id integer NOT NULL,
+    password character varying(128) NOT NULL,
+    last_login timestamp with time zone,
+    is_superuser boolean NOT NULL,
+    username character varying(150) NOT NULL,
+    first_name character varying(150) NOT NULL,
+    last_name character varying(150) NOT NULL,
+    email character varying(254) NOT NULL,
+    is_staff boolean NOT NULL,
+    is_active boolean NOT NULL,
+    date_joined timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.auth_user OWNER TO arena;
+
+--
+-- TOC entry 213 (class 1259 OID 140082)
+-- Name: auth_user_groups; Type: TABLE; Schema: public; Owner: arena
+--
+
+CREATE TABLE public.auth_user_groups (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    group_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_user_groups OWNER TO arena;
+
+--
+-- TOC entry 212 (class 1259 OID 140080)
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: arena
+--
+
+CREATE SEQUENCE public.auth_user_groups_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_groups_id_seq OWNER TO arena;
+
+--
+-- TOC entry 3307 (class 0 OID 0)
+-- Dependencies: 212
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arena
+--
+
+ALTER SEQUENCE public.auth_user_groups_id_seq OWNED BY public.auth_user_groups.id;
+
+
+--
+-- TOC entry 210 (class 1259 OID 140070)
+-- Name: auth_user_id_seq; Type: SEQUENCE; Schema: public; Owner: arena
+--
+
+CREATE SEQUENCE public.auth_user_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_id_seq OWNER TO arena;
+
+--
+-- TOC entry 3308 (class 0 OID 0)
+-- Dependencies: 210
+-- Name: auth_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arena
+--
+
+ALTER SEQUENCE public.auth_user_id_seq OWNED BY public.auth_user.id;
+
+
+--
+-- TOC entry 215 (class 1259 OID 140090)
+-- Name: auth_user_user_permissions; Type: TABLE; Schema: public; Owner: arena
+--
+
+CREATE TABLE public.auth_user_user_permissions (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_user_user_permissions OWNER TO arena;
+
+--
+-- TOC entry 214 (class 1259 OID 140088)
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: arena
+--
+
+CREATE SEQUENCE public.auth_user_user_permissions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_user_permissions_id_seq OWNER TO arena;
+
+--
+-- TOC entry 3309 (class 0 OID 0)
+-- Dependencies: 214
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arena
+--
+
+ALTER SEQUENCE public.auth_user_user_permissions_id_seq OWNED BY public.auth_user_user_permissions.id;
+
+
+--
+-- TOC entry 217 (class 1259 OID 140150)
+-- Name: django_admin_log; Type: TABLE; Schema: public; Owner: arena
+--
+
+CREATE TABLE public.django_admin_log (
+    id integer NOT NULL,
+    action_time timestamp with time zone NOT NULL,
+    object_id text,
+    object_repr character varying(200) NOT NULL,
+    action_flag smallint NOT NULL,
+    change_message text NOT NULL,
+    content_type_id integer,
+    user_id integer NOT NULL,
+    CONSTRAINT django_admin_log_action_flag_check CHECK ((action_flag >= 0))
+);
+
+
+ALTER TABLE public.django_admin_log OWNER TO arena;
+
+--
+-- TOC entry 216 (class 1259 OID 140148)
+-- Name: django_admin_log_id_seq; Type: SEQUENCE; Schema: public; Owner: arena
+--
+
+CREATE SEQUENCE public.django_admin_log_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_admin_log_id_seq OWNER TO arena;
+
+--
+-- TOC entry 3310 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: django_admin_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arena
+--
+
+ALTER SEQUENCE public.django_admin_log_id_seq OWNED BY public.django_admin_log.id;
+
+
+--
+-- TOC entry 203 (class 1259 OID 140036)
+-- Name: django_content_type; Type: TABLE; Schema: public; Owner: arena
+--
+
+CREATE TABLE public.django_content_type (
+    id integer NOT NULL,
+    app_label character varying(100) NOT NULL,
+    model character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.django_content_type OWNER TO arena;
+
+--
+-- TOC entry 202 (class 1259 OID 140034)
+-- Name: django_content_type_id_seq; Type: SEQUENCE; Schema: public; Owner: arena
+--
+
+CREATE SEQUENCE public.django_content_type_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_content_type_id_seq OWNER TO arena;
+
+--
+-- TOC entry 3311 (class 0 OID 0)
+-- Dependencies: 202
+-- Name: django_content_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arena
+--
+
+ALTER SEQUENCE public.django_content_type_id_seq OWNED BY public.django_content_type.id;
+
+
+--
+-- TOC entry 201 (class 1259 OID 140025)
+-- Name: django_migrations; Type: TABLE; Schema: public; Owner: arena
+--
+
+CREATE TABLE public.django_migrations (
+    id integer NOT NULL,
+    app character varying(255) NOT NULL,
+    name character varying(255) NOT NULL,
+    applied timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.django_migrations OWNER TO arena;
+
+--
+-- TOC entry 200 (class 1259 OID 140023)
+-- Name: django_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: arena
+--
+
+CREATE SEQUENCE public.django_migrations_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_migrations_id_seq OWNER TO arena;
+
+--
+-- TOC entry 3312 (class 0 OID 0)
+-- Dependencies: 200
+-- Name: django_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arena
+--
+
+ALTER SEQUENCE public.django_migrations_id_seq OWNED BY public.django_migrations.id;
+
+
+--
+-- TOC entry 242 (class 1259 OID 140372)
+-- Name: django_session; Type: TABLE; Schema: public; Owner: arena
+--
+
+CREATE TABLE public.django_session (
+    session_key character varying(40) NOT NULL,
+    session_data text NOT NULL,
+    expire_date timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.django_session OWNER TO arena;
+
+--
+-- TOC entry 235 (class 1259 OID 140318)
+-- Name: helpdesk_chamado; Type: TABLE; Schema: public; Owner: arena
+--
+
+CREATE TABLE public.helpdesk_chamado (
+    id integer NOT NULL,
+    "create" date NOT NULL,
+    update date NOT NULL,
+    active boolean NOT NULL,
+    username character varying(255) NOT NULL,
+    ticket character varying(5) NOT NULL,
+    problem text,
+    des_problem text,
+    obs_tecnico text,
+    data character varying(50),
+    finalizado character varying(100),
+    grupo character varying(20) NOT NULL,
+    urgency character varying(10) NOT NULL,
+    status character varying(100) NOT NULL,
+    name_id integer
+);
+
+
+ALTER TABLE public.helpdesk_chamado OWNER TO arena;
+
+--
+-- TOC entry 234 (class 1259 OID 140316)
+-- Name: helpdesk_chamado_id_seq; Type: SEQUENCE; Schema: public; Owner: arena
+--
+
+CREATE SEQUENCE public.helpdesk_chamado_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.helpdesk_chamado_id_seq OWNER TO arena;
+
+--
+-- TOC entry 3313 (class 0 OID 0)
+-- Dependencies: 234
+-- Name: helpdesk_chamado_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arena
+--
+
+ALTER SEQUENCE public.helpdesk_chamado_id_seq OWNED BY public.helpdesk_chamado.id;
+
+
+--
+-- TOC entry 241 (class 1259 OID 140348)
+-- Name: helpdesk_chat; Type: TABLE; Schema: public; Owner: arena
+--
+
+CREATE TABLE public.helpdesk_chat (
+    id integer NOT NULL,
+    "create" date NOT NULL,
+    update date NOT NULL,
+    active boolean NOT NULL,
+    "From" character varying(100) NOT NULL,
+    mensagem character varying(205) NOT NULL,
+    nome character varying(100) NOT NULL,
+    "idChat_id" integer
+);
+
+
+ALTER TABLE public.helpdesk_chat OWNER TO arena;
+
+--
+-- TOC entry 240 (class 1259 OID 140346)
+-- Name: helpdesk_chat_id_seq; Type: SEQUENCE; Schema: public; Owner: arena
+--
+
+CREATE SEQUENCE public.helpdesk_chat_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.helpdesk_chat_id_seq OWNER TO arena;
+
+--
+-- TOC entry 3314 (class 0 OID 0)
+-- Dependencies: 240
+-- Name: helpdesk_chat_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arena
+--
+
+ALTER SEQUENCE public.helpdesk_chat_id_seq OWNED BY public.helpdesk_chat.id;
+
+
+--
+-- TOC entry 239 (class 1259 OID 140337)
+-- Name: helpdesk_image; Type: TABLE; Schema: public; Owner: arena
+--
+
+CREATE TABLE public.helpdesk_image (
+    id integer NOT NULL,
+    "create" date NOT NULL,
+    update date NOT NULL,
+    active boolean NOT NULL,
+    nome character varying(100) NOT NULL,
+    image character varying(100),
+    ticket character varying(50) NOT NULL,
+    obs text
+);
+
+
+ALTER TABLE public.helpdesk_image OWNER TO arena;
+
+--
+-- TOC entry 238 (class 1259 OID 140335)
+-- Name: helpdesk_image_id_seq; Type: SEQUENCE; Schema: public; Owner: arena
+--
+
+CREATE SEQUENCE public.helpdesk_image_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.helpdesk_image_id_seq OWNER TO arena;
+
+--
+-- TOC entry 3315 (class 0 OID 0)
+-- Dependencies: 238
+-- Name: helpdesk_image_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arena
+--
+
+ALTER SEQUENCE public.helpdesk_image_id_seq OWNED BY public.helpdesk_image.id;
+
+
+--
+-- TOC entry 237 (class 1259 OID 140329)
+-- Name: helpdesk_imagelink; Type: TABLE; Schema: public; Owner: arena
+--
+
+CREATE TABLE public.helpdesk_imagelink (
+    id integer NOT NULL,
+    "create" date NOT NULL,
+    update date NOT NULL,
+    active boolean NOT NULL,
+    img character varying(100),
+    link character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.helpdesk_imagelink OWNER TO arena;
+
+--
+-- TOC entry 236 (class 1259 OID 140327)
+-- Name: helpdesk_imagelink_id_seq; Type: SEQUENCE; Schema: public; Owner: arena
+--
+
+CREATE SEQUENCE public.helpdesk_imagelink_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.helpdesk_imagelink_id_seq OWNER TO arena;
+
+--
+-- TOC entry 3316 (class 0 OID 0)
+-- Dependencies: 236
+-- Name: helpdesk_imagelink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arena
+--
+
+ALTER SEQUENCE public.helpdesk_imagelink_id_seq OWNED BY public.helpdesk_imagelink.id;
+
+
+--
+-- TOC entry 219 (class 1259 OID 140191)
+-- Name: users_cargo; Type: TABLE; Schema: public; Owner: arena
+--
+
+CREATE TABLE public.users_cargo (
+    id integer NOT NULL,
+    "create" date NOT NULL,
+    update date NOT NULL,
+    active boolean NOT NULL,
+    cargo character varying(100) NOT NULL,
+    descricao character varying(255) NOT NULL,
+    ncbo character varying(10) NOT NULL
+);
+
+
+ALTER TABLE public.users_cargo OWNER TO arena;
+
+--
+-- TOC entry 218 (class 1259 OID 140189)
+-- Name: users_cargo_id_seq; Type: SEQUENCE; Schema: public; Owner: arena
+--
+
+CREATE SEQUENCE public.users_cargo_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_cargo_id_seq OWNER TO arena;
+
+--
+-- TOC entry 3317 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: users_cargo_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arena
+--
+
+ALTER SEQUENCE public.users_cargo_id_seq OWNED BY public.users_cargo.id;
+
+
+--
+-- TOC entry 244 (class 1259 OID 156411)
+-- Name: users_contabancaria; Type: TABLE; Schema: public; Owner: arena
+--
+
+CREATE TABLE public.users_contabancaria (
+    id integer NOT NULL,
+    "create" date NOT NULL,
+    update date NOT NULL,
+    active boolean NOT NULL,
+    banco character varying(255),
+    agencia character varying(255),
+    conta character varying(255),
+    codigo_id integer
+);
+
+
+ALTER TABLE public.users_contabancaria OWNER TO arena;
+
+--
+-- TOC entry 243 (class 1259 OID 156409)
+-- Name: users_contabancaria_id_seq; Type: SEQUENCE; Schema: public; Owner: arena
+--
+
+CREATE SEQUENCE public.users_contabancaria_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_contabancaria_id_seq OWNER TO arena;
+
+--
+-- TOC entry 3318 (class 0 OID 0)
+-- Dependencies: 243
+-- Name: users_contabancaria_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arena
+--
+
+ALTER SEQUENCE public.users_contabancaria_id_seq OWNED BY public.users_contabancaria.id;
+
+
+--
+-- TOC entry 221 (class 1259 OID 140199)
+-- Name: users_empresa; Type: TABLE; Schema: public; Owner: arena
+--
+
+CREATE TABLE public.users_empresa (
+    id integer NOT NULL,
+    "create" date NOT NULL,
+    update date NOT NULL,
+    active boolean NOT NULL,
+    cnpj character varying(200) NOT NULL,
+    nempresa character varying(100) NOT NULL,
+    telefone character varying(15) NOT NULL
+);
+
+
+ALTER TABLE public.users_empresa OWNER TO arena;
+
+--
+-- TOC entry 220 (class 1259 OID 140197)
+-- Name: users_empresa_id_seq; Type: SEQUENCE; Schema: public; Owner: arena
+--
+
+CREATE SEQUENCE public.users_empresa_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_empresa_id_seq OWNER TO arena;
+
+--
+-- TOC entry 3319 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: users_empresa_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arena
+--
+
+ALTER SEQUENCE public.users_empresa_id_seq OWNED BY public.users_empresa.id;
+
+
+--
+-- TOC entry 223 (class 1259 OID 140207)
+-- Name: users_imageperfil; Type: TABLE; Schema: public; Owner: arena
+--
+
+CREATE TABLE public.users_imageperfil (
+    id integer NOT NULL,
+    "create" date NOT NULL,
+    update date NOT NULL,
+    active boolean NOT NULL,
+    nome character varying(100),
+    image character varying(100),
+    obs text
+);
+
+
+ALTER TABLE public.users_imageperfil OWNER TO arena;
+
+--
+-- TOC entry 222 (class 1259 OID 140205)
+-- Name: users_imageperfil_id_seq; Type: SEQUENCE; Schema: public; Owner: arena
+--
+
+CREATE SEQUENCE public.users_imageperfil_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_imageperfil_id_seq OWNER TO arena;
+
+--
+-- TOC entry 3320 (class 0 OID 0)
+-- Dependencies: 222
+-- Name: users_imageperfil_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arena
+--
+
+ALTER SEQUENCE public.users_imageperfil_id_seq OWNED BY public.users_imageperfil.id;
+
+
+--
+-- TOC entry 225 (class 1259 OID 140218)
+-- Name: users_usuariocorporativo; Type: TABLE; Schema: public; Owner: arena
+--
+
+CREATE TABLE public.users_usuariocorporativo (
+    id integer NOT NULL,
+    "create" date NOT NULL,
+    update date NOT NULL,
+    active boolean NOT NULL,
+    email character varying(100),
+    "emailCorporativo" character varying(100),
+    skype character varying(100),
+    telefone character varying(13),
+    tel character varying(13),
+    ramal character varying(4),
+    codigo_id integer,
+    documento_id integer,
+    endereco_id integer,
+    grupo_id integer NOT NULL,
+    trabalho_id integer,
+    usuario_id integer NOT NULL,
+    banco_id integer
+);
+
+
+ALTER TABLE public.users_usuariocorporativo OWNER TO arena;
+
+--
+-- TOC entry 224 (class 1259 OID 140216)
+-- Name: users_usuariocorporativo_id_seq; Type: SEQUENCE; Schema: public; Owner: arena
+--
+
+CREATE SEQUENCE public.users_usuariocorporativo_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_usuariocorporativo_id_seq OWNER TO arena;
+
+--
+-- TOC entry 3321 (class 0 OID 0)
+-- Dependencies: 224
+-- Name: users_usuariocorporativo_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arena
+--
+
+ALTER SEQUENCE public.users_usuariocorporativo_id_seq OWNED BY public.users_usuariocorporativo.id;
+
+
+--
+-- TOC entry 227 (class 1259 OID 140226)
+-- Name: users_usuariodocumentos; Type: TABLE; Schema: public; Owner: arena
+--
+
+CREATE TABLE public.users_usuariodocumentos (
+    id integer NOT NULL,
+    "create" date NOT NULL,
+    update date NOT NULL,
+    active boolean NOT NULL,
+    documento character varying(5),
+    numerodocumento character varying(15),
+    orgao character varying(5),
+    dataexpedissao date,
+    validade date,
+    codigo_id integer
+);
+
+
+ALTER TABLE public.users_usuariodocumentos OWNER TO arena;
+
+--
+-- TOC entry 226 (class 1259 OID 140224)
+-- Name: users_usuariodocumentos_id_seq; Type: SEQUENCE; Schema: public; Owner: arena
+--
+
+CREATE SEQUENCE public.users_usuariodocumentos_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_usuariodocumentos_id_seq OWNER TO arena;
+
+--
+-- TOC entry 3322 (class 0 OID 0)
+-- Dependencies: 226
+-- Name: users_usuariodocumentos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arena
+--
+
+ALTER SEQUENCE public.users_usuariodocumentos_id_seq OWNED BY public.users_usuariodocumentos.id;
+
+
+--
+-- TOC entry 229 (class 1259 OID 140234)
+-- Name: users_usuarioendereco; Type: TABLE; Schema: public; Owner: arena
+--
+
+CREATE TABLE public.users_usuarioendereco (
+    id integer NOT NULL,
+    "create" date NOT NULL,
+    update date NOT NULL,
+    active boolean NOT NULL,
+    cep character varying(9),
+    tipo character varying(100),
+    logradouro character varying(250),
+    numero character varying(5),
+    ufatual character varying(2),
+    municipioatul character varying(50),
+    bairroatual character varying(50),
+    complemento character varying(20),
+    pais character varying(50),
+    codigo_id integer
+);
+
+
+ALTER TABLE public.users_usuarioendereco OWNER TO arena;
+
+--
+-- TOC entry 228 (class 1259 OID 140232)
+-- Name: users_usuarioendereco_id_seq; Type: SEQUENCE; Schema: public; Owner: arena
+--
+
+CREATE SEQUENCE public.users_usuarioendereco_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_usuarioendereco_id_seq OWNER TO arena;
+
+--
+-- TOC entry 3323 (class 0 OID 0)
+-- Dependencies: 228
+-- Name: users_usuarioendereco_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arena
+--
+
+ALTER SEQUENCE public.users_usuarioendereco_id_seq OWNED BY public.users_usuarioendereco.id;
+
+
+--
+-- TOC entry 231 (class 1259 OID 140242)
+-- Name: users_usuariopessoal; Type: TABLE; Schema: public; Owner: arena
+--
+
+CREATE TABLE public.users_usuariopessoal (
+    id integer NOT NULL,
+    "create" date NOT NULL,
+    update date NOT NULL,
+    active boolean NOT NULL,
+    codigo integer,
+    nome character varying(250),
+    apelido character varying(100),
+    cpf character varying(20),
+    pis character varying(20),
+    tituloeleitor character varying(20),
+    carteiratrabalho character varying(20),
+    serie character varying(20),
+    ufcarteiratrabalho character varying(2),
+    datacarteiratrabalho date,
+    genero character varying(20),
+    cor character varying(20),
+    ecivil character varying(20),
+    celpessoal character varying(13),
+    escolaridade character varying(100),
+    datanacimento date,
+    ufnacimento character varying(2),
+    municipionacimento character varying(250),
+    paisnacimento character varying(100),
+    paisnacionalidade character varying(100),
+    nomemae character varying(100),
+    nomepai character varying(100)
+);
+
+
+ALTER TABLE public.users_usuariopessoal OWNER TO arena;
+
+--
+-- TOC entry 230 (class 1259 OID 140240)
+-- Name: users_usuariopessoal_id_seq; Type: SEQUENCE; Schema: public; Owner: arena
+--
+
+CREATE SEQUENCE public.users_usuariopessoal_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_usuariopessoal_id_seq OWNER TO arena;
+
+--
+-- TOC entry 3324 (class 0 OID 0)
+-- Dependencies: 230
+-- Name: users_usuariopessoal_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arena
+--
+
+ALTER SEQUENCE public.users_usuariopessoal_id_seq OWNED BY public.users_usuariopessoal.id;
+
+
+--
+-- TOC entry 233 (class 1259 OID 140253)
+-- Name: users_usuariotrabalho; Type: TABLE; Schema: public; Owner: arena
+--
+
+CREATE TABLE public.users_usuariotrabalho (
+    id integer NOT NULL,
+    "create" date NOT NULL,
+    update date NOT NULL,
+    active boolean NOT NULL,
+    empresa character varying(100),
+    cargo_id integer,
+    departamento character varying(100),
+    valetransporte character varying(3),
+    dataadmissao date,
+    datademissao date,
+    indicativoadmissao character varying(50),
+    primeiroemprego character varying(3),
+    regimetrabalho character varying(10),
+    regimeprevidenciario character varying(10),
+    regimejornada character varying(100),
+    naturezaatividade character varying(50),
+    categoria character varying(100),
+    codigofuncao character varying(20),
+    cargahorariam character varying(20),
+    unidadesalarial character varying(15),
+    salariovariavel numeric(6,2),
+    codigo_id integer,
+    "tipoAdmissao" character varying(100),
+    obs text
+);
+
+
+ALTER TABLE public.users_usuariotrabalho OWNER TO arena;
+
+--
+-- TOC entry 232 (class 1259 OID 140251)
+-- Name: users_usuariotrabalho_id_seq; Type: SEQUENCE; Schema: public; Owner: arena
+--
+
+CREATE SEQUENCE public.users_usuariotrabalho_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_usuariotrabalho_id_seq OWNER TO arena;
+
+--
+-- TOC entry 3325 (class 0 OID 0)
+-- Dependencies: 232
+-- Name: users_usuariotrabalho_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: arena
+--
+
+ALTER SEQUENCE public.users_usuariotrabalho_id_seq OWNED BY public.users_usuariotrabalho.id;
+
+
+--
+-- TOC entry 2994 (class 2604 OID 140057)
+-- Name: auth_group id; Type: DEFAULT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.auth_group ALTER COLUMN id SET DEFAULT nextval('public.auth_group_id_seq'::regclass);
+
+
+--
+-- TOC entry 2995 (class 2604 OID 140067)
+-- Name: auth_group_permissions id; Type: DEFAULT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.auth_group_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_group_permissions_id_seq'::regclass);
+
+
+--
+-- TOC entry 2993 (class 2604 OID 140049)
+-- Name: auth_permission id; Type: DEFAULT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.auth_permission ALTER COLUMN id SET DEFAULT nextval('public.auth_permission_id_seq'::regclass);
+
+
+--
+-- TOC entry 2996 (class 2604 OID 140075)
+-- Name: auth_user id; Type: DEFAULT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.auth_user ALTER COLUMN id SET DEFAULT nextval('public.auth_user_id_seq'::regclass);
+
+
+--
+-- TOC entry 2997 (class 2604 OID 140085)
+-- Name: auth_user_groups id; Type: DEFAULT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.auth_user_groups ALTER COLUMN id SET DEFAULT nextval('public.auth_user_groups_id_seq'::regclass);
+
+
+--
+-- TOC entry 2998 (class 2604 OID 140093)
+-- Name: auth_user_user_permissions id; Type: DEFAULT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_user_user_permissions_id_seq'::regclass);
+
+
+--
+-- TOC entry 2999 (class 2604 OID 140153)
+-- Name: django_admin_log id; Type: DEFAULT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.django_admin_log ALTER COLUMN id SET DEFAULT nextval('public.django_admin_log_id_seq'::regclass);
+
+
+--
+-- TOC entry 2992 (class 2604 OID 140039)
+-- Name: django_content_type id; Type: DEFAULT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.django_content_type ALTER COLUMN id SET DEFAULT nextval('public.django_content_type_id_seq'::regclass);
+
+
+--
+-- TOC entry 2991 (class 2604 OID 140028)
+-- Name: django_migrations id; Type: DEFAULT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.django_migrations ALTER COLUMN id SET DEFAULT nextval('public.django_migrations_id_seq'::regclass);
+
+
+--
+-- TOC entry 3009 (class 2604 OID 140321)
+-- Name: helpdesk_chamado id; Type: DEFAULT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.helpdesk_chamado ALTER COLUMN id SET DEFAULT nextval('public.helpdesk_chamado_id_seq'::regclass);
+
+
+--
+-- TOC entry 3012 (class 2604 OID 140351)
+-- Name: helpdesk_chat id; Type: DEFAULT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.helpdesk_chat ALTER COLUMN id SET DEFAULT nextval('public.helpdesk_chat_id_seq'::regclass);
+
+
+--
+-- TOC entry 3011 (class 2604 OID 140340)
+-- Name: helpdesk_image id; Type: DEFAULT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.helpdesk_image ALTER COLUMN id SET DEFAULT nextval('public.helpdesk_image_id_seq'::regclass);
+
+
+--
+-- TOC entry 3010 (class 2604 OID 140332)
+-- Name: helpdesk_imagelink id; Type: DEFAULT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.helpdesk_imagelink ALTER COLUMN id SET DEFAULT nextval('public.helpdesk_imagelink_id_seq'::regclass);
+
+
+--
+-- TOC entry 3001 (class 2604 OID 140194)
+-- Name: users_cargo id; Type: DEFAULT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.users_cargo ALTER COLUMN id SET DEFAULT nextval('public.users_cargo_id_seq'::regclass);
+
+
+--
+-- TOC entry 3013 (class 2604 OID 156414)
+-- Name: users_contabancaria id; Type: DEFAULT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.users_contabancaria ALTER COLUMN id SET DEFAULT nextval('public.users_contabancaria_id_seq'::regclass);
+
+
+--
+-- TOC entry 3002 (class 2604 OID 140202)
+-- Name: users_empresa id; Type: DEFAULT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.users_empresa ALTER COLUMN id SET DEFAULT nextval('public.users_empresa_id_seq'::regclass);
+
+
+--
+-- TOC entry 3003 (class 2604 OID 140210)
+-- Name: users_imageperfil id; Type: DEFAULT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.users_imageperfil ALTER COLUMN id SET DEFAULT nextval('public.users_imageperfil_id_seq'::regclass);
+
+
+--
+-- TOC entry 3004 (class 2604 OID 140221)
+-- Name: users_usuariocorporativo id; Type: DEFAULT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.users_usuariocorporativo ALTER COLUMN id SET DEFAULT nextval('public.users_usuariocorporativo_id_seq'::regclass);
+
+
+--
+-- TOC entry 3005 (class 2604 OID 140229)
+-- Name: users_usuariodocumentos id; Type: DEFAULT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.users_usuariodocumentos ALTER COLUMN id SET DEFAULT nextval('public.users_usuariodocumentos_id_seq'::regclass);
+
+
+--
+-- TOC entry 3006 (class 2604 OID 140237)
+-- Name: users_usuarioendereco id; Type: DEFAULT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.users_usuarioendereco ALTER COLUMN id SET DEFAULT nextval('public.users_usuarioendereco_id_seq'::regclass);
+
+
+--
+-- TOC entry 3007 (class 2604 OID 140245)
+-- Name: users_usuariopessoal id; Type: DEFAULT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.users_usuariopessoal ALTER COLUMN id SET DEFAULT nextval('public.users_usuariopessoal_id_seq'::regclass);
+
+
+--
+-- TOC entry 3008 (class 2604 OID 140256)
+-- Name: users_usuariotrabalho id; Type: DEFAULT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.users_usuariotrabalho ALTER COLUMN id SET DEFAULT nextval('public.users_usuariotrabalho_id_seq'::regclass);
+
+
+--
+-- TOC entry 3261 (class 0 OID 140054)
+-- Dependencies: 207
+-- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: arena
+--
+
+COPY public.auth_group (id, name) FROM stdin;
+1	Administrador
+2	atendimento ti
+3	recursos humanos
+4	Colaborador
+\.
+
+
+--
+-- TOC entry 3263 (class 0 OID 140064)
+-- Dependencies: 209
+-- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: arena
+--
+
+COPY public.auth_group_permissions (id, group_id, permission_id) FROM stdin;
+1	1	1
+2	1	2
+3	1	3
+4	1	4
+5	1	5
+6	1	6
+7	1	7
+8	1	8
+9	1	9
+10	1	10
+11	1	11
+12	1	12
+13	1	13
+14	1	14
+15	1	15
+16	1	16
+17	1	17
+18	1	18
+19	1	19
+20	1	20
+21	1	21
+22	1	22
+23	1	23
+24	1	24
+25	1	25
+26	1	26
+27	1	27
+28	1	28
+29	1	29
+30	1	30
+31	1	31
+32	1	32
+33	1	33
+34	1	34
+35	1	35
+36	1	36
+37	1	37
+38	1	38
+39	1	39
+40	1	40
+41	1	41
+42	1	42
+43	1	43
+44	1	44
+45	1	45
+46	1	46
+47	1	47
+48	1	48
+49	1	49
+50	1	50
+51	1	51
+52	1	52
+53	1	53
+54	1	54
+55	1	55
+56	1	56
+57	1	57
+58	1	58
+59	1	59
+60	1	60
+61	1	61
+62	1	62
+63	1	63
+64	1	64
+65	1	65
+66	1	66
+67	1	67
+68	1	68
+69	1	69
+70	1	70
+71	1	71
+72	1	72
+73	2	1
+74	2	2
+75	2	3
+76	2	4
+77	2	5
+78	2	6
+79	2	7
+80	2	8
+81	2	9
+82	2	10
+83	2	11
+84	2	12
+85	2	13
+86	2	14
+87	2	15
+88	2	16
+89	2	17
+90	2	18
+91	2	19
+92	2	20
+93	2	21
+94	2	22
+95	2	23
+96	2	24
+97	2	25
+98	2	26
+99	2	27
+100	2	28
+101	2	29
+102	2	30
+103	2	31
+104	2	32
+105	2	33
+106	2	34
+107	2	35
+108	2	36
+109	2	37
+110	2	38
+111	2	39
+112	2	40
+113	2	41
+114	2	42
+115	2	43
+116	2	44
+117	2	45
+118	2	46
+119	2	47
+120	2	48
+121	2	49
+122	2	50
+123	2	51
+124	2	52
+125	2	53
+126	2	54
+127	2	55
+128	2	56
+129	2	57
+130	2	58
+131	2	59
+132	2	60
+133	2	61
+134	2	62
+135	2	63
+136	2	64
+137	2	65
+138	2	66
+139	2	67
+140	2	68
+141	2	69
+142	2	70
+143	2	71
+144	2	72
+145	3	1
+146	3	2
+147	3	3
+148	3	4
+149	3	5
+150	3	6
+151	3	7
+152	3	8
+153	3	9
+154	3	10
+155	3	11
+156	3	12
+157	3	13
+158	3	14
+159	3	15
+160	3	16
+161	3	17
+162	3	18
+163	3	19
+164	3	20
+165	3	21
+166	3	22
+167	3	23
+168	3	24
+169	3	25
+170	3	26
+171	3	27
+172	3	28
+173	3	29
+174	3	30
+175	3	31
+176	3	32
+177	3	33
+178	3	34
+179	3	35
+180	3	36
+181	3	37
+182	3	38
+183	3	39
+184	3	40
+185	3	41
+186	3	42
+187	3	43
+188	3	44
+189	3	45
+190	3	46
+191	3	47
+192	3	48
+193	3	49
+194	3	50
+195	3	51
+196	3	52
+197	3	53
+198	3	54
+199	3	55
+200	3	56
+201	3	57
+202	3	58
+203	3	59
+204	3	60
+205	3	61
+206	3	62
+207	3	63
+208	3	64
+209	3	65
+210	3	66
+211	3	67
+212	3	68
+213	3	69
+214	3	70
+215	3	71
+216	3	72
+\.
+
+
+--
+-- TOC entry 3259 (class 0 OID 140046)
+-- Dependencies: 205
+-- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: arena
+--
+
+COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
+1	Can add log entry	1	add_logentry
+2	Can change log entry	1	change_logentry
+3	Can delete log entry	1	delete_logentry
+4	Can view log entry	1	view_logentry
+5	Can add permission	2	add_permission
+6	Can change permission	2	change_permission
+7	Can delete permission	2	delete_permission
+8	Can view permission	2	view_permission
+9	Can add group	3	add_group
+10	Can change group	3	change_group
+11	Can delete group	3	delete_group
+12	Can view group	3	view_group
+13	Can add user	4	add_user
+14	Can change user	4	change_user
+15	Can delete user	4	delete_user
+16	Can view user	4	view_user
+17	Can add content type	5	add_contenttype
+18	Can change content type	5	change_contenttype
+19	Can delete content type	5	delete_contenttype
+20	Can view content type	5	view_contenttype
+21	Can add session	6	add_session
+22	Can change session	6	change_session
+23	Can delete session	6	delete_session
+24	Can view session	6	view_session
+25	Can add Chamado	7	add_chamado
+26	Can change Chamado	7	change_chamado
+27	Can delete Chamado	7	delete_chamado
+28	Can view Chamado	7	view_chamado
+29	Can add Imagem Link	8	add_imagelink
+30	Can change Imagem Link	8	change_imagelink
+31	Can delete Imagem Link	8	delete_imagelink
+32	Can view Imagem Link	8	view_imagelink
+33	Can add Imagem	9	add_image
+34	Can change Imagem	9	change_image
+35	Can delete Imagem	9	delete_image
+36	Can view Imagem	9	view_image
+37	Can add Chat	10	add_chat
+38	Can change Chat	10	change_chat
+39	Can delete Chat	10	delete_chat
+40	Can view Chat	10	view_chat
+41	Can add cargo	11	add_cargo
+42	Can change cargo	11	change_cargo
+43	Can delete cargo	11	delete_cargo
+44	Can view cargo	11	view_cargo
+45	Can add empresa	12	add_empresa
+46	Can change empresa	12	change_empresa
+47	Can delete empresa	12	delete_empresa
+48	Can view empresa	12	view_empresa
+49	Can add Imagem Perfil	13	add_imageperfil
+50	Can change Imagem Perfil	13	change_imageperfil
+51	Can delete Imagem Perfil	13	delete_imageperfil
+52	Can view Imagem Perfil	13	view_imageperfil
+53	Can add usuario_Corporativo	14	add_usuariocorporativo
+54	Can change usuario_Corporativo	14	change_usuariocorporativo
+55	Can delete usuario_Corporativo	14	delete_usuariocorporativo
+56	Can view usuario_Corporativo	14	view_usuariocorporativo
+57	Can add Usuario_Documento	15	add_usuariodocumentos
+58	Can change Usuario_Documento	15	change_usuariodocumentos
+59	Can delete Usuario_Documento	15	delete_usuariodocumentos
+60	Can view Usuario_Documento	15	view_usuariodocumentos
+61	Can add Usuario_Endereço	16	add_usuarioendereco
+62	Can change Usuario_Endereço	16	change_usuarioendereco
+63	Can delete Usuario_Endereço	16	delete_usuarioendereco
+64	Can view Usuario_Endereço	16	view_usuarioendereco
+65	Can add usuario_Pessoal	17	add_usuariopessoal
+66	Can change usuario_Pessoal	17	change_usuariopessoal
+67	Can delete usuario_Pessoal	17	delete_usuariopessoal
+68	Can view usuario_Pessoal	17	view_usuariopessoal
+69	Can add Usuario_Trabalho	18	add_usuariotrabalho
+70	Can change Usuario_Trabalho	18	change_usuariotrabalho
+71	Can delete Usuario_Trabalho	18	delete_usuariotrabalho
+72	Can view Usuario_Trabalho	18	view_usuariotrabalho
+73	Can add Contabancaria	19	add_contabancaria
+74	Can change Contabancaria	19	change_contabancaria
+75	Can delete Contabancaria	19	delete_contabancaria
+76	Can view Contabancaria	19	view_contabancaria
+\.
+
+
+--
+-- TOC entry 3265 (class 0 OID 140072)
+-- Dependencies: 211
+-- Data for Name: auth_user; Type: TABLE DATA; Schema: public; Owner: arena
+--
+
+COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
+125	pbkdf2_sha256$180000$yo3xuZzWbid2$IL1O8w1E90Owf/7vjneHkeUFjzI8HPYX3VBUeUnHqYk=	2021-04-15 12:12:01.081373-03	f	ALEX	ALEX DE ARAUJO ITOI			f	t	2021-04-15 11:46:17.148032-03
+127	pbkdf2_sha256$180000$Jfb85ZuDe7op$yBFVkCmoGbKNBUw/2JuWedvdgyTc1xKuyEg3wS/8Msg=	\N	f	ANDRESSA	ANDRESSA DOS REIS ROCHA ARAUJO			f	t	2021-04-15 14:21:21.450366-03
+129	pbkdf2_sha256$216000$OCAbTjuaKbam$0AyA8QR4x0cALCjvD+nkSRBQ7+KjuTcU7BGgJfxWhUQ=	2021-05-03 12:16:20.717808-03	t	JOAO	JOÃO FELIPE FEITOSA DA SILVA			t	t	2021-04-29 12:36:18-03
+1	pbkdf2_sha256$216000$ZsjrJ1JlAXql$p9XGo2Wu0V+FwyzUR0uCyDwONVPQd4XCRPyhmRh4smI=	2021-05-04 16:36:04.076427-03	t	arena			arena@gmail.com	t	t	2021-03-15 13:14:42.690278-03
+57	pbkdf2_sha256$216000$zdyvZIppGqju$fnP4xBaM9bnc7l8KMXEp0pD50hz1QJ4aYvBwPtiurw8=	2021-04-30 11:29:07.065213-03	f	PATI	Patricia		PATI@gmail.com	t	t	2021-04-06 11:08:33-03
+126	pbkdf2_sha256$180000$uTW2mJRsNur4$7Ht6iObReVL22o+ntKdzmVAUUOxjZCyPtFxEROvshig=	\N	f	AMANDA	AMANDA COSTA CASTRO			f	t	2021-04-15 12:22:02.058148-03
+\.
+
+
+--
+-- TOC entry 3267 (class 0 OID 140082)
+-- Dependencies: 213
+-- Data for Name: auth_user_groups; Type: TABLE DATA; Schema: public; Owner: arena
+--
+
+COPY public.auth_user_groups (id, user_id, group_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3269 (class 0 OID 140090)
+-- Dependencies: 215
+-- Data for Name: auth_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: arena
+--
+
+COPY public.auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3271 (class 0 OID 140150)
+-- Dependencies: 217
+-- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: arena
+--
+
+COPY public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) FROM stdin;
+1	2021-03-15 14:41:53.453701-03	1	HelpDesk - ...4221-0	1	[{"added": {}}]	11	1
+2	2021-03-15 14:43:16.74106-03	1	Arena Vidros - ...(11) 4054-10	1	[{"added": {}}]	12	1
+3	2021-03-15 14:46:33.04679-03	1	Bruno Bicudo - 45.654456	1	[{"added": {}}]	17	1
+4	2021-03-15 14:47:11.122378-03	1	RG - 45654654	1	[{"added": {}}]	15	1
+5	2021-03-15 14:48:28.427386-03	1	03502301 - 4	1	[{"added": {}}]	16	1
+6	2021-03-15 14:49:28.647931-03	2	Gestor - 1422-1	1	[{"added": {}}]	11	1
+7	2021-03-15 15:02:43.43988-03	1	Bruno Bicudo - 45.654456 - Gestor - 1422-1	1	[{"added": {}}]	18	1
+8	2021-03-15 15:04:49.97345-03	2	Bbicudo	1	[{"added": {}}]	4	1
+9	2021-03-15 15:04:56.86067-03	2	Bbicudo	2	[]	4	1
+10	2021-03-15 15:04:57.171141-03	2	Bbicudo	2	[]	4	1
+11	2021-03-15 15:05:50.720124-03	1	Administrador	1	[{"added": {}}]	3	1
+12	2021-03-15 15:05:52.141138-03	1	bruno@arenavidros.com.br - 1195652622	1	[{"added": {}}]	14	1
+13	2021-03-15 15:06:34.087606-03	1	1 - Bruno Bicudo	1	[{"added": {}}]	13	1
+14	2021-03-15 15:06:34.26885-03	2	2 - Bruno Bicudo	1	[{"added": {}}]	13	1
+15	2021-03-15 15:06:40.478275-03	1	1 - Bruno Bicudo	3		13	1
+16	2021-03-17 10:05:19.769698-03	1	Bruno Bicudo - 45.654456 - Gestor - 1422-1	2	[{"changed": {"fields": ["TipoAdmissao"]}}]	18	1
+17	2021-03-17 11:48:46.79619-03	2	Bbicudo	2	[{"changed": {"fields": ["Staff status", "Superuser status"]}}]	4	1
+348	2021-04-14 16:23:20.434446-03	41	Patricia Santos Swistalski - 31581769806	2	[{"changed": {"fields": ["Name"]}}]	17	1
+355	2021-04-22 09:10:33.575117-03	41	Patricia Santos Swistalski - 31581769806	2	[]	17	1
+361	2021-04-30 11:32:21.105958-03	6	6 - padrao	2	[{"changed": {"fields": ["Image"]}}]	13	1
+365	2021-05-03 12:00:55.745063-03	129	JOAO	2	[{"changed": {"fields": ["Staff status", "Superuser status"]}}]	4	1
+349	2021-04-15 08:29:11.240812-03	5	5 - Patricia Santos Swistalski	2	[{"changed": {"fields": ["Nome"]}}]	13	1
+351	2021-04-16 14:27:39.860207-03	47	Eletricista - 	3		11	1
+352	2021-04-22 09:10:12.758697-03	21	Patricia Santos Swistalski - 31581769806 - ANALISTA DE RH - ...	2	[]	18	1
+356	2021-04-22 09:10:40.220283-03	41	Patricia Santos Swistalski - 31581769806	2	[]	17	1
+358	2021-04-29 10:46:44.688226-03	25	25 - 	3		7	1
+362	2021-04-30 11:33:00.97696-03	6	6 - padrao	2	[{"changed": {"fields": ["Image"]}}]	13	1
+366	2021-05-03 12:23:23.178496-03	24	24 - Baixa	2	[{"changed": {"fields": ["Ativo", "Data", "Finalizado", "Urgencia"]}}]	7	129
+350	2021-04-15 12:20:31.340235-03	46	ESTAGIARIO DE RH - ...	1	[{"added": {}}]	11	1
+353	2021-04-22 09:10:19.534631-03	5	PATI@gmail.com - None	2	[]	14	1
+357	2021-04-22 09:10:48.369286-03	21	Patricia Santos Swistalski - 31581769806 - ANALISTA DE RH - ...	2	[]	18	1
+359	2021-04-29 10:49:23.97607-03	128	JOÃO	3		4	1
+363	2021-04-30 11:33:14.182818-03	8	8 - padrao	2	[{"changed": {"fields": ["Image"]}}]	9	1
+354	2021-04-22 09:10:27.411911-03	8	PG - 435930333	2	[]	15	1
+360	2021-04-29 10:49:54.911131-03	87	JOÃO FELIPE FEITOSA DA SILVA - 46259391862	3		17	1
+364	2021-04-30 11:33:20.752521-03	8	8 - padrao	2	[{"changed": {"fields": ["Image"]}}]	9	1
+342	2021-04-14 16:22:01.409645-03	58	ANDRE	3		4	1
+343	2021-04-14 16:22:11.605621-03	2	BBICUDO	3		4	1
+344	2021-04-14 16:22:16.810387-03	123	BHFFDBN	3		4	1
+345	2021-04-14 16:22:20.97525-03	61	ELTON	3		4	1
+346	2021-04-14 16:22:24.703241-03	124	JHJHKJHK	3		4	1
+347	2021-04-14 16:22:29.192728-03	10	jsilva	3		4	1
+\.
+
+
+--
+-- TOC entry 3257 (class 0 OID 140036)
+-- Dependencies: 203
+-- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: arena
+--
+
+COPY public.django_content_type (id, app_label, model) FROM stdin;
+1	admin	logentry
+2	auth	permission
+3	auth	group
+4	auth	user
+5	contenttypes	contenttype
+6	sessions	session
+7	helpdesk	chamado
+8	helpdesk	imagelink
+9	helpdesk	image
+10	helpdesk	chat
+11	users	cargo
+12	users	empresa
+13	users	imageperfil
+14	users	usuariocorporativo
+15	users	usuariodocumentos
+16	users	usuarioendereco
+17	users	usuariopessoal
+18	users	usuariotrabalho
+19	users	contabancaria
+\.
+
+
+--
+-- TOC entry 3255 (class 0 OID 140025)
+-- Dependencies: 201
+-- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: arena
+--
+
+COPY public.django_migrations (id, app, name, applied) FROM stdin;
+1	contenttypes	0001_initial	2021-03-15 12:49:41.524072-03
+2	auth	0001_initial	2021-03-15 12:49:41.901121-03
+3	admin	0001_initial	2021-03-15 12:49:42.713068-03
+4	admin	0002_logentry_remove_auto_add	2021-03-15 12:49:42.841472-03
+5	admin	0003_logentry_add_action_flag_choices	2021-03-15 12:49:42.859457-03
+6	contenttypes	0002_remove_content_type_name	2021-03-15 12:49:42.904516-03
+7	auth	0002_alter_permission_name_max_length	2021-03-15 12:49:42.914376-03
+8	auth	0003_alter_user_email_max_length	2021-03-15 12:49:42.92522-03
+9	auth	0004_alter_user_username_opts	2021-03-15 12:49:42.935216-03
+10	auth	0005_alter_user_last_login_null	2021-03-15 12:49:42.948223-03
+11	auth	0006_require_contenttypes_0002	2021-03-15 12:49:42.950856-03
+12	auth	0007_alter_validators_add_error_messages	2021-03-15 12:49:42.959836-03
+13	auth	0008_alter_user_username_max_length	2021-03-15 12:49:43.03793-03
+14	auth	0009_alter_user_last_name_max_length	2021-03-15 12:49:43.060942-03
+15	auth	0010_alter_group_name_max_length	2021-03-15 12:49:43.089916-03
+16	auth	0011_update_proxy_permissions	2021-03-15 12:49:43.098898-03
+17	auth	0012_alter_user_first_name_max_length	2021-03-15 12:49:43.109906-03
+18	users	0001_initial	2021-03-15 12:49:43.184371-03
+19	users	0002_auto_20210315_1249	2021-03-15 12:49:43.845786-03
+20	helpdesk	0001_initial	2021-03-15 12:49:44.46839-03
+21	helpdesk	0002_chamado_name	2021-03-15 12:49:44.554839-03
+22	sessions	0001_initial	2021-03-15 12:49:44.63099-03
+23	users	0003_auto_20210315_1328	2021-03-15 13:28:35.020458-03
+24	users	0004_auto_20210315_1459	2021-03-15 15:00:10.207676-03
+25	users	0005_auto_20210317_0943	2021-03-17 10:02:58.251259-03
+26	users	0002_auto_20210403_1146	2021-04-03 11:46:18.402752-03
+27	users	0002_auto_20210406_0827	2021-04-06 08:27:13.610329-03
+28	helpdesk	0003_auto_20210408_1348	2021-04-08 13:48:38.913032-03
+29	users	0002_auto_20210408_1348	2021-04-08 13:48:38.969329-03
+30	users	0003_auto_20210413_1055	2021-04-13 10:55:15.02478-03
+31	users	0004_auto_20210413_1120	2021-04-13 11:21:56.81428-03
+32	users	0005_auto_20210413_1127	2021-04-13 11:27:32.51802-03
+33	users	0006_auto_20210413_1128	2021-04-13 11:28:32.866357-03
+34	users	0004_auto_20210413_1130	2021-04-13 11:30:43.660487-03
+35	users	0005_auto_20210413_1144	2021-04-13 11:44:20.282993-03
+36	users	0006_auto_20210413_1149	2021-04-13 11:49:38.153657-03
+37	users	0007_auto_20210413_1156	2021-04-13 11:56:58.373387-03
+38	users	0005_auto_20210413_1205	2021-04-13 12:05:21.709227-03
+39	users	0006_auto_20210413_1227	2021-04-13 12:27:57.087616-03
+40	users	0007_auto_20210413_1442	2021-04-13 14:48:54.782629-03
+41	users	0004_auto_20210414_0903	2021-04-14 09:03:55.592377-03
+42	helpdesk	0004_auto_20210416_1022	2021-04-16 10:22:09.119373-03
+43	users	0005_auto_20210416_1022	2021-04-16 10:22:09.413854-03
+44	helpdesk	0005_auto_20210416_1156	2021-04-16 11:56:53.502267-03
+45	users	0006_auto_20210416_1156	2021-04-16 11:56:53.748657-03
+46	helpdesk	0006_auto_20210416_1158	2021-04-16 11:59:00.708312-03
+47	users	0007_auto_20210416_1158	2021-04-16 11:59:00.782176-03
+48	helpdesk	0007_auto_20210416_1202	2021-04-16 12:02:48.20496-03
+49	users	0008_auto_20210416_1202	2021-04-16 12:02:48.758228-03
+50	helpdesk	0008_auto_20210416_1209	2021-04-16 12:09:07.613912-03
+51	users	0009_auto_20210416_1209	2021-04-16 12:09:07.681978-03
+\.
+
+
+--
+-- TOC entry 3296 (class 0 OID 140372)
+-- Dependencies: 242
+-- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: arena
+--
+
+COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
+cvgye0uro8l85y2960swovwo2lbjctw0	.eJxVjMsOwiAQRf-FtSE8ptC6dO83kBkGpGogKe3K-O_apAvd3nPOfYmA21rC1tMSZhZnYcTpdyOMj1R3wHestyZjq-syk9wVedAur43T83K4fwcFe_nWKU5JOWvAWYrWDNYYBu0jO6cpu5E1AGvlrVcOmMaBddaYPU6oiDKI9wfIlzeP:1lLsI7:dwuX1QC6_PxLaf1-zgkNgwrAf_jFIUh0QpwVVKSYZ-E	2021-03-29 15:50:11.692433-03
+73eaq5yu1tm9opvrcv12n2qtvvpowmyg	.eJxVjMsOwiAQRf-FtSE8ptC6dO83kBkGpGogKe3K-O_apAvd3nPOfYmA21rC1tMSZhZnYcTpdyOMj1R3wHestyZjq-syk9wVedAur43T83K4fwcFe_nWKU5JOWvAWYrWDNYYBu0jO6cpu5E1AGvlrVcOmMaBddaYPU6oiDKI9wfIlzeP:1lLsJy:l8Uqz67GYdPFKAsO85EhPu7872khCc8ZzUPjXkgRdns	2021-03-29 15:52:06.356698-03
+7mjubu6boccdufdlzn70nq41d1bsrfgk	.eJxVjMsOwiAQRf-FtSE8ptC6dO83kBkGpGogKe3K-O_apAvd3nPOfYmA21rC1tMSZhZnYcTpdyOMj1R3wHestyZjq-syk9wVedAur43T83K4fwcFe_nWKU5JOWvAWYrWDNYYBu0jO6cpu5E1AGvlrVcOmMaBddaYPU6oiDKI9wfIlzeP:1lLsKN:ocnxiCOi8NlDUNe277cWE4hQfhjG7yjyNYLM1jcjbfc	2021-03-29 15:52:31.854529-03
+92ynk0atocb880151ynm3659kh6w7uf6	.eJxVjMsOwiAQRf-FtSE8ptC6dO83kBkGpGogKe3K-O_apAvd3nPOfYmA21rC1tMSZhZnYcTpdyOMj1R3wHestyZjq-syk9wVedAur43T83K4fwcFe_nWKU5JOWvAWYrWDNYYBu0jO6cpu5E1AGvlrVcOmMaBddaYPU6oiDKI9wfIlzeP:1lLsLL:7ioe7hmi6Qob1V2DBKsY5AWLuubA0tkGGA5ZcBKCB0M	2021-03-29 15:53:31.701315-03
+ozu8f3aysa6nme62txa0znk6cob78hzy	.eJxVjMsOwiAQRf-FtSE8ptC6dO83kBkGpGogKe3K-O_apAvd3nPOfYmA21rC1tMSZhZnYcTpdyOMj1R3wHestyZjq-syk9wVedAur43T83K4fwcFe_nWKU5JOWvAWYrWDNYYBu0jO6cpu5E1AGvlrVcOmMaBddaYPU6oiDKI9wfIlzeP:1lLsML:LkaFLaRSGP0U7B4tzNZY1v9Ts9JqVCTTn89mRw5ZvVI	2021-03-29 15:54:33.984744-03
+tujlyq5primakvpcfxs3m219rloh9xnd	.eJxVjMsOwiAQRf-FtSE8ptC6dO83kBkGpGogKe3K-O_apAvd3nPOfYmA21rC1tMSZhZnYcTpdyOMj1R3wHestyZjq-syk9wVedAur43T83K4fwcFe_nWKU5JOWvAWYrWDNYYBu0jO6cpu5E1AGvlrVcOmMaBddaYPU6oiDKI9wfIlzeP:1lM7ea:70iSES8jD618KM_KJVa9p_xgRT3Xdge6W1b8BvVFBto	2021-03-30 08:14:24.44316-03
+p3pvk31n28ttb7cwasemj7yw6cgbzgxy	.eJxVjMsOwiAQRf-FtSE8ptC6dO83kBkGpGogKe3K-O_apAvd3nPOfYmA21rC1tMSZhZnYcTpdyOMj1R3wHestyZjq-syk9wVedAur43T83K4fwcFe_nWKU5JOWvAWYrWDNYYBu0jO6cpu5E1AGvlrVcOmMaBddaYPU6oiDKI9wfIlzeP:1lM7mI:vlvwmgcSGUPbfLdsKCT39RUsPcWoQYxAIp-_BAeAb8M	2021-03-30 08:22:22.188745-03
+ebaijvblstp9hfb8gless28q1f8506hn	ZmYwNDU4MjE2YWUzYmYwYTE1MGFjMzdjNWI3ZjNiMjY2N2Y2NDNhNTp7Il9hdXRoX3VzZXJfaWQiOiI1NyIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiNzRkOTMzNWM1MGJkNWY1YzMwM2IzNjM3NDQ5NzRiYzJmYzZjMjhmZSJ9	2021-04-21 15:01:14.662694-03
+5ep2goy4xdttnsmy5v0w9irkixhp8sey	.eJxVjMsOwiAQRf-FtSE8ptC6dO83kBkGpGogKe3K-O_apAvd3nPOfYmA21rC1tMSZhZnYcTpdyOMj1R3wHestyZjq-syk9wVedAur43T83K4fwcFe_nWKU5JOWvAWYrWDNYYBu0jO6cpu5E1AGvlrVcOmMaBddaYPU6oiDKI9wfIlzeP:1lM7nE:BsQ96u2z0Q4yOqE9J8v5chxhq_MHASVs73QmeWrbtQU	2021-03-30 08:23:20.998107-03
+7hjamznxiotfd97jh47rd4sosym4yjnt	.eJxVjMsOwiAQRf-FtSE8ptC6dO83kBkGpGogKe3K-O_apAvd3nPOfYmA21rC1tMSZhZnYcTpdyOMj1R3wHestyZjq-syk9wVedAur43T83K4fwcFe_nWKU5JOWvAWYrWDNYYBu0jO6cpu5E1AGvlrVcOmMaBddaYPU6oiDKI9wfIlzeP:1lMAMs:X7L-ht_XdxXBL9WbhjKOLji9uVsvHyrRwq5swPSEte8	2021-03-30 11:08:18.030605-03
+b5s5v89kqn2jepoo5t13ar1fj10aplwk	.eJxVjMsOwiAQRf-FtSE8ptC6dO83kBkGpGogKe3K-O_apAvd3nPOfYmA21rC1tMSZhZnYcTpdyOMj1R3wHestyZjq-syk9wVedAur43T83K4fwcFe_nWKU5JOWvAWYrWDNYYBu0jO6cpu5E1AGvlrVcOmMaBddaYPU6oiDKI9wfIlzeP:1lMVtQ:8duR_-ovUbRNRm4XgYDiJ2ajgMmMjVFV5hL-UaOguys	2021-03-31 10:07:20.213721-03
+n5lquc83bzwe92anufuyz3xivcbzxhdo	MTNmNTZmZTk3ZDBjZjc1OTI4ZDU5NDA3N2E0NzQ1NDY5MjIyYjQ0Njp7Il9hdXRoX3VzZXJfaWQiOiI1OCIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiZDQ0NDkwZDUzMDUwYWQ0MTc1ZmY2YzU1NTE3MzgzYTNjYWIzMmRlOSJ9	2021-04-22 15:45:36.713265-03
+qrd6qvpxgkreteqjb14vcy7z6psyknci	.eJxVjMsOwiAQRf-FtSE8ptC6dO83kBkGpGogKe3K-O_apAvd3nPOfYmA21rC1tMSZhZnYcTpdyOMj1R3wHestyZjq-syk9wVedAur43T83K4fwcFe_nWKU5JOWvAWYrWDNYYBu0jO6cpu5E1AGvlrVcOmMaBddaYPU6oiDKI9wfIlzeP:1lMXTn:JPxRmz9qZoZDQ65WxZvjMkefKkLPTK36CnGLGXgn6Ow	2021-03-31 11:48:59.330057-03
+m9w17tkt9cdctm93no7q3qtfnsw9vv3z	.eJxVjMsOwiAQRf-FtSE8ptC6dO83kBkGpGogKe3K-O_apAvd3nPOfYmA21rC1tMSZhZnYcTpdyOMj1R3wHestyZjq-syk9wVedAur43T83K4fwcFe_nWKU5JOWvAWYrWDNYYBu0jO6cpu5E1AGvlrVcOmMaBddaYPU6oiDKI9wfIlzeP:1lMYCL:cUfvU3HHxkLFX-iPWZjqPcWCSSh1J9PjDNYSEiDDsP0	2021-03-31 12:35:01.326632-03
+u4321y8ytt4j3bylpv5dhul7gyr2u2yx	ZmYwNDU4MjE2YWUzYmYwYTE1MGFjMzdjNWI3ZjNiMjY2N2Y2NDNhNTp7Il9hdXRoX3VzZXJfaWQiOiI1NyIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiNzRkOTMzNWM1MGJkNWY1YzMwM2IzNjM3NDQ5NzRiYzJmYzZjMjhmZSJ9	2021-04-26 09:41:34.384655-03
+dfbuuuvyiq5h3zgd2je12bma6mzbhvqz	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lXOuC:MVuxfR7H1-wPiPEDRxbZrNbf6PKsY-FjhBrkF-PnziY	2021-04-30 10:53:08.605373-03
+3rlrh103jccfi10qgbpi2o9akp1iasmi	NzM3NGFmYWQ1YjE1MzA4NzNlODRlM2ZiODhiYjcyMjI5YzRjMmFkNzp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI3MzA0MDM2YWZiN2IzNzY5MTlhYmI4N2FmYTIyOGUyMTc0NDU0NGY0In0=	2021-04-26 14:22:55.874227-03
+b7w6vb363p67d06h35rr8hg2dg8e0wag	.eJxVjMEOwiAQRP-FsyFFFtr16L3fQBZ2laqBpLQn47_bJj3oHOe9mbcKtC45rE3mMLG6KKNOv12k9JSyA35QuVedalnmKepd0Qdteqwsr-vh_h1kanlbe_IJhVNvyCIggEiEiO5sbSeS2G0Bz84PfRQbTeqcZRwQwTlPN1KfL-X1N7w:1lXSFX:xg7B9LcxwDy8uNfRusZuZ7HQRb5O8jau1IUinFhouZc	2021-04-30 14:27:23.951831-03
+byhf8kjt1iqgyza6k60juyz8p35jmoji	ZmYwNDU4MjE2YWUzYmYwYTE1MGFjMzdjNWI3ZjNiMjY2N2Y2NDNhNTp7Il9hdXRoX3VzZXJfaWQiOiI1NyIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9oYXNoIjoiNzRkOTMzNWM1MGJkNWY1YzMwM2IzNjM3NDQ5NzRiYzJmYzZjMjhmZSJ9	2021-04-20 12:13:01.173558-03
+achhlsgn7am9td7dx5p9cehlotf3s824	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lXTh8:H4MwKzLZTeDTPBF3_D99Symv83btWnFQNyxJ07lJLhs	2021-04-30 15:59:58.12799-03
+6al8rxm5rz65seozm2byyzs5hlze7rwn	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lXTif:Y6pLWrNHpZTaAAO78u4ishpQFzAJDSvwwgR5gHv4raA	2021-04-30 16:01:33.383491-03
+i7m4uw1mw2v4u4npsi2aanflhy6qu0qk	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lXoXP:WFulQq_IeERol022zOhbnmIutESz2tl_0ewc5b-cFnE	2021-05-01 14:15:19.002804-03
+5f0qyc50wq130q82lf5aw69vzbkesy84	.eJxVjMEOwiAQRP-FsyFFFtr16L3fQBZ2laqBpLQn47_bJj3oHOe9mbcKtC45rE3mMLG6KKNOv12k9JSyA35QuVedalnmKepd0Qdteqwsr-vh_h1kanlbe_IJhVNvyCIggEiEiO5sbSeS2G0Bz84PfRQbTeqcZRwQwTlPN1KfL-X1N7w:1lXope:ucTPLhYZvz3maEgv2ydgvveyAkL3XXJAmqnhbR88V40	2021-05-01 14:34:10.807411-03
+t1ufvximq9npu4h8l9jgtpam0zd2vyde	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lYurh:f8Q3lITadtxtQhaVNdC2C5WBW51RV6jHKnMcxWHNV-s	2021-05-04 15:12:49.02039-03
+h5djcg36u1z98s63lhz3q3vmbyd0q7co	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lYusP:zPulaP49LMzLcKWuEnkon2uCbRKVqrztv0NFgc7xC4g	2021-05-04 15:13:33.933637-03
+2woq74pxjsj2sckecj65iizqpkgx8tei	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lYYo2:rzwVnAZ5p6NfKqHCb0GumWxIILwWWn0hUlv7YG0q8Ew	2021-05-03 15:39:34.378239-03
+dhqjl71g7n78qjuxjaw0dae4br8m3hsp	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lYvx2:f32E1D43yCNRlrwLmwzRVjqYt9nIRX8X3Gd2SeIodio	2021-05-04 16:22:24.495686-03
+3tpu1vm1kxzb0ylf2n6nqibxut5w4u6l	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lbN6S:xNOIXS20Sm6kVbvWAVC1mRtXJo1Su9gNKVXzah6-6Dg	2021-05-11 09:46:12.650867-03
+miz0l0khcic62bstp7dchy4m17k6mvhv	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lYYxW:HqqwQ8d1vqqlVS0Sp0sGw9m7GTtnSfnN75XskjpSBOI	2021-05-03 15:49:22.533469-03
+ycwsty22zy19q972uzh1ceb6rps6qsa3	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lYw0k:lN2XYHRAKZ9jLl7QqiBruijKKnMbuzUzSvSbimpPypI	2021-05-04 16:26:14.633885-03
+cqdhhzgoarm1s2se2s0t8p105lr75k1v	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lZXHO:aqB-MM65LR1lBfjMN1udhdLtEfMh-C5rnqLDz8n5jWE	2021-05-06 08:13:54.534346-03
+111iduka12e02q9eqmwoy6ssvy479wt5	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lbQ51:RXTwER2TDT89SOU1Ea5Z-z5t4TWqa7--y_IgKpY28YI	2021-05-11 12:56:55.254504-03
+2e4j765mfad3k4gar2b9uqiwwbhghxrg	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lZXGb:TwLvtnAtOWlgCoL8GhBWodBWJMkFAJTtXWmEJNFWx8E	2021-05-06 08:13:05.908876-03
+r7sgg35wuasayzyujkwb4l0go938ya89	.eJxVjMsOwiAQRf-FtSE8Buy4dN9vIDOAUjU0Ke3K-O_SpAvd3nPOfYtA21rC1vISpiQuQhsUp9-VKT5z3VF6UL3PMs51XSaWuyIP2uQ4p_y6Hu7fQaFWeu2Ah5tlQItGadDozprRKhfZoE_gtNUZnLHekcGsIBsm3ysG6OIgPl_vXDa0:1lcUba:_j13r6JFSuTqjzpcsuaUTw_ZHEDND9EHM0MPnxeGJC8	2021-05-14 11:58:58.497532-03
+brnv69fcq32jd8grt8ys2mni06x8tlsb	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lbQ51:RXTwER2TDT89SOU1Ea5Z-z5t4TWqa7--y_IgKpY28YI	2021-05-11 12:56:55.401624-03
+tuuwob1jj7d35yf6isgf66dqvcpo6o3o	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lZXwV:um7VczYYSktJaBEPmtY-C194ZTymMBBZanlr2t1jyrM	2021-05-06 08:56:23.057873-03
+w0o38ysqkm0ltipbnhgqj51czcojhw2z	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lYZJi:JiLFEP4p5mkmnvNJVHEITtqCIcqjWfNCPcy8AcprP38	2021-05-03 16:12:18.758654-03
+86m062ork7xg9ewq9op2jzhlkhs6k3u2	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lZXzq:986QckodbdXZwQNiOpWrsRWhapbEp8R4vvzJKcb6mao	2021-05-06 08:59:50.513105-03
+bd7sstq1f2p781f793q9cwsurok3wl95	.eJxVjMsOwiAQRf-FtSE8Buy4dN9vIDOAUjU0Ke3K-O_SpAvd3nPOfYtA21rC1vISpiQuQhsUp9-VKT5z3VF6UL3PMs51XSaWuyIP2uQ4p_y6Hu7fQaFWeu2Ah5tlQItGadDozprRKhfZoE_gtNUZnLHekcGsIBsm3ysG6OIgPl_vXDa0:1ldaJ2:AGm3AhK_tl_i-m01NiTOeR0mxMzvueTxAZG5p79ooQE	2021-05-17 12:16:20.720787-03
+u75mb27lbsi84zx078fw8ytdeekrp8pg	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lYZKw:rB__iGGjXp6eTFaHGkAA_gixBvcuIuBTpvg3E1pZsjM	2021-05-03 16:13:34.7383-03
+vqroe3xhw3wy749c7gfmsejtf8ixy0fe	.eJxVjMEOwiAQRP-FsyFFFtr16L3fQBZ2laqBpLQn47_bJj3oHOe9mbcKtC45rE3mMLG6KKNOv12k9JSyA35QuVedalnmKepd0Qdteqwsr-vh_h1kanlbe_IJhVNvyCIggEiEiO5sbSeS2G0Bz84PfRQbTeqcZRwQwTlPN1KfL-X1N7w:1le0pw:Xsbi2JYLwOzsZdjHTogtaIWc7QP6KLTBzHvmUuNPGkM	2021-05-18 16:36:04.146214-03
+r8qwz6h5fbpubs5ly3c7k7obj5pkxfio	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lYoqK:LWlnLV-json4BftCdIE9sy6jm-Fcxr6glIxHGWR37j0	2021-05-04 08:47:00.187727-03
+7tcfcii6x7vzrwd9skzbqpa760j5wqhq	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lbpAi:pvcDEPqLvYWFR_YOWKYiCvbBFJ2kkR6VHQjOBP5gi1U	2021-05-12 15:44:28.174552-03
+idyy40borac7bobjdqto8s962rork6kd	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lYouO:uE1i1zatHQOOy5aIBkl0F5Yyj0qBFkPWDDf18N4re3E	2021-05-04 08:51:12.721106-03
+gg27eh95mo64ockhldz9wjhq9hfn8om9	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lZZ7K:q8siQpROJtjDA2SlgBwoVe_3KBXn4-RGrwDbtFopNNk	2021-05-06 10:11:38.016203-03
+jbwx1a219m04b21tmvmqg3k2huvac35k	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lYoxw:ePjQQZUZ2192rqCUZmAhsXHxuhXSNII_3cGe0XSSq9c	2021-05-04 08:54:52.153714-03
+g2u7bmyis1zinov1t00vgiji395egs5w	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lZa97:q9R8xUomwwqhQxxEd6dPs68LbWckNvjDIVmXKoVuXWE	2021-05-06 11:17:33.995282-03
+mn5ej8o6209juf9dy1big8k4ua3lz5z6	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lYoxw:ePjQQZUZ2192rqCUZmAhsXHxuhXSNII_3cGe0XSSq9c	2021-05-04 08:54:52.22767-03
+ou9csftkeiqkst323qhcmmrtd7fsty76	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lbMNO:vkelDvXv_ziLoQrrqCwgN5Cbo0mZzXAFQo9uWsTi21o	2021-05-11 08:59:38.406445-03
+vjeu0osgg6op8h7rrzle6lnxmiq0wdzl	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lYp11:GpoHuFW4QFsNJbXUJWkj_O8Rwe8YyOC4V9AZZ4gj1ss	2021-05-04 08:58:03.963001-03
+1smzvp6xjyd9otpu17cwrw2qdbemm3n7	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lZtbs:sTm9Tz6Lrk_7_YAuwRyx0MGM3RjRWGt0dy5IMM-v8Dg	2021-05-07 08:04:32.921256-03
+56niv4oocxi70pmf8ip7idz8xb7axe86	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lZtt8:YxvSdwczJSrVF_kEwneYNcF5N4iSStSAhvf4nZsxI2g	2021-05-07 08:22:22.060823-03
+sx531vsczfgm0n8n9hku74j71levxtjg	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lYpHP:gimElVvs-qY6rtC2dVgOsosZmIitXdycpTitaCIeHGQ	2021-05-04 09:14:59.845936-03
+r34057yuwka9jkaywd6oneiw1nig3koc	.eJxVjMEOwiAQRP-FsyFFFtr16L3fQBZ2laqBpLQn47_bJj3oHOe9mbcKtC45rE3mMLG6KKNOv12k9JSyA35QuVedalnmKepd0Qdteqwsr-vh_h1kanlbe_IJhVNvyCIggEiEiO5sbSeS2G0Bz84PfRQbTeqcZRwQwTlPN1KfL-X1N7w:1lc6zq:UHMxpieQr2nz9t54a-DKl_qyWnTJJvJUDZNPNWX8vQM	2021-05-13 10:46:26.402356-03
+i85tdxtjztgtf93qdb4qq7zc7xjkh60c	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lYp37:d6Ef3nSglEADhcN6RhI43OiGF-YdzRxUAc4nbSZ55w0	2021-05-04 09:00:13.938115-03
+cpfphu7ztkfuqmllajuzsp1occnkbp36	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lYpKU:4K3Uaoz13NWax4oS6IlCuqJsg7Ri5Pm4OoZluTZg7Uw	2021-05-04 09:18:10.8867-03
+k01qihzpeduuu84q5mw3620q3fi2l1si	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lYtcE:ZrMCyYZIQmXABgDIrfDQPTIpsNtIjPhmwkt9PWJBW1w	2021-05-04 13:52:46.105612-03
+daxntbo5dsphaf1tt2h0l2zwaz07a6ep	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lc8oW:WPJqHWq30RX2-fA1VjfZcTrd4PQH_4_pg4ywJOnquWk	2021-05-13 12:42:52.752121-03
+h43x6xqxvv2ujjcodz1ghdjfj6njj7my	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lc8op:ra-Wjn_ZhVu2DkfORv1Oa4nyN3p8b9tJjuTlLBn_qJg	2021-05-13 12:43:11.026605-03
+ioo1inbbegav87e6qz09abfe12rq7ido	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lYtm0:w3D3b64n6J_aS5zYcQaStO2-5AAYu_xohsCbh63yvkY	2021-05-04 14:02:52.457796-03
+3xf0bbb5q2segf9fcwqnawl9fovvyvp5	.eJxVjMsOwiAQRf-FtSGURxlcuu83EGYGpWogKe3K-O_apAvd3nPOfYmYtrXEreclzizOwnlx-h0x0SPXnfA91VuT1Oq6zCh3RR60y6lxfl4O9--gpF6-tQkDYDBZgbGMdgikiJTjYDyADuhYA12V90hOQ4AxJ-vRJaOBHdpRvD_uajdl:1lYtpg:BB-fZ_tM3pfIC3C89Z_nGpgs9QLFr8H6BjRDoZlN_9k	2021-05-04 14:06:40.120157-03
+\.
+
+
+--
+-- TOC entry 3289 (class 0 OID 140318)
+-- Dependencies: 235
+-- Data for Name: helpdesk_chamado; Type: TABLE DATA; Schema: public; Owner: arena
+--
+
+COPY public.helpdesk_chamado (id, "create", update, active, username, ticket, problem, des_problem, obs_tecnico, data, finalizado, grupo, urgency, status, name_id) FROM stdin;
+24	2021-04-28	2021-05-03	f	BRUNO	10001	Problema com o Mecauto	muito lento like a turtle		03/05/23	fff	atendimento ti	Baixa	em atendimento	88
+\.
+
+
+--
+-- TOC entry 3295 (class 0 OID 140348)
+-- Dependencies: 241
+-- Data for Name: helpdesk_chat; Type: TABLE DATA; Schema: public; Owner: arena
+--
+
+COPY public.helpdesk_chat (id, "create", update, active, "From", mensagem, nome, "idChat_id") FROM stdin;
+1	2021-05-03	2021-05-03	t	atendente	bom dia 	JOÃO FELIPE FEITOSA DA SILVA	24
+\.
+
+
+--
+-- TOC entry 3293 (class 0 OID 140337)
+-- Dependencies: 239
+-- Data for Name: helpdesk_image; Type: TABLE DATA; Schema: public; Owner: arena
+--
+
+COPY public.helpdesk_image (id, "create", update, active, nome, image, ticket, obs) FROM stdin;
+8	2021-04-08	2021-04-30	t	padrao	chamado/images/f3b75ae6-a3dc-4a91-91e0-53b8656e13d8.png	1	#
+\.
+
+
+--
+-- TOC entry 3291 (class 0 OID 140329)
+-- Dependencies: 237
+-- Data for Name: helpdesk_imagelink; Type: TABLE DATA; Schema: public; Owner: arena
+--
+
+COPY public.helpdesk_imagelink (id, "create", update, active, img, link) FROM stdin;
+\.
+
+
+--
+-- TOC entry 3273 (class 0 OID 140191)
+-- Dependencies: 219
+-- Data for Name: users_cargo; Type: TABLE DATA; Schema: public; Owner: arena
+--
+
+COPY public.users_cargo (id, "create", update, active, cargo, descricao, ncbo) FROM stdin;
+3	2021-04-06	2021-04-06	t	COMPRADORA	...	...
+4	2021-04-06	2021-04-06	t	VENDEDOR	...	...
+5	2021-04-06	2021-04-06	t	GERENTE	...	...
+6	2021-04-06	2021-04-06	t	VIDRACEIRO	...	...
+7	2021-04-06	2021-04-06	t	ANALISTA DE MARKETING JUNIOR	...	...
+8	2021-04-06	2021-04-06	t	ASSISTENTE DE COMPRAS	...	...
+9	2021-04-06	2021-04-06	t	FILMADOR	...	...
+10	2021-04-06	2021-04-06	t	GERENTE	...	...
+11	2021-04-06	2021-04-06	t	ANALISTA FINANCEIRO	...	...
+12	2021-04-06	2021-04-06	t	VENDEDORA	...	...
+13	2021-04-06	2021-04-06	t	ASSISTENTE DE PÓS-VENDAS	...	...
+14	2021-04-06	2021-04-06	t	AUXILIAR DE ESTOQUE	...	...
+15	2021-04-06	2021-04-06	t	ANALISTA DE SISTEMAS E DESENVOLVIMENTO	...	...
+16	2021-04-06	2021-04-06	t	ANALISTA DE VENDAS ONLINE	...	...
+17	2021-04-06	2021-04-06	t	MOTORISTA	...	...
+18	2021-04-06	2021-04-06	t	ENCARREGADO DE ESTOQUE	...	...
+19	2021-04-06	2021-04-06	t	FILMADOR/INSTALADOR	...	...
+20	2021-04-06	2021-04-06	t	CAIXA	...	...
+21	2021-04-06	2021-04-06	t	ANALISTA DE RH	...	...
+22	2021-04-06	2021-04-06	t	GESTOR COMERCIAL	...	...
+23	2021-04-06	2021-04-06	t	ASSISTENTE DE VENDAS	...	...
+24	2021-04-06	2021-04-06	t	AUXILIAR DE LIMPEZA	...	...
+25	2021-04-06	2021-04-06	t	ASSISTENTE DE FROTA	...	...
+26	2021-04-06	2021-04-06	t	COORDENADOR DE EXPEDIÇÃO	...	...
+27	2021-04-06	2021-04-06	t	REDATORWEB	...	...
+28	2021-04-06	2021-04-06	t	DESIGNER WEB	...	...
+29	2021-04-06	2021-04-06	t	ESTAGIARIO DE WEB DESIGNER	...	...
+30	2021-04-06	2021-04-06	t	HELP DESK	...	...
+31	2021-04-06	2021-04-06	t	SERRALHEIRO	...	...
+32	2021-04-06	2021-04-06	t	DESENVOLVEDOR FULL STACK JUNIOR	...	...
+33	2021-04-06	2021-04-06	t	ANALISTA DE ECOMMERCE	...	...
+34	2021-04-06	2021-04-06	t	ESTAGIARIO DE LOGISTICA	...	...
+35	2021-04-06	2021-04-06	t	SUPERVISOR DE ECOMMERCE	...	...
+36	2021-04-06	2021-04-06	t	ANALISTA DE MIDIAS SOCIAIS	...	...
+37	2021-04-06	2021-04-06	t	COORDENADOR ESTOQUE	...	...
+38	2021-04-06	2021-04-06	t	ESTAGIO EM CONSTRUÇÃO CIVIL	...	...
+39	2021-04-06	2021-04-06	t	COORDENADOR DE RH	...	...
+40	2021-04-06	2021-04-06	t	COORDENADOR FINANCEIRO	...	...
+41	2021-04-06	2021-04-06	t	COORDENADOR DE SUPRIMENTYO	...	...
+42	2021-04-06	2021-04-06	t	DESENVOLVEDOR WEB FULL STACK	...	...
+43	2021-04-06	2021-04-06	t	INSTALADOR	...	...
+44	2021-04-06	2021-04-06	t	ASSISTENTE DE RH	...	...
+45	2021-04-06	2021-04-06	t	ANALISTA DE DADOS	...	...
+46	2021-04-15	2021-04-15	t	ESTAGIARIO DE RH	...	...
+\.
+
+
+--
+-- TOC entry 3298 (class 0 OID 156411)
+-- Dependencies: 244
+-- Data for Name: users_contabancaria; Type: TABLE DATA; Schema: public; Owner: arena
+--
+
+COPY public.users_contabancaria (id, "create", update, active, banco, agencia, conta, codigo_id) FROM stdin;
+2	2021-04-29	2021-04-29	t	341	2935	51377-6	88
+\.
+
+
+--
+-- TOC entry 3275 (class 0 OID 140199)
+-- Dependencies: 221
+-- Data for Name: users_empresa; Type: TABLE DATA; Schema: public; Owner: arena
+--
+
+COPY public.users_empresa (id, "create", update, active, cnpj, nempresa, telefone) FROM stdin;
+1	2021-03-15	2021-03-15	t	22139654000133	Arena Vidros	...(11) 4054-10
+\.
+
+
+--
+-- TOC entry 3277 (class 0 OID 140207)
+-- Dependencies: 223
+-- Data for Name: users_imageperfil; Type: TABLE DATA; Schema: public; Owner: arena
+--
+
+COPY public.users_imageperfil (id, "create", update, active, nome, image, obs) FROM stdin;
+5	2021-04-06	2021-04-15	t	Patricia Santos Swistalski	chamado/images/325dbc9c-8edf-4e08-a157-f9b0af78f326.png	
+9	2021-04-15	2021-04-15	t	ALEX DE ARAUJO ITOI		
+10	2021-04-15	2021-04-15	t	AMANDA COSTA CASTRO		
+11	2021-04-15	2021-04-15	t	ANDRESSA DOS REIS ROCHA ARAUJO		
+12	2021-04-29	2021-04-29	t	JOÃO FELIPE FEITOSA DA SILVA		
+6	2021-04-06	2021-04-30	t	padrao	chamado/images/97ce5433-ff03-46ef-b378-0094b22e0d0b.png	#
+\.
+
+
+--
+-- TOC entry 3279 (class 0 OID 140218)
+-- Dependencies: 225
+-- Data for Name: users_usuariocorporativo; Type: TABLE DATA; Schema: public; Owner: arena
+--
+
+COPY public.users_usuariocorporativo (id, "create", update, active, email, "emailCorporativo", skype, telefone, tel, ramal, codigo_id, documento_id, endereco_id, grupo_id, trabalho_id, usuario_id, banco_id) FROM stdin;
+10	2021-04-15	2021-04-15	t							85	12	8	3	28	126	\N
+9	2021-04-15	2021-04-15	t							84	11	7	4	27	125	\N
+11	2021-04-15	2021-04-15	t							86	13	9	3	29	127	\N
+5	2021-04-06	2021-04-22	t	PATI@gmail.com	\N	\N	\N	\N	\N	41	8	4	3	21	57	\N
+12	2021-04-29	2021-04-29	t							88	14	10	2	30	129	2
+\.
+
+
+--
+-- TOC entry 3281 (class 0 OID 140226)
+-- Dependencies: 227
+-- Data for Name: users_usuariodocumentos; Type: TABLE DATA; Schema: public; Owner: arena
+--
+
+COPY public.users_usuariodocumentos (id, "create", update, active, documento, numerodocumento, orgao, dataexpedissao, validade, codigo_id) FROM stdin;
+12	2021-04-15	2021-04-15	t	PG	377765880	ssp	2015-07-24	1900-01-01	85
+11	2021-04-15	2021-04-15	t	PG	372327096	ssp	2018-02-28	1900-01-01	84
+13	2021-04-15	2021-04-15	t	PG	370980943	ssp	2021-01-19	1900-01-01	86
+8	2021-04-06	2021-04-22	t	PG	435930333	SSP	\N	\N	41
+14	2021-04-29	2021-04-29	t	PG	57.085.390-4	ssp	2012-12-28	1900-01-01	88
+\.
+
+
+--
+-- TOC entry 3283 (class 0 OID 140234)
+-- Dependencies: 229
+-- Data for Name: users_usuarioendereco; Type: TABLE DATA; Schema: public; Owner: arena
+--
+
+COPY public.users_usuarioendereco (id, "create", update, active, cep, tipo, logradouro, numero, ufatual, municipioatul, bairroatual, complemento, pais, codigo_id) FROM stdin;
+4	2021-04-06	2021-04-06	t	08343565	r	vereda tropical	245	SP	SÃO PAULO	JD CONQUISTA	\N	BRASIL	41
+8	2021-04-15	2021-04-15	t	06045-080	r	jesuíno antonio	543	sp	osasco	novo osasco	ap 32 bl 13	brasil	85
+7	2021-04-15	2021-04-15	t	04937170	r	doutor jose carneiro viana	14	sp	são paulo	vila bom jardim		brasil	84
+9	2021-04-15	2021-04-15	t	08490-700	r	garça morena	200	sp	são paulo	jardim pedra branca	ap 61 bl c	brasil	86
+10	2021-04-29	2021-04-29	t	03201050	r	ipomeias	317	sp	são paulo	vila bela		brasil	88
+\.
+
+
+--
+-- TOC entry 3285 (class 0 OID 140242)
+-- Dependencies: 231
+-- Data for Name: users_usuariopessoal; Type: TABLE DATA; Schema: public; Owner: arena
+--
+
+COPY public.users_usuariopessoal (id, "create", update, active, codigo, nome, apelido, cpf, pis, tituloeleitor, carteiratrabalho, serie, ufcarteiratrabalho, datacarteiratrabalho, genero, cor, ecivil, celpessoal, escolaridade, datanacimento, ufnacimento, municipionacimento, paisnacimento, paisnacionalidade, nomemae, nomepai) FROM stdin;
+88	2021-04-29	2021-04-29	t	10087	JOÃO FELIPE FEITOSA DA SILVA	joão	462.593.918-62	20641938513	442036990108	49155	463	sp	2019-02-06	Masculno	PARDA	SOLTEIRO	---	ENSINO SUPERIOR INCOMPLETO	2001-04-28	sp	são paulo	brasil	brasil	celia da anunciaçõa soares da silva	everaldo feitosa da silva
+85	2021-04-15	2021-04-15	t	10085	AMANDA COSTA CASTRO	castro	391.170.038-57	20782023996	414870100175	65631	365	sp	2011-10-25	Feminino	BRANCA	SOLTEIRO	---	ENSINO SUPERIOR INCOMPLETO	1996-03-09	sp	são paulo	brasil	brasil	dionizia da costa castro	adailton silva de castro
+84	2021-04-15	2021-04-15	t	10042	ALEX DE ARAUJO ITOI	itoi	416.696.058-09	23650361341	456682150159	35802	414	sp	2018-02-28	Masculno	NEGRA	SOLTEIRO	---	ENSINO MÉDIO COMPLETO	1999-08-20	sp	são paulo	brasil	brasil	josiane de araujo silva itoi	alexandre garcia itoi
+86	2021-04-15	2021-04-15	t	10086	ANDRESSA DOS REIS ROCHA ARAUJO	reis	613.788.803-74	13159914789	764110111104	09405	42	sp	2021-01-19	Feminino	NEGRA	CASADO	---	ENSINO SUPERIOR INCOMPLETO	1999-01-28	sp	são paulo	brasil	brasil	jose domingos rocha filho	marizete silva dos reis
+41	2021-04-06	2021-04-22	t	10033	Patricia Santos Swistalski	pati	31581769806	0	0	0	0	\N	\N	Feminino	BRANCA	CASADO	...	ENSINO MÉDIO COMPLETO	1983-10-19	SP	SÃO PAULO	BRASIL	BRASIL	JOSEFA MARIA BARBOSA	JOSÉ BATISTA DOS SANTOS FILHO
+\.
+
+
+--
+-- TOC entry 3287 (class 0 OID 140253)
+-- Dependencies: 233
+-- Data for Name: users_usuariotrabalho; Type: TABLE DATA; Schema: public; Owner: arena
+--
+
+COPY public.users_usuariotrabalho (id, "create", update, active, empresa, cargo_id, departamento, valetransporte, dataadmissao, datademissao, indicativoadmissao, primeiroemprego, regimetrabalho, regimeprevidenciario, regimejornada, naturezaatividade, categoria, codigofuncao, cargahorariam, unidadesalarial, salariovariavel, codigo_id, "tipoAdmissao", obs) FROM stdin;
+28	2021-04-15	2021-04-15	t	Arena Vidros	38	rh	sim	2020-11-18	1900-01-01	Normal	nao				TRABALHO URBANO	ESTAGIÁRIO			POR MÊS	800.00	85	\N	\N
+27	2021-04-15	2021-04-15	t	Arena Vidros	14	estoque	sim	1900-01-01	1900-01-01	Normal	nao	CLT	RGPS	SUBMETIDO A HORÁRIOS DE TRABALHO	TRABALHO URBANO	EMPREGADO-GERAL			POR MÊS	1100.00	84	Admissão	\N
+29	2021-04-15	2021-04-15	t	Arena Vidros	44	rh	sim	1900-01-01	1900-01-01	Normal	nao	CLT	RGPS	SUBMETIDO A HORÁRIOS DE TRABALHO	TRABALHO URBANO	EMPREGADO-GERAL			POR MÊS	1100.00	86	None	\N
+21	2021-04-06	2021-04-22	t	Arena Vidros	21	RH	sim	2020-11-03	\N	Normal	nao	CLT	RGPS	SUBMETIDO A HORÁRIOS DE TRABALHO	TRABALHO URBANO	EMPREGADO-GERAL	0	1	POR MÊS	\N	41	...	
+30	2021-04-29	2021-04-29	t	Arena Vidros	30	ti	sim	2020-11-03	1900-01-01	Normal	sim	CLT	RGPS	SUBMETIDO A HORÁRIOS DE TRABALHO	TRABALHO URBANO	EMPREGADO-GERAL			POR MÊS	1350.00	88	\N	
+\.
+
+
+--
+-- TOC entry 3326 (class 0 OID 0)
+-- Dependencies: 206
+-- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arena
+--
+
+SELECT pg_catalog.setval('public.auth_group_id_seq', 4, true);
+
+
+--
+-- TOC entry 3327 (class 0 OID 0)
+-- Dependencies: 208
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arena
+--
+
+SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 216, true);
+
+
+--
+-- TOC entry 3328 (class 0 OID 0)
+-- Dependencies: 204
+-- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arena
+--
+
+SELECT pg_catalog.setval('public.auth_permission_id_seq', 76, true);
+
+
+--
+-- TOC entry 3329 (class 0 OID 0)
+-- Dependencies: 212
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arena
+--
+
+SELECT pg_catalog.setval('public.auth_user_groups_id_seq', 1, false);
+
+
+--
+-- TOC entry 3330 (class 0 OID 0)
+-- Dependencies: 210
+-- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arena
+--
+
+SELECT pg_catalog.setval('public.auth_user_id_seq', 129, true);
+
+
+--
+-- TOC entry 3331 (class 0 OID 0)
+-- Dependencies: 214
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arena
+--
+
+SELECT pg_catalog.setval('public.auth_user_user_permissions_id_seq', 1, false);
+
+
+--
+-- TOC entry 3332 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arena
+--
+
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 366, true);
+
+
+--
+-- TOC entry 3333 (class 0 OID 0)
+-- Dependencies: 202
+-- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arena
+--
+
+SELECT pg_catalog.setval('public.django_content_type_id_seq', 19, true);
+
+
+--
+-- TOC entry 3334 (class 0 OID 0)
+-- Dependencies: 200
+-- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arena
+--
+
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 51, true);
+
+
+--
+-- TOC entry 3335 (class 0 OID 0)
+-- Dependencies: 234
+-- Name: helpdesk_chamado_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arena
+--
+
+SELECT pg_catalog.setval('public.helpdesk_chamado_id_seq', 25, true);
+
+
+--
+-- TOC entry 3336 (class 0 OID 0)
+-- Dependencies: 240
+-- Name: helpdesk_chat_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arena
+--
+
+SELECT pg_catalog.setval('public.helpdesk_chat_id_seq', 1, true);
+
+
+--
+-- TOC entry 3337 (class 0 OID 0)
+-- Dependencies: 238
+-- Name: helpdesk_image_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arena
+--
+
+SELECT pg_catalog.setval('public.helpdesk_image_id_seq', 8, true);
+
+
+--
+-- TOC entry 3338 (class 0 OID 0)
+-- Dependencies: 236
+-- Name: helpdesk_imagelink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arena
+--
+
+SELECT pg_catalog.setval('public.helpdesk_imagelink_id_seq', 1, false);
+
+
+--
+-- TOC entry 3339 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: users_cargo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arena
+--
+
+SELECT pg_catalog.setval('public.users_cargo_id_seq', 47, true);
+
+
+--
+-- TOC entry 3340 (class 0 OID 0)
+-- Dependencies: 243
+-- Name: users_contabancaria_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arena
+--
+
+SELECT pg_catalog.setval('public.users_contabancaria_id_seq', 2, true);
+
+
+--
+-- TOC entry 3341 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: users_empresa_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arena
+--
+
+SELECT pg_catalog.setval('public.users_empresa_id_seq', 1, true);
+
+
+--
+-- TOC entry 3342 (class 0 OID 0)
+-- Dependencies: 222
+-- Name: users_imageperfil_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arena
+--
+
+SELECT pg_catalog.setval('public.users_imageperfil_id_seq', 12, true);
+
+
+--
+-- TOC entry 3343 (class 0 OID 0)
+-- Dependencies: 224
+-- Name: users_usuariocorporativo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arena
+--
+
+SELECT pg_catalog.setval('public.users_usuariocorporativo_id_seq', 12, true);
+
+
+--
+-- TOC entry 3344 (class 0 OID 0)
+-- Dependencies: 226
+-- Name: users_usuariodocumentos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arena
+--
+
+SELECT pg_catalog.setval('public.users_usuariodocumentos_id_seq', 14, true);
+
+
+--
+-- TOC entry 3345 (class 0 OID 0)
+-- Dependencies: 228
+-- Name: users_usuarioendereco_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arena
+--
+
+SELECT pg_catalog.setval('public.users_usuarioendereco_id_seq', 10, true);
+
+
+--
+-- TOC entry 3346 (class 0 OID 0)
+-- Dependencies: 230
+-- Name: users_usuariopessoal_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arena
+--
+
+SELECT pg_catalog.setval('public.users_usuariopessoal_id_seq', 88, true);
+
+
+--
+-- TOC entry 3347 (class 0 OID 0)
+-- Dependencies: 232
+-- Name: users_usuariotrabalho_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arena
+--
+
+SELECT pg_catalog.setval('public.users_usuariotrabalho_id_seq', 30, true);
+
+
+--
+-- TOC entry 3027 (class 2606 OID 140179)
+-- Name: auth_group auth_group_name_key; Type: CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.auth_group
+    ADD CONSTRAINT auth_group_name_key UNIQUE (name);
+
+
+--
+-- TOC entry 3032 (class 2606 OID 140106)
+-- Name: auth_group_permissions auth_group_permissions_group_id_permission_id_0cd325b0_uniq; Type: CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_permission_id_0cd325b0_uniq UNIQUE (group_id, permission_id);
+
+
+--
+-- TOC entry 3035 (class 2606 OID 140069)
+-- Name: auth_group_permissions auth_group_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3029 (class 2606 OID 140059)
+-- Name: auth_group auth_group_pkey; Type: CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.auth_group
+    ADD CONSTRAINT auth_group_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3022 (class 2606 OID 140097)
+-- Name: auth_permission auth_permission_content_type_id_codename_01ab375a_uniq; Type: CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_codename_01ab375a_uniq UNIQUE (content_type_id, codename);
+
+
+--
+-- TOC entry 3024 (class 2606 OID 140051)
+-- Name: auth_permission auth_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3043 (class 2606 OID 140087)
+-- Name: auth_user_groups auth_user_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3046 (class 2606 OID 140121)
+-- Name: auth_user_groups auth_user_groups_user_id_group_id_94350c0c_uniq; Type: CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_group_id_94350c0c_uniq UNIQUE (user_id, group_id);
+
+
+--
+-- TOC entry 3037 (class 2606 OID 140077)
+-- Name: auth_user auth_user_pkey; Type: CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.auth_user
+    ADD CONSTRAINT auth_user_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3049 (class 2606 OID 140095)
+-- Name: auth_user_user_permissions auth_user_user_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3052 (class 2606 OID 140135)
+-- Name: auth_user_user_permissions auth_user_user_permissions_user_id_permission_id_14a6b632_uniq; Type: CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_permission_id_14a6b632_uniq UNIQUE (user_id, permission_id);
+
+
+--
+-- TOC entry 3040 (class 2606 OID 140173)
+-- Name: auth_user auth_user_username_key; Type: CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.auth_user
+    ADD CONSTRAINT auth_user_username_key UNIQUE (username);
+
+
+--
+-- TOC entry 3055 (class 2606 OID 140159)
+-- Name: django_admin_log django_admin_log_pkey; Type: CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3017 (class 2606 OID 140043)
+-- Name: django_content_type django_content_type_app_label_model_76bd3d3b_uniq; Type: CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.django_content_type
+    ADD CONSTRAINT django_content_type_app_label_model_76bd3d3b_uniq UNIQUE (app_label, model);
+
+
+--
+-- TOC entry 3019 (class 2606 OID 140041)
+-- Name: django_content_type django_content_type_pkey; Type: CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.django_content_type
+    ADD CONSTRAINT django_content_type_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3015 (class 2606 OID 140033)
+-- Name: django_migrations django_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.django_migrations
+    ADD CONSTRAINT django_migrations_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3096 (class 2606 OID 140379)
+-- Name: django_session django_session_pkey; Type: CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.django_session
+    ADD CONSTRAINT django_session_pkey PRIMARY KEY (session_key);
+
+
+--
+-- TOC entry 3086 (class 2606 OID 140326)
+-- Name: helpdesk_chamado helpdesk_chamado_pkey; Type: CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.helpdesk_chamado
+    ADD CONSTRAINT helpdesk_chamado_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3093 (class 2606 OID 140353)
+-- Name: helpdesk_chat helpdesk_chat_pkey; Type: CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.helpdesk_chat
+    ADD CONSTRAINT helpdesk_chat_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3090 (class 2606 OID 140345)
+-- Name: helpdesk_image helpdesk_image_pkey; Type: CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.helpdesk_image
+    ADD CONSTRAINT helpdesk_image_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3088 (class 2606 OID 140334)
+-- Name: helpdesk_imagelink helpdesk_imagelink_pkey; Type: CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.helpdesk_imagelink
+    ADD CONSTRAINT helpdesk_imagelink_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3058 (class 2606 OID 140196)
+-- Name: users_cargo users_cargo_pkey; Type: CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.users_cargo
+    ADD CONSTRAINT users_cargo_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3100 (class 2606 OID 156419)
+-- Name: users_contabancaria users_contabancaria_pkey; Type: CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.users_contabancaria
+    ADD CONSTRAINT users_contabancaria_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3060 (class 2606 OID 140204)
+-- Name: users_empresa users_empresa_pkey; Type: CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.users_empresa
+    ADD CONSTRAINT users_empresa_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3062 (class 2606 OID 140215)
+-- Name: users_imageperfil users_imageperfil_pkey; Type: CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.users_imageperfil
+    ADD CONSTRAINT users_imageperfil_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3069 (class 2606 OID 140223)
+-- Name: users_usuariocorporativo users_usuariocorporativo_pkey; Type: CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.users_usuariocorporativo
+    ADD CONSTRAINT users_usuariocorporativo_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3074 (class 2606 OID 140231)
+-- Name: users_usuariodocumentos users_usuariodocumentos_pkey; Type: CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.users_usuariodocumentos
+    ADD CONSTRAINT users_usuariodocumentos_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3077 (class 2606 OID 140239)
+-- Name: users_usuarioendereco users_usuarioendereco_pkey; Type: CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.users_usuarioendereco
+    ADD CONSTRAINT users_usuarioendereco_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3079 (class 2606 OID 140250)
+-- Name: users_usuariopessoal users_usuariopessoal_pkey; Type: CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.users_usuariopessoal
+    ADD CONSTRAINT users_usuariopessoal_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3083 (class 2606 OID 140261)
+-- Name: users_usuariotrabalho users_usuariotrabalho_pkey; Type: CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.users_usuariotrabalho
+    ADD CONSTRAINT users_usuariotrabalho_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3025 (class 1259 OID 140180)
+-- Name: auth_group_name_a6ea08ec_like; Type: INDEX; Schema: public; Owner: arena
+--
+
+CREATE INDEX auth_group_name_a6ea08ec_like ON public.auth_group USING btree (name varchar_pattern_ops);
+
+
+--
+-- TOC entry 3030 (class 1259 OID 140117)
+-- Name: auth_group_permissions_group_id_b120cbf9; Type: INDEX; Schema: public; Owner: arena
+--
+
+CREATE INDEX auth_group_permissions_group_id_b120cbf9 ON public.auth_group_permissions USING btree (group_id);
+
+
+--
+-- TOC entry 3033 (class 1259 OID 140118)
+-- Name: auth_group_permissions_permission_id_84c5c92e; Type: INDEX; Schema: public; Owner: arena
+--
+
+CREATE INDEX auth_group_permissions_permission_id_84c5c92e ON public.auth_group_permissions USING btree (permission_id);
+
+
+--
+-- TOC entry 3020 (class 1259 OID 140103)
+-- Name: auth_permission_content_type_id_2f476e4b; Type: INDEX; Schema: public; Owner: arena
+--
+
+CREATE INDEX auth_permission_content_type_id_2f476e4b ON public.auth_permission USING btree (content_type_id);
+
+
+--
+-- TOC entry 3041 (class 1259 OID 140133)
+-- Name: auth_user_groups_group_id_97559544; Type: INDEX; Schema: public; Owner: arena
+--
+
+CREATE INDEX auth_user_groups_group_id_97559544 ON public.auth_user_groups USING btree (group_id);
+
+
+--
+-- TOC entry 3044 (class 1259 OID 140132)
+-- Name: auth_user_groups_user_id_6a12ed8b; Type: INDEX; Schema: public; Owner: arena
+--
+
+CREATE INDEX auth_user_groups_user_id_6a12ed8b ON public.auth_user_groups USING btree (user_id);
+
+
+--
+-- TOC entry 3047 (class 1259 OID 140147)
+-- Name: auth_user_user_permissions_permission_id_1fbb5f2c; Type: INDEX; Schema: public; Owner: arena
+--
+
+CREATE INDEX auth_user_user_permissions_permission_id_1fbb5f2c ON public.auth_user_user_permissions USING btree (permission_id);
+
+
+--
+-- TOC entry 3050 (class 1259 OID 140146)
+-- Name: auth_user_user_permissions_user_id_a95ead1b; Type: INDEX; Schema: public; Owner: arena
+--
+
+CREATE INDEX auth_user_user_permissions_user_id_a95ead1b ON public.auth_user_user_permissions USING btree (user_id);
+
+
+--
+-- TOC entry 3038 (class 1259 OID 140174)
+-- Name: auth_user_username_6821ab7c_like; Type: INDEX; Schema: public; Owner: arena
+--
+
+CREATE INDEX auth_user_username_6821ab7c_like ON public.auth_user USING btree (username varchar_pattern_ops);
+
+
+--
+-- TOC entry 3053 (class 1259 OID 140170)
+-- Name: django_admin_log_content_type_id_c4bce8eb; Type: INDEX; Schema: public; Owner: arena
+--
+
+CREATE INDEX django_admin_log_content_type_id_c4bce8eb ON public.django_admin_log USING btree (content_type_id);
+
+
+--
+-- TOC entry 3056 (class 1259 OID 140171)
+-- Name: django_admin_log_user_id_c564eba6; Type: INDEX; Schema: public; Owner: arena
+--
+
+CREATE INDEX django_admin_log_user_id_c564eba6 ON public.django_admin_log USING btree (user_id);
+
+
+--
+-- TOC entry 3094 (class 1259 OID 140381)
+-- Name: django_session_expire_date_a5c62663; Type: INDEX; Schema: public; Owner: arena
+--
+
+CREATE INDEX django_session_expire_date_a5c62663 ON public.django_session USING btree (expire_date);
+
+
+--
+-- TOC entry 3097 (class 1259 OID 140380)
+-- Name: django_session_session_key_c0390e0f_like; Type: INDEX; Schema: public; Owner: arena
+--
+
+CREATE INDEX django_session_session_key_c0390e0f_like ON public.django_session USING btree (session_key varchar_pattern_ops);
+
+
+--
+-- TOC entry 3084 (class 1259 OID 140371)
+-- Name: helpdesk_chamado_name_id_d60c05eb; Type: INDEX; Schema: public; Owner: arena
+--
+
+CREATE INDEX helpdesk_chamado_name_id_d60c05eb ON public.helpdesk_chamado USING btree (name_id);
+
+
+--
+-- TOC entry 3091 (class 1259 OID 140365)
+-- Name: helpdesk_chat_idChat_id_587a6c1c; Type: INDEX; Schema: public; Owner: arena
+--
+
+CREATE INDEX "helpdesk_chat_idChat_id_587a6c1c" ON public.helpdesk_chat USING btree ("idChat_id");
+
+
+--
+-- TOC entry 3098 (class 1259 OID 156425)
+-- Name: users_contabancaria_codigo_id_dd67c100; Type: INDEX; Schema: public; Owner: arena
+--
+
+CREATE INDEX users_contabancaria_codigo_id_dd67c100 ON public.users_contabancaria USING btree (codigo_id);
+
+
+--
+-- TOC entry 3063 (class 1259 OID 156431)
+-- Name: users_usuariocorporativo_banco_id_3811001c; Type: INDEX; Schema: public; Owner: arena
+--
+
+CREATE INDEX users_usuariocorporativo_banco_id_3811001c ON public.users_usuariocorporativo USING btree (banco_id);
+
+
+--
+-- TOC entry 3064 (class 1259 OID 140310)
+-- Name: users_usuariocorporativo_codigo_id_6a651486; Type: INDEX; Schema: public; Owner: arena
+--
+
+CREATE INDEX users_usuariocorporativo_codigo_id_6a651486 ON public.users_usuariocorporativo USING btree (codigo_id);
+
+
+--
+-- TOC entry 3065 (class 1259 OID 140311)
+-- Name: users_usuariocorporativo_documento_id_32ba0eb2; Type: INDEX; Schema: public; Owner: arena
+--
+
+CREATE INDEX users_usuariocorporativo_documento_id_32ba0eb2 ON public.users_usuariocorporativo USING btree (documento_id);
+
+
+--
+-- TOC entry 3066 (class 1259 OID 140312)
+-- Name: users_usuariocorporativo_endereco_id_fa5a67f6; Type: INDEX; Schema: public; Owner: arena
+--
+
+CREATE INDEX users_usuariocorporativo_endereco_id_fa5a67f6 ON public.users_usuariocorporativo USING btree (endereco_id);
+
+
+--
+-- TOC entry 3067 (class 1259 OID 140313)
+-- Name: users_usuariocorporativo_grupo_id_409e84f3; Type: INDEX; Schema: public; Owner: arena
+--
+
+CREATE INDEX users_usuariocorporativo_grupo_id_409e84f3 ON public.users_usuariocorporativo USING btree (grupo_id);
+
+
+--
+-- TOC entry 3070 (class 1259 OID 140314)
+-- Name: users_usuariocorporativo_trabalho_id_9e840cf5; Type: INDEX; Schema: public; Owner: arena
+--
+
+CREATE INDEX users_usuariocorporativo_trabalho_id_9e840cf5 ON public.users_usuariocorporativo USING btree (trabalho_id);
+
+
+--
+-- TOC entry 3071 (class 1259 OID 140315)
+-- Name: users_usuariocorporativo_usuario_id_72f5c2df; Type: INDEX; Schema: public; Owner: arena
+--
+
+CREATE INDEX users_usuariocorporativo_usuario_id_72f5c2df ON public.users_usuariocorporativo USING btree (usuario_id);
+
+
+--
+-- TOC entry 3072 (class 1259 OID 140309)
+-- Name: users_usuariodocumentos_codigo_id_eeced5d9; Type: INDEX; Schema: public; Owner: arena
+--
+
+CREATE INDEX users_usuariodocumentos_codigo_id_eeced5d9 ON public.users_usuariodocumentos USING btree (codigo_id);
+
+
+--
+-- TOC entry 3075 (class 1259 OID 140308)
+-- Name: users_usuarioendereco_codigo_id_5a56a0eb; Type: INDEX; Schema: public; Owner: arena
+--
+
+CREATE INDEX users_usuarioendereco_codigo_id_5a56a0eb ON public.users_usuarioendereco USING btree (codigo_id);
+
+
+--
+-- TOC entry 3080 (class 1259 OID 140391)
+-- Name: users_usuariotrabalho_cargo_id_53529e35; Type: INDEX; Schema: public; Owner: arena
+--
+
+CREATE INDEX users_usuariotrabalho_cargo_id_53529e35 ON public.users_usuariotrabalho USING btree (cargo_id);
+
+
+--
+-- TOC entry 3081 (class 1259 OID 140307)
+-- Name: users_usuariotrabalho_codigo_id_ef99b86e; Type: INDEX; Schema: public; Owner: arena
+--
+
+CREATE INDEX users_usuariotrabalho_codigo_id_ef99b86e ON public.users_usuariotrabalho USING btree (codigo_id);
+
+
+--
+-- TOC entry 3103 (class 2606 OID 140112)
+-- Name: auth_group_permissions auth_group_permissio_permission_id_84c5c92e_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissio_permission_id_84c5c92e_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 3102 (class 2606 OID 140107)
+-- Name: auth_group_permissions auth_group_permissions_group_id_b120cbf9_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_b120cbf9_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 3101 (class 2606 OID 140098)
+-- Name: auth_permission auth_permission_content_type_id_2f476e4b_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_2f476e4b_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 3105 (class 2606 OID 140127)
+-- Name: auth_user_groups auth_user_groups_group_id_97559544_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_group_id_97559544_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 3104 (class 2606 OID 140122)
+-- Name: auth_user_groups auth_user_groups_user_id_6a12ed8b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_6a12ed8b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 3107 (class 2606 OID 140141)
+-- Name: auth_user_user_permissions auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 3106 (class 2606 OID 140136)
+-- Name: auth_user_user_permissions auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 3108 (class 2606 OID 140160)
+-- Name: django_admin_log django_admin_log_content_type_id_c4bce8eb_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_content_type_id_c4bce8eb_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 3109 (class 2606 OID 140165)
+-- Name: django_admin_log django_admin_log_user_id_c564eba6_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_user_id_c564eba6_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 3121 (class 2606 OID 140366)
+-- Name: helpdesk_chamado helpdesk_chamado_name_id_d60c05eb_fk_users_usuariopessoal_id; Type: FK CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.helpdesk_chamado
+    ADD CONSTRAINT helpdesk_chamado_name_id_d60c05eb_fk_users_usuariopessoal_id FOREIGN KEY (name_id) REFERENCES public.users_usuariopessoal(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 3122 (class 2606 OID 140360)
+-- Name: helpdesk_chat helpdesk_chat_idChat_id_587a6c1c_fk_helpdesk_chamado_id; Type: FK CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.helpdesk_chat
+    ADD CONSTRAINT "helpdesk_chat_idChat_id_587a6c1c_fk_helpdesk_chamado_id" FOREIGN KEY ("idChat_id") REFERENCES public.helpdesk_chamado(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 3123 (class 2606 OID 156420)
+-- Name: users_contabancaria users_contabancaria_codigo_id_dd67c100_fk_users_usu; Type: FK CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.users_contabancaria
+    ADD CONSTRAINT users_contabancaria_codigo_id_dd67c100_fk_users_usu FOREIGN KEY (codigo_id) REFERENCES public.users_usuariopessoal(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 3110 (class 2606 OID 156426)
+-- Name: users_usuariocorporativo users_usuariocorpora_banco_id_3811001c_fk_users_con; Type: FK CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.users_usuariocorporativo
+    ADD CONSTRAINT users_usuariocorpora_banco_id_3811001c_fk_users_con FOREIGN KEY (banco_id) REFERENCES public.users_contabancaria(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 3116 (class 2606 OID 140272)
+-- Name: users_usuariocorporativo users_usuariocorpora_codigo_id_6a651486_fk_users_usu; Type: FK CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.users_usuariocorporativo
+    ADD CONSTRAINT users_usuariocorpora_codigo_id_6a651486_fk_users_usu FOREIGN KEY (codigo_id) REFERENCES public.users_usuariopessoal(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 3111 (class 2606 OID 140277)
+-- Name: users_usuariocorporativo users_usuariocorpora_documento_id_32ba0eb2_fk_users_usu; Type: FK CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.users_usuariocorporativo
+    ADD CONSTRAINT users_usuariocorpora_documento_id_32ba0eb2_fk_users_usu FOREIGN KEY (documento_id) REFERENCES public.users_usuariodocumentos(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 3112 (class 2606 OID 140282)
+-- Name: users_usuariocorporativo users_usuariocorpora_endereco_id_fa5a67f6_fk_users_usu; Type: FK CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.users_usuariocorporativo
+    ADD CONSTRAINT users_usuariocorpora_endereco_id_fa5a67f6_fk_users_usu FOREIGN KEY (endereco_id) REFERENCES public.users_usuarioendereco(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 3114 (class 2606 OID 140292)
+-- Name: users_usuariocorporativo users_usuariocorpora_trabalho_id_9e840cf5_fk_users_usu; Type: FK CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.users_usuariocorporativo
+    ADD CONSTRAINT users_usuariocorpora_trabalho_id_9e840cf5_fk_users_usu FOREIGN KEY (trabalho_id) REFERENCES public.users_usuariotrabalho(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 3113 (class 2606 OID 140287)
+-- Name: users_usuariocorporativo users_usuariocorporativo_grupo_id_409e84f3_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.users_usuariocorporativo
+    ADD CONSTRAINT users_usuariocorporativo_grupo_id_409e84f3_fk_auth_group_id FOREIGN KEY (grupo_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 3115 (class 2606 OID 140297)
+-- Name: users_usuariocorporativo users_usuariocorporativo_usuario_id_72f5c2df_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.users_usuariocorporativo
+    ADD CONSTRAINT users_usuariocorporativo_usuario_id_72f5c2df_fk_auth_user_id FOREIGN KEY (usuario_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 3117 (class 2606 OID 140267)
+-- Name: users_usuariodocumentos users_usuariodocumen_codigo_id_eeced5d9_fk_users_usu; Type: FK CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.users_usuariodocumentos
+    ADD CONSTRAINT users_usuariodocumen_codigo_id_eeced5d9_fk_users_usu FOREIGN KEY (codigo_id) REFERENCES public.users_usuariopessoal(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 3118 (class 2606 OID 140262)
+-- Name: users_usuarioendereco users_usuarioenderec_codigo_id_5a56a0eb_fk_users_usu; Type: FK CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.users_usuarioendereco
+    ADD CONSTRAINT users_usuarioenderec_codigo_id_5a56a0eb_fk_users_usu FOREIGN KEY (codigo_id) REFERENCES public.users_usuariopessoal(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 3120 (class 2606 OID 140302)
+-- Name: users_usuariotrabalho users_usuariotrabalh_codigo_id_ef99b86e_fk_users_usu; Type: FK CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.users_usuariotrabalho
+    ADD CONSTRAINT users_usuariotrabalh_codigo_id_ef99b86e_fk_users_usu FOREIGN KEY (codigo_id) REFERENCES public.users_usuariopessoal(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- TOC entry 3119 (class 2606 OID 140392)
+-- Name: users_usuariotrabalho users_usuariotrabalho_cargo_id_53529e35_fk_users_cargo_id; Type: FK CONSTRAINT; Schema: public; Owner: arena
+--
+
+ALTER TABLE ONLY public.users_usuariotrabalho
+    ADD CONSTRAINT users_usuariotrabalho_cargo_id_53529e35_fk_users_cargo_id FOREIGN KEY (cargo_id) REFERENCES public.users_cargo(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+-- Completed on 2021-05-04 16:51:07
+
+--
+-- PostgreSQL database dump complete
+--
+

@@ -1,0 +1,247 @@
+{% extends 'basenew.html' %}
+{% load static %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+
+    <div class="row m-2 mt-5 p-1 border " >
+        <h1 class="bg-danger w-100 rounded text-white p-2">Anúncios: Não Iniciados!</h1>
+        <div class="app-table mb-2 w-100 p-4 bg-white">
+        <table id="table_tasks" class="table table-sm table table-stripped table-hover mb-2" style="width:100%">
+            <thead>
+                <tr class="bg-white">
+                    <th>SKU</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Imagens</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for initial_tasks in initial_tasks %}
+                <tr class="">
+                    <td><a href="{% url 'anuncio' initial_tasks.sku %}">{{initial_tasks.sku}}</a></td>
+                    <td >{{initial_tasks.name}}</td>
+                    <td><a href="{% url 'anuncio' initial_tasks.sku %}"><button class="btn-danger rounded" type="button" name="btn_desc"  value="{{initial_tasks.sku}}">Adicionar</button></a></td>
+                    <td ><a href="{% url 'anuncio' initial_tasks.sku %}"><button type="button" class="btn-info rounded" >Add </button></a>({{initial_tasks.number_images}}/3)</td>
+    
+                    {% if initial_tasks.user == request.user %}
+                    <td><button type="button" class="btn-danger rounded" onclick="pegarValor()" value={{initial_tasks.id}} id="del_descricao" data-bs-toggle="modal" data-bs-target="#del_descri_modal">X</button></td>
+                    {% else %}
+                    <td></td>
+                    {% endif %}
+                </tr>
+                {% endfor %} 
+            </tbody>
+        </table>
+    </div>
+    
+    </div>
+
+<div class="row m-2">
+
+    <h1 class="bg-primary w-100 rounded text-white p-2">Anúncios: Descrição Iniciada!</h1>
+  
+    <div class="app-table mb-2 w-100 p-4 bg-white">
+    <table id="table_task"  class="display table table-stripped table-hover" style="width:100%">
+        <thead>
+           
+            <tr class="bg-white">
+                <th>SKU</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Usuário</th>
+                <th>Imagens</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+            <tr  >
+                <td class="col-2"><a href="{% url 'anuncio' task.sku %}">{{task.sku}}</a></td>
+                <td class="col-4">{{task.name}}</td>
+                <td class="col-2">Em Andamento</td>
+                <td class="col-2">{{task.user.first_name}}</td>
+
+                <td class="col-2">{% if  task.number_images < 3 %}
+                    <a href="{% url 'anuncio' task.sku %}"><button type="button" class="btn-info rounded" >Add </button></a> 
+                    {% endif %}
+                    ({{task.number_images}}/3)</td>
+
+                {% if task.user == request.user  or request.user.username == 'CAROLINA' %}
+                <td><button type="button" class="btn-danger rounded" onclick="pegarValor()" value={{task.id}} id="del_descricao" data-bs-toggle="modal" data-bs-target="#del_descri_modal">X</button></td>
+                
+                {% else %}
+                <td></td>
+                {% endif %}
+
+            </tr>
+            {% endfor %} 
+        </tbody>
+    </table>
+    </div>
+
+
+</div>
+
+
+<div class="row m-2 mt-5 mb-5  border">
+
+        {% csrf_token %}
+    <h1 class="bg-warning w-100 rounded p-2">Anúncios: Adicione as Imagens!</h1>
+    <div class="app-table mb-2 w-100 p-4 bg-white">
+    <table id="table_task_img" class="display table table-stripped table-hover" style="width:100%">
+        <thead>
+            <tr  class="bg-white">
+                <th>SKU</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Usuário</th>
+                <th>Imagens</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for descri_task in descri_tasks %}
+            <tr class="">
+                <td class="col-2"><a href="{% url 'anuncio' descri_task.sku %}">{{descri_task.sku}}</a></td>
+                <td class="col-4">{{descri_task.name}}</td>
+                <td class="col-2">Finalizada</td>
+                <td class="col-2" >{{descri_task.user.first_name}}</td>
+                <td class="col-2" ><a href="{% url 'anuncio' descri_task.sku %}"><button type="button" class="btn-info rounded" >Add </button></a> ({{descri_task.number_images}}/3)</td>
+
+                {% if descri_task.user == request.user  or request.user.username == 'CAROLINA' %}
+                
+                <td><button type="button" class="btn-danger rounded" onclick="pegarValor()" value={{descri_task.id}} id="del_descricao" data-bs-toggle="modal" data-bs-target="#del_descri_modal">X</button></td>
+
+                
+                {% else %}
+                <td></td>
+                {% endif %}
+
+            </tr>
+            {% endfor %} 
+        </tbody>
+    </table>
+    </div>
+
+</div>
+
+
+<div class="row m-2 mt-5 p-1 border " >
+    <h1 class="bg-info w-100 rounded text-white p-2">Anúncios: Adicione a Descrição!</h1>
+    <div class="app-table mb-2 w-100 p-4 bg-white">
+    <table id="table_task_desc" class="display table table-stripped w-100 table-hover" style="width:100%">
+        <thead>
+            <tr  class="bg-white">
+                <th>SKU</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Imagens</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for image_task in image_tasks %}
+            <tr class="">
+                <td class="col-2"><a href="{% url 'anuncio' image_task.sku %}">{{image_task.sku}}</a></td>
+                <td class="col-4">{{image_task.name}}</td>
+                <td class="col-4"><a href="{% url 'anuncio' image_task.sku %}"><button class="btn-danger rounded" type="button" name="btn_desc"  value="{{image_task.sku}}">Adicionar</button></a></td>
+                <td class="col-2">({{image_task.number_images}}/3)</td>
+
+                {% if image_task.user == request.user %}
+                <td><button type="button" class="btn-danger rounded" onclick="pegarValor()" value={{image_task.id}} id="del_descricao" data-bs-toggle="modal" data-bs-target="#del_descri_modal">X</button></td>
+                {% else %}
+                <td></td>
+                {% endif %}
+            </tr>
+            {% endfor %} 
+        </tbody>
+    </table>
+    </div>
+
+</div>
+
+
+
+
+{% block js %}
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+{% comment %} <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+
+<!-- Page level plugins -->
+<script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+
+<!-- Page level custom scripts -->
+<script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
+<script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>  {% endcomment %}
+<script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'js/datatable_tasks.js' %}"></script>
+<script src="{% static 'js/datatable_task.js' %}"></script>
+<script src="{% static 'js/datatable_task_img.js' %}"></script>
+<script src="{% static 'js/datatable_task_desc.js' %}"></script>
+
+
+  
+
+<script>
+
+    function pegarValor(){
+        let i = document.getElementById('del_descricao').value;
+        console.log(i)
+        document.getElementById('deletar_descr').value = i;
+}
+
+
+</script>
+
+
+
+
+
+
+{% endblock js %}
+
+
+    {% block Modal %}
+
+  
+  <!-- Modal Delete Descricao -->
+
+  <div class="modal fade" id="del_descri_modal" tabindex="-1" aria-labelledby="del_descri_modallLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="del_descri_modallLabel">Confirmação:</h5>
+          <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+        </div>
+        <div class="modal-body">
+            Tem certeza que deseja deletar a descrição?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="submit" id="deletar_descr" class="btn btn-danger" value="" name="btn_cancel"> Deletar </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+</form>
+
+
+    {% endblock %}
+   
+{% endblock content %}
+
+

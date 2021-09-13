@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<main role="main"  class=" col-md-5 col-sm-4 m-sm-auto m-xl-auto m-auto col-lg-7 col-xl-9  justify-content-left pt-5"  >]
+   
+    <div class="container bg-white mt-4   shadow p-3 ">
+        <div class=" row bg-info  p-2 mb-3  fs-4 fw-bold border-bottom rounded-0" >
+            <div class="col-11 d-flex justify-content-center">
+            <span>Fazer Requisição</span> 
+            </div>  
+            <div class="col-1  d-flex justify-content-end">
+                <a href="{% url 'my_purchase_request' %}">
+                    <img  id="" src="{% static 'img/close-button.png' %}" srcset="{% static 'img/close-button.png' %} 1x, {% static 'img/close-button@2x.png' %} 2x">
+                </a>
+            </div>   
+        </div>
+        <form method="POST" action="#" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="p-3 bg-white border rounded">
+                <div class=" border mb-2 p-3">   
+                <div class="row mb-2">
+                    <div class="col mb-2 "> <span class="bg-primary p-2 rounded mb-2 text-white fw-bold">Gestor:</span></div>
+                    <div class="col mb-2"><span class="bg-primary p-2 rounded mb-2 text-white fw-bold">Setor:</span></div>
+                </div>
+                <div class="row ">
+                    <div class="col">
+                        <select name="manager"  class="select-control   border rounded  w-50" required>
+                            <option name="manager" class="rounded " value="">
+                                {% for manager in managers %}
+                                <option  class="rounded" value="{{manager.username}}">{{manager.username}}</option>
+                                {% endfor  %}
+                            </option>
+                        </select>
+                    </div>    
+                    <div class="col">
+                        <input type="text" class=" border rounded w-50" name="sector" />
+                    </div>     
+                </div>  
+            </div>
+
+
+
+
+
+            <div class=" border mb-2 p-3">   
+                <div class="row mb-2">
+                    <div class="col-2 mb-2" ><span class="bg-primary p-2 rounded mb-2 text-white fw-bold">Quantidade:</span></div>
+                    <div class="col-4 mb-2"><span class="bg-primary p-2 rounded mb-2 text-white fw-bold">unidade:</span></div>
+                    <div class="col-6 mb-2"><span class="bg-primary p-2 rounded mb-2 text-white fw-bold">Produto:</span></div>
+                </div>
+
+                <div id="list-products">
+                    <div class="row mb-2 product" id="prod${id}">
+                        <div class="col-2"><input type="number" class="border rounded" name="amount0" required></div>
+                        <div class="col-2"> <select name="unit0"  class="select-control   border rounded  w-50" required>
+                            <option name="unit0" class="rounded " value="">                           
+                                <option  class="rounded" value="UNIDADE">Unidade </option>
+                                <option  class="rounded" value="CAIXA">Caixa </option>
+                                <option  class="rounded" value="JOGO">Jogo </option>
+                            </option>
+                        </select></div>
+                        <div class="col-4"><input type="text" class="border rounded w-100 p-2" name="product0" required ></div>
+                        <div class="col-3"><input type="file" name="image0" class="form-control"> </div>
+                        <div class="col-1"><button type="button" class="border rounded w-25" name="add" onclick="addLista()">+</button></div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+           
+            <div class=" border mb-2 p-3">  
+                <div class="row mb-2">
+                    <div class="col mb-2 ">
+                        <span class="bg-primary p-2 rounded mb-2 text-white fw-bold">Justificativa para a compra:</span>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                 <textarea type="text" name="justify" rows="3"  class="border w-100 rounded"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class=" border mb-2  p-3"> 
+                <div class="row mb-2">
+                    <div class="col-6 mb-3 ">
+                        <span class="bg-primary p-2 rounded mb-2 text-white fw-bold">Prazo de entrega esperado:</span>
+                    </div>     
+                    <div class="col-6 mb-3 ">
+                        <span class="bg-primary p-2 rounded mb-2 text-white fw-bold">previsão de consumo:</span>
+                    </div>                  
+                </div>
+                <div class="row ">
+                    <div class="col-6"> <input type="date" name="deadline" class="rounded border w-100 pl-2" required></div>
+                    <div class="col-6"> <input type="text" name="forecast" class="rounded border w-100" required></div>
+                </div>   
+            </div>
+                <div class="row d-flex justify-content-end pr-3">
+                    <input id="length" type="hidden" name="length">
+                    <button type="submit" onclick="getLength()" class=" btn   btn-primary w-25 fs-5 text-white fw-bold p-2 rounded" name="req_save">Salvar</button>
+              
+                </div> 
+
+            </div>
+        </form>
+    </div>
+    
+</main>
+
+<script>
+    function addLista() {
+    let id = document.querySelectorAll('.product').length
+    $('#list-products').append(`
+    <div class="row mb-2 product" id="prod${id}">
+    <div class="col-2"><input type="number" class="border rounded" name="amount${id}" ></div>
+    <div class="col-2"> <select name="unit${id}"  class="select-control   border rounded  w-50" required>
+                        <option name="unit${id}" class="rounded " value="">                           
+                            <option  class="rounded" value="UNIDADE">UNIDADE </option>
+                            <option  class="rounded" value="CAIXA">CAIXA </option>
+                            <option  class="rounded" value="JOGO">JOGO </option>
+                        </option>
+                    </select>
+    </div>      
+    <div class="col-4"><input type="text" class="border rounded w-100 p-2" name="product${id}" required ></div>
+    <div class="col-3"><input type="file" name="image${id}" class="border rounded w-100 form-control"> </div>
+    <div class="col-1"><button type="button" class="border rounded p-1 w-25" onclick='removeLista(${id})' > -</button></div>
+
+    </div>
+    `)
+}
+    function getLength() {
+        $('#length').val(document.querySelectorAll('.product').length)
+    }
+    function removeLista(id)
+ {
+    $(`#prod${id}`).remove()
+}
+
+</script>
+{% endblock content %}
+

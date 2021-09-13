@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+
+{% block content %}
+
+<svg class="Linha_1" viewBox="0 0 1482 1">
+  <path id="Linha_1" d="M 0 0 L 1482 0">
+  </path>
+</svg>
+
+<div class="ramais">
+      <main style="left:100px;" role="main"  class="col-md-6 m-sm-auto col-lg-9 "  >
+          <div style="top:200px;left: 300px;" class="container">
+
+                <div id="Atendimento_ba_">
+                    <span>Ramais/Tel/E-mails</span>
+                </div>
+                
+
+           
+                
+            <div class="container ">
+              <form method="POST" action="{% url 'perfis' %}">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col-lg-10">
+                        <div class="table-responsive mb-4">
+                            <table class="table table-centered datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
+                                    <thead>
+                                        <tr class="bg-transparent">
+                                              
+                                              <th>Nome</th>
+                                              <th>Departamento</th>
+                                              <th>Ramal</th>
+                                              <th>Cel.Corporativo</th>
+                                              <th>E-mail</th>
+                                              <th >Skype</th>
+                                              <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      {% for users in users  %}
+                                        <tr>
+                                            
+                                            
+                                            <td><a href="javascript: void(0);" class="text-dark fw-bold">{{users.codigo.nome|upper|truncatechars:22}}</a> </td>
+                                            <td>
+                                              {% firstof users.trabalho.departamento ""|upper %}
+                                            </td>
+                                            <td>{% firstof users.ramal ""|upper  %}</td>
+                                            
+                                            <td>
+                                              {% firstof users.tel  ""|upper %}
+                                            </td>
+                                            <td>
+                                                <div> {% firstof users.emailCorporativo ""|upper ''|upper%}</div>
+                                            </td>
+                                            <td>
+                                                <div>{% firstof users.skype  ""|upper ''|upper%}</div>
+                                            </td>
+                                            
+                                            <td>
+                                              <button type="submit" value="{{users.id}}" class="bg-transparent"  name="perfil">	
+                                                <a href="javascript:void(0);" class="px-3 text-primary"><i class="uil uil-eye font-size-18"></i></a>
+                                              </button>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                      
+                                      
+                                        
+                                    </tbody>
+                            </table>
+                        </div> 
+                  </div>
+              </div>
+
+              </form>
+              </div>
+          </div>
+    </main>
+</div>  
+
+{% endblock content %}
+
+{% block javascript %}
+<!-- JAVASCRIPT -->
+<script src="{% static 'libs/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'libs/metismenu/metisMenu.min.js' %}"></script>
+<script src="{% static 'libs/simplebar/simplebar.min.js' %}"></script>
+<script src="{% static 'libs/node-waves/waves.min.js' %}"></script>
+<script src="{% static 'libs/waypoints/lib/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'libs/jquery.counterup/jquery.counterup.min.js' %}"></script>
+
+<!-- Required datatable js -->
+<script src="{% static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<!-- Buttons examples -->
+<script src="{% static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'libs/jszip/jszip.min.js' %}"></script>
+<script src="{% static 'libs/pdfmake/build/pdfmake.min.js' %}"></script>
+<script src="{% static 'libs/pdfmake/build/vfs_fonts.js' %}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+
+<!-- Responsive examples -->
+<script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+
+<!-- init js -->
+<script src="{% static 'js/ecommerce-datatables.init.js' %}"></script>
+
+<script src="{% static 'js/app.js' %}"></script>
+{% endblock %}
