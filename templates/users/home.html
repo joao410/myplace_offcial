@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+      
+<main style="left: 100px;" role="main"  class="col-md-6 m-sm-auto col-lg-8  d-flex justify-content-center"  >
+     
+    <div style="left: 300px;" class="container mt-5 ">
+
+        <div class="col-9 mt-4" id="mepeba">
+          <div class="row ">
+            <div class="col-3"><img id="add-button" src="{{imageP.image.url}}" srcset="{{imageP.image.url}} 1x, {{imageP.img.url}} 2x"></div>
+            <div class="col mt-4"><span>Meu Perfil</span></div>
+            </div>  
+        </div>
+      
+        <svg class="mt-2" viewBox="0 0 1500 1">
+            <path id="Linha_1" d="M 0 0 L 1500 0">
+            </path>
+        </svg>
+
+
+        <div class="m-2">
+          <div class="row">
+          <div class="col-lg-10 col-md-8   ">
+                  <div class="table-responsive">
+                      <table class="table table-primary  table-bordered table-striped  mb-0 ">
+                          <tbody>
+                           
+                              <tr >
+                                <td class="col-2">Nome</td>
+                                <td class="col-5">{% firstof usuarioC.codigo.nome|upper ''|upper|truncatechars:50 %}</td>
+                              </tr> 
+                             
+                              <tr >
+                                <td class="col-2">Cargo</td>
+                                <td class="col-5">{% firstof usuarioC.trabalho.cargo ""|upper|truncatechars:22 %}</td>
+                              </tr> 
+                             
+                              <tr >
+                                <td class="col-2">Empresa</td>
+                                <td class="col-5">{% firstof usuarioC.trabalho.empresa ""|upper|truncatechars:22 %}</td>
+                              </tr> 
+                             
+                              <tr >
+                                <td class="col-2">Departamento</td>
+                                <td class="col-5">{% firstof usuarioC.trabalho.departamento ""|upper|truncatechars:22 %}</td>
+                              </tr> 
+                              
+                              
+                              <tr>
+                                <td class="col-2">E-mail corporativo 01</td>
+                                <td class="col-4">{% firstof usuarioC.email ''|upper|truncatechars:22 %}</td>
+                              </tr> 
+                              <tr>
+                                <td class="col-2">E-mail corporativo 02</td>
+                                <td class="col-4">{% firstof usuarioC.emailCorporativo ''|upper|truncatechars:22 %}</td>
+                              </tr> 
+                              <tr>
+                                <td class="col-2">Skype</td>
+                                <td class="col-4">{% firstof usuarioC.skype ''|upper|truncatechars:22 %}</td>
+                              </tr> 
+                              <tr>
+                                <td class="col-2">Celular Corporativo</td>
+                                <td class="col-4">{% firstof usuarioC.telefone ''|upper|truncatechars:22 %}</td>
+                              </tr> 
+                              <tr>
+                                <td class="col-2">Telefone</td>
+                                <td class="col-4">{% firstof usuarioC.tel ''|upper|truncatechars:22 %}</td>
+                              </tr> 
+                              <tr>
+                                <td class="col-2">Ramal</td>
+                                <td class="col-4">{% firstof usuarioC.ramal  ''|upper|truncatechars:22 %}</td>
+                              </tr> 
+                          </tbody>
+                      </table>
+                
+        
+      </div>
+        </div>
+
+        
+          </div>
+        
+
+
+
+
+    
+      </div>
+
+  </div>
+
+</main>
+{% endblock content %}
+
+{% block javascript %}
+<!-- JAVASCRIPT -->
+<script src="{% static 'libs/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'libs/metismenu/metisMenu.min.js' %}"></script>
+<script src="{% static 'libs/simplebar/simplebar.min.js' %}"></script>
+<script src="{% static 'libs/node-waves/waves.min.js' %}"></script>
+<script src="{% static 'libs/waypoints/lib/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'libs/jquery.counterup/jquery.counterup.min.js' %}"></script>
+
+<!-- jquery step -->
+<script src="{% static 'libs/jquery-steps/build/jquery.steps.min.js' %}"></script>
+
+<!-- form wizard init -->
+<script src="{% static 'js/form-wizard.init.js' %}"></script>
+
+<script src="{% static 'js/app.js' %}"></script>
+
+
+
+
+
+{% endblock %}    

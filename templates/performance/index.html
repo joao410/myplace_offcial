@@ -1,0 +1,549 @@
+{% extends 'basenew.html' %}
+{% load static %}
+
+
+
+{% block  content %}
+
+
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="row mb-4">
+                        <div class="row d-flex justify-content-center" style="width: 100%;">
+                            <h1 class=" mb-0 text-gray-800">Dashboard</h1>
+                        </div>
+                        
+                        <div class="row" style="width: 100%;" >
+                            <div class="col-6">
+                                <form action="" method="post">
+                                   
+                                </form>                               
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+
+
+                               
+
+                                {% if user.groups.all.0.name == 'Super' %}
+                                <form method="post" enctype="multipart/form-data" >
+
+
+                                    {% csrf_token %}
+                                
+
+                                {{form.as_p}}
+        
+                                
+                                <button href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"  type="submit" name="btn_import">
+                                    <i class="fas fa-download fa-sm text-white-50"></i> Importar .xlsx
+                                </button>
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#addProdModal" class="btn-sm btn-warning">Adicionar</button>
+                                
+        
+                                <button type="button" class="btn-secondary" data-bs-toggle="modal" data-bs-target="#repetidosModal">Repetidos</button>
+                                </form>
+                                {% endif %}
+
+                                <form action="" method="post">
+                                    {% csrf_token %}
+                               <!-- <button type="submit" class="btn btn-outline-danger" name="update_db">Atualizar</button>-->
+                                </form>
+                         
+
+                            
+                                
+
+                            </div>
+                            
+                        </div>                          
+                        
+                    </div>
+
+
+                    <!-- Tabela Row -->
+                    
+                   <div class="row mb-4">
+                     <div class="col-xl-12 col-lg-7">
+                       <div class="card shadow p-2">
+                        <div class="bg-light text-center">
+                            <h1 class="mt-2 bg-info rounded p-2" style="color: black;"><b></b>Tarefas</h1>
+                        </div>
+                        
+                        <form method="POST">
+                        {% csrf_token %}
+                        <div class=" bg bg-light">
+                        <div class="row mr-3 ml-3 p-2  rounded">
+                          <div class="app-table mb-2 w-100 p-4 bg-white">
+                              <table id="table_tasks" class="table table-sm table table-stripped table-hover mb-2" style="width:100%">
+                                  <thead class="thead-dark">
+                                      <tr>
+                                          <th>SKU</th>
+                                          <th>Nome</th>
+                                          <th>Descrição</th>
+                                          <th>Fotos</th>
+                                          <th>Criado</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                   
+                                    {% for announcement in announcements %}
+                                    
+                                        
+                                        <tr>
+                                            <td><a href="{% url 'anuncio' announcement.sku %}">{{announcement.sku}}</a></td>
+                                            <td>{{announcement.name}}</td>
+                                            {% if announcement.editable == False and announcement.description_active                                                == False %}
+                                            <td>Andamento por: {{announcement.user.first_name}}</td>
+                                            {% elif announcement.description_active == True %}
+                                            <td>Concluída por: {{announcement.user.first_name}}</td>
+                                            {% else %}
+                                            <td><button class="btn-danger" type="submit" name="btn_desc"  value="{{announcement.sku}}">Adicionar</button></td>
+                                            {% endif %}
+                                            <td>
+                                            {% if  announcement.number_images < 3 %}
+                                            <a href="{% url 'anuncio' announcement.sku %}"><button type="button" class="btn-info rounded" >Add </button></a>
+                                            {% endif %}
+                                            ({{announcement.number_images}}/3)</td>
+                                            <td>{{announcement.create}}</td>
+                                        </tr>
+                                    
+                                    {% endfor %}
+
+                                  </tbody>
+                                </table>
+                              </div>
+
+
+                            </div>
+
+
+                            </div>
+
+                        </form>
+                                    
+
+                       
+
+                       </div>
+                     </div>
+                    
+
+                   </div> 
+                    
+
+                    <!-- Buttons Row -->
+                    <div class="row">
+
+                        <!-- Completos (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-2">
+                                               Anúncios <b>Completos</b> de {% now "F" %}</div>
+                                            <div class="h5 ml-5 mt-1 font-weight-bold text-gray-800">{{size_complete_month}}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Description (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Descrições {% now "F" %}</div>
+                                            <div class="h5 mb-0 ml-4 font-weight-bold text-gray-800">{{performance.0.conclude|add:performance.4.conclude}}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fotos (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Fotos {% now "F" %}
+                                            </div>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <div class="h5 ml-4 mb-0 mr-3 font-weight-bold text-gray-800">{{performance.1.conclude|add:performance.2.conclude|add:performance.3.conclude}}</div>
+                                                </div>
+                                                <div class="col">
+                                                    {% comment %} <div class="progress progress-sm mr-2">
+                                                        <div class="progress-bar bg-info" role="progressbar"
+                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                    </div> {% endcomment %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pending Requests Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                Anúncios Pendentes</div>
+                                            <div class="h5 ml-4 mb-0 font-weight-bold text-gray-800">{{announcements|length}}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    
+                    <!-- Graph Bar Row -->
+                    <div class="row">
+
+                        <!-- Content Column -->
+                        <div class="col-lg-12 mb-4">
+
+                            <!-- Project Card Example -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Performance: {% now "F" %}  </h6>
+                                </div>
+                                <div class="card-body">
+                                    
+                                    {% for performance in performance %} 
+                                    
+                                    <h4 class="small font-weight-bold">{{performance.user.first_name}}{% if performance.user != "CAROLINA" or performance.user != "MADSON.MATOS"  %} ({% widthratio performance.porcentagem 3 1 %}%)<span
+                                            class="float-right"> {% widthratio  performance.conclude 3 1 %} {% else %}({{ performance.porcentagem }}%)<span
+                                            class="float-right"> {{ performance.conclude }} {% endif %}de {{performance.meta.meta}}/mês</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: {% widthratio performance.porcentagem 3 1 %}%"
+                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    
+                                    {% endfor %}
+
+
+                                   <!-- <h4 class="small font-weight-bold">{{performance.1.user.first_name}} ({{performance.1.porcentagem}}%)<span
+                                            class="float-right">{{performance.1.conclude}} de {{performance.1.meta.meta}}/mês</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: {{performance.1.porcentagem}}%"
+                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <h4 class="small font-weight-bold">{{performance.2.user.first_name}} ({% widthratio performance.2.porcentagem 3 1 %}%)<span
+                                            class="float-right">{% widthratio performance.2.conclude 3 1 %} de {{performance.2.meta.meta}}/mês</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar" role="progressbar" style="width: {% widthratio performance.2.porcentagem 3 1 %}%"
+                                            aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <h4 class="small font-weight-bold">{{performance.3.user.first_name}} ({% widthratio performance.3.porcentagem 3 1 %}%)<span
+                                            class="float-right">{% widthratio performance.3.conclude 3 1 %} de {{performance.3.meta.meta}}/mês</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width:{% widthratio performance.3.porcentagem 3 1 %}%"
+                                            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>-->
+                                    
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                         {% comment %} <!-- Pie Chart -->
+                         <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Minha Performance</h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Dropdown Header:</div>
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-pie pt-4 pb-2">
+                                        <canvas id="myPieChart"></canvas>
+                                    </div>
+                                    <div class="mt-4 text-center small">
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-primary"></i> Concluídos
+                                        </span>
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-success"></i> Faltantes
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div> {% endcomment %}
+
+
+                    </div>
+
+{% comment %} 
+                                        
+                    <!-- Chart Row -->
+                    <div class="row">
+
+                        <!-- Area Chart -->
+                        <div class="col-xl-8 col-lg-7">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Dropdown Header:</div>
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-area">
+                                        <canvas id="myAreaChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pie Chart -->
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Minha Performance</h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Dropdown Header:</div>
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-pie pt-4 pb-2">
+                                        <canvas id="myPieChart"></canvas>
+                                    </div>
+                                    <div class="mt-4 text-center small">
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-primary"></i> Concluídos
+                                        </span>
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-success"></i> Faltantes
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> {% endcomment %}
+
+
+
+                </div>
+                <!-- /.container-fluid -->
+
+
+         
+  {% block js %}
+    <!-- Bootstrap core JavaScript-->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    {% comment %} <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
+    <script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>  {% endcomment %}
+    <script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+
+<script >
+$(document).ready(function() {
+    $('#table_tasks').DataTable({
+    "pageLength" : 5,
+    "lengthMenu": [[5, 10, 20, 50, -1], [5, 10, 20, 50, 'Todas']],
+    "order": [[ 0, "desc" ]],
+    "language": {
+    "sSearch": "Buscar:",
+    "sInfo": "Tarefas de _START_ a _END_ (Total _MAX_)",
+    "sInfoEmpty": "0 Tarefas",
+    "sInfoFiltered": "(filtrado de um total de _MAX_ Tarefas)",
+    "sLengthMenu": "Mostrar _MENU_ tarefas",
+    "sZeroRecords": "Nenhuma tarefa encontrado",
+    "sEmptyTable": "Zero Tarefas",
+    "paginate": {
+    "previous": "Anterior",
+    "next": "Próxima"
+    }
+}
+} );
+} );
+
+</script>
+
+
+<script type="text/javascript">
+    var teste_erro = "{{test_erro}}";
+    if (teste_erro == "True"){
+    $(window).on('load',function(){
+        $('#repetidosModal').modal('show');
+    });}
+
+</script>
+{% endblock js %}
+
+
+
+
+{% block Modal %}
+
+
+
+
+
+  
+  <!-- Modal Add Anuncio-->
+  <div class="modal fade" id="addProdModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Adicionar Produto</h5>
+          <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+        </div>
+        <div class="modal-body">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="form-group col-xs-4 col-md-6">
+                    <label for="sku_add" class="control-label" >SKU:</label>
+                    <input type="number" value='' class="form-control" name="sku_add" id="sku_add" placeholder="" required>
+                </div>
+                <div class="form-group ml-2">
+                    <label for="nome_add" class="control-label">Nome:</label>
+                    <input type="text" value='' class="form-control" id="nome_add" name="nome_add" placeholder="" required>
+                </div>
+            
+            
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="submit" name="add_produto" class="btn btn-primary">Adicionar</button>
+        
+        
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>
+
+
+  
+  <!-- Modal Produto ja adicionado-->
+  <div class="modal fade" id="repetidosModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="repetidosModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header bg-warning">
+          <h5 class="modal-title" id="repetidosModalLabel">Produtos cadastrados anteriormente.</h5>
+          <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+        </div>
+        <!-- Scrollable modal -->
+        <div class="modal-body">
+               <div class="row m-2 justify-content-center">
+                   <div class="col-12">
+                  
+                    <table class="table table-sm table table-stripped table-hover" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>SKU</th>
+                                <th>Nome</th>
+                                <th>Adicionado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for erro in erro_list %}
+                            <tr>
+                                <td><a href="{% url 'anuncio' erro.sku %}" target="_blank">{{erro.sku}}</a></td>
+                                <td>{{erro.name}}</td>
+                                <td>{{erro.create}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                   
+                   </div>
+               </div>
+            
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+{% endblock content %}

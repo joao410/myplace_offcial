@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load my_tags %}
+{% block content %}
+<main role="main"  class="col-md-6 col-sm-4 m-sm-auto m-xl-auto m-auto  m-lg-auto col-lg-8    justify-content-left pt-5"  >
+    <div class="container bg-light mt-4  shadow p-3 ">
+        <div class="row p-3 mb-2 fs-5 text-white rounded fw-bold bg-info">
+             Requisições de compras aguardando aprovação financeira
+        </div>
+        <table id="datatable" class="table bg-light" >
+            <thead >
+                <th>
+                ID da requisição
+            </th>
+            <th>
+               Requisitante
+            </th>
+            <th>
+                Produto
+            </th>
+            <th>
+               Data da requisição
+            </th>
+            <th>
+              Status
+            </th>
+
+            </thead>  
+            <tbody> 
+                {% for requisition in  requisitions %}
+           
+                    <tr class="border bg-white">
+                        <td>
+                        <a href="{% url 'financial_appr_details' requisition.purchase_requisition_id%}">
+                             {{requisition.purchase_requisition_id}}
+                       
+                        </td>
+                    <td>
+                        <a href="{% url 'financial_appr_details' requisition.purchase_requisition_id%}">
+                        {{requisition.requester}}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{% url 'financial_appr_details' requisition.purchase_requisition_id%}">
+                    {{requisition.purchase_requisition_id}} -
+                    {% reqprod  requisition.purchase_requisition_id  as req_prods %}                    
+                    {{req_prods.0.requisition_product}}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{% url 'financial_appr_details' requisition.purchase_requisition_id%}">
+                            {{requisition.create}}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{% url 'financial_appr_details' requisition.purchase_requisition_id%}">
+                            {{requisition.status}}
+                        </a>
+                    </td>
+                    </tr>
+                </a>
+                {% endfor %}  
+            </tbody>
+        </table>
+        <div class="row p-5 mt-2" >
+            <div class="row mb-4 bg-info p-2 text-white rounded"  >
+                Requisições já cotadas
+            </div>
+            <table id="datatable-buttons" class="table " style="border-collapse: collapse; border-spacing: 0; ">
+                <thead>
+                    <th>
+                        Requisição ID
+                    </th>
+                    <th>
+                       Requisitante 
+                    </th>
+                    <th>
+                       Gestor 
+                    </th>
+                    <th>
+                       Produto 
+                    </th>
+                    <th>
+                       Data da requisição 
+                    </th>
+                    <th>
+                       status
+                    </th>
+
+                </thead>   
+                <tbody>
+                    {% for requisition in all_requisitions %}
+                    <tr>
+                        <td> 
+                            <a href="{% url 'requisition_cotation' requisition.purchase_requisition_id%}">
+                                {{requisition.purchase_requisition_id}}
+                            </a>
+                        </td>
+                        <td>
+                            {{requisition.requester}}
+                        </td>
+                        <td>
+                            {{requisition.manager}}
+                        </td>
+                        <td>
+                            {% reqprod  requisition.purchase_requisition_id  as req_prods %}                    
+                            {{req_prods.0.requisition_product}}
+                        </td>
+                        <td>
+                            {{requisition.create}}
+                        </td>
+                        <td>
+                            {{requisition.status}}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div> 
+
+
+
+    </div>
+</main>
+
+
+        <!-- JAVASCRIPT -->
+        <script src="{% static 'libs/jquery/jquery.min.js' %}"></script>
+        <script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'libs/metismenu/metisMenu.min.js' %}"></script>
+        <script src="{% static 'libs/simplebar/simplebar.min.js' %}"></script>
+        <script src="{% static 'libs/node-waves/waves.min.js' %}"></script>
+        <script src="{% static 'libs/waypoints/lib/jquery.waypoints.min.js' %}"></script>
+        <script src="{% static 'libs/jquery.counterup/jquery.counterup.min.js' %}"></script>
+
+        <!-- Required datatable js -->
+        <script src="{% static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+        <script src="{% static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+        <!-- Buttons examples -->
+        <script src="{% static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+        <script src="{% static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js' %}"></script>
+        <script src="{% static 'libs/jszip/jszip.min.js' %}"></script>
+        <script src="{% static 'libs/pdfmake/build/pdfmake.min.js' %}"></script>
+        <script src="{% static 'libs/pdfmake/build/vfs_fonts.js' %}"></script>
+        <script src="{% static 'libs/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+        <script src="{% static 'libs/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+        <script src="{% static 'libs/datatables.net-buttons/js/buttons.colVis.min.js' %}"></script>
+        
+        <!-- Responsive examples -->
+        <script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+        <script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+
+        <!-- Datatable init js -->
+        <script src="{% static 'js/datatables.init.js' %}"></script>
+        <script src="{% static 'js/datatable_req.js' %}"></script>
+
+        <script src="{% static 'js/app.js' %}"></script>
+
+{% endblock content %}

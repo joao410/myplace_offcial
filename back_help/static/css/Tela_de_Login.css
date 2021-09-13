@@ -1,0 +1,241 @@
+.mediaViewInfo {
+	--web-view-name: Web 1920 – 1;
+	--web-view-id: Web_1920__1;
+	--web-scale-on-resize: true;
+	--web-center-horizontally: true;
+	--web-center-vertically: true;
+	--web-enable-deep-linking: true;
+}
+:root {
+	--web-view-ids: Web_1920__1;
+}
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	border: none;
+}
+#Web_1920__1 {
+	position: absolute;
+	width: 1080px;
+	height: 1920px;
+	background-color: rgba(255,255,255,1);
+	overflow: hidden;
+	--web-view-name: Web 1920 – 1;
+	--web-view-id: Web_1920__1;
+	--web-scale-on-resize: true;
+	--web-center-horizontally: true;
+	--web-center-vertically: true;
+	--web-enable-deep-linking: true;
+}
+#Grupo_1 {
+	position: absolute;
+	width: 1080px;
+	height: 1035px;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+}
+#bmw-2017 {
+	opacity: 0.38;
+	position: absolute;
+	width: 1080px;
+	height: 1035px;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+}
+#Retngulo_96 {
+	fill: rgba(255,255,255,1);
+	stroke: rgba(112,112,112,1);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.Retngulo_96 {
+	filter: drop-shadow(6px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 627px;
+	height: 521px;
+	left: 236px;
+	top: 275px;
+}
+#Retngulo_1 {
+	fill: rgba(0,76,162,1);
+}
+.Retngulo_1 {
+	position: absolute;
+	overflow: visible;
+	width: 609px;
+	height: 411px;
+	left: 236px;
+	top: 207px;
+}
+#Retngulo_3 {
+	fill: rgba(0,0,0,1);
+}
+.Retngulo_3 {
+	position: absolute;
+	overflow: visible;
+	width: 1080px;
+	height: 94px;
+	left: 0px;
+	top: 940px;
+}
+#Logo-cinza_claro {
+	position: absolute;
+	width: 280px;
+	height: 42px;
+	left: 278px;
+	top: 960px;
+	overflow: visible;
+}
+#Caminho_1 {
+	fill: rgba(0,0,0,0);
+	stroke: rgba(112,112,112,1);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.Caminho_1 {
+	overflow: visible;
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	left: 870.5px;
+	top: 127.5px;
+	transform: matrix(1,0,0,1,0,0);
+}
+#Logo-branca-sem-fundo-com-somb {
+	position: absolute;
+	width: 300px;
+	height: 84px;
+	left: 390px;
+	top: 244px;
+	overflow: visible;
+}
+#Logo-branca-sem-fundo-com-somb_o {
+	position: absolute;
+	width: 134px;
+	height: 38px;
+	left: 690px;
+	top: 868px;
+	overflow: visible;
+}
+#Retngulo_71 {
+	fill: rgba(255,255,255,1);
+	stroke: rgba(206,206,206,1);
+	stroke-width: 1px;
+	stroke-linejoin: round;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.Retngulo_71 {
+	filter: drop-shadow(6px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 488px;
+	height: 65px;
+	left: 305px;
+	top: 382px;
+}
+#Usurio {
+	left: 396px;
+	top: 349px;
+	position: absolute;
+	overflow: visible;
+	width: 75px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Segoe UI;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 22px;
+	color: rgba(255,255,255,1);
+}
+#Retngulo_95 {
+	fill: rgba(255,255,255,1);
+	stroke: rgba(206,206,206,1);
+	stroke-width: 1px;
+	stroke-linejoin: round;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.Retngulo_95 {
+	filter: drop-shadow(6px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 335px;
+	height: 62px;
+	left: 345px;
+	top: 496px;
+}
+#Senha {
+	left: 399px;
+	top: 463px;
+	position: absolute;
+	overflow: visible;
+	width: 60px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Segoe UI;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 22px;
+	color: rgba(255,255,255,1);
+}
+#Retngulo_94 {
+	fill: rgba(255,255,255,1);
+	stroke: rgba(206,206,206,1);
+	stroke-width: 1px;
+	stroke-linejoin: round;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+.Retngulo_94 {
+	filter: drop-shadow(6px 3px 6px rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 157px;
+	height: 58px;
+	left: 559px;
+	top: 498px;
+}
+#Entrar {
+	left: 64%;
+	top: 504px;
+	position: absolute;
+	overflow: visible;
+	width: 55px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Segoe UI;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 20px;
+	color: rgba(93,90,90,1);
+}
+#Arena_Logo {
+	position: absolute;
+	width: 197px;
+	height: 85px;
+	left: 273px;
+	top: 645px;
+	overflow: visible;
+}
+#genios-png {
+	position: absolute;
+	width: 285px;
+	height: 77px;
+	left: 540px;
+	top: 649px;
+	overflow: visible;
+}
