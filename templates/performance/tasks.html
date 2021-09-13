@@ -69,7 +69,7 @@
                     {% endif %}
                     ({{task.number_images}}/3)</td>
 
-                {% if task.user == request.user %}
+                {% if task.user == request.user  or request.user.username == 'CAROLINA' %}
                 <td><button type="button" class="btn-danger rounded" onclick="pegarValor()" value={{task.id}} id="del_descricao" data-bs-toggle="modal" data-bs-target="#del_descri_modal">X</button></td>
                 
                 {% else %}
@@ -111,7 +111,7 @@
                 <td class="col-2" >{{descri_task.user.first_name}}</td>
                 <td class="col-2" ><a href="{% url 'anuncio' descri_task.sku %}"><button type="button" class="btn-info rounded" >Add </button></a> ({{descri_task.number_images}}/3)</td>
 
-                {% if descri_task.user == request.user %}
+                {% if descri_task.user == request.user  or request.user.username == 'CAROLINA' %}
                 
                 <td><button type="button" class="btn-danger rounded" onclick="pegarValor()" value={{descri_task.id}} id="del_descricao" data-bs-toggle="modal" data-bs-target="#del_descri_modal">X</button></td>
 

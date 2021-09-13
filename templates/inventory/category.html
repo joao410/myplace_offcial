@@ -6,71 +6,83 @@
   <path id="Linha_1" d="M 0 0 L 1482 0">
   </path>
 </svg>
+
+
+
 <div class="" style="top:1;left: 300px;" id="Atendimento_ba">
   <span>Inventário</span>
 </div>
+
+
 <main style="left:100px;" role="main"  class="col-md-6 m-sm-auto col-lg-9 mb-5"  >
  
       <div style="top:150px;left:300px;"  class="container  mb-5">
-        <div class="dropdown mb-3">
-            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-             Cadastrar 
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addcategory">Categoria</a></li>
-              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addproduto">Produto</a></li>
-       
-            </ul>
-          </div>   
-                <div class="row   g-2  bg-white p-2">
-                    <div class="col-xl-12 col-lg-10 col-md-8 col-sm-6 col-xs-4 bg-light p-2">
-                          <div class="table-responsive mb-4">
-                              <table id="datatable-buttons" class="table table-centered datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
-                                      <thead>
-                                          <tr class="bg-transparent">
-                                                
-                                                <th>Codigo</th>
-                                                <th>Categoria</th>
-                                                <th>Quantidade</th>
-                                              
-                                          </tr>
-                                      </thead>
-                                      <tbody>
-                                      {%for category in category %}
-
-                                      <tr>
-                                        
-                                            <td class="col-2">
-                                                <a href="{% url 'product' category.category_code  %}">
-                                                <span class="fw-bold">{{category.category_code}}</span>
-                                            </a>
-                                            </td>
-                                       
-                                            <td class="col-2">
-                                                <span>{{category.name}}</span>
-                                            </td>
-                                            <td class="col-2">
-                                                <span>{{category.amount}}</span>
-                                            </td>
-                                      </tr>
-                                       
-                                    
-                                      {% endfor %}
-                                        
-                                        
+        <div class="p-4 shadow rounded">
+            <div class="row d-flex justify-content-center text-white   bg-primary p-2 mb-3 rounded">
+              CATEGORIAS
+            </div>  
+            <div class="dropdown mb-3">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Cadastrar 
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addcategory">Categoria</a></li>
+                  <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addproduto">Produto</a></li>
+          
+                </ul>
+            </div>   
+            <div class="row   g-2  bg-white p-2">
+                <div class="col-xl-12 col-lg-10 col-md-8 col-sm-6 col-xs-4 bg-light p-2">
+                      <div class="table-responsive mb-4">
+                          <table id="datatable-buttons" class="table table-centered datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
+                                  <thead>
+                                      <tr class="bg-transparent">
+                                            
+                                            <th>Codigo</th>
+                                            <th>Categoria</th>
+                                            <th>Quantidade</th>
                                           
-                                      </tbody>
-                              </table>
-                          </div> 
-                    </div>
-                </div>
-        
-       
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                  {%for category in category %}
 
-        </div>
+                                  <tr>
+                                    
+                                        <td class="col-2">
+                                            <a href="{% url 'product' category.category_code  %}">
+                                            <span class="fw-bold">{{category.category_code}}</span>
+                                        </a>
+                                        </td>
+                                  
+                                        <td class="col-2">
+                                            <span>{{category.name}}</span>
+                                        </td>
+                                        <td class="col-2">
+                                            <span>{{category.amount}}</span>
+                                        </td>
+                                  </tr>
+                                  
+                                
+                                  {% endfor %}
+                                    
+                                    
+                                      
+                                  </tbody>
+                          </table>
+                      </div> 
+                </div>
+            </div>
+        </div>    
+
+      </div>
 
 </main>
+
+
 {% block modal%}
+
+
 <!-- Modal cadastro categoria-->
 <div class="modal fade" id="addcategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -95,6 +107,9 @@
       </div>
     </div>
   </div>
+
+
+  
   <!-- Modal cadastro produto-->
   <div class="modal fade" id="addproduto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -132,7 +147,10 @@
   </div>
   
 {% endblock modal%}
+
+
 {% endblock content %}  
+
 
 {% block javascript %}
  <!-- JAVASCRIPT -->

@@ -1,14 +1,14 @@
 from datetime import date,datetime, timedelta
 from django.shortcuts import redirect, render
 from django.template import context
-from .models import Requisition_product, Purchase_requisition,Product_image
+from .models import Requisition_product, Purchase_requisition
 from users.models import   UsuarioCorporativo 
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import Group, User
 from decimal import Context, Decimal
 from helpdesk.forms import ImageForm, ImageForms
-from users.models import ImagePerfil
+
 import os
 # Create your views here.
 
@@ -82,19 +82,14 @@ def add_requisition(request):
         justify= request.POST["justify"]
         deadline = request.POST["deadline"]
         forecast = request.POST["forecast"]
-        Purchase_requisition.objects.create(purchase_requisition_id=codigo,requester=request.user,manager=manager,justification=justify,deadline=deadline,forecast=forecast)
+        req = Purchase_requisition.objects.create(purchase_requisition_id=codigo,requester=request.user,manager=manager,justification=justify,deadline=deadline,forecast=forecast)
         for id in range(length):
             amount = request.POST["amount" + str(id)]
             unit = request.POST["unit"+str(id)]
             product = request.POST["product"+str(id)]
-            req_prod =Requisition_product.objects.create(purchase_requisition_id = codigo,amount=amount,unit=unit,requisition_product=product)
+            req_prod =Requisition_product.objects.create(purchase_requisition_id = req,amount=amount,unit=unit,requisition_product=product)
             req_prod.save()
-            try:
-                img = request.FILES["image"+str(id)]
-            except:
-                img = None
-            prod_img  =Product_image.objects.create(requisition_product_id=req_prod.id,name_image=product,image=img)
-            prod_img.save()
+           
         return redirect("my_purchase_request")
 
     context={

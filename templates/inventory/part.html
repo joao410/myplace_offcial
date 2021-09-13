@@ -8,68 +8,79 @@
   <path id="Linha_1" d="M 0 0 L 1482 0">
   </path>
 </svg>
+
 <div class="" style="top:1;left: 300px;" id="Atendimento_ba">
   <span>Inventário</span>
 </div>
-<main style="left:100px;" role="main"  class="col-md-6 m-sm-auto col-lg-9 mb-5"  >
+
+<main style="left:100px;" role="main"  class="col-md-4 m-sm-auto col-sm-4 col-lg-7 mb-5"  >
  
-      <div style="top:250px;left:300px;"  class="container  mb-5">
-
-
-                <div class="row">
-                    <div class="col-lg-10">
-                          <div class="table-responsive mb-4">
-                              <table id="datatable-buttons" class="table table-centered datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
-                                      <thead>
-                                          <tr class="bg-transparent">
-                                                
-                                                <th>Codigo</th>
-                                                <th>Marca</th>
-                                                <th>Modelo</th>
-                                                <th>Detalhes</th>
-                                              
-                                          </tr>
-                                      </thead>
-                                      <tbody>
-                                      {%for part in part %}
-
-                                      <tr>
-                                        
-                                            <td class="col-2">
-                                             
-                                                <span class="fw-bold">{{part.part_code}}</span>
-                                              
-                                            </td>
-                                       
-                                            <td class="col-2">
-                                                <span>{{part.product_code.brand}}</span>
-                                            </td>
-                                            <td class="col-2">
-                                                <span>{{part.product_code.model}}</span>
-                                            </td>
-                                            <td class="col-2">
-                                                <span>{{part.details}}</span>
-                                            </td>
-                                      </tr>
-                                       
-                                    
-                                      {% endfor %}
-                                        
-                                        
-                                          
-                                      </tbody>
-                              </table>
-                          </div> 
-                    </div>
-                </div>
+    <div style="top:170px;"  class="container ml-sm-auto mb-5">
         
-       
+        <div class="shadow p-4">  
 
-        </div>
+            <div class="row d-flex justify-content-center p-2 bg-primary mb-4 rounded text-white">
+                {{part.0.product_code.category_code.name|upper}} - {{part.0.product_code.brand|upper}}  
+            </div>
+
+            <div class="row bg-white p-3 ">
+                <div class="col-lg-12 bg-light">
+                    <div class="table-responsive mb-4">
+                        <table id="datatable-buttons" class="table table-centered datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
+                                <thead>
+                                    <tr class="bg-transparent">
+                                            
+                                            <th>Codigo</th>
+                                            <th>Marca</th>
+                                            <th>Modelo</th>
+                                            <th>Detalhes</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {%for part in part %}
+
+                                <tr>
+                                    
+                                        <td class="col-2">
+                                        <a href="{% url 'part_dateils' part.part_code %}">
+                                            <span class="fw-bold">{{part.part_code}}</span>
+                                        </a>
+                                        </td>
+                                
+                                        <td class="col-2">
+                                            <span>{{part.product_code.brand}}</span>
+                                        </td>
+                                        <td class="col-2">
+                                            <span>{{part.product_code.model}}</span>
+                                        </td>
+                                        <td class="col-2">
+                                            <span>{{part.details}}</span>
+                                        </td>
+                                </tr>
+                                
+                                
+                                {% endfor %}
+                                    
+                                    
+                                    
+                                </tbody>
+                        </table>
+                    </div> 
+                </div>
+            </div>'
+        </div>  
+
+    </div>
 
 </main>
 
 {% endblock content %}  
+
+
+
+
+
 {% block javascript %}
  <!-- JAVASCRIPT -->
 <script src="{% static 'libs/jquery/jquery.min.js' %}"></script>

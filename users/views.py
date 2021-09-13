@@ -1,29 +1,319 @@
-from django.conf import settings
-from django.db.models.fields import URLField
+
+from django.db.models import query
+from django.db.models.expressions import CombinedExpression
+from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import  Departamento, User
-from helpdesk.models import  Chamado, Image , ImageLink, Chat
-from .models import   UsuarioCorporativo, UsuarioEndereco, UsuarioTrabalho,UsuarioDocumentos, Empresa, ImagePerfil, UsuarioPessoal,Cargo,Contabancaria
-from helpdesk.forms import ImageForm, ImageForms
+from .models import   Department
+from helpdesk.models import  Chamado,ImageLink, Chat
+from .models import   UsuarioCorporativo, UsuarioEndereco, UsuarioTrabalho,UsuarioDocumentos, Companies, UsuarioPessoal,Office,Contabancaria
+from files.models import  Dashbaners
+from helpdesk.forms import ImageForm
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from helpdesk.filters import ChamadoFilter
-from datetime import date, datetime, timedelta
-from django.contrib.auth.models import User, Group, GroupManager
+from datetime import date, datetime
+from django.contrib.auth.models import User, Group
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.forms import modelformset_factory
-from django.http import JsonResponse, HttpResponse
-from openpyxl.styles import PatternFill
-from openpyxl.utils.dataframe import dataframe_to_rows
+from django.http import HttpResponse
 import pandas as pd
 from decimal import Context, Decimal
 import xlwt
 from performance.forms import ImportForm
 import xlrd3 as xlrd
+from rest_framework import request, serializers
+from rest_framework.serializers import Serializer
+from  .serializers import Companies, Companyserializer, Officeserializer,WorkUserserializer,PernonalUserserializer,CorporateUserserializer,Dashbanerserializer
+from rest_framework.views import APIView, Response
+from rest_framework import viewsets,views,permissions
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.authtoken.models import Token
+from rest_framework import status
+from django.http import Http404
+from rest_framework.permissions import IsAuthenticated 
+from rest_framework.parsers import FileUploadParser, JSONParser
+from decimal import Context, Decimal
+import json
+from django.http.response import JsonResponse
+from django.utils.dateparse import parse_datetime
+# from .form import formRegistrationAddress,formRegistrationCorporate,formRegistrationDocuments,formRegistrationPersonal,formRegistrationWork,formRegistrationBank
+
+############ new view ############
+
+class general_Banner_view(viewsets.ModelViewSet):
+    queryset = Dashbaners.objects.filter(active=True,geral=True).order_by("order_by")
+    serializer_class= Dashbanerserializer
 
 
+
+
+class manager_Banner_view(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
+    serializer_class=Dashbanerserializer  
+    def get_queryset(self):
+        user = UsuarioCorporativo.objects.get(user=self.request.user)
+        list =[user.work.manager,user.user]
+        query = Dashbaners.objects.filter(active=True,manager__in = list )
+        return  query
+
+
+
+
+
+class perfil_view(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
+    queryset = UsuarioCorporativo.objects.all()
+    serializer_class= CorporateUserserializer
+    def get_queryset(self):
+        try:
+            query = UsuarioCorporativo.objects.filter(user=self.request.user)
+            
+            return query
+        except:
+            raise Http404
+ 
+class office_view(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
+    queryset = Office.objects.all()
+    serializer_class= Officeserializer
+
+
+
+# class form_view(viewsets.ModelViewSet):
+
+class user_birth(viewsets.ModelViewSet):
+    serializer_class = PernonalUserserializer
+
+    def get_queryset(self,format=None):
+        data_atual = datetime.today()
+        query = UsuarioPessoal.objects.filter(birthdate__month= str(data_atual.month))
+        return query
+
+
+
+
+
+
+class user_view(viewsets.ModelViewSet):
+    serializer_class = CorporateUserserializer
+
+    def get_queryset(self,format=None):
+        
+        query = UsuarioCorporativo.objects.all()
+        return query
+
+
+####### APIViEW ########
+
+class user_by_idView(views.APIView):
+    permission_classes = (IsAuthenticated,)
+    def get_object(self,pk):
+        try:
+           return UsuarioCorporativo.objects.get(pk= pk)
+        except:
+            raise Http404   
+        
+    def get(self,request,pk,format=None):
+        pk = self.get_object(pk)
+        Serializer = CorporateUserserializer(pk)
+        return  Response(Serializer.data)
+   
+
+
+class create_user_view(views.APIView):
+    
+    def get(self,request,format=None):
+        query ="sai"
+        return Response(query)
+    def post(self, request, *args, **kwargs):
+        if UsuarioPessoal.objects.all():
+                    Usuario_id = UsuarioPessoal.objects.all().order_by('-id')[0].id
+
+                    codigo = Usuario_id + 10001
+        else:
+                            codigo = 10001
+
+        try:   
+            image = request.FILES["image"]
+        except:
+            image = ''
+        
+        grupo =request.POST["group"]
+        gs = Group.objects.get(name=grupo)  
+    
+        birthdate=request.POST["birthdate"]
+        birth =   parse_datetime(birthdate)
+        if not User.objects.filter(username=request.POST["user"]).exists():
+                        
+            if len(request.POST["password"]) < 6:
+                print("muito curta safado")
+              
+           
+            user = User.objects.create(username=request.POST["user"],email=request.POST["corporate_email"],first_name=request.POST["user"])
+            user.set_password(request.POST["password"])
+            user.is_active = True
+            user.save()
+            users = User.objects.get(username=request.POST["user"])
+
+            try:
+                UsuarioPessoal.objects.create(code=codigo,
+                name=request.POST.get("name",""),
+                gender=request.POST.get("gender",""),
+                surname=request.POST.get("surname",""),
+                personal_cell=request.POST.get("personal_cell",""),
+                cpf=request.POST.get("cpf",""),
+                color=request.POST.get("color",""),
+                marital_status=request.POST.get("marital_status",""),
+                schooling=request.POST.get("schooling",""),
+                pis=request.POST.get("pis",""),
+                voter_title=request.POST.get("voter_title",""),
+                work_card= request.POST.get("work_card",""),
+                series=request.POST.get("series",""),
+                work_card_uf=request.POST.get("work_card_uf",""),
+                work_card_date=request.POST.get("work_card_date",""),
+                birthdate=birth,
+                birthdate_uf=request.POST.get("birthdate_uf",""),
+                city_birth=request.POST.get("city_birth",""),
+                country_birth=request.POST.get("country_birth",""),
+                national_country= request.POST.get("national_country",""),
+                mother=request.POST.get("mother",""),
+                father=request.POST.get("father",""),
+                profile_image=image)               
+            except:
+                UsuarioPessoal.objects.create(code=codigo,
+                name=request.POST.get("name",""),
+                gender=request.POST.get("gender",""),
+                surname=request.POST.get("surname",""),
+                personal_cell=request.POST.get("personal_cell",""),
+                cpf=request.POST.get("cpf",""),
+                color=request.POST.get("color",""),
+                marital_status=request.POST.get("marital_status",""),
+                schooling=request.POST.get("schooling",""),
+                pis=request.POST.get("pis",""),
+                voter_title=request.POST.get("voter_title",""),
+                work_card= request.POST.get("work_card",""),
+                series=request.POST.get("series",""),
+                work_card_uf=request.POST.get("work_card_uf",""),
+                birthdate=request.POST.get("birthdate",""),
+                birthdate_uf=request.POST.get("birthdate_uf",""),
+                city_birth=request.POST.get("city_birth",""),
+                country_birth=request.POST.get("country_birth",""),
+                national_country= request.POST.get("national_country",""),
+                mother=request.POST.get("mother",""),
+                father=request.POST.get("father",""),
+                profile_image=image)               
+            u = UsuarioPessoal.objects.get(name=request.POST.get("name",""))
+            office = Office.objects.get(office=request.POST.get("office",""))
+            try:
+                usua= UsuarioTrabalho.objects.create(code=u,department=request.POST.get("department","") ,company=request.POST.get("company",""),office=office,transport_voucher=request.POST.get("transport_voucher",""),admission_date=request.POST.get("admission_date",""),resignation_date=request.POST.get("resignation_date",""),admission_type= request.POST.get("admission_indicative",""),first_job= request.POST.get("first_job",""),work_regime=request.POST.get("work_regime",""),pension_scheme= request.POST.get("pension_scheme",""),day_regime= request.POST.get("day_regime",""),nature_activity=request.POST.get("nature_activity",""),category=request.POST.get("category",""),function_code=request.POST.get("function_code",""),workload=request.POST.get("workload",""),wage_unit=request.POST.get("wage_unit",""),variable_salary=request.POST.get('variable_salary', 0.00 ),note=request.POST.get("note",""))
+                t = UsuarioTrabalho.objects.get(codigo=u)
+            except:
+                usua= UsuarioTrabalho.objects.create(code=u,department=request.POST.get("department","") ,company=request.POST.get("company",""),office=office)
+                t = UsuarioTrabalho.objects.get(codigo=u)
+            try:
+                do= UsuarioDocumentos.objects.create(code=u,document=request.POST.get("document",""),document_number=request.POST.get("document_number",""),organ=request.POST.get("organ",""),dispatch_date=request.POST.get("dispatch_date",""),shelf_life=request.POST.get("shelf_life",""))              
+                d =  UsuarioDocumentos.objects.get(codigo=u)  
+            except:
+                do= UsuarioDocumentos.objects.create(code=u)  
+                d =  UsuarioDocumentos.objects.get(codigo=u)               
+            try:
+                en=UsuarioEndereco.objects.create(code=u,zip_code=request.POST.get("zip_code",""),type=request.POST.get("type",""),public_place= request.POST.get("public_place",""),number=request.POST.get("number",""),uf=request.POST.get("uf",""),city=request.POST.get("city",""),district=request.POST.get("district",""),complement=request.POST.get("complement",""),country=request.POST.get("country",""))
+                e = UsuarioEndereco.objects.get(codigo=u)
+            except:
+                en=UsuarioEndereco.objects.create(code=u)
+                e = UsuarioEndereco.objects.get(codigo=u)
+            try:
+                co = Contabancaria.objects.create(code=u,bank=request.POST.get("bank",""),account=request.POST.get("account",""),agency=request.POST.get("agency",""))    
+            except:
+                pass
+            try:    
+                usuar  = UsuarioCorporativo.objects.create(code=u,work=usua,document=do,address=en,user=users,group=gs,corporate_email=request.POST.get("corporate_email",""),skype=request.POST.get("skype",""),corporate_phone= request.POST.get("corporate_phone",""),telephone=  request.POST.get("telephone",""),ramal=request.POST.get("ramal",""),bank=co)
+            except:
+                 usuar  = UsuarioCorporativo.objects.create(code=u,user=users,group=gs,corporate_email=request.POST.get("corporate_email",""),skype=request.POST.get("skype",""),corporate_phone= request.POST.get("corporate_phone",""),telephone=  request.POST.get("telephone",""),ramal=request.POST.get("ramal",""),bank=co)  
+            return Response(status=status.HTTP_202_ACCEPTED)
+
+        else:
+            raise Http404             
+
+
+
+
+
+
+
+class create_banner_view(views.APIView):
+    # permission_classes = (IsAuthenticated,)
+    def post(self,request,format=None):
+        image = request.FILES["bannerimage"]
+        description = request.POST["description"]
+        order = request.POST["order"]
+        general = request.POST["general"]
+        time = request.POST["time"]
+        try:
+            gestor = request.POST["gestor"]
+        except:
+            gestor = ""
+        if general == True:
+            if Dashbaners.objects.filter(order_by=order,geral=True).exists():
+                bans= Dashbaners.objects.filter(geral=True,order_by__gte = order).order_by('order_by')
+                for ban in bans:
+                    ban.order_by = ban.order_by + 1
+                    ban.save()
+                Dashbaners.objects.create(image=image,desc=description,manager=gestor,geral=general,order_by = order,timeshow=time)    
+            else:
+                Dashbaners.objects.create(image=image,desc=description,manager=gestor,geral=general,order_by = order,timeshow=time)
+        else:
+            if Dashbaners.objects.filter(order_by=order,manager=gestor).exists():
+                bans= Dashbaners.objects.filter(manager=gestor,order_by__gte = order).order_by('order_by')
+                for ban in bans:
+                    ban.order_by = ban.order_by + 1
+                    ban.save()
+                Dashbaners.objects.create(image=image,desc=description,manager=gestor,geral=general,order_by = order,timeshow=time)        
+            else:
+                Dashbaners.objects.create(image=image,desc=description,manager=gestor,geral=general,order_by = order,timeshow=time)
+
+        return Response(status=status.HTTP_201_CREATED)
+
+
+
+class modify_banner_view(views.APIView):
+    # permission_classes = (IsAuthenticated,)
+    def put(self,request,format=None):
+        banner = Dashbaners.objects.get(pk=request.POST["pk"])
+        if banner.active == True:
+            banner.active = False
+            banner.save()  
+            return Response(status=status.HTTP_202_ACCEPTED)          
+        else:
+            banner.active = True
+            banner.save()
+            return Response(status=status.HTTP_202_ACCEPTED)          
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+########## old view ######### 
 
 today = date.today()
 
@@ -33,19 +323,15 @@ today = date.today()
 def add_usuarios(request):
     user = request.user
     admin = Chamado.objects.all()        
-    usuarioC = UsuarioCorporativo.objects.get(usuario=user)
+    usuarioC = UsuarioCorporativo.objects.get(user=user)
     g = Group.objects.all()
     grupo= usuarioC.grupo
-    departamento = Departamento.objects.all().order_by("name")
+    departamento = Department.objects.all().order_by("name")
     chamados = Chamado.objects.filter(grupo=grupo).order_by("-id")    
     chamados_abertos = Chamado.objects.filter(active=True,grupo=grupo).order_by("-id")
     grupos= usuarioC.grupo.name
     codigo = usuarioC.codigo.nome   
-    imageP = ImagePerfil.objects.get(nome= codigo)
-    if not imageP.image:
-      imageP = ImagePerfil.objects.get(nome= "padrao")
-    empresa = Empresa.objects.all()
-    cargos = Cargo.objects.all().order_by("cargo")
+
     filtro = ChamadoFilter()
     context = {
     'chamados': chamados,
@@ -55,11 +341,11 @@ def add_usuarios(request):
     'user' : user,
     'g':g,  
     'grupo':grupo,
-    'empresa':empresa,
+  
     'admin':admin, 
     'filtro': filtro,
-    'imageP':imageP, 
-    'cargos':cargos,  
+
+ 
     'form':ImageForm,
     'departamento':departamento,
     
@@ -200,7 +486,7 @@ def add_usuarios(request):
             except:
                 UsuarioPessoal.objects.create(codigo=codigo,nome=nome,genero=genero,apelido=apelido,cpf=cpf,celpessoal=celp,cor=cor,ecivil=ecivil,escolaridade=escolaridade,pis=pis,tituloeleitor=teleitor,carteiratrabalho=ctrabalho,serie=serie,ufcarteiratrabalho=uf,datanacimento=datanasci,ufnacimento=ufnasci,municipionacimento=municipionasc,paisnacimento=paisnasci,paisnacionalidade=nasciona,nomemae=mae,nomepai=pai)
             u = UsuarioPessoal.objects.get(nome=nome)
-            c= Cargo.objects.get(cargo=cargo)
+            c= Office.objects.get(cargo=cargo)
             try:
                 usua = UsuarioTrabalho.objects.create(codigo=u,departamento=dep,empresa=emp,cargo=c,valetransporte=vtrans,dataadmissao=admissao,datademissao=demissao,indicativoadmissao=indica,primeiroemprego=priempr,regimetrabalho=rtrab,regimeprevidenciario=rprev,regimejornada=rjorn,naturezaatividade=naativ,categoria=cat,codigofuncao=codf,cargahorariam=carh,unidadesalarial=unisa,salariovariavel=salvari,obs=obs)
                 t = UsuarioTrabalho.objects.get(codigo=u)
@@ -237,7 +523,7 @@ def add_usuarios(request):
                         
                 obj =ImagePerfil.objects.create(image=img,obs=obs,nome=us)
                 obj.save()
-                messages.success(request, 'Imagem adicionada')
+                messages.success(request, 'Imagem adicionada')    
             else:
                 messages.error(request, 'Imagem não adicionada')
             messages.success(request, "Usuario criado com sucesso")
@@ -293,7 +579,6 @@ def edit_usuarios(request,id):
         try:
             usu = UsuarioCorporativo.objects.get(pk=id)
             usup = UsuarioPessoal.objects.get(codigo= usu.codigo.codigo)
-          
            
             usue = UsuarioEndereco.objects.get(codigo=usu.codigo)
             cod =usu.codigo.nome
@@ -305,7 +590,6 @@ def edit_usuarios(request,id):
                 image = ImagePerfil.objects.get(nome= "padrao")
         
         except:
-            
             try:
                 us = UsuarioCorporativo.objects.all().last()
                 i= us.id
@@ -562,7 +846,7 @@ def edit_usuarios(request,id):
                     usue.bairroatual = bairro
                     usue.complemento = complemento
                     usue.pais = pais
-                    usue.save()
+                    usue.save() 
 
             else:
             
@@ -1006,7 +1290,6 @@ def cargo(request):
         ncbo = request.POST["ncbo"]
         Cargo.objects.create(cargo=cargo,ncbo=ncbo)
         messages.success(request,'Cadastrado com sucesso')
-    return redirect ('add_usuarios.html')    
-
+    return redirect ('add_usuarios.html')   
 
 

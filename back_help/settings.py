@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from pathlib import Path
 
+import rest_framework
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -47,13 +49,17 @@ INSTALLED_APPS = [
     'inventory',
     'files',
     'purchases',
-    
+    'myplaceapi',
+    'rest_framework', 
+    'rest_framework.authtoken'
+
     
 ]
 
 
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -61,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'back_help.urls'
@@ -87,25 +94,44 @@ DATABASE_ROUTERS = [
     'performance.dbrouters.PerformanceDBRouter',
     'inventory.dbrouters.InventoryDBRouter',
     'purchases.dbrouters.PurchasesDBRouter',
+    'files.dbrouters.FileDBRouter',
+    # 'users.dbrouters.UsersDBRouter',
                         ]
+REST_FRAMEWORK ={
+    "DEFAULT_FLTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
+    "DEFAULT_AUTHENTICATION_CLASSES":[
+            "rest_framework.authentication.TokenAuthentication",
+    ],
+    
+}
+CORS_ORIGIN_ALLOW_ALL = True
 
+# CORS_ORIGIN_WHITELIST =[
+#     "http://localhost:3000"
+#     "http://192.168.15.181:3000"
+#     "http://192.168.15.181:3001"
+#     "http://192.168.15.181:5000"
+#     "http://192.168.15.136:3000"
+#     "http://192.168.15.136:3001"
+#     "http://192.168.15.136:5000"
+# ]
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'SY_RH',
-        'USER': 'tigenios',
-        'PASSWORD': '0567senh@',
-        'HOST': 'tigenios',
-        'PORT': '1433',
+    # 'default': {
+    #     'ENGINE': 'sql_server.pyodbc',
+    #     'NAME': 'SY_RH',
+    #     'USER': 'tigenios',
+    #     'PASSWORD': '0567senh@',
+    #     'HOST': 'tigenios',
+    #     'PORT': '1433',
 
-        'OPTIONS': {
-            'driver': 'ODBC Driver 17 for SQL Server',
-        },
-    },
+    #     'OPTIONS': {
+    #         'driver': 'ODBC Driver 17 for SQL Server',
+    #     },
+    # },
     'online':{
         'ENGINE': 'sql_server.pyodbc',
         'NAME': 'Online',
@@ -118,9 +144,9 @@ DATABASES = {
             'driver': 'ODBC Driver 17 for SQL Server',
         },
     },
-    'tickets':{
+    'purchases':{
         'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'Tickets',
+        'NAME': 'Purchases',
         'USER': 'tigenios',
         'PASSWORD': '0567senh@',
         'HOST': 'tigenios',
@@ -142,23 +168,36 @@ DATABASES = {
             'driver': 'ODBC Driver 17 for SQL Server',
         },
     },
+    'default':{
+        'ENGINE': 'sql_server.pyodbc',
+        'NAME': 'Users',
+        'USER': 'tigenios',
+        'PASSWORD': '0567senh@',
+        'HOST': 'tigenios',
+        'PORT': '1433',
+
+        'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server',
+        },
+    },
+    'tickets':{
+        'ENGINE': 'sql_server.pyodbc',
+        'NAME': 'Tickets',
+        'USER': 'tigenios',
+        'PASSWORD': '0567senh@',
+        'HOST': 'tigenios',
+        'PORT': '1433',
+
+        'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server',
+        },
+    },
 }
 #DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.sqlite3',
 #        'NAME': BASE_DIR / 'db.sqlite3',
 #    }
-#}
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': 'HELPDESK',
-#        'USER': 'arena',
-#        'PASSWORD': 'arena127',
-#        'HOST': 'localhost',
-#        'PORT': '5432',
-#        
-#}    }
 #}
 
 
@@ -186,13 +225,15 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'America/Sao_Paulo'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
 USE_L10N = True
 
 USE_TZ = True
+
+
 
 
 # Static files (CSS, JavaScript, Images)

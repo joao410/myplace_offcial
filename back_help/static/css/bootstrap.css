@@ -6444,6 +6444,10 @@ textarea.form-control-lg {
 
 .bg-secondary {
   background-color: #74788d !important; }
+  
+.bg-terciary{
+  background-color: #564ab1 !important;
+}
 
 .bg-success {
   background-color: #34c38f !important; }

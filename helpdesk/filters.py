@@ -1,6 +1,7 @@
 import django_filters as df
 from .models import Chamado, UsuarioPessoal
 from django import forms
+from users.models import UsuarioPessoal
 
 
 
@@ -26,7 +27,8 @@ class ChamadoFilter(df.FilterSet):
     class Meta:
         model = UsuarioPessoal
         fields = ['name','departamento']
-      
+
+
 
 
 

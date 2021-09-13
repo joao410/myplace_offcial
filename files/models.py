@@ -22,7 +22,10 @@ class Base(models.Model):
 
 
 
-
+def get_banner_path(_instance, filename):
+    ext = filename.split('.')[-1]
+    filename = f'banners/{uuid.uuid4()}.{ext}'
+    return filename
 class Report_human_resources(Base):
     file = models.FileField(upload_to='models_rh/',blank=True,null=True) 
     file_name = CharField('nome', max_length=100)
@@ -36,6 +39,22 @@ class Report_human_resources(Base):
     
     def __str__(self):
         return f'{self.file} - {self.file_name}'    
+
+class Dashbaners(Base):
+    image     = models.FileField('banner',upload_to=get_banner_path)
+    desc      = models.CharField('Descrição',max_length=255,blank=True,null=True)
+    manager   = models.CharField("gestor",max_length=100 ,blank=True,null=True)
+    geral     = models.BooleanField(default=False)
+    timeshow  = models.CharField("tempo de exibiçao",max_length=4,default='30')
+    order_by  = models.IntegerField("ordem de exibição",blank=True,null=True)
+
+    class Meta:
+       verbose_name = "dashbaner"
+       verbose_name_plural = "dashbaners"
+
+    def __str__(self):
+        return f'{self.desc} - {self.manager}'   
+
   
 
 

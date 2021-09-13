@@ -1,6 +1,6 @@
 
 from django import template
-from purchases.models import Requisition_product,Product_image
+from purchases.models import Requisition_product
 
 
 register = template.Library()
@@ -45,10 +45,7 @@ def reqdeliv(req_deliv):
 def reqpay(req_pay):
     return Requisition_product.objects.filter(purchase_requisition_id = req_pay)
 
-@register.simple_tag
-def Productimage(product):
 
-   return Product_image.objects.get(requisition_product_id = product)
 @register.simple_tag
 def reqret(req_ret):
     return Requisition_product.objects.filter(purchase_requisition_id = req_ret)

@@ -11,9 +11,9 @@
           </div>
         <div class=" row pl-3 d-flex justify-content-around">
            
-              <div class="card text-white mb-3"  style="max-width: 27rem;background-color: #751FB1;">
+              <div class="card text-white mb-3"  style="max-width: 19rem;background-color: #751FB1;; ">
                 <div class="card-header">Aguardando Cotação</div>
-                <div class="card-body overflow-auto" style="max-height:10rem;">
+                <div class="card-body overflow-auto" style="max-height:7rem;">
                   
                     {% for req_cot in req_cots  %}
                     <a href="{% url 'requisition_cotation' req_cot.purchase_requisition_id %}">
@@ -28,9 +28,9 @@
                        
                 </div>
               </div>
-              <div class="card text-white bg-warning mb-3" style="max-width: 27rem;">
-                <div class="card-header">Aguardando aprovação do(a) gestor(a) de compras</div>
-                <div class="card-body overflow-auto" style="max-height:10rem;">
+              <div class="card text-white bg-warning mb-3" style="max-width: 19rem;">
+                <div class="card-header">Aguardando aprovação do gestor</div>
+                <div class="card-body overflow-auto" style="max-height:7rem;">
                   
                     {% for req_man_appr in req_man_apprs  %}
                     <a href="{% url 'requisition_cotation' req_man_appr.purchase_requisition_id%}">
@@ -43,9 +43,9 @@
                     {% endfor %}  
                 </div>
               </div>
-              <div class="card text-white bg-info mb-3" style="max-width: 27rem;">
+              <div class="card text-white bg-info mb-3" style="max-width: 19rem; ">
                 <div class="card-header">Aguadando aprovação financeira</div>
-                <div class="card-body overflow-auto" style="max-height:10rem;">
+                <div class="card-body overflow-auto" style="max-height:7rem;">
                     {% for req_fin_appr in req_fin_apprs  %}
                     <a href="{% url 'requisition_cotation' req_fin_appr.purchase_requisition_id%}">
                     <div class="row bg-light text-dark mb-2 p-2 rounded">   
@@ -60,9 +60,9 @@
               </div>
         </div> 
         <div class=" row pl-3 d-flex justify-content-around">
-              <div class="card text-white bg-success mb-3" style="max-width: 27rem;">
+              <div class="card text-white bg-success mb-3" style="max-width: 19rem;">
                 <div class="card-header">Aprovados</div>
-                <div class="card-body overflow-auto" style="max-height:10rem;">
+                <div class="card-body overflow-auto" style="max-height:7rem;">
                     {% for req_appr in req_apprs  %}
                     <a href="{% url 'requisition_cotation' req_appr.purchase_requisition_id%}">
                     <div class="row bg-light text-dark mb-2 p-2 rounded">   
@@ -75,9 +75,9 @@
                    
                 </div>
               </div>
-              <div class="card text-white bg-danger mb-3" style="max-width: 27rem;">
+              <div class="card text-white bg-danger mb-3" style="max-width: 19rem;">
                 <div class="card-header">Negados</div>
-                <div class="card-body overflow-auto" style="max-height:10rem;">
+                <div class="card-body overflow-auto" style="max-height:7rem;">
                     {% for req_den in req_dens  %}
                     <a href="{% url 'requisition_cotation' req_den.purchase_requisition_id%}">
                     <div class="row bg-light text-dark mb-2 p-2 rounded">   
@@ -90,9 +90,9 @@
                    
                 </div>
               </div>
-              <div class="card text-white  mb-3" style="max-width: 27rem;background-color:#cccccc;">
+              <div class="card text-white  mb-3" style="max-width: 19rem;background-color:#cccccc;">
                 <div class="card-header">Devolvidos</div>
-                <div class="card-body overflow-auto" style="max-height:10rem;">
+                <div class="card-body overflow-auto" style="max-height:7rem;">
                     {% for req_ret in req_rets  %}
                     <a href="{% url 'requisition_cotation' req_ret.purchase_requisition_id%}">
                     <div class="row bg-light text-dark mb-2 p-2 rounded">   
@@ -105,9 +105,9 @@
                    
                 </div>
               </div>
-              <div class="card text-white bg-secondary mb-3"  style="max-width: 27rem;">
+              <div class="card text-white bg-secondary mb-3"  style="max-width:19rem">
                 <div class="card-header">Aguardando pagamento</div>
-                <div class="card-body overflow-auto" style="max-height:10rem;">
+                <div class="card-body overflow-auto" style="max-height:7rem;">
                   
                     {% for req_pay in req_pays  %}
                     <a href="{% url 'requisition_cotation' req_pay.purchase_requisition_id %}">
@@ -122,9 +122,9 @@
                        
                 </div>
               </div>
-              <div class="card text-white bg-primary mb-3" style="max-width: 27rem;">
+              <div class="card text-white bg-primary mb-3" style="max-width: 19rem;">
                 <div class="card-header">Comprados</div>
-                <div class="card-body overflow-auto" style="max-height:10rem;">
+                <div class="card-body overflow-auto" style="max-height:7rem;">
                     {% for req_bougth in req_bougths  %}
                     <a href="{% url 'requisition_cotation' req_bougth.purchase_requisition_id%}">
                     <div class="row bg-light text-dark mb-2 p-2 rounded">   
@@ -137,9 +137,9 @@
                    
                 </div>
               </div>
-              <div class="card text-white mb-3" style="max-width: 27rem;background-color: #008000;">
+              <div class="card text-white mb-3" style="max-width: 19rem;background-color: #008000;">
                 <div class="card-header">Entregues</div>
-                <div class="card-body overflow-auto" style="max-height:10rem;">
+                <div class="card-body overflow-auto" style="max-height:7rem;">
                     {% for req_deliv in req_delivs  %}
                     <a href="{% url 'requisition_cotation' req_deliv.purchase_requisition_id%}">
                     <div class="row bg-light text-dark mb-2 p-2 rounded">   

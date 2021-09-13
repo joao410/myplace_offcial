@@ -5,12 +5,50 @@ from utils.utils import report
 import os
 from .models import Report_human_resources
 from datetime import date, datetime, timedelta
-from users.models import UsuarioCorporativo,ImagePerfil
+from users.models import UsuarioCorporativo
 from django.contrib import messages
+from os import name
+from rest_framework import request, serializers
+from rest_framework.serializers import Serializer
+from django.shortcuts import render
+from rest_framework.views import APIView, Response
+from rest_framework import viewsets,views,permissions
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.authtoken.models import Token
+from rest_framework import status
+from django.http import Http404
+from rest_framework.permissions import IsAuthenticated 
+from .serializers import reportserializer
 
 
+class Reports_views(viewsets.ModelViewSet):
+    serializer_class = reportserializer
+    queryset = Report_human_resources.objects.all()
 
-# Create your views here.
+ 
+class Report_view(views.APIView):
+    def post(self,format=None):
+        today = datetime.now()
+        name = 'Relat_Profissionais__' +  today.strftime("%d_%m_%Y_%H_%M") + '.xlsx'
+        old_file = os.path.join(settings.MEDIA_ROOT + '\\models_rh\\' + name )
+        report_hr = Report_human_resources.objects.filter(file_name = name)
+        if len(report_hr) < 2:   
+            try:
+                os.remove(old_file) 
+            except:
+                pass    
+            report()
+
+            file = Report_human_resources.objects.create(file=old_file, file_name=name)
+            file.save()
+        else:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+        
+        return Response(status=status.HTTP_202_ACCEPTED)
+
+
+######## OLD VIEW ###########
 
 
 @login_required(login_url='/authentication/login')  

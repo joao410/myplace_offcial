@@ -48,6 +48,7 @@ class Announcement(Base):
     class Meta:
         verbose_name = "Announcement"
         verbose_name_plural = "Announcements"
+        
 
     def __str__(self):
         return f'{self.sku} - {self.name}'   
@@ -69,14 +70,7 @@ class Image(Base):
 
     def __str__(self):
         return f'{self.announcement.sku} - {self.active}'
-    def rename_image(self):
-        img_full_path = os.path.join(settings.MEDIA_ROOT,self.name)
-        img_pill = Image.open(img_full_path)
-        img_name = img_pill.name
-
-        os.rename(img_name,f'produto/{self.announcement.sku}/{img_name}')
-       
-        return rename_image()
+  
 
 
 

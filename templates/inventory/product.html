@@ -14,65 +14,76 @@
 <main style="left:100px;" role="main"  class="col-md-6 m-sm-auto col-lg-9 mb-5"  >
  
       <div style="top:250px;left:300px;"  class="container  mb-5">
-        <div class="mb-3">
-            <button class="btn btn-primary " type="button"   data-bs-toggle="modal" data-bs-target="#addpeca">
-             Cadastrar peça
-            </button>
 
-        </div>
-                <div class="row">
-                    <div class="col-lg-10">
-                          <div class="table-responsive mb-4">
-                              <table id="datatable-buttons" class="table table-centered datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
-                                      <thead>
-                                          <tr class="bg-transparent">
-                                                
-                                                <th>Codigo</th>
-                                                <th>Marca</th>
-                                                <th>Modelo</th>
-                                                <th>Quantidade</th>
-                                              
-                                          </tr>
-                                      </thead>
-                                      <tbody>
-                                      {%for product in product %}
+        <div class=" shadow p-4">
 
-                                      <tr>
-                                        
-                                            <td class="col-2">
-                                                <a href="{% url 'part' product.product_code %} ">
-                                                <span class="fw-bold">{{product.product_code}}</span>
-                                                </a>
-                                            </td>
-                                       
-                                            <td class="col-2">
-                                                <span>{{product.brand}}</span>
-                                            </td>
-                                            <td class="col-2">
-                                                <span>{{product.model}}</span>
-                                            </td>
-                                            <td class="col-2">
-                                                <span>{{product.amount}}</span>
-                                            </td>
-                                      </tr>
-                                       
-                                    
-                                      {% endfor %}
-                                        
-                                        
+          <div class="row p-2 rounded text-white d-flex justify-content-center  fs-5 bg-primary mb-2">
+                {{product.0.category_code.name|upper}}
+          </div>
+
+          <div class="mb-3">
+              <button class="btn btn-primary " type="button"   data-bs-toggle="modal" data-bs-target="#addpeca">
+              Cadastrar peça
+              </button>
+          </div>
+
+          <div class="row bg-white p-3">
+              <div class="col-lg-12 bg-light">
+                    <div class="table-responsive mb-4">
+                        <table id="datatable-buttons" class="table table-centered datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
+                                <thead>
+                                    <tr class="bg-transparent">
                                           
-                                      </tbody>
-                              </table>
-                          </div> 
-                    </div>
-                </div>
-        
-       
+                                          <th>Codigo</th>
+                                          <th>Marca</th>
+                                          <th>Modelo</th>
+                                          <th>Quantidade</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {%for product in product %}
 
-        </div>
+                                <tr>
+                                  
+                                      <td class="col-2">
+                                          <a href="{% url 'part' product.product_code %} ">
+                                          <span class="fw-bold">{{product.product_code}}</span>
+                                          </a>
+                                      </td>
+                                  
+                                      <td class="col-2">
+                                          <span>{{product.brand}}</span>
+                                      </td>
+                                      <td class="col-2">
+                                          <span>{{product.model}}</span>
+                                      </td>
+                                      <td class="col-2">
+                                          <span>{{product.amount}}</span>
+                                      </td>
+                                </tr>
+                                  
+                              
+                                {% endfor %}
+                                  
+                                  
+                                    
+                                </tbody>
+                        </table>
+                    </div> 
+              </div>
+          </div> 
+        </div>  
+
+      </div>
 
 </main>
+
+
 {% block modal %}
+
+
+
  <!-- Modal cadastro peca-->
  <div class="modal fade" id="addpeca" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -106,8 +117,16 @@
       </div>
     </div>
   </div>
+
+
+
+
 {% endblock modal%}
+
+
 {% endblock content %}  
+
+
 {% block javascript %}
  <!-- JAVASCRIPT -->
 <script src="{% static 'libs/jquery/jquery.min.js' %}"></script>

@@ -3,8 +3,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.forms import modelformset_factory
 from django.http import JsonResponse
-from .models import  Chamado, Image , ImageLink, Chat
-from users.models import   UsuarioCorporativo, UsuarioEndereco, UsuarioTrabalho,UsuarioDocumentos, Empresa, ImagePerfil, UsuarioPessoal
+from .models import  Chamado , ImageLink, Chat
+from users.models import   UsuarioCorporativo, UsuarioEndereco, UsuarioTrabalho,UsuarioDocumentos, Companies,UsuarioPessoal
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from .filters import ChamadoFilter
@@ -12,7 +12,7 @@ from datetime import date, datetime, timedelta
 import json
 from django.conf import settings
 from .forms import ImageForm, ImageForms
-from gcm.api import GCMMessage
+
 
 # Create your views here.   
 @login_required(login_url='/authentication/login')
@@ -85,10 +85,9 @@ def atendimento(request, id):
             }
     if  Chat.objects.filter(idChat= id).exists(): 
         chamado = Chamado.objects.get(pk=id)
-        u = chamado.username
-        user = User.objects.get(username=u)
-        n = UsuarioCorporativo.objects.get(usuario=user)
-        img = ImagePerfil.objects.get(nome=n.codigo.nome)
+        user = User.objects.get(username=chamado.username)
+        corporate = UsuarioCorporativo.objects.get(usuario=user)
+        img = ImagePerfil.objects.get(nome=corporate.codigo.nome)
         if not img.image:
             img = ImagePerfil.objects.get(nome= "padrao")  
         try:       
@@ -104,7 +103,7 @@ def atendimento(request, id):
         'image' : image,
         'imageP' : imageP, 
         'img':img,
-        'z':z,
+     
         'images':images,
         'chat': chat,
             }
@@ -113,10 +112,9 @@ def atendimento(request, id):
         ids = request.POST['aceitar']
         user = request.user
         atendente = UsuarioCorporativo.objects.get(usuario=user)
-        at =atendente.codigo.nome    
-        a = UsuarioPessoal.objects.get(nome=at) 
+ 
         chamado = Chamado.objects.get(pk=ids)
-        chamado.name =   a
+        chamado.name =   str(UsuarioPessoal.objects.get(nome=atendente.codigo.nome))
         chamado.status="em atendimento"
         chamado.active= False
         chamado.save()  

@@ -1,10 +1,10 @@
-from typing import Tuple
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
 import uuid
 from django.db.models.deletion import CASCADE, DO_NOTHING
-from django.db.models.fields import BooleanField, CharField,DateTimeField
+from django.db.models.fields import  BooleanField, CharField
 
 
 from django.db.models.fields.related import ForeignKey
@@ -24,8 +24,14 @@ def get_files_invoice(_instance, filename):
     filename = f'invoice/{uuid.uuid4()}.{ext}'
     return filename
 
+def get_files_path(_instance, filename):
+    ext = filename.split('.')[-1]
+    filename = f'requisitions/{uuid.uuid4()}.{ext}'
+    return filename
+
 class Purchase_requisition(Base):
     purchase_requisition_id = models.IntegerField('id da requisição',primary_key=True)
+    sector = models.CharField("setor",max_length=100,blank=True,null=True)
     requester = models.CharField("Requisitante",max_length=100)
     manager = models.CharField("Gestor",max_length=100)
     buyer = models.CharField('Comprador(a)',max_length=100,blank=True,null=True)
@@ -49,7 +55,7 @@ class Purchase_requisition(Base):
        verbose_name_plural = "Requisições"
 
     def __str__(self):
-        return f'{self.requester} - {self.manager}'
+        return f'{self.purchase_requisition_id }'
 
 def get_files_ticket(_instance, filename):
     ext = filename.split('.')[-1]
@@ -62,7 +68,7 @@ def get_files_voucher(_instance, filename):
     return filename
     
 class Requisition_product(Base):
-    purchase_requisition_id = models.IntegerField("id da requisição") 
+    purchase_requisition_id = models.ForeignKey(Purchase_requisition,on_delete=DO_NOTHING,blank=True,null=True)
     requisition_product = models.CharField("Produto",max_length=255)
     price_product = models.CharField("preço do produto",max_length=20,blank=True,null=True)
     first_provider= models.CharField("primeiro fornecedor",max_length=255,blank=True,null=True)
@@ -79,41 +85,12 @@ class Requisition_product(Base):
     type_of_payment = models.CharField("tipo de pagamento" , max_length=100,blank=True,null=True)
     delivered = models.BooleanField(default=False)
     invoice = models.FileField(upload_to=get_files_invoice,blank=True,null=True) 
-    delivered_at = models.DateTimeField(blank=True,null=True)
+    delivered_at =models.DateTimeField(blank=True,null=True)
+    image= models.ImageField(upload_to=get_files_path,blank=True,null=True)
+
     class Meta:
        verbose_name = "Produto cotado"
        verbose_name_plural = "Produtos cotados"
 
     def __str__(self):
         return f'{self.purchase_requisition_id} - {self.requisition_product}'
-
-def get_files_path(_instance, filename):
-    ext = filename.split('.')[-1]
-    filename = f'requisitions/{uuid.uuid4()}.{ext}'
-    return filename
-
-class Product_image(Base):
-    requisition_product_id = models.IntegerField("produto da requisição",blank=True,null=True)
-    name_image  = models.CharField("nome da imagem", max_length=255,blank=True,null=True)
-    image= models.ImageField(upload_to=get_files_path,blank=True,null=True)
-   
-   
-    class Meta:
-       verbose_name = "Imagem do produto"
-       verbose_name_plural = "Imagens dos produtos"
-
-    def __str__(self):
-        return f'{self.requisition_product_id} - {self.image}'
-
-
-
-
-
-
-
-
-
-
-    
-
-

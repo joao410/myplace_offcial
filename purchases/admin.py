@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Purchase_requisition,Requisition_product,Product_image
+from .models import Purchase_requisition,Requisition_product
 
 
 
@@ -14,7 +14,3 @@ class Purchase_requisitionAdmin(admin.ModelAdmin):
 class Requisition_productAdmin(admin.ModelAdmin):
     list_display = ('create','active','changed','id','purchase_requisition_id','requisition_product','price_product','amount',)
     search_fields =('create','active','changed','id','purchase_requisition_id','requisition_product','price_product','amount',)
-@admin.register(Product_image)
-class Product_imageAdmin(admin.ModelAdmin):
-    list_display = ('create','active','changed','id','requisition_product_id','image','name_image')
-    search_fields =('create','active','changed','id','requisition_product_id','image','name_image')
