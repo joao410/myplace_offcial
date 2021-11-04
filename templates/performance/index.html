@@ -237,7 +237,7 @@
                                     
                                     {% for performance in performance %} 
                                     
-                                    <h4 class="small font-weight-bold">{{performance.user.first_name}}{% if performance.user != "CAROLINA" or performance.user != "MADSON.MATOS"  %} ({% widthratio performance.porcentagem 3 1 %}%)<span
+                                    <h4 class="small font-weight-bold">{{performance.user.first_name}}{% if performance.user != "CAROLINA" %} ({% widthratio performance.porcentagem 3 1 %}%)<span
                                             class="float-right"> {% widthratio  performance.conclude 3 1 %} {% else %}({{ performance.porcentagem }}%)<span
                                             class="float-right"> {{ performance.conclude }} {% endif %}de {{performance.meta.meta}}/mês</span></h4>
                                     <div class="progress mb-4">

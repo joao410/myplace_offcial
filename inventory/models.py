@@ -1,3 +1,4 @@
+from os import truncate
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
@@ -39,7 +40,8 @@ class Places(Base):
 
 
 
-class Manufacturer_address(Base):    
+class Manufacturer_address(Base): 
+    address_code = models.IntegerField('codigo do endereço',null=True,blank=True)
     zip_code = models.CharField('cep',max_length=10,null=True,blank=True)
     public_place = models.CharField('Logradouro',max_length=100,blank=True,null=True)
     number = models.IntegerField('Número',null=True,blank=True)
@@ -73,7 +75,7 @@ class  Manufacturer(Base):
     e_mail = models.CharField('E-mail',max_length=100,null=True,blank=True)
     tax_email = models.CharField('E-mail fiscal',max_length=100,null=True,blank=True)
     address = models.ForeignKey(Manufacturer_address,on_delete=DO_NOTHING,null=True,blank=True)
-    note = models,CharField('obeservasão',max_length=255,blank=True,null=True)
+    note = models.CharField('obeservasão',max_length=255,blank=True,null=True)
 
 
     class Meta:
@@ -111,25 +113,26 @@ class Stock_loc(Base):
 
 
 class Inputs(Base):
-    description  = models .CharField('descrição',max_length=255,blank=True,null=True)
-    code = models.IntegerField("codigo",blank=True,null=True)
-    category = models.CharField("categoria",max_length=100,blank=True,null=True)
-    localization = models.ForeignKey(Places,on_delete=DO_NOTHING,blank=True,null=True)
-    entry_date = models.DateTimeField(blank=True,null=True)
-    type = models.CharField("tipo",max_length=100,blank=True,null=True)
-    amount = models.IntegerField('quantidade',blank=True,null=True,default=0)
-    cost_price = models.DecimalField('Preço de custo',max_digits=15,decimal_places=2,blank=True,null=True)
-    company= models.CharField('Empresa',max_length=100,blank=True,null=True)
-    area = models.CharField('Area',max_length=100,blank=True,null=True)
-    responsible = models.CharField('Usuário responsavel',max_length=100,blank=True,null=True)
-    is_used = models.BooleanField('em uso',default=False)
+    description     = models .CharField('descrição',max_length=255,blank=True,null=True)
+    code            = models.IntegerField("codigo",blank=True,null=True)
+    category        = models.CharField("categoria",max_length=100,blank=True,null=True)
+    localization    = models.ForeignKey(Places,on_delete=DO_NOTHING,blank=True,null=True)
+    entry_date      = models.DateTimeField(blank=True,null=True)
+    type            = models.CharField("tipo",max_length=100,blank=True,null=True)
+    amount          = models.IntegerField('quantidade',blank=True,null=True,default=0)
+    cost_price      = models.DecimalField('Preço de custo',max_digits=15,decimal_places=2,blank=True,null=True)
+    company         = models.CharField('Empresa',max_length=100,blank=True,null=True)
+    area            = models.CharField('Area',max_length=100,blank=True,null=True)
+    responsible     = models.CharField('Usuário responsavel',max_length=100,blank=True,null=True)
+    is_used         = models.BooleanField('em uso',default=False)
     quantity_in_use = models.IntegerField('quantidade em uso',blank=True,null=True,default=0)
     status = models.CharField('status',max_length=100,blank=True,null=True)
     invoice = models.FileField("nota fiscal",upload_to=get_files_path,blank=True,null=True)
     associate = models.CharField('associado',max_length=100,blank=True,null=True)
     surname = models.CharField('apelido',max_length=100,blank=True,null=True)
     manufacturer_code = models.ForeignKey(Manufacturer,on_delete=DO_NOTHING,blank=True,null=True)
-    output_quantity = models.IntegerField('quantidade de saida',blank=True,null=True)
+    entry_quantitaty = models.IntegerField('quantidade de entrada',blank=True,null=True,default=0)
+    output_quantity = models.IntegerField('quantidade de saida',blank=True,null=True,default=0)
     maximum_amount = models.IntegerField('quantidade maxima',blank=True,null=True)
     minimum_quantity = models.IntegerField('quantidade minima',blank=True,null=True)
     note = models.CharField('Observação',max_length=255,blank=True,null=True)
@@ -196,5 +199,49 @@ class Log_entrance(Base):
 
 
 
-    
+class Log_Movimantation(Base):
+    modifyer = models.CharField('atuante',max_length=100,blank=True,null=True)
+    description  = models .CharField('descrição',max_length=255,blank=True,null=True)
+    code = models.IntegerField("codigo",blank=True,null=True)
+    category = models.CharField("categoria",max_length=100,blank=True,null=True)
+    localization = models.ForeignKey(Places,on_delete=DO_NOTHING,blank=True,null=True)
+    entry_date = models.DateTimeField(blank=True,null=True)
+    type = models.CharField("tipo",max_length=100,blank=True,null=True)
+    amount = models.IntegerField('quantidade',blank=True,null=True,default=0)
+    cost_price = models.DecimalField('Preço de custo',max_digits=15,decimal_places=2,blank=True,null=True)
+    company= models.CharField('Empresa',max_length=100,blank=True,null=True)
+    area = models.CharField('Area',max_length=100,blank=True,null=True)
+    responsible = models.CharField('Usuário responsavel',max_length=100,blank=True,null=True)
+    is_used = models.BooleanField('em uso',default=False)
+    quantity_in_use = models.IntegerField('quantidade em uso',blank=True,null=True,default=0)
+    status = models.CharField('status',max_length=100,blank=True,null=True)
+    invoice = models.FileField("nota fiscal",upload_to=get_files_path,blank=True,null=True)
+    associate = models.CharField('associado',max_length=100,blank=True,null=True)
+    surname = models.CharField('apelido',max_length=100,blank=True,null=True)
+    manufacturer_code = models.ForeignKey(Manufacturer,on_delete=DO_NOTHING,blank=True,null=True)
+    entry_quantitaty = models.IntegerField('quantidade de entrada',blank=True,null=True,default=0)
+    output_quantity = models.IntegerField('quantidade de saida',blank=True,null=True,default=0)
+    maximum_amount = models.IntegerField('quantidade maxima',blank=True,null=True)
+    minimum_quantity = models.IntegerField('quantidade minima',blank=True,null=True)
+    note = models.CharField('Observação',max_length=255,blank=True,null=True)
+    bar_code = models.CharField('Código de barras',max_length=10,null=True,blank=True)
+    available_quantity = models.IntegerField('Quantidade disponivel',blank=True,null=True)
+    destination = models.CharField('Destinação',max_length=100,null=True,blank=True)
+    shipping_value = models.DecimalField('valor do frete', max_digits=20,decimal_places=2,null=True,blank=True)
+    average_cost = models.DecimalField('custo medio',max_digits=20,decimal_places=2,null=True,blank=True )
+    end_date = models.DateTimeField('Data que acabou',blank=True,null=True)
+    product_type = models.CharField('Tipo de Produto',max_length=100,null=True,blank=True)
+    stock_loc = models.ForeignKey(Stock_loc,on_delete=DO_NOTHING,null=True,blank=True)
+
+
+    class Meta:
+        verbose_name = "Log_movimentação"
+        verbose_name_plural = "Log_movimentação"
+
+    def __str__(self):
+        return f'{self.description} - {self.code}'   
+
+
+
+
 

@@ -4,9 +4,9 @@ from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl import load_workbook
 from shutil import copyfile
 import pandas as pd
-from users.models import UsuarioCorporativo 
+from .models import UsuarioCorporativo 
 
-user = UsuariosCorporativo.objects.all()
+user = UsuarioCorporativo.objects.all()
 
 
 

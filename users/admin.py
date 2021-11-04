@@ -1,5 +1,5 @@
 from django.contrib import admin
-from users.models import  Companies, Department, Office, UsuarioPessoal,UsuarioTrabalho,UsuarioDocumentos,UsuarioEndereco,UsuarioCorporativo,Contabancaria,Area
+from users.models import  Companies, Department, Group_permissions, Office, UsuarioPessoal,UsuarioTrabalho,UsuarioDocumentos,UsuarioEndereco,UsuarioCorporativo,Contabancaria,Area,Notes
 
 
 # Register your models here.
@@ -7,12 +7,12 @@ from users.models import  Companies, Department, Office, UsuarioPessoal,UsuarioT
 
 @admin.register(UsuarioPessoal)
 class UsuarioPessoalAdmin(admin.ModelAdmin):
-    list_display = ('create','active','code','name','surname','cpf','pis','voter_title','work_card','series','work_card_uf','work_card_date','gender','color','marital_status','schooling','birthdate', 'birthdate_uf','city_birth','country_birth','national_country','mother','father',"profile_image",)
-    search_fields = ('create','active','code','name','surname','cpf','pis','voter_title','work_card','series','work_card_uf','work_card_date','gender','color','marital_status','schooling','birthdate', 'birthdate_uf','city_birth','country_birth','national_country','mother','father',"profile_image",)
+    list_display = ('create','active','code','name','birthdate', 'surname','cpf','pis','voter_title','work_card','series','work_card_uf','work_card_date','gender','color','marital_status','schooling','birthdate', 'birthdate_uf','city_birth','country_birth','national_country','mother','father',"profile_image",)
+    search_fields = ('create','active','code','name','birthdate','surname','cpf','pis','voter_title','work_card','series','work_card_uf','work_card_date','gender','color','marital_status','schooling','birthdate', 'birthdate_uf','city_birth','country_birth','national_country','mother','father',"profile_image",)
 @admin.register(UsuarioCorporativo)
 class UsuarioCorporativoAdmin(admin.ModelAdmin):
-    list_display = ('create','active','id','code','work','corporate_email','skype','telephone','corporate_phone','ramal','user', 'group',)
-    search_fields = ('create','active','id','code','work','corporate_email','skype','telephone','corporate_phone','ramal','user', 'group',)
+    list_display = ('create','active','id','code','work','address','document','bank','corporate_email','skype','telephone','corporate_phone','ramal','user', 'group',)
+    search_fields = ('create','active','id','code','work','address','document','bank','corporate_email','skype','telephone','corporate_phone','ramal','user', 'group',)
 
 @admin.register(UsuarioTrabalho)
 class UsuarioTrabalhoAdmin(admin.ModelAdmin):
@@ -31,6 +31,14 @@ class UsuarioEnderecoAdmin(admin.ModelAdmin):
 
 
 
+@admin.register(Group_permissions)
+class Group_permissionsAdmin(admin.ModelAdmin):
+    list_display = ('id','create','active','name',)
+    search_fields =('id','create','active','name',)
+@admin.register(Notes)
+class NotesAdmin(admin.ModelAdmin):
+    list_display = ('id','create','active','code','note',)
+    search_fields =('id','create','active','code','note',)
 @admin.register(Companies)
 class CompaniesAdmin(admin.ModelAdmin):
     list_display = ('id','create','active','company_name','phone_number', 'cnpj',)

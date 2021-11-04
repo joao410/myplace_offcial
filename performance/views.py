@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from .models import Announcement, Annou_Detail, Image, Profile, Performance
 from django.contrib.auth.decorators import login_required
 from .forms import ImageForm , ImportForm
-import xlrd
+
 from django.contrib import messages
 import datetime
 import os
@@ -352,6 +352,7 @@ def announcement(request, sku):
 
 
     if request.method == 'POST' and 'add_detail_annou' in request.POST:
+        announcement = Announcement.objects.get(sku=sku)
         detail = request.POST['detail_add']
         Annou_Detail.objects.create(anuncio=announcement, detail=detail)
         details = Annou_Detail.objects.filter(anuncio=announcement)

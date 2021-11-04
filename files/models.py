@@ -45,8 +45,11 @@ class Dashbaners(Base):
     desc      = models.CharField('Descrição',max_length=255,blank=True,null=True)
     manager   = models.CharField("gestor",max_length=100 ,blank=True,null=True)
     geral     = models.BooleanField(default=False)
-    timeshow  = models.CharField("tempo de exibiçao",max_length=4,default='30')
+    timeshow  = models.DateField(blank=True,null=True)
     order_by  = models.IntegerField("ordem de exibição",blank=True,null=True)
+    expired   = models.BooleanField(default=False)
+    paused    = models.BooleanField(default=False)
+    link      = models.CharField('Link',max_length=255,blank=True,null=True)
 
     class Meta:
        verbose_name = "dashbaner"
@@ -54,6 +57,24 @@ class Dashbaners(Base):
 
     def __str__(self):
         return f'{self.desc} - {self.manager}'   
+
+
+class Calendar(Base):
+    title    = models.CharField('descrição',max_length=50,blank=True,null=True)
+    reserve  = models.CharField('User',max_length=10,blank=True,null=True)
+    start_date_time = models.DateTimeField(blank=True,null=True)
+    start    =  models.CharField('start',max_length=50,blank=True,null=True)
+    end_date_time = models.DateTimeField(blank=True,null=True)
+    data_end = models.CharField('end',max_length=50,blank=True,null=True)
+    location = models.CharField("Localização _",max_length=100,blank=True,null=True)
+
+    class Meta:
+       verbose_name = "reserva"
+       verbose_name_plural = "reservas"
+
+    def __str__(self):
+        return f'{self.start_date_time} - {self.reserve}'   
+
 
   
 
