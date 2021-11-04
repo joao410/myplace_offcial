@@ -3,8 +3,17 @@ import fdb
 import pandas as pd
 from datetime import datetime 
 import pandas as pd
-from users.models import Contabancaria, Office, UsuarioCorporativo, UsuarioDocumentos, UsuarioEndereco, UsuarioPessoal, UsuarioTrabalho 
+from users.models import Area, Companies, Contabancaria, Department, Office, UsuarioCorporativo, UsuarioDocumentos, UsuarioEndereco, UsuarioPessoal, UsuarioTrabalho 
 from users.dic import mydic
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+import smtplib
+try:
+    from email import encoders
+except:
+   from email import Encoders as encoders
+
 def update():
     con = fdb.connect(dsn='arena/3050:C:\CICOM\MECAUTO\DB\CICOM-JF.CDB', user='SYSDBA', password='masterkey')
     cur = con.cursor()
@@ -73,9 +82,50 @@ def update():
 
             except:
                 pass
+    # ###################### ENVIAR EMAIL ##################################
+
     excel = pd.DataFrame(list)  
     now = datetime.now()      
-    excel.to_excel('Log_mypalce_' +  now.strftime("%d_%m_%Y_%H_%M") + '.xlsx' )   
+    output_file = 'Log_mypalce_' +  now.strftime("%d_%m_%Y_%H_%M") + '.xlsx'
+    excel.to_excel( output_file)   
+    
+    # try:
+    fromaddr = "tigenioshop@gmail.com"
+    toaddr = 'joao@arenavidros.com.br'
+    msg = MIMEMultipart()
+
+    msg['From'] = fromaddr 
+    msg['To'] = toaddr
+    msg['Subject'] = "EMail de Teste"
+
+    body = "\nCorpo da mensagem"
+
+    msg.attach(MIMEText(body, 'plain'))
+
+    filename = output_file
+
+    attachment = open(filename,'rb')
+
+
+    part = MIMEBase('application', 'octet-stream')
+    part.set_payload((attachment).read())
+    encoders.encode_base64(part)
+    part.add_header('Content-Disposition', "attachment; filename= %s" % name)
+
+    msg.attach(part)
+
+    attachment.close()
+
+    server = smtplib.SMTP('smtp.gmail.com', 587) 
+    server.starttls()
+    server.login(fromaddr, "0567Senh@")
+    text = msg.as_string()
+    server.sendmail(fromaddr, toaddr, text)
+    server.quit()
+    #     print('\nEmail enviado com sucesso!')
+    # except:
+    #     print("\nErro ao enviar email")
+   
 def update_myplace():
         con = fdb.connect(dsn='arena/3050:C:\CICOM\MECAUTO\DB\CICOM-JF.CDB', user='SYSDBA', password='masterkey')
         cur = con.cursor()
@@ -237,3 +287,26 @@ def update_myplace():
             except:
                 print("fail")      
                     
+def list():
+
+    cm=Companies.objects.all()
+    LIST = []
+    for c in cm:
+        am = Area.objects.filter(company = c)
+        LIST.append(c.company_name)
+        for a in am:
+            dm = Department.objects.filter(area=a)
+            LIST.append([c.company_name,a.area])
+            for d in dm:
+                try:
+                    om = Office.objects.filter(department=d)
+                except:
+                    om = Office.objects.all()    
+                LIST.append([c.company_name,a.area,d.department_name])
+                for o in om:
+                    LIST.append([c.company_name,a.area,d.department_name,o.office])
+              
+    excel= pd.DataFrame(LIST)
+    excel.to_excel("lista.xlsx")                
+                
+

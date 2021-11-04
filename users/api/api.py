@@ -1,4 +1,7 @@
+import decimal
 from os import execlpe
+
+from back_help.settings import BASE_DIR
 from ..models import   Area, Department, Group_permissions, Notes
 from ..models import   UsuarioCorporativo, UsuarioEndereco, UsuarioTrabalho,UsuarioDocumentos, Companies, UsuarioPessoal,Office,Contabancaria
 from files.models import  Dashbaners
@@ -6,6 +9,7 @@ from datetime import date, datetime
 from django.contrib.auth.models import User, Group
 from django.http import HttpResponse
 import xlwt
+from decimal import Context, Decimal
 import xlrd3 as xlrd
 from  .serializers import Companies,Noteserializer, Officeserializer,PernonalUserserializer,CorporateUserserializer,Dashbanerserializer,Userserializer
 from rest_framework.views import APIView, Response
@@ -17,7 +21,8 @@ from django.http import Http404
 from rest_framework.permissions import IsAuthenticated 
 from rest_framework.parsers import MultiPartParser
 from django.utils.dateparse import parse_datetime
-
+import os
+import pandas as pd
 # from .form import formRegistrationAddress,formRegistrationCorporate,formRegistrationDocuments,formRegistrationPersonal,formRegistrationWork,formRegistrationBank
 
 class users_view(viewsets.ModelViewSet):
@@ -115,9 +120,36 @@ class perfil_view(viewsets.ModelViewSet):
         except:
             raise Http404
  
-class office_view(viewsets.ModelViewSet):
+class office_view(views.APIView):
     serializer_class= Officeserializer
-    queryset = Office.objects.all()
+    # queryset = Office.objects.all().order_by('office')
+    def get(self,format=None):
+        cm=Companies.objects.all()
+        LIST = []
+
+        for c in cm:
+            am = Area.objects.filter(company = c)
+            # LIST.append(c.company_name)
+            for a in am:
+                dm = Department.objects.filter(area=a)
+                for d in dm:
+                    LIST.append([c.company_name,a.area,d.department_name])
+                    # try:
+                    #     om = Office.objects.filter(department=d)
+                    # except:
+                    #     om = Office.objects.all()    
+                    # # LIST.append([c.company_name,a.area,d.department_name])
+                    # for o in om:
+
+                    #     L
+        CARGO = []
+      
+        office = Office.objects.all()
+        for o in office:
+            CARGO.extend([o.office])
+        
+        all= [LIST , CARGO]            
+        return Response(all)                
 
 class user_birth(viewsets.ModelViewSet):
     serializer_class = PernonalUserserializer
@@ -153,6 +185,7 @@ class user_view(viewsets.ModelViewSet):
 
 ####### APIViEW ########
 class export_view(views.APIView):
+    
         MDATA = datetime.now().strftime('%d-%m-%Y')
         def export(self,model, filename_final, queryset, columns):
             response = HttpResponse(content_type='application/ms-excel')
@@ -182,12 +215,15 @@ class export_view(views.APIView):
                 row_num += 1
                 for col, val in enumerate(rowdata):
                     ws.write(row_num, col, val, default_style)
-
-            wb.save(response)
-            return response
+            url = f"{BASE_DIR}\\media\\excel_RH\\{filename_final}"        
+            excel = pd.DataFrame(response)
+            excel.to_excel(url)
+            new_url= f"http://187.11.139.123:13735\\media\\excel_RH\\{filename_final}"
+          
+            return Response(new_url)
 
         def put(self,request,format=None):
-            MDATA = datetime.now().strftime('%Y-%m-%d')
+            MDATA = datetime.now().strftime('%Y-%m-%d%H_%M_%S')
             model = 'Users'
             filename = 'colaboradores_exportados.xls'
             _filename = filename.split('.')
@@ -368,11 +404,10 @@ class create_user_view(views.APIView):
                        object.function_code = request.POST['function_code']
                        object.workload = request.POST['workload']
                        object.wage_unit = request.POST['wage_unit']
-                       try:
-                            object.variable_salary = request.POST['variable_salary']
-                       except:
-                           print("é essa mesmo a sujeita")     
-
+                     
+                       object.variable_salary = float(request.POST['variable_salary'])
+                     
+                      
                        try:
                             object.resignation_date =  datetime.strptime(request.POST['resignation_date'],"%d/%m/%Y")
                             third_object =  UsuarioCorporativo.objects.get(code=user)
@@ -386,15 +421,23 @@ class create_user_view(views.APIView):
                        
                             
                        except:
-                           object.resignation_date = None     
+                           pass   
                        object.save()
                        try:
                             note=request.POST["note"]
+                            if note == "":
+                                note = None
+                                print(type(note))
                        except:
-                           note= None     
-                       if not note == None:
+                          pass
+                       try:
+                           if note  == None:
+                               print("You shall not pass!!!!")
+                           else:    
                             Notes.objects.create(code=user,note=note,creator=self.request.user)
-                    #    
+                            print(note)
+                       except:
+                          pass
                                                
                 else:
                   
@@ -539,9 +582,14 @@ class modify_banner_view(views.APIView):
             return Response(status=status.HTTP_202_ACCEPTED)          
 
 class create_office_view(views.APIView):
+    parser_classes = (MultiPartParser,) 
     def post(self,request,format=None):
+         
         if Office.objects.filter(office=request.POST['office']).exists():
             raise  Http404
         else:
-            Office.objects.create(office=request.POST['office'],ncbo=request.POST['ncbo'])
+            try:
+                Office.objects.create(office=request.POST['office'],ncbo=request.POST['ncbo'])
+            except:
+                print("mogoth")   
             return Response(status=status.HTTP_201_CREATED)

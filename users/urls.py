@@ -12,7 +12,7 @@ router = routers.DefaultRouter()
 
 router.register('users',users_view,'users')
 router.register('user',user_view,'user')
-router.register('cargo',office_view,'cargo')
+# router.register('cargo',office_view,'cargo')
 router.register('profile',perfil_view,'profile')
 router.register('banners',general_Banner_view,'banners')
 router.register('all_banners',all_general_Banner_view,'all_banners')
@@ -29,6 +29,7 @@ urlpatterns = [
     path('notes/<int:code>/',user_notes_view.as_view(),name="notes"),
     path('usuario_por_id/<int:pk>',user_by_idView.as_view(),name="usuario_por_id"),
     path('criar_cargo',create_office_view.as_view(),name="criar_cargo"),
+    path('cargo',office_view.as_view(),name="cargo"),
  
    
 
