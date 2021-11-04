@@ -2,7 +2,7 @@ from django.conf import settings
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from utils.utils import report 
-from utils.update import upbanco, update, update_myplace
+from utils.update import update, update_myplace
 import os
 from ..models import Report_human_resources,Calendar
 from datetime import date, datetime, timedelta
@@ -38,7 +38,7 @@ class update_view(views.APIView):
         return Response('deu certo')
 class mp_update_view(views.APIView):
     def post(self,format=None):
-        upbanco()
+        update_myplace()
         return Response('deu certo')        
 class Report_view(views.APIView):
     def post(self,format=None):

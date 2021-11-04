@@ -238,9 +238,9 @@ class create_user_view(views.APIView):
     parser_classes = (MultiPartParser,) 
     def post(self, request, *args, **kwargs):
         if UsuarioPessoal.objects.all():
-                    Usuario_id = UsuarioPessoal.objects.all().order_by('-id')[0].id
+                    Usuario_id = UsuarioPessoal.objects.all().order_by('-id')[0].code
 
-                    codigo = Usuario_id + 10001
+                    codigo = Usuario_id + 1
         else:
                             codigo = 10001
         grupo =request.POST["group"]
@@ -284,7 +284,7 @@ class create_user_view(views.APIView):
             e = UsuarioEndereco.objects.create(code=u)
             c = Contabancaria.objects.create(code=u)
             UsuarioCorporativo.objects.create(code=u,work=usua,user=users,group=gs,document=d,address=e,bank=c)
-            code = [u.code, u.code.profile_image, u.code.name] 
+            code = [u.code, str(u.profile_image), u.name] 
             return Response(code)
         else:
             return Response('já tem seu puto')

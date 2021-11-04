@@ -1,8 +1,9 @@
 from django.contrib.auth.models import Group
 import fdb
+import pandas as pd
 from datetime import datetime 
 import pandas as pd
-from users.models import Contabancaria, Group_permissions, Office, UsuarioCorporativo, UsuarioDocumentos, UsuarioEndereco, UsuarioPessoal, UsuarioTrabalho 
+from users.models import Contabancaria, Office, UsuarioCorporativo, UsuarioDocumentos, UsuarioEndereco, UsuarioPessoal, UsuarioTrabalho 
 from users.dic import mydic
 def update():
     con = fdb.connect(dsn='arena/3050:C:\CICOM\MECAUTO\DB\CICOM-JF.CDB', user='SYSDBA', password='masterkey')
@@ -49,7 +50,7 @@ def update():
     prof = pd.DataFrame(rows)
     headers = [i[0] for i in cur.description]
     prof.columns = headers
-   
+    list = []
     for row in range(len(prof)):
             try:
                 object =UsuarioPessoal.objects.get(cpf=prof.loc[row][27]) 
@@ -57,16 +58,24 @@ def update():
               
                 for key,valor in zip(mydic.keys(),mydic.values()):
                     print( key , valor)
+                   
                     try:
                             UPDATE2 =  "Update TAB_CAD_FUN set " + valor + " ='" + key + "' where CM_NUM_PIS  = '" + prof.loc[row][45] + "'"       
                             cur.execute(UPDATE2) 
                             con.commit()
                             print("deu certo")
+                
+                            list.append( [object.name,  str(key) , str(valor),"deu certo"])
+                        
                     except:
+                            list.append( [object.name,   str(key) , str(valor),"deu ruim"])
                             print('deu ruim') 
+
             except:
                 pass
-
+    excel = pd.DataFrame(list)  
+    now = datetime.now()      
+    excel.to_excel('Log_mypalce_' +  now.strftime("%d_%m_%Y_%H_%M") + '.xlsx' )   
 def update_myplace():
         con = fdb.connect(dsn='arena/3050:C:\CICOM\MECAUTO\DB\CICOM-JF.CDB', user='SYSDBA', password='masterkey')
         cur = con.cursor()
@@ -228,33 +237,3 @@ def update_myplace():
             except:
                 print("fail")      
                     
-
-def upbanco():
-    all= UsuarioCorporativo.objects.all()
-    for user in all:
-        rh = Group.objects.get(name="recursos humanos")
-        try:
-            if user.work.company.company_name == "Borrachauto": 
-
-                print("entrou")
-                grupo = Group_permissions.objects.get(name="Borrachauto")       
-                user.group_permission = grupo
-                user.save()        
-                print("deu certo")    
-            elif user.work.company.company_name == "VOA COBRANÇAS EDUCACIONAIS":
-                grupo = Group_permissions.objects.get(name="colegios")       
-                user.group_permission = grupo
-                user.save()        
-                print("deu certo")    
-            elif user.work.company.company_name == "Lotus Participações":
-                grupo = Group_permissions.objects.get(name="lotus")       
-                user.group_permission = grupo
-                user.save()        
-                print("deu certo")    
-            elif user.group == rh:
-                grupo = Group_permissions.objects.get(name="Geral")       
-                user.group_permission = grupo
-                user.save()        
-                print("deu certo")    
-        except:
-            print(user.user)        
