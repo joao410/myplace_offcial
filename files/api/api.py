@@ -22,6 +22,7 @@ from django.http import Http404
 from rest_framework.permissions import IsAuthenticated 
 from .serializers import reportserializer,calendarserializer
 import pytz
+from rest_framework.parsers import MultiPartParser
 
 utc=pytz.UTC
 
@@ -33,7 +34,6 @@ class Reports_views(viewsets.ModelViewSet):
     serializer_class = reportserializer
     def get_queryset(self,format=None):
         user = UsuarioCorporativo.objects.get(user =self.request.user)
-
         if user.group == Group.objects.get(name="Compras"):
             catergoria =["Atacado","Compras","Estoque"]
             query = Report_human_resources.objects.filter(file_category__in=catergoria)
@@ -52,9 +52,10 @@ class mp_update_view(views.APIView):
         list()
         return Response('deu certo')        
 class Report_view(views.APIView):
-    def post(self,format=None):
+    parser_classes = (MultiPartParser,) 
+    def post(self,request,format=None):
         user = UsuarioCorporativo.objects.get(user=self.request.user)
-        if user.group == "recursos humanos":
+        if user.group == Group.objects.get(name="recursos humanos"):
             today = datetime.now()
             name = 'Relat_Profissionais__' +  today.strftime("%d_%m_%Y_%H_%M") + '.xlsx'
             old_file = os.path.join(settings.MEDIA_ROOT + '\\models_rh\\' + name )
@@ -74,7 +75,7 @@ class Report_view(views.APIView):
 
 
             return Response(status=status.HTTP_202_ACCEPTED)
-        elif user.group == "Compras":
+        elif user.group == Group.objects.get(name="Compras"):
             category = request.POST["category"]
             if category == "Atacado":
                 today = datetime.now()
@@ -92,7 +93,7 @@ class Report_view(views.APIView):
                     file = Report_human_resources.objects.create(file=old_file, file_name=name,file_category=category)
                     file.save()
                 else:
-                    return Response(status=status.HTTP_401_UNAUTHORIZED)
+                    return Response(status=status.HTTP_401_UNAUTHORIZED) 
 
                 
                 return Response(status=status.HTTP_202_ACCEPTED)   
@@ -135,10 +136,10 @@ class Report_view(views.APIView):
                         return Response(status=status.HTTP_401_UNAUTHORIZED)
 
                     
-                    return Response(status=status.HTTP_202_ACCEPTED)
+                   
         
 
-
+        return Response(status=status.HTTP_202_ACCEPTED)
 class create_calendar_view(views.APIView):
     def post(self, request,format=None):
         start_date = datetime.strptime(request.POST['start_date'] + ":00",'%Y-%m-%d %H:%M:%S')
