@@ -89,42 +89,44 @@ def update():
     output_file = 'Log_mypalce_' +  now.strftime("%d_%m_%Y_%H_%M") + '.xlsx'
     excel.to_excel( output_file)   
     
-    # try:
-    fromaddr = "tigenioshop@gmail.com"
-    toaddr = 'joao@arenavidros.com.br'
-    msg = MIMEMultipart()
+    try:
+        to = [ 'joao@arenavidros.com.br','andre@arenavidros.com.br','elton@arenavidros.com.br']
+        fromaddr = "tigenioshop@gmail.com"
+        toaddr = ", ".join(to) 
+        msg = MIMEMultipart()
 
-    msg['From'] = fromaddr 
-    msg['To'] = toaddr
-    msg['Subject'] = "EMail de Teste"
+        msg['From'] = fromaddr 
+        msg['To'] = toaddr
 
-    body = "\nCorpo da mensagem"
+        msg['Subject'] = "Log de atualização"
 
-    msg.attach(MIMEText(body, 'plain'))
+        body = "Atualização Mecauto"
 
-    filename = output_file
+        msg.attach(MIMEText(body, 'plain'))
 
-    attachment = open(filename,'rb')
+        filename = output_file
+
+        attachment = open(filename,'rb')
 
 
-    part = MIMEBase('application', 'octet-stream')
-    part.set_payload((attachment).read())
-    encoders.encode_base64(part)
-    part.add_header('Content-Disposition', "attachment; filename= %s" % name)
+        part = MIMEBase('application', 'octet-stream')
+        part.set_payload((attachment).read())
+        encoders.encode_base64(part)
+        part.add_header('Content-Disposition', "attachment; filename= %s" % filename)
 
-    msg.attach(part)
+        msg.attach(part)
 
-    attachment.close()
+        attachment.close()
 
-    server = smtplib.SMTP('smtp.gmail.com', 587) 
-    server.starttls()
-    server.login(fromaddr, "0567Senh@")
-    text = msg.as_string()
-    server.sendmail(fromaddr, toaddr, text)
-    server.quit()
-    #     print('\nEmail enviado com sucesso!')
-    # except:
-    #     print("\nErro ao enviar email")
+        server = smtplib.SMTP('smtp.gmail.com', 587) 
+        server.starttls()
+        server.login(fromaddr, "0567Senh@")
+        text = msg.as_string()
+        server.sendmail(fromaddr, toaddr.split(","), text)
+        server.quit()
+        print('\nEmail enviado com sucesso!')
+    except:
+        print("\nErro ao enviar email")
    
 def update_myplace():
         con = fdb.connect(dsn='arena/3050:C:\CICOM\MECAUTO\DB\CICOM-JF.CDB', user='SYSDBA', password='masterkey')

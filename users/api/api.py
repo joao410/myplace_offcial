@@ -107,7 +107,6 @@ class all_manager_Banner_view(viewsets.ModelViewSet):
         query = Dashbaners.objects.filter(manager=user.user).order_by("order_by")           
         return query
         
-
 class perfil_view(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = UsuarioCorporativo.objects.all()
@@ -144,7 +143,7 @@ class office_view(views.APIView):
                     #     L
         CARGO = []
       
-        office = Office.objects.all()
+        office = Office.objects.all().order_by('office')
         for o in office:
             CARGO.extend([o.office])
         
@@ -218,7 +217,7 @@ class export_view(views.APIView):
             url = f"{BASE_DIR}\\media\\excel_RH\\{filename_final}"        
             excel = pd.DataFrame(response)
             excel.to_excel(url)
-            new_url= f"http://187.11.139.123:13735\\media\\excel_RH\\{filename_final}"
+            new_url= f"http://192.168.15.145:8090/media/excel_RH/{filename_final}"
           
             return Response(new_url)
 
@@ -320,7 +319,8 @@ class create_user_view(views.APIView):
             e = UsuarioEndereco.objects.create(code=u)
             c = Contabancaria.objects.create(code=u)
             UsuarioCorporativo.objects.create(code=u,work=usua,user=users,group=gs,document=d,address=e,bank=c)
-            code = [u.code, str(u.profile_image), u.name] 
+            image = "http://192.168.15.145:8090 //" + str(u.profile_image)
+            code = [u.code, image, u.name] 
             return Response(code)
         else:
             return Response('já tem seu puto')
