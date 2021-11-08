@@ -147,10 +147,6 @@ def report():
                     
         wb.save(output_file)
        
-
-        
-      
-  
 def atacado():
     today = date.today()
     con = fdb.connect(dsn='arena/3050:C:\CICOM\MECAUTO\DB\CICOM.CDB', user='SYSDBA', password='masterkey')
@@ -209,9 +205,9 @@ def atacado():
 
     #####################################################################
 
-    template_file = 'C:\\Users\\arena\\myplace\\media\\Comercial\\TEMPLATE_ATACADO.xlsx'
+    template_file = 'C:\\Django\\myplace\\myplace\\media\\Comercial\\TEMPLATE_ATACADO.xlsx'
     name = 'Relat_Precos__' +  today.strftime("%d_%m_%Y") + '.xlsx' 
-    output_file = 'C:\\Users\\arena\\myplace\\media\\Comercial\\' + name
+    output_file = 'C:\\Django\\myplace\\myplace\\media\\Comercial\\' + name
 
 
     copyfile(template_file, output_file)
@@ -249,7 +245,6 @@ def atacado():
     print("20_60 - OK")
     time.sleep(5)
 
-
 def estoque():
     today = date.today()
     data = today -  timedelta(days=3)
@@ -279,9 +274,9 @@ def estoque():
     #####################################################################
 
    
-    template_file = 'C:\\Users\\arena\\myplace\\media\\Comercial\\\TEMPLATE_FALTANTE.xlsx'
+    template_file = 'C:\\Django\\myplace\\myplace\\media\\Comercial\\\TEMPLATE_FALTANTE.xlsx'
     name = 'Relat_Faltantes_Estoque__' +  today.strftime("%d_%m_%Y") + '.xlsx' 
-    output_file = 'C:\\Users\\arena\\myplace\\media\\Comercial\\' + name
+    output_file = 'C:\\Django\\myplace\\myplace\\media\\Comercial\\' + name
 
 
     copyfile(template_file, output_file)
@@ -348,7 +343,7 @@ def compras():
 
 
 
-        ip_file = 'C:\\Users\\arena\\myplace\\media\\IP_USER.xlsx'
+        ip_file = 'C:\\Django\\myplace\\myplace\\media\\IP_USER.xlsx'
 
         wb = load_workbook(ip_file)
         ws = wb['Sheet1']
@@ -369,11 +364,11 @@ def compras():
 
 
 
-        template_file = 'C:\\Users\\arena\\myplace\\media\\Comercial\\Relat_Compras.xlsx' 
+        template_file = 'C:\\Django\\myplace\\myplace\\media\\Comercial\\Relat_Compras.xlsx' 
 
         name = 'Relat_Compras_' +  today.strftime("%d_%m_%Y") + '.xlsx' 
 
-        output_file = 'C:\\Users\\arena\\myplace\\media\\Comercial\\' + name
+        output_file = 'C:\\Django\\myplace\\myplace\\media\\Comercial\\' + name
 
 
         col_new = ['A','B','C','D','E','F']

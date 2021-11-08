@@ -77,7 +77,7 @@ class Report_view(views.APIView):
             return Response(status=status.HTTP_202_ACCEPTED)
         elif user.group == Group.objects.get(name="Compras"):
             category = request.POST["category"]
-            if category == "Atacado":
+            if category == "2260":
                 today = datetime.now()
                 name = 'Relat_Precos__'+  today.strftime("%d_%m_%Y_%H_%M") + '.xlsx'
                 old_file = os.path.join(settings.MEDIA_ROOT + '\\Comercial\\' + name )
@@ -117,7 +117,7 @@ class Report_view(views.APIView):
 
                 
                 return Response(status=status.HTTP_202_ACCEPTED)
-            elif category == "Compras":
+            elif category == "preco":
                     today = datetime.now()
                     name = 'Relat_compras__'+  today.strftime("%d_%m_%Y_%H_%M") + '.xlsx'
                     old_file = os.path.join(settings.MEDIA_ROOT + '\\Comercial\\' + name )

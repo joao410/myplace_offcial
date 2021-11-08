@@ -217,7 +217,7 @@ class export_view(views.APIView):
             url = f"{BASE_DIR}\\media\\excel_RH\\{filename_final}"        
             excel = pd.DataFrame(response)
             excel.to_excel(url)
-            new_url= f"http://192.168.15.145:8090/media/excel_RH/{filename_final}"
+            new_url= f"http://187.11.139.123:13736/media/excel_RH/{filename_final}"
           
             return Response(new_url)
 

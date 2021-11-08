@@ -87,7 +87,7 @@ def update():
     excel = pd.DataFrame(list)  
     now = datetime.now()      
     output_file = 'Log_mypalce_' +  now.strftime("%d_%m_%Y_%H_%M") + '.xlsx'
-    excel.to_excel( output_file)   
+    excel.to_excel("\\media\\log\\"+ output_file)   
     
     try:
         to = [ 'joao@arenavidros.com.br','andre@arenavidros.com.br','elton@arenavidros.com.br']
